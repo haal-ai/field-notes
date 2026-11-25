@@ -16,6 +16,7 @@ OUT = ROOT / '_site'                # public output: the only directory ever dep
 PREVIEW_OUT = ROOT / '_preview'     # private draft preview: never deployed, git-ignored
 APPROVED = ['approved-publication-test', 'approved-publication']
 PRIVATE_TOKENS = ['teams.microsoft.com', 'sharepoint.com', '/users/', 'file://']
+ABOUT = 'About this library'
 STATE = {'preview': False, 'out': OUT}
 
 
@@ -147,6 +148,9 @@ def validate(catalogue, preview=False):
                     raise ValueError(f'Experiment requires {key}')
             date.fromisoformat(article['tested'])
             date.fromisoformat(article['review_due'])
+    for gone in catalogue.get('retired', []):
+        if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', gone.get('slug', '')) or gone['slug'] in slugs or not gone.get('note'):
+            raise ValueError('Invalid retired page entry')
     # The public repository is a selected public dataset, never an export of the private inventory.
     payload = json.dumps([{k: v for k, v in a.items() if not k.startswith('_')} for a in catalogue['articles']]).lower()
     for token in PRIVATE_TOKENS:
@@ -236,6 +240,21 @@ def entry(article, today, prefix=''):
     return f'''<article class="entry" data-kind="{esc(article['type'])}" data-topic="{esc(slugify(article['section']))}" data-outdated="{'true' if status['status']=='Outdated news' else 'false'}"><div class="entry-kind"><span class="kind kind-{esc(article['type'])}">{esc(article['type'].upper())}</span></div><div><a class="entry-title" href="{prefix}{article['slug']}/index.html">{esc(article['title'])}</a><p class="entry-description">{esc(article['summary'])}</p><div class="entry-formats">{esc(article['section'])} / {esc(' · '.join(article['formats']))}</div></div><div class="entry-date">Published<strong>{when(article.get('published'))}</strong><span class="status status-{status['class']}">{status['status']}</span></div></article>'''
 
 
+def sections_of(articles, today):
+    """Group articles under their section heading: largest section first, 'About this library' last."""
+    groups = {}
+    for a in articles:
+        groups.setdefault(a['section'], []).append(a)
+    order = sorted(groups, key=lambda name: (name == ABOUT, -len(groups[name]), name))
+    return [(name, groups[name], sum(lifecycle(a, today)['status'] != 'Outdated news' for a in groups[name])) for name in order]
+
+
+def section_block(name, items, today):
+    sid = 'section-' + slugify(name)
+    return (f'<section class="entry-section" data-section="{esc(slugify(name))}" aria-labelledby="{sid}"><h3 id="{sid}" class="section-heading">{esc(name)}'
+            f'<span class="section-count">{len(items):02d}</span></h3>{"".join(entry(a, today) for a in items)}</section>')
+
+
 def write(path, content):
     dest = STATE['out'] / path
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -282,28 +301,28 @@ def build(today=None, preview=False, drafts=()):
                           ['Dated observations · three months', 'Longer-lived explanations · review dates', 'Recorded tests · versions and limits'],
                           'Choose news for a dated update, a guide for an explanation, or an experiment for evidence from a specific setup.')
     listing = sorted(articles, key=lambda a: a.get('published') if iso(a.get('published')) else '0000', reverse=True)
-    topics = {}
-    for a in articles:
-        topics.setdefault(a['section'], []).append(a)
+    groups = sections_of(listing, today)
     candidates = [a for a in articles if not is_draft(a)] or articles
     featured = next((a for a in candidates if a['type'] == 'guide' and a['visual'].get('nodes')), candidates[0])
     fs = lifecycle(featured, today)
     fv = featured['visual']
     featured_visual = flow(fv['title'], fv['nodes'], fv['details'], fv['caption']) if fv.get('nodes') else ''
-    sidebar = (f'<aside class="sidebar" aria-label="Library filters"><div class="side-label">EXPLORE THE LIBRARY</div>'
-               f'<div class="js-only"><button type="button" class="topic-button active" data-topic="all" aria-pressed="true">All topics<span>{len(entries):02d}</span></button><div id="topics">'
-               + ''.join(f'<button type="button" class="topic-button" data-topic="{esc(slugify(t))}" aria-pressed="false">{esc(t)}<span>{len(v):02d}</span></button>' for t, v in topics.items())
-               + '</div></div><noscript><p class="format-note">Topic filters need JavaScript. All entries are listed.</p></noscript>'
+    sidebar = (f'<aside class="sidebar" aria-label="Library filters"><div class="side-label">SECTIONS</div>'
+               f'<div class="js-only"><button type="button" class="topic-button active" data-topic="all" aria-pressed="true">All sections<span>{len(entries):02d}</span></button><div id="topics">'
+               + ''.join(f'<button type="button" class="topic-button" data-topic="{esc(slugify(t))}" aria-pressed="false">{esc(t)}<span>{n:02d}</span></button>' for t, v, n in groups if n)
+               + '</div></div><noscript><p class="format-note">Section filters need JavaScript. All entries are listed.</p></noscript>'
                '<div class="side-divider"></div><div class="side-label">READING FORMATS</div>'
                + ''.join(f'<div class="format-note">{esc(f)}</div>' for f in sorted({f for a in articles for f in a['formats']}))
                + '<a href="maintenance/index.html" class="sidebar-note">A date on every page.<br>A clear limit on every claim.</a></aside>')
+    news_button = ('<button type="button" class="type-button" data-kind="news" aria-pressed="false">News &amp; magazine</button>'
+                   if any(a['type'] == 'news' for a in articles) else '')
     home = f'''<section id="library"><div class="eyebrow">OPEN SOURCE · OPEN WEIGHTS · PRACTICAL ENGINEERING</div><div class="intro-row"><div><h1>Understand it.<br><span>Try it. Document it.</span></h1><p class="intro">AI and software engineering, with useful visuals.<br>Each page shows its author, dates and review status.</p></div><div class="index-stamp"><span>THE WORKING INDEX</span><strong>{len(articles):02d}</strong><span>{esc(catalogue['release_marker'])}</span></div></div>
 <div class="library-topline"><div><span class="section-number">01 /</span> <h2>Start with an explanation</h2></div><span class="mono muted">TEXT FIRST. VISUAL WHEN USEFUL.</span></div>
 <a class="featured" href="{featured['slug']}/index.html"><div class="featured-copy"><div class="entry-kicker"><span class="kind kind-{esc(featured['type'])}">{esc(featured['type'].upper())}</span><span>{esc(featured['section'].upper())}</span></div><h3>{esc(featured['title'])}</h3><p>{esc(featured['summary'])}</p><div class="featured-footer"><span>Read the explanation</span><span class="mono">ARTICLE + VISUAL</span></div><div class="featured-dates">Published {when(featured.get('published'))} · Edited {when(featured.get('edited'))} <span class="status status-{fs['class']}">{fs['status']}</span></div></div><div class="featured-visual">{featured_visual}</div></a>
 <section class="browse" aria-labelledby="browse-title"><div class="library-topline"><div><span class="section-number">02 /</span> <h2 id="browse-title">Browse the field notes</h2></div><span id="result-count" class="mono muted" aria-live="polite">{len(listing)} entries</span></div>
 <div class="search-row"><label class="search-box js-only"><span class="sr-only">Search titles and descriptions</span><input id="search" type="search" placeholder="Find an explanation, experiment, or subject…" autocomplete="off"></label><label class="archive-control js-only"><input id="archive" type="checkbox"> Include outdated news</label></div>
-<div class="filter-row js-only" role="group" aria-label="Content type"><button type="button" class="type-button active" data-kind="all" aria-pressed="true">All entries</button><button type="button" class="type-button" data-kind="guide" aria-pressed="false">Guides</button><button type="button" class="type-button" data-kind="experiment" aria-pressed="false">Experiments</button><button type="button" class="type-button" data-kind="news" aria-pressed="false">News &amp; magazine</button></div>
-<div id="entries" class="entries">{''.join(entry(a,today) for a in listing)}</div><div id="empty" class="empty" hidden>No matching entries. Try another topic or clear the search.</div><p><a href="archive/index.html">Open the news archive</a></p></section>
+<div class="filter-row js-only" role="group" aria-label="Content type"><button type="button" class="type-button active" data-kind="all" aria-pressed="true">All entries</button><button type="button" class="type-button" data-kind="guide" aria-pressed="false">Guides</button><button type="button" class="type-button" data-kind="experiment" aria-pressed="false">Experiments</button>{news_button}</div>
+<div id="entries" class="entries">{''.join(section_block(name, items, today) for name, items, n in groups)}</div><div id="empty" class="empty" hidden>No matching entries. Try another topic or clear the search.</div><p><a href="archive/index.html">Open the news archive</a></p></section>
 <section id="principles" class="principles"><div class="library-topline"><div><span class="section-number">03 /</span> <h2>Useful today. Honest about time.</h2></div></div><div class="principle-grid"><div><span class="kind kind-news">NEWS</span><h3>A three-month window</h3><p>A dated observation. After three calendar months, it moves to the archive and shows an outdated notice. Editing it does not restart the clock.</p></div><div><span class="kind kind-guide">GUIDE</span><h3>Knowledge worth revisiting</h3><p>A longer-lived explanation. It shows its last technical review and next review date. A missed review means Review due, not No longer valid.</p></div><div><span class="kind kind-experiment">EXPERIMENT</span><h3>Results from a known setup</h3><p>The test date, versions, method, and limits stay with the result. An old measurement remains historical evidence; it does not describe a newer release.</p></div></div></section>
 <section id="about" class="about"><div><span class="side-label">ABOUT THIS LIBRARY</span><h2>Practical work,<br>with its context attached.</h2></div><div><p>HAAL publications share explanations and experiments about AI and software engineering. Each article identifies its author, scope, sources, and limits. Personal views are labelled separately.</p><p class="muted">No account required. No engagement counters. Every page is written for this library and cites public sources.</p></div></section></section>'''
     write('index.html', shell('Catalogue', home, sidebar=sidebar))
@@ -342,6 +361,8 @@ def build(today=None, preview=False, drafts=()):
     write('archive/index.html',shell('News archive',archive_body,'../'))
     write('catalogue.json',json.dumps({'as_of':today.isoformat(),'release_marker':catalogue['release_marker'],'articles':[{k:a[k] for k in ['slug','title','section','type','published','summary','formats','perspective']} for a in articles]},indent=2)+'\n')
     write('404.html',shell('Page not found','<h1>This page is not in the catalogue.</h1>'+summary_visual+'<p><a href="./index.html">Open the catalogue</a></p>'))
+    for gone in catalogue.get('retired', []):
+        write(gone['slug']+'/index.html', shell('Page retired', f'<h1>This page has been retired.</h1><p>{esc(gone["note"])}</p>'+summary_visual+'<p><a href="../index.html">Open the catalogue</a></p>', '../'))
     write('.nojekyll','')
     for w in warnings:
         print('PREVIEW WARNING:', w, file=sys.stderr)
