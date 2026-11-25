@@ -1,6 +1,6 @@
 {
   "site_title": "HAAL / Engineering field notes",
-  "release_marker": "publication-design-v2",
+  "release_marker": "field-notes-2026-11-25",
   "articles": [
     {
       "slug": "how-these-notes-age",
@@ -126,6 +126,134 @@
         {
           "date": "2026-11-25",
           "note": "Added a labelled revision-test paragraph (publication-design-v2). First publication date unchanged."
+        }
+      ]
+    },
+    {
+      "slug": "quantization-explained",
+      "title": "Quantization: how a model fits in less memory",
+      "section": "Model internals",
+      "type": "guide",
+      "summary": "Quantization stores model weights with fewer bits. This guide shows how groups and scales work, what 4-bit really costs, and what is lost.",
+      "author": "Jean Marin",
+      "perspective": "Individual view: independent analysis",
+      "published": "2026-11-25",
+      "edited": "2026-11-25",
+      "reviewed": "2026-11-25",
+      "review_months": 6,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Visual explanation"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "One group of weights in three steps, and model size at three precisions",
+        "svg": "visual.svg",
+        "alt": "alt.md",
+        "caption": "Quantization stores each weight as a small integer plus one scale shared by the group. The group shrinks from 128 to 48 bits, and the restored values differ slightly from the originals. At scale, a 7-billion-weight model drops from 14.00 GB (16 bits per weight) to 3.72 GB (4.25 bits per weight). The weights are invented numbers for teaching, not from a real model. The 8-weight group is a stand-in; real groups are larger (for example 64). The same example is worked in the article text."
+      },
+      "history": [
+        {
+          "date": "2026-11-25",
+          "note": "First publication."
+        }
+      ]
+    },
+    {
+      "slug": "code-graph-pilot",
+      "title": "A small test of code graphs: no help on easy questions, a hint on a hard one",
+      "section": "Experiments",
+      "type": "experiment",
+      "summary": "Nine runs, three setups, one small codebase. A code graph did not help on easy questions and may have helped on one hard question. A lead, not a result.",
+      "author": "Jean Marin",
+      "perspective": "Individual view: independent analysis",
+      "published": "2026-11-25",
+      "edited": "2026-11-25",
+      "tested": "2026-11-17",
+      "tested_note": "Exact run dates not recorded; runs fell between 2026-11-13 and 2026-11-17 (inferred). 2026-11-17 is the upper bound.",
+      "versions": "Entire CLI 0.12.2; entire-graph 0.6.0 (no-egress on); graphify 0.9.108 (tree-sitter only); agent model set to automatic, not identified",
+      "method": "Three setups (agent alone, with entire-graph, with graphify), same model setting (automatic selection; actual model may differ between runs) and prompts, fresh context, graph setups told to prefer the graph. Three tasks (two small, one long), one run each, nine runs. Answers scored against a hidden facts checklist by a judge designed not to see the setup (judge model not recorded). Measured credits, peak context, turns, elapsed time.",
+      "limitations": "n=1 per setup per task; three of nine tasks run; one small private, mostly Python repository; model setting automatic (actual model may differ between runs) and judge model not recorded; run dates inferred; no token counts; credits are platform-specific; newer tool releases may exist.",
+      "review_due": "2027-05-25",
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Visual explanation"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Credits, seconds and turns per setup, one run each",
+        "svg": "visual.svg",
+        "alt": "alt.md",
+        "caption": "Small pilot, not a benchmark: one run per setup per task, nine runs. All nine answers were correct. Credits, seconds and turns are shown as measured. Differences may be noise."
+      },
+      "history": [
+        {
+          "date": "2026-11-25",
+          "note": "First publication of the pilot record."
+        }
+      ]
+    },
+    {
+      "slug": "how-llms-process-a-prompt",
+      "title": "How an LLM processes a prompt",
+      "section": "Inference",
+      "type": "guide",
+      "summary": "A model reads your prompt once, then writes the answer one token at a time. The KV cache explains why long prompts start slowly and long chats use memory.",
+      "author": "Jean Marin",
+      "perspective": "Individual view: independent analysis",
+      "published": "2026-11-25",
+      "edited": "2026-11-25",
+      "reviewed": "2026-11-25",
+      "review_months": 6,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Visual explanation"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Prefill, then decoding, sharing one KV cache",
+        "svg": "visual.svg",
+        "alt": "alt.md",
+        "caption": "Prefill passes all prompt tokens through the layers together and stores one key and one value per token, per layer. Decoding passes one new token through the same layers, attends over the whole cache, and adds one entry per layer. The cache grows at every step. Illustrative: the five-token split and the answer \"Paris\" are examples, not real tokenizer or model output."
+      },
+      "history": [
+        {
+          "date": "2026-11-25",
+          "note": "Initial publication."
+        }
+      ]
+    },
+    {
+      "slug": "vllm-and-sglang",
+      "title": "vLLM and SGLang: two ways to stop wasting GPU memory",
+      "section": "Inference servers",
+      "type": "guide",
+      "summary": "Both servers save GPU memory by managing the KV cache. They take different routes. Checked against vLLM v0.34.0 and SGLang v0.5.23 on 25 Nov 2026.",
+      "author": "Jean Marin",
+      "perspective": "Individual view: independent analysis",
+      "published": "2026-11-25",
+      "edited": "2026-11-25",
+      "reviewed": "2026-11-25",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Visual explanation"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "One request, two servers",
+        "svg": "visual.svg",
+        "alt": "alt.md",
+        "caption": "One request passes through the same five steps in vLLM and SGLang. They differ at step 3: vLLM matches hashed cache blocks, SGLang matches a prefix in a radix tree. This is a simplification: both projects now cache shared prefixes, and each keeps adding features. The shared-prompt example is illustrative, not measured."
+      },
+      "history": [
+        {
+          "date": "2026-11-25",
+          "note": "Initial publication. Checked against vLLM v0.34.0 and SGLang v0.5.23 on 2026-11-25."
         }
       ]
     }

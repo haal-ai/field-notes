@@ -69,7 +69,7 @@ class PublicationChecks(unittest.TestCase):
         self.assertEqual(page.count('class="topic-button'),1+len({a['section'] for a in self.data['articles']}))
         self.assertIn('id="archive"',page)
         self.assertIn('data-outdated="false"',page)
-        for private in ['Agent Commander','Huawei','vLLM']:
+        for private in ['Agent Commander','Huawei']:
             self.assertNotIn(private,page)
 
     def test_outdated_news_flagged_for_archive_control(self):
