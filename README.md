@@ -18,6 +18,6 @@ The `site` branch is the release source. GitHub Actions builds and deploys Pages
 
 ## Publication proof
 
-The first release uses `publication-test-v1`. A second release changes the public trial marker. Creation and update are proven only by reading the corresponding public page after each deployment.
+Creation and update are proven only by reading the corresponding public page after each deployment.
 
 GitHub workflow setup follows [the official Pages workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages). Pages must use GitHub Actions as its publishing source.

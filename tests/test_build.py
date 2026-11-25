@@ -29,7 +29,8 @@ class PublicationChecks(unittest.TestCase):
 
     def test_calendar_expiry_and_edit(self):
         self.assertEqual(str(build.plus_months('2027-11-30',3)),'2028-02-29')
-        news=copy.deepcopy(next(a for a in self.data['articles'] if a['type']=='news'))
+        news=copy.deepcopy(next(a for a in self.data['articles'] if a['type']=='guide'))
+        news.update(type='news')
         news['edited']='2027-02-24'
         self.assertEqual(build.lifecycle(news,date(2027,2,24))['status'],'Current news')
         self.assertEqual(build.lifecycle(news,date(2027,2,25))['status'],'Outdated news')
@@ -65,19 +66,13 @@ class PublicationChecks(unittest.TestCase):
         n=len(self.data['articles'])
         self.assertEqual(page.count('class="entry"'),n)
         self.assertIn('class="featured"',page)
-        self.assertEqual(page.count('class="type-button'),4)
+        self.assertEqual(page.count('class="type-button'),3)
+        self.assertNotIn('data-kind="news" aria-pressed',page)  # no news yet: the filter is hidden
         self.assertEqual(page.count('class="topic-button'),1+len({a['section'] for a in self.data['articles']}))
         self.assertIn('id="archive"',page)
         self.assertIn('data-outdated="false"',page)
         for private in ['Agent Commander','Huawei']:
             self.assertNotIn(private,page)
-
-    def test_outdated_news_flagged_for_archive_control(self):
-        build.build(date(2027,3,1))
-        try:
-            self.assertIn('data-outdated="true"',(build.OUT/'index.html').read_text())
-        finally:
-            build.build(date.today())
 
 
 if __name__=='__main__':

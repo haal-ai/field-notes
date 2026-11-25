@@ -54,11 +54,17 @@ The split above is a teaching aid, not a fact about today's code. vLLM now has p
 
 ## What the benchmarks say
 
-AIMultiple, a commercial analyst site, tested three servers. It updated the article on 2026-01-25. The test used one NVIDIA H100 (a data-center GPU), the Llama 3.1 8B model, and 1,000 ShareGPT prompts. ShareGPT is a public set of real chat prompts. The mode was offline batch: all prompts are sent at once, with no live users. The metric was output tokens per second ([AIMultiple](https://aimultiple.com/inference-engines)).
+Independent head-to-head tests are rare, and they age fast. One recent example is a benchmark by Winder.ai, an AI consultancy that runs both servers in its own systems and sells consulting, not either server. It ran the tests on one NVIDIA H100 80GB GPU, rented on 2026-09-25, with vLLM 0.30.0 and SGLang 0.5.20. Those versions are a few releases behind vLLM v0.34.0 and SGLang v0.5.23, so the numbers may differ from today's releases. The gap is exact: vLLM is four releases behind, SGLang three ([Winder.ai](https://winder.ai/vllm-vs-ollama-vs-sglang-llm-inference-comparison/)).
 
-The results were SGLang at 16,215, LMDeploy at 16,132 and vLLM at 12,553. LMDeploy is another open-source serving engine. The versions were vLLM 0.11.0 with FlashInfer, SGLang v0.2.3 and LMDeploy 0.10.2, as printed on the page. The page gives its method: 10 passes, a 20-prompt warmup, standard deviation under 1%, bfloat16 precision and 0.8 GPU memory utilization.
+The load was the same for both servers: requests of about 900 prompt tokens and 256 output tokens, 20 warm-up requests, then 200 measured requests, at 1, 10 and 50 requests in flight. The metric was output tokens per second. The harness and pinned versions are published in the [winderai/llm-inference-benchmark](https://github.com/winderai/llm-inference-benchmark) repository.
 
-These versions are far older than vLLM v0.34.0 and SGLang v0.5.23. So the numbers do not describe today's releases. The test authors also note that random prompts reduce the benefit of prefix caching, and that results hold only for this setup. Read it as old versions, one workload, one machine. It is not a ranking.
+On Llama 3.1 8B (FP16 weights: the model's numbers stored as 16-bit values), the two servers were close. At 1, 10 and 50 requests in flight, vLLM produced 150, 1,235 and 3,688 tokens per second. SGLang produced 154, 1,233 and 3,617. Winder.ai reports that two full runs agreed within 1% to 4% on throughput.
+
+On Qwen3.8-27B (8-bit FP8 weights: the model's numbers stored as smaller 8-bit values, which uses less memory and is usually faster), SGLang produced 1,725 tokens per second at 50 requests and vLLM produced 1,610. Each server first needed one setting changed. The model mixes two kinds of attention layers, and each running request needs extra memory to hold its own running state, on top of the usual KV cache. SGLang capped itself at 20 running requests with default settings and served 982 tokens per second at 50; its figure above is a second run with that memory enlarged. vLLM refused to start until its sequence limit was lowered.
+
+A second test disagrees on which server is faster. ZenML ran it on 2026-10-09 with vLLM 0.31.0 and SGLang 0.5.20 on one H100 and Qwen3.8-27B ([ZenML](https://www.zenml.io/benchmarks/sglang-vs-vllm)). It replayed recorded coding-agent traffic: 124 sessions, 32 at a time, one run per setting. ZenML reports that SGLang with default settings reached 0.53 times vLLM's tokens per second. Its best SGLang setting, with the radix cache off, reached 0.84 times. ZenML did not measure run-to-run variation and did not publish its traffic recordings. The two tests used different traffic and settings, and each used one run per setting or few runs, so neither settles the question. Both say not to read the result as a ranking. Test your own workload.
+
+The test has limits. The prompts shared only a short start, so it did not measure prefix caching. It did not measure answer quality or more than one GPU. I did not rerun it. Read it as one setup on one machine, not as a ranking.
 
 ## How to choose
 

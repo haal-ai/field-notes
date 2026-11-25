@@ -198,15 +198,83 @@ class DraftWorkflowTests(TempSite):
             self.assertNotIn('noindex', page.read_text())
 
 
+class CatalogueNavigationTests(TempSite):
+    def build_index(self, *extra):
+        self.write_catalogue(*extra)
+        build.build(date(2026, 11, 25))
+        return (self.tmp / '_site/index.html').read_text()
+
+    def test_whole_entry_is_one_link_target_named_by_its_title(self):
+        index = self.build_index()
+        rows = index.split('<article class="entry"')[1:]
+        self.assertEqual(len(rows), len(self.real['articles']))
+        for row in rows:
+            row = row.split('</article>')[0]
+            self.assertEqual(row.count('<a '), 1)  # one link per entry; its stretched area covers the row
+            self.assertIn('class="entry-title" href="', row)
+        css = (build.ROOT / 'assets/publication.css').read_text()
+        self.assertRegex(css, r'\.entry-title::after\{content:"";position:absolute;inset:0')
+        self.assertIn('.entry-title:focus-visible::after{outline', css)
+        self.assertIn('<a class="featured" href=', index)
+
+    def test_entries_are_grouped_under_section_headings(self):
+        index = self.build_index()
+        sections = {a['slug']: a['section'] for a in self.real['articles']}
+        self.assertEqual({sections[s] for s in ('vllm-and-sglang', 'quantization-explained', 'how-llms-process-a-prompt')}, {'Inference'})
+        self.assertEqual(sections['code-graph-pilot'], 'Evaluation')
+        self.assertEqual(sections['how-these-notes-age'], 'About this library')
+        for name in set(sections.values()):
+            block = index.split(f'<h3 id="section-{build.slugify(name)}"')[1].split('</section>')[0]
+            self.assertIn(f'>{name}<span class="section-count">', '>' + block.split('>', 1)[1])
+            for slug, sec in sections.items():
+                self.assertEqual(f'href="{slug}/index.html"' in block, sec == name, slug)
+        for retired in ('Inference servers', 'Model internals'):
+            self.assertNotIn(retired, index)
+        self.assertEqual(index.count('class="topic-button'), 1 + len(set(sections.values())))
+        self.assertIn('Inference<span>03</span>', index)
+
+    def test_empty_sections_are_omitted(self):
+        index = self.build_index()
+        self.assertNotIn('section-publication-process', index)
+        self.assertEqual(index.count('class="entry-section"'), len({a['section'] for a in self.real['articles']}))
+
+    def test_script_hides_sections_left_empty_by_a_filter(self):
+        self.assertIn('.entry-section', (build.ROOT / 'assets/site.js').read_text())
+
+    def test_trial_page_removed_and_old_url_points_to_catalogue(self):
+        self.write_catalogue()
+        build.build(date(2026, 11, 25))
+        site = self.tmp / '_site'
+        self.assertNotIn('publication-trial', [a['slug'] for a in self.real['articles']])
+        self.assertFalse(any('trial' in p.read_text().lower() for p in site.rglob('*.html')))
+        old = (site / 'publication-trial/index.html').read_text()
+        self.assertIn('href="../index.html"', old)
+        self.assertNotIn('Publication trial', (site / 'index.html').read_text())
+        self.assertNotIn('publication-trial', (site / 'catalogue.json').read_text())
+        self.assertNotIn('publication-trial', (site / 'maintenance/ledger.json').read_text())
+
+    def test_outdated_news_flagged_for_archive_control(self):
+        news = entry('sample-news', type='news', section='Inference')
+        news.pop('reviewed'), news.pop('review_months')
+        self.add(news)
+        self.write_catalogue(news)
+        build.build(date(2027, 3, 1))
+        index = (self.tmp / '_site/index.html').read_text()
+        self.assertIn('data-outdated="true"', index)
+        self.assertIn('data-kind="news" aria-pressed', index)  # the News filter returns with the first news entry
+        self.assertIn('id="archive"', index)
+        self.assertIn('Inference<span>03</span>', index)  # outdated news is not counted as current
+
+
 class ExistingPagesUnchanged(TempSite):
     def test_public_output_of_current_pages_has_no_preview_state(self):
         self.write_catalogue()
         build.build(date(2026, 11, 25))
         index = (self.tmp / '_site/index.html').read_text()
-        self.assertGreaterEqual(index.count('class="entry"'), 2)
+        self.assertGreaterEqual(index.count('class="entry"'), 1)
         self.assertNotIn('status-draft', index)
         ledger = json.loads((self.tmp / '_site/maintenance/ledger.json').read_text())
-        self.assertLessEqual({'how-these-notes-age', 'publication-trial'}, {i['slug'] for i in ledger['items']})
+        self.assertLessEqual({'how-these-notes-age'}, {i['slug'] for i in ledger['items']})
 
 
 if __name__ == '__main__':

@@ -2,7 +2,7 @@
 
 Quantization stores each model weight with fewer bits. The file and the memory needed to hold the weights shrink. The cost is some precision, and sometimes some quality. A "4-bit" model really uses a little more than 4 bits per weight, because it must also store a shared scale for each small group of weights.
 
-This page covers storage and memory for the weights only. It does not cover speed.
+This page covers storage and memory for the weights only. It does not measure speed.
 
 ## A model is a very large table of numbers
 
@@ -20,9 +20,9 @@ A 4-bit slot holds only 16 values. Real weights are decimal numbers such as 0.12
 
 The method splits the weights into small **groups**. Each group gets one **scale**, a single decimal number shared by all weights in the group. The method divides each weight by the scale and rounds the result to a whole number. It stores that whole number. This is **quantizing**.
 
-To use the weight later, the program multiplies the stored whole number by the scale. This is **dequantizing**. The result is close to the original, but not equal to it. Rounding discards information, so quantization is lossy.
+To use the weight later, the program multiplies the stored whole number by the scale. This is **dequantizing**. The result is close to the original, but not equal to it. Rounding discards information, so quantization is lossy. The section "Dequantization: turning small integers back into numbers" below explains how and when this happens.
 
-Block-wise quantization with a scale per block is how the llama.cpp source code lays out its formats ([ggml-common.h](https://github.com/ggml-org/llama.cpp/blob/master/ggml/src/ggml-common.h)). Transformers, the Hugging Face library, can dequantize a model, either at load time or afterwards ([Hugging Face Transformers, "Dequantize a model"](https://huggingface.co/docs/transformers/main/en/quantization/dequantize)). Other tools may dequantize during computation. This page does not claim which.
+Block-wise quantization with a scale per block is how the llama.cpp source code lays out its formats ([ggml-common.h](https://github.com/ggml-org/llama.cpp/blob/master/ggml/src/ggml-common.h)). Transformers, the Hugging Face library, can dequantize a model, either at load time or afterwards ([Hugging Face Transformers, "Dequantize a model"](https://huggingface.co/docs/transformers/main/en/quantization/dequantize)).
 
 ![One group of 8 weights quantized in three steps, and the size of a 7-billion-weight model at three precisions](visual.svg)
 
@@ -34,9 +34,45 @@ The weights are 0.12, -0.80, 0.33, 0.05, -0.41, 0.64, -0.22 and 0.27. The larges
 
 The small weights suffer. The weight 0.05 divided by 0.1143 is 0.44, which rounds to 0. It is restored as 0.00, an error of 0.05. This is the largest error in the group.
 
-Now split the same eight weights into two groups of four. The first group is 0.12, -0.80, 0.33 and 0.05. Its largest absolute value is still 0.80, so nothing changes there. The second group is -0.41, 0.64, -0.22 and 0.27. Its largest absolute value is 0.64, so its scale is about 0.0914. The weight 0.64 is now restored exactly. The weight 0.27 is restored as about 0.274, an error of 0.004 instead of 0.041. The weight -0.22 gets worse. It is restored as about -0.183, an error of 0.037 instead of 0.009. In the second group, the total error size falls from about 0.143 to about 0.086.
+Now split the same eight weights into two groups of four. The first group is 0.12, -0.80, 0.33 and 0.05. Its largest absolute value is still 0.80, so nothing changes there. The second group is -0.41, 0.64, -0.22 and 0.27. Its largest absolute value is 0.64, so its scale is about 0.0914. The weight 0.64 is now restored as 0.64, up to rounding. The weight 0.27 is restored as about 0.274, an error of 0.004 instead of 0.041. The weight -0.22 gets worse. It is restored as about -0.183, an error of 0.037 instead of 0.009. In the second group, the total error size falls from about 0.143 to about 0.086.
 
 The lesson: one large weight in a group stretches the scale and makes the small weights less accurate. Smaller groups follow local sizes more closely. This is one hand-picked example. Only the second group improved, and not every weight in it did. It is arithmetic on invented numbers, not a measured result on a real model.
+
+## Dequantization: turning small integers back into numbers
+
+**Dequantizing** means turning a stored whole number back into an approximate decimal number. Most weight-only methods need to turn the codes back into decimal numbers before multiplying. AWQ notes that the hardware has no multiply instruction for a 4-bit integer and a 16-bit decimal number ([Lin et al., 2023](https://arxiv.org/abs/2306.00978)). So the program decodes the weights first. Some methods avoid this step. See "The other route" below.
+
+The formula is short:
+
+restored value = stored integer × scale
+
+Take the figure's example. The scale is 0.1143. The stored integer for the second weight is −7. So the restored value is −7 × 0.1143 = −0.8001, which the figure shows as −0.80. The fourth weight was stored as 0. It is restored as 0 × 0.1143 = 0.00, not as the original 0.05. The rounding step threw that difference away, and decoding cannot bring it back.
+
+Some formats store the integers with an offset. This offset is the **zero-point**. The formula then has one more step:
+
+restored value = (stored integer − zero-point) × scale
+
+In the llama.cpp source, the Q4_0 decoder subtracts 8 from each 4-bit value and multiplies by the block's scale. It works block by block: it loops over the blocks of a row and decodes each one ([ggml-quants.c](https://github.com/ggml-org/llama.cpp/blob/master/ggml/src/ggml-quants.c)). This is a reference routine that converts a row to decimal numbers. This page does not claim that llama.cpp's matrix multiplication runs through it. Here is the figure's group stored that way. Add 8 to each integer, so every stored value lies between 0 and 15. The first weight is stored as 1 + 8 = 9. It is restored as (9 − 8) × 0.1143 = 0.1143. That is the same result as before. The offset changes how the integer is stored, not what it means. Other formats add an offset to the result instead. The Q4_1 decoder in the same file computes the stored value × scale + a stored minimum.
+
+### When it happens
+
+In **weight-only quantization**, only the weights are stored as small integers. The program keeps them small in memory and does not rebuild the full 16-bit model. It decodes the weights when it needs them, for the matrix multiplication. A matrix multiplication is the core operation of a model: it combines a table of weights with the numbers flowing through the model. The GPTQ paper describes a kernel that "dynamically" dequantizes weights "when needed" for each matrix-vector product, which is a matrix multiplication with a single column of input. A kernel is a small program that runs on the GPU ([Frantar et al., 2022](https://arxiv.org/abs/2210.17323)). The AWQ paper describes the same step for its runtime. It converts the integers to 16-bit floating point numbers before the matrix computation. It fuses the decoding into the multiplication kernel, so the decoded weights are not written to main memory ([Lin et al., 2023](https://arxiv.org/abs/2306.00978)).
+
+The decoded values are often 16-bit numbers. AWQ converts to FP16, a 16-bit decimal format. The llama.cpp reference decoder writes 32-bit floats. The scale is itself stored in 16 bits, so it is rounded too. Either way, the result is an approximation of the original weight.
+
+### Why this can still save time
+
+Decoding adds arithmetic. It can still help, because generating text is often limited by memory bandwidth, not by how fast the chip can multiply. Memory bandwidth is how many bytes per second the chip can read from memory. The GPTQ paper states this reason for its kernel: it says matrix-vector products "are primarily limited by memory bandwidth". It adds that dequantization "consumes extra compute", but the kernel "has to access a lot less memory" ([Frantar et al., 2022](https://arxiv.org/abs/2210.17323)).
+
+The AWQ paper makes the same point for token generation ([Lin et al., 2023](https://arxiv.org/abs/2306.00978)). Moving fewer bytes can outweigh the extra work. That is the reason these methods give. This page does not measure it, and the gain depends on the hardware and the batch size, which is how many requests are processed together. The GPTQ paper notes that for large batches the work can be limited by computation instead, and its kernels do not apply directly there.
+
+### The other route: multiply the integers directly
+
+Some methods also quantize the **activations**. Activations are the numbers the model computes from your input as it runs, as opposed to the weights, which are fixed. If both sides are integers, the hardware can multiply integers directly. Then dequantization happens on the result. The LLM.int8() paper does this. It multiplies 8-bit integers, gets 32-bit integer results, and dequantizes those results with the scaling constants. It then adds the outputs in 16-bit ([Dettmers et al., 2022](https://arxiv.org/abs/2208.07339)). The decoding step moves from the weights to the output of each multiplication.
+
+### Dequantizing a whole model
+
+Hugging Face Transformers can also dequantize an entire model back to a higher precision such as bf16 (a 16-bit decimal format), for example to fine-tune it. The documentation says the result uses as much memory as an unquantized model and does not recover the accuracy lost to rounding ([Hugging Face Transformers, "Dequantize a model"](https://huggingface.co/docs/transformers/main/en/quantization/dequantize)). The size comes back. The lost precision does not.
 
 ## "4-bit" costs more than 4 bits
 
@@ -70,7 +106,7 @@ Do not trust the bit count alone. Run your own task on the original and the quan
 
 ## Limits of this page
 
-The examples are illustrations on invented numbers, not measurements. This page does not report a test of any tool. It does not cover speed, and it does not describe any specific product's file format beyond the Q4_K size above.
+The examples are illustrations on invented numbers, not measurements. This page does not report a test of any tool. It does not measure speed, and it does not describe any specific product's file format beyond the Q4_K size above and the Q4_0 and Q4_1 decoders in the Dequantization section.
 
 ## Sources
 
@@ -80,4 +116,5 @@ All sources accessed 2026-11-25. The AWQ abstract was read at its current arXiv 
 - Frantar et al., "GPTQ", 2022: https://arxiv.org/abs/2210.17323
 - Lin et al., "AWQ", 2023: https://arxiv.org/abs/2306.00978
 - llama.cpp source, `ggml/src/ggml-common.h` (block layouts, including `block_q4_K`): https://github.com/ggml-org/llama.cpp/blob/master/ggml/src/ggml-common.h
+- llama.cpp source, `ggml/src/ggml-quants.c` (`dequantize_row_q4_0`, `dequantize_row_q4_1`): https://github.com/ggml-org/llama.cpp/blob/master/ggml/src/ggml-quants.c
 - Hugging Face Transformers, "Dequantize a model": https://huggingface.co/docs/transformers/main/en/quantization/dequantize
