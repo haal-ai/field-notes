@@ -17,3 +17,33 @@
 .entry-section{margin:0 0 34px}.entry-section[hidden]{display:none}
 .section-heading{display:flex;align-items:baseline;gap:12px;font-size:1.25rem;font-weight:560;letter-spacing:-.02em;margin:34px 0 4px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .section-count{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.8125rem;color:var(--muted);font-weight:400}
+/* Sidebar: sections lead to their articles. Plain anchors and a static list, so it works without JavaScript. */
+.side-summary{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;cursor:pointer;padding:4px 0;list-style:none}
+.side-summary::-webkit-details-marker{display:none}.side-summary::after{content:"";display:none}
+.side-list,.side-articles{list-style:none;margin:0;padding:0}
+.side-section{display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--text);padding:9px 12px;margin:2px 0;font-size:.875rem;border-radius:3px}
+.side-section span{font-family:ui-monospace,monospace;font-size:.75rem;color:var(--muted);margin-left:8px}
+.side-section:hover{background:var(--surface);color:var(--accent)}.side-section[aria-current]{background:var(--raised);color:var(--accent)}
+.side-articles{margin:0 0 12px 12px;padding-left:10px;border-left:1px solid var(--line)}
+.side-articles a{display:block;font-size:.8125rem;line-height:1.45;color:var(--muted);text-decoration:none;padding:6px 8px;border-radius:3px}
+.side-articles a:hover{color:var(--accent);background:var(--surface);text-decoration:underline}
+.side-group[hidden],.side-articles li[hidden]{display:none}
+.side-section:focus-visible,.side-articles a:focus-visible,.side-summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.library-stats{border-left:1px solid var(--line);padding-left:24px;display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.library-stats strong{font-size:1.75rem;font-weight:500;letter-spacing:-.02em}.library-stats span{color:var(--muted);font-size:.875rem}
+.featured-single{grid-template-columns:1fr}.featured-single p{max-width:62ch}
+.section-note{margin:8px 0 6px;font-size:.9375rem;color:var(--muted)}
+.section-heading:target{color:var(--accent);box-shadow:-4px 0 0 var(--accent)}
+.entry-section{scroll-margin-top:20px}.section-heading{scroll-margin-top:20px}
+@media(min-width:761px){.sidebar{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow-y:auto}}
+@media(max-width:760px){
+  .sidebar{display:block;overflow:visible;padding:12px 20px}
+  .sidebar .side-articles a,.side-section{min-height:44px;display:flex;align-items:center}
+  .sidebar .side-articles a{display:flex}
+  .side-summary{margin:0;min-height:44px;display:flex;align-items:center;border:1px solid var(--line);border-radius:4px;padding:0 12px}
+  .side-summary::after{content:"+";display:inline;margin-left:auto}.side-sections[open] .side-summary::after{content:"\2212"}
+  .side-sections[open] .side-summary{margin-bottom:10px}
+  .side-section span{display:inline}
+  .library-stats{border-left:0;padding-left:0;margin-top:16px;flex-direction:row;gap:12px;align-items:baseline;flex-wrap:wrap}
+  .publication-main .intro-row{flex-direction:column;gap:0}
+}

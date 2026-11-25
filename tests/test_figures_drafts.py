@@ -215,7 +215,7 @@ class CatalogueNavigationTests(TempSite):
         css = (build.ROOT / 'assets/publication.css').read_text()
         self.assertRegex(css, r'\.entry-title::after\{content:"";position:absolute;inset:0')
         self.assertIn('.entry-title:focus-visible::after{outline', css)
-        self.assertIn('<a class="featured" href=', index)
+        self.assertIn('<a class="featured', index)
 
     def test_entries_are_grouped_under_section_headings(self):
         index = self.build_index()
@@ -230,8 +230,79 @@ class CatalogueNavigationTests(TempSite):
                 self.assertEqual(f'href="{slug}/index.html"' in block, sec == name, slug)
         for retired in ('Inference servers', 'Model internals'):
             self.assertNotIn(retired, index)
-        self.assertEqual(index.count('class="topic-button'), 1 + len(set(sections.values())))
-        self.assertIn('Inference<span>03</span>', index)
+        self.assertEqual(index.count('<a class="side-section'), 1 + len(set(sections.values())))
+        self.assertIn('Inference<span class="side-count">03</span>', index)
+
+    def test_no_working_index_box_or_release_marker_for_readers(self):
+        index = self.build_index()
+        self.assertNotIn('WORKING INDEX', index.upper())
+        self.assertNotIn(self.real['release_marker'], index)
+        n = len(self.real['articles'])
+        self.assertIn(f'<strong>{n} notes</strong>', index)
+        last = max(a['edited'] for a in self.real['articles'])
+        self.assertIn(f'Last updated {build.day(last)}', index)
+
+    def test_sidebar_lists_each_section_with_its_article_links(self):
+        index = self.build_index()
+        side = index.split('<aside')[1].split('</aside>')[0]
+        self.assertNotIn('READING FORMATS', side.upper())
+        self.assertNotIn('<button', side)  # plain links: works without JavaScript
+        self.assertIn('href="#browse"', side)
+        self.assertIn('id="browse"', index)
+        for name in {a['section'] for a in self.real['articles']}:
+            self.assertIn(f'href="#section-{build.slugify(name)}"', side)
+            self.assertIn(f'id="section-{build.slugify(name)}"', index)
+            group = side.split(f'href="#section-{build.slugify(name)}"')[1].split('</ul>')[0]
+            for a in self.real['articles']:
+                self.assertEqual(f'href="{a["slug"]}/index.html"' in group, a['section'] == name, a['slug'])
+                if a['section'] == name:
+                    self.assertIn(f'>{a["title"]}</a>', group)
+        self.assertIn('<details class="side-sections" open>', side)
+        css = (build.ROOT / 'assets/publication.css').read_text()
+        self.assertIn('.section-heading:target', css)
+        self.assertIn('.side-articles a:focus-visible', css)
+
+    def test_each_section_heading_has_a_plain_description(self):
+        index = self.build_index()
+        self.assertIn('How models run: prompts, memory, serving.', index)
+        self.assertIn('Small tests with their setup and limits.', index)
+        self.assertIn('How to read these notes.', index)
+        for name in {a['section'] for a in self.real['articles']}:
+            block = index.split(f'<h3 id="section-{build.slugify(name)}"')[1].split('<article')[0]
+            self.assertIn('<p class="section-note">', block)
+
+    def test_featured_is_a_content_article_not_the_dates_page(self):
+        index = self.build_index()
+        featured = index.split('<a class="featured')[1].split('</a>')[0]
+        self.assertIn('href="how-llms-process-a-prompt/index.html"', featured)
+        self.assertNotIn('how-these-notes-age', featured)
+        self.assertIn('how-these-notes-age/index.html', index.split('<aside')[1])  # still reachable in its section
+        self.assertIn('how-these-notes-age/index.html', index.split('<footer>')[1])
+        self.assertIn('data-learning-visual', index)  # the page keeps an explanatory figure
+
+    def test_script_filters_sidebar_links_together_with_search_and_type(self):
+        js = (build.ROOT / 'assets/site.js').read_text()
+        self.assertIn('.side-articles li', js)
+        self.assertIn('state.kind', js)
+        self.assertIn('state.query', js)
+
+    def test_counts_follow_filters_and_sidebar_is_sticky(self):
+        js = (build.ROOT / 'assets/site.js').read_text()
+        self.assertIn("' of '", js)
+        self.assertIn('.side-count', js)
+        index = self.build_index()
+        self.assertIn('class="section-count">03<', index)  # no JavaScript: plain totals
+        css = (build.ROOT / 'assets/publication.css').read_text()
+        self.assertRegex(css, r'min-width:761px\)\{\.sidebar\{position:sticky')
+        self.assertIn('overflow-y:auto', css)
+
+    def test_plain_labels(self):
+        index = self.build_index()
+        for old in ('Within review period', 'Review due', 'Dated experiment', 'Include outdated news', 'Visual explanation'):
+            self.assertNotIn(old, index)
+        self.assertIn('Show older news', index)
+        self.assertIn('Up to date · next check', index)
+        self.assertIn('Experiment · tested 17 Nov 2026', index)
 
     def test_empty_sections_are_omitted(self):
         index = self.build_index()
@@ -263,7 +334,7 @@ class CatalogueNavigationTests(TempSite):
         self.assertIn('data-outdated="true"', index)
         self.assertIn('data-kind="news" aria-pressed', index)  # the News filter returns with the first news entry
         self.assertIn('id="archive"', index)
-        self.assertIn('Inference<span>03</span>', index)  # outdated news is not counted as current
+        self.assertIn('Inference<span class="side-count">03</span>', index)  # outdated news is not counted as current
 
 
 class ExistingPagesUnchanged(TempSite):
