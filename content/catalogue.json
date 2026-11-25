@@ -159,6 +159,41 @@
           "note": "First publication."
         }
       ]
+    },
+    {
+      "slug": "code-graph-pilot",
+      "title": "A small test of code graphs: no help on easy questions, a hint on a hard one",
+      "section": "Experiments",
+      "type": "experiment",
+      "summary": "Nine runs, three setups, one small codebase. A code graph did not help on easy questions and may have helped on one hard question. A lead, not a result.",
+      "author": "Jean Marin",
+      "perspective": "Individual view: independent analysis",
+      "published": "2026-11-25",
+      "edited": "2026-11-25",
+      "tested": "2026-11-17",
+      "tested_note": "Exact run dates not recorded; runs fell between 2026-11-13 and 2026-11-17 (inferred). 2026-11-17 is the upper bound.",
+      "versions": "Entire CLI 0.12.2; entire-graph 0.6.0 (no-egress on); graphify 0.9.108 (tree-sitter only); agent model set to automatic, not identified",
+      "method": "Three setups (agent alone, with entire-graph, with graphify), same model setting (automatic selection; actual model may differ between runs) and prompts, fresh context, graph setups told to prefer the graph. Three tasks (two small, one long), one run each, nine runs. Answers scored against a hidden facts checklist by a judge designed not to see the setup (judge model not recorded). Measured credits, peak context, turns, elapsed time.",
+      "limitations": "n=1 per setup per task; three of nine tasks run; one small private, mostly Python repository; model setting automatic (actual model may differ between runs) and judge model not recorded; run dates inferred; no token counts; credits are platform-specific; newer tool releases may exist.",
+      "review_due": "2027-05-25",
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Visual explanation"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Credits, seconds and turns per setup, one run each",
+        "svg": "visual.svg",
+        "alt": "alt.md",
+        "caption": "Small pilot, not a benchmark: one run per setup per task, nine runs. All nine answers were correct. Credits, seconds and turns are shown as measured. Differences may be noise."
+      },
+      "history": [
+        {
+          "date": "2026-11-25",
+          "note": "First publication of the pilot record."
+        }
+      ]
     }
   ]
 }
