@@ -60,6 +60,25 @@ class PublicationChecks(unittest.TestCase):
                 self.assertTrue(target.is_relative_to(build.OUT.resolve()),value)
                 self.assertTrue(target.exists(),f'{page}: {value}')
 
+    def test_catalogue_has_filters_featured_and_real_counts(self):
+        page=(build.OUT/'index.html').read_text()
+        n=len(self.data['articles'])
+        self.assertEqual(page.count('class="entry"'),n)
+        self.assertIn('class="featured"',page)
+        self.assertEqual(page.count('class="type-button'),4)
+        self.assertEqual(page.count('class="topic-button'),1+len({a['section'] for a in self.data['articles']}))
+        self.assertIn('id="archive"',page)
+        self.assertIn('data-outdated="false"',page)
+        for private in ['Agent Commander','Huawei','vLLM']:
+            self.assertNotIn(private,page)
+
+    def test_outdated_news_flagged_for_archive_control(self):
+        build.build(date(2027,3,1))
+        try:
+            self.assertIn('data-outdated="true"',(build.OUT/'index.html').read_text())
+        finally:
+            build.build(date.today())
+
 
 if __name__=='__main__':
     unittest.main()
