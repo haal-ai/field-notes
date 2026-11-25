@@ -44,7 +44,7 @@ class PublicationChecks(unittest.TestCase):
 
     def test_review_due_does_not_mean_wrong(self):
         guide=next(a for a in self.data['articles'] if a['type']=='guide')
-        self.assertEqual(build.lifecycle(guide,date(2027,5,25))['status'],'Review due')
+        self.assertEqual(build.lifecycle(guide,date(2027,5,25))['status'],'Due for a check')
 
     def test_all_generated_pages_have_visuals_and_valid_local_links(self):
         pages=list(build.OUT.rglob('*.html'))
@@ -65,10 +65,10 @@ class PublicationChecks(unittest.TestCase):
         page=(build.OUT/'index.html').read_text()
         n=len(self.data['articles'])
         self.assertEqual(page.count('class="entry"'),n)
-        self.assertIn('class="featured"',page)
+        self.assertIn('class="featured',page)
         self.assertEqual(page.count('class="type-button'),3)
         self.assertNotIn('data-kind="news" aria-pressed',page)  # no news yet: the filter is hidden
-        self.assertEqual(page.count('class="topic-button'),1+len({a['section'] for a in self.data['articles']}))
+        self.assertEqual(page.count('<a class="side-section'),1+len({a['section'] for a in self.data['articles']}))
         self.assertIn('id="archive"',page)
         self.assertIn('data-outdated="false"',page)
         for private in ['Agent Commander','Huawei']:

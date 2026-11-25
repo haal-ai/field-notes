@@ -1,6 +1,7 @@
 {
   "site_title": "HAAL / Engineering field notes",
   "release_marker": "field-notes-2026-11-25",
+  "featured": "how-llms-process-a-prompt",
   "articles": [
     {
       "slug": "how-these-notes-age",
@@ -46,7 +47,7 @@
           "title": "Guides need review",
           "paragraphs": [
             "A guide explains knowledge that can remain useful for longer. Its last technical review and next review date are visible. The default proposed review period is six months. Fast-changing instructions use three months.",
-            "Review due means the planned check has not been recorded. It does not prove the content is wrong. Known errors require an immediate correction or warning."
+            "Due for a check means the planned check has not been recorded. It does not prove the content is wrong. Known errors require an immediate correction or warning."
           ]
         },
         {
