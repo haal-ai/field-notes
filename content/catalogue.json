@@ -1,6 +1,6 @@
 {
   "site_title": "HAAL / Engineering field notes",
-  "release_marker": "publication-design-v1",
+  "release_marker": "publication-design-v2",
   "articles": [
     {
       "slug": "how-these-notes-age",
@@ -15,20 +15,53 @@
       "reviewed": "2026-11-25",
       "review_months": 6,
       "approval": "approved-publication-test",
-      "formats": ["Article", "Visual explanation"],
+      "formats": [
+        "Article",
+        "Visual explanation"
+      ],
       "visual": {
         "kind": "flow",
         "title": "Three different clocks",
-        "nodes": ["First publication", "Last edit", "Technical review"],
-        "details": ["News age starts here", "Records a change", "Checks the content"],
+        "nodes": [
+          "First publication",
+          "Last edit",
+          "Technical review"
+        ],
+        "details": [
+          "News age starts here",
+          "Records a change",
+          "Checks the content"
+        ],
         "caption": "An edit changes the edit date. Only a technical review changes the review date. Neither resets the age of a news report."
       },
       "sections": [
-        {"title": "News has a defined lifetime", "paragraphs": ["News and magazine editions describe information available at a known time. After three calendar months, the site labels them Outdated news and moves them out of the current listing. The archive remains accessible.", "A later edit does not renew that news window. A materially new report gets a new dated entry and links to the earlier one."]},
-        {"title": "Guides need review", "paragraphs": ["A guide explains knowledge that can remain useful for longer. Its last technical review and next review date are visible. The default proposed review period is six months. Fast-changing instructions use three months.", "Review due means the planned check has not been recorded. It does not prove the content is wrong. Known errors require an immediate correction or warning."]},
-        {"title": "Experiments keep their context", "paragraphs": ["An experiment is a record of one test setup. It keeps the test date, product versions, method, results, and limitations. A dated result does not guarantee the same behavior in a newer release."]}
+        {
+          "title": "News has a defined lifetime",
+          "paragraphs": [
+            "News and magazine editions describe information available at a known time. After three calendar months, the site labels them Outdated news and moves them out of the current listing. The archive remains accessible.",
+            "A later edit does not renew that news window. A materially new report gets a new dated entry and links to the earlier one."
+          ]
+        },
+        {
+          "title": "Guides need review",
+          "paragraphs": [
+            "A guide explains knowledge that can remain useful for longer. Its last technical review and next review date are visible. The default proposed review period is six months. Fast-changing instructions use three months.",
+            "Review due means the planned check has not been recorded. It does not prove the content is wrong. Known errors require an immediate correction or warning."
+          ]
+        },
+        {
+          "title": "Experiments keep their context",
+          "paragraphs": [
+            "An experiment is a record of one test setup. It keeps the test date, product versions, method, results, and limitations. A dated result does not guarantee the same behavior in a newer release."
+          ]
+        }
       ],
-      "history": [{"date": "2026-11-25", "note": "Initial public test page for the publication process."}]
+      "history": [
+        {
+          "date": "2026-11-25",
+          "note": "Initial public test page for the publication process."
+        }
+      ]
     },
     {
       "slug": "publication-trial",
@@ -41,20 +74,60 @@
       "published": "2026-11-25",
       "edited": "2026-11-25",
       "approval": "approved-publication-test",
-      "formats": ["Article", "Process diagram"],
+      "formats": [
+        "Article",
+        "Process diagram"
+      ],
       "visual": {
         "kind": "flow",
         "title": "The release path",
-        "nodes": ["Approved source", "Validate and build", "Public page"],
-        "details": ["Repository content", "Required checks", "Verify the result"],
+        "nodes": [
+          "Approved source",
+          "Validate and build",
+          "Public page"
+        ],
+        "details": [
+          "Repository content",
+          "Required checks",
+          "Verify the result"
+        ],
         "caption": "A commit starts a deployment. Publication is confirmed only after the deployed page is read and checked."
       },
       "sections": [
-        {"title": "A test, not a research article", "paragraphs": ["This page tests the publication process. It contains no private research or client material. The current release marker is publication-test-v2. The first public release used publication-test-v1 and was checked before this update."]},
-        {"title": "What the check covers", "paragraphs": ["The first stage checks that this page is accessible at its public address. A second release changes the marker. Reading the changed public page checks that updates also reach the website.", "The catalogue and maintenance ledger are generated from the same article metadata. Every public page includes an explanatory visual."]}
+        {
+          "title": "A test, not a research article",
+          "paragraphs": [
+            "This page tests the publication process. It contains no private research or client material. The current release marker is publication-test-v2. The first public release used publication-test-v1 and was checked before this update."
+          ]
+        },
+        {
+          "title": "What the check covers",
+          "paragraphs": [
+            "The first stage checks that this page is accessible at its public address. A second release changes the marker. Reading the changed public page checks that updates also reach the website.",
+            "The catalogue and maintenance ledger are generated from the same article metadata. Every public page includes an explanatory visual."
+          ]
+        },
+        {
+          "title": "Revision test (publication-design-v2)",
+          "paragraphs": [
+            "This paragraph was added in the second design release to test a public update. The first publication date stays 25 Nov 2026."
+          ]
+        }
       ],
-      "history": [{"date": "2026-11-25", "note": "Version 1: initial publication trial."}, {"date": "2026-11-25", "note": "Version 2: public-page update trial after the first release was checked."}]
+      "history": [
+        {
+          "date": "2026-11-25",
+          "note": "Version 1: initial publication trial."
+        },
+        {
+          "date": "2026-11-25",
+          "note": "Version 2: public-page update trial after the first release was checked."
+        },
+        {
+          "date": "2026-11-25",
+          "note": "Added a labelled revision-test paragraph (publication-design-v2). First publication date unchanged."
+        }
+      ]
     }
   ]
 }
-
