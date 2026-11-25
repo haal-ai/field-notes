@@ -91,6 +91,10 @@
         {
           "date": "2026-11-25",
           "note": "First publication."
+        },
+        {
+          "date": "2026-11-25",
+          "note": "Revise: added a dequantization section. Independent review pass with fixes; fixes applied."
         }
       ]
     },
