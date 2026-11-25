@@ -194,6 +194,37 @@
           "note": "First publication of the pilot record."
         }
       ]
+    },
+    {
+      "slug": "how-llms-process-a-prompt",
+      "title": "How an LLM processes a prompt",
+      "section": "Inference",
+      "type": "guide",
+      "summary": "A model reads your prompt once, then writes the answer one token at a time. The KV cache explains why long prompts start slowly and long chats use memory.",
+      "author": "Jean Marin",
+      "perspective": "Individual view: independent analysis",
+      "published": "2026-11-25",
+      "edited": "2026-11-25",
+      "reviewed": "2026-11-25",
+      "review_months": 6,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Visual explanation"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Prefill, then decoding, sharing one KV cache",
+        "svg": "visual.svg",
+        "alt": "alt.md",
+        "caption": "Prefill passes all prompt tokens through the layers together and stores one key and one value per token, per layer. Decoding passes one new token through the same layers, attends over the whole cache, and adds one entry per layer. The cache grows at every step. Illustrative: the five-token split and the answer \"Paris\" are examples, not real tokenizer or model output."
+      },
+      "history": [
+        {
+          "date": "2026-11-25",
+          "note": "Initial publication."
+        }
+      ]
     }
   ]
 }

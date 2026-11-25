@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 880" role="img" aria-labelledby="t d" aria-label="How an LLM processes a prompt: prefill fills the KV cache once, decoding adds one cell per step">
+<title id="t">How an LLM processes a prompt: prefill fills the KV cache once, decoding adds one cell per step</title><desc id="d">Sequence diagram in three parts. First, the prompt 'The capital of France is' is split into five tokens. Second, prefill: all five tokens go through every layer at once, and each layer stores one key/value cell per token in the KV cache. The last position gives the first answer token, Paris. The token split and the answer are illustrative examples, not real tokenizer or model output. Third, decoding: one new token enters, each layer reads all stored cells and adds one new cell, and the next token is produced. The loop repeats, so the cache grows by one cell per layer per step.</desc>
+<style>
+svg{--c-bg:#f7f9fa;--c-surface:#edf2f4;--c-text:#152a34;--c-muted:#506571;--c-line:#b9cbd2;--c-accent:#146b5c;--c-ink:#e6f7f2}
+@media(prefers-color-scheme:dark){svg{--c-bg:#0e1419;--c-surface:#131d25;--c-text:#e5ecee;--c-muted:#a0b0ba;--c-line:#30404c;--c-accent:#79d8c4;--c-ink:#0e2421}}
+.panel{fill:var(--surface,var(--c-surface));stroke:var(--line,var(--c-line));stroke-width:1}
+.tok{fill:var(--bg,var(--c-bg));stroke:var(--text,var(--c-text));stroke-width:1.5}
+.tokn{fill:var(--bg,var(--c-bg));stroke:var(--accent,var(--c-accent));stroke-width:3}
+.old{fill:var(--accent,var(--c-accent));stroke:var(--accent,var(--c-accent))}
+.new{fill:var(--bg,var(--c-bg));stroke:var(--accent,var(--c-accent));stroke-width:3}
+.fut{fill:none;stroke:var(--muted,var(--c-muted));stroke-width:1.5;stroke-dasharray:5 4}
+.ln{stroke:var(--accent,var(--c-accent));stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.lnd{stroke:var(--muted,var(--c-muted));stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.h{fill:var(--text,var(--c-text));font:700 20px system-ui,sans-serif}
+.s{fill:var(--muted,var(--c-muted));font:17px system-ui,sans-serif}
+.m{fill:var(--text,var(--c-text));font:18px ui-monospace,monospace}
+.mi{fill:var(--accent-ink,var(--c-ink));font:700 18px ui-monospace,monospace}
+.ma{fill:var(--accent,var(--c-accent));font:700 20px ui-monospace,monospace}
+.n{fill:var(--muted,var(--c-muted));font:18px ui-monospace,monospace}
+.st{fill:var(--text,var(--c-text));font:17px system-ui,sans-serif}
+</style>
+<text x="20" y="26" class="h" text-anchor="start">Prompt, split into 5 tokens (illustrative)</text>
+<rect x="20" y="38" width="96" height="40" rx="4" class="tok"/>
+<text x="68" y="64" class="m" text-anchor="middle">The</text>
+<rect x="126" y="38" width="96" height="40" rx="4" class="tok"/>
+<text x="174" y="64" class="m" text-anchor="middle">capital</text>
+<rect x="232" y="38" width="96" height="40" rx="4" class="tok"/>
+<text x="280" y="64" class="m" text-anchor="middle">of</text>
+<rect x="338" y="38" width="96" height="40" rx="4" class="tok"/>
+<text x="386" y="64" class="m" text-anchor="middle">France</text>
+<rect x="444" y="38" width="96" height="40" rx="4" class="tok"/>
+<text x="492" y="64" class="m" text-anchor="middle">is</text>
+<path d="M280 80V106" class="ln"/><path d="M274 102L280 110L286 102" class="ln"/>
+<text x="296" y="100" class="s" text-anchor="start">all 5 enter together</text>
+<rect x="10" y="112" width="540" height="322" rx="6" class="panel"/>
+<text x="24" y="142" class="h" text-anchor="start">1  Prefill: runs once</text>
+<text x="24" y="166" class="s" text-anchor="start">All prompt tokens in parallel. Mostly compute-bound.</text>
+<text x="20" y="200" class="s" text-anchor="start">KV cache: one K/V cell per token, per layer</text>
+<text x="146.0" y="224" class="n" text-anchor="middle">1</text>
+<text x="204.0" y="224" class="n" text-anchor="middle">2</text>
+<text x="262.0" y="224" class="n" text-anchor="middle">3</text>
+<text x="320.0" y="224" class="n" text-anchor="middle">4</text>
+<text x="378.0" y="224" class="n" text-anchor="middle">5</text>
+<text x="436.0" y="224" class="n" text-anchor="middle">6</text>
+<text x="494.0" y="224" class="n" text-anchor="middle">7</text>
+<text x="20" y="255" class="s" text-anchor="start">Layer 1</text>
+<rect x="120" y="234" width="52" height="30" rx="3" class="old"/>
+<text x="146.0" y="255" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="234" width="52" height="30" rx="3" class="old"/>
+<text x="204.0" y="255" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="234" width="52" height="30" rx="3" class="old"/>
+<text x="262.0" y="255" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="234" width="52" height="30" rx="3" class="old"/>
+<text x="320.0" y="255" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="234" width="52" height="30" rx="3" class="old"/>
+<text x="378.0" y="255" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="234" width="52" height="30" rx="3" class="fut"/>
+<rect x="468" y="234" width="52" height="30" rx="3" class="fut"/>
+<text x="20" y="291" class="s" text-anchor="start">Layer 2</text>
+<rect x="120" y="270" width="52" height="30" rx="3" class="old"/>
+<text x="146.0" y="291" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="270" width="52" height="30" rx="3" class="old"/>
+<text x="204.0" y="291" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="270" width="52" height="30" rx="3" class="old"/>
+<text x="262.0" y="291" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="270" width="52" height="30" rx="3" class="old"/>
+<text x="320.0" y="291" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="270" width="52" height="30" rx="3" class="old"/>
+<text x="378.0" y="291" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="270" width="52" height="30" rx="3" class="fut"/>
+<rect x="468" y="270" width="52" height="30" rx="3" class="fut"/>
+<text x="20" y="327" class="s" text-anchor="start">… Layer N</text>
+<rect x="120" y="306" width="52" height="30" rx="3" class="old"/>
+<text x="146.0" y="327" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="306" width="52" height="30" rx="3" class="old"/>
+<text x="204.0" y="327" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="306" width="52" height="30" rx="3" class="old"/>
+<text x="262.0" y="327" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="306" width="52" height="30" rx="3" class="old"/>
+<text x="320.0" y="327" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="306" width="52" height="30" rx="3" class="old"/>
+<text x="378.0" y="327" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="306" width="52" height="30" rx="3" class="fut"/>
+<rect x="468" y="306" width="52" height="30" rx="3" class="fut"/>
+<text x="24" y="368" class="st" text-anchor="start">Cells 1–5 are filled and stored.</text>
+<text x="24" y="392" class="st" text-anchor="start">Last position gives the first answer token (example):</text>
+<text x="24" y="420" class="ma" text-anchor="start">“Paris”</text>
+<path d="M280 434V458" class="ln"/><path d="M274 454L280 462L286 454" class="ln"/>
+<text x="296" y="454" class="s" text-anchor="start">cache stays; loop starts</text>
+<rect x="10" y="468" width="540" height="356" rx="6" class="panel"/>
+<text x="24" y="498" class="h" text-anchor="start">2  Decoding: repeats, one token per step</text>
+<text x="24" y="522" class="s" text-anchor="start">Often memory-bound: each step re-reads the cache.</text>
+<rect x="24" y="536" width="96" height="34" rx="4" class="tokn"/>
+<text x="72" y="559" class="m" text-anchor="middle">Paris</text>
+<text x="134" y="559" class="s" text-anchor="start">→ the only new input this step</text>
+<text x="20" y="588" class="s" text-anchor="start">KV cache: one K/V cell per token, per layer</text>
+<text x="146.0" y="612" class="n" text-anchor="middle">1</text>
+<text x="204.0" y="612" class="n" text-anchor="middle">2</text>
+<text x="262.0" y="612" class="n" text-anchor="middle">3</text>
+<text x="320.0" y="612" class="n" text-anchor="middle">4</text>
+<text x="378.0" y="612" class="n" text-anchor="middle">5</text>
+<text x="436.0" y="612" class="n" text-anchor="middle">6</text>
+<text x="494.0" y="612" class="n" text-anchor="middle">7</text>
+<text x="20" y="643" class="s" text-anchor="start">Layer 1</text>
+<rect x="120" y="622" width="52" height="30" rx="3" class="old"/>
+<text x="146.0" y="643" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="622" width="52" height="30" rx="3" class="old"/>
+<text x="204.0" y="643" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="622" width="52" height="30" rx="3" class="old"/>
+<text x="262.0" y="643" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="622" width="52" height="30" rx="3" class="old"/>
+<text x="320.0" y="643" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="622" width="52" height="30" rx="3" class="old"/>
+<text x="378.0" y="643" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="622" width="52" height="30" rx="3" class="new"/>
+<text x="436.0" y="644" class="ma" text-anchor="middle">+</text>
+<rect x="468" y="622" width="52" height="30" rx="3" class="fut"/>
+<text x="20" y="679" class="s" text-anchor="start">Layer 2</text>
+<rect x="120" y="658" width="52" height="30" rx="3" class="old"/>
+<text x="146.0" y="679" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="658" width="52" height="30" rx="3" class="old"/>
+<text x="204.0" y="679" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="658" width="52" height="30" rx="3" class="old"/>
+<text x="262.0" y="679" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="658" width="52" height="30" rx="3" class="old"/>
+<text x="320.0" y="679" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="658" width="52" height="30" rx="3" class="old"/>
+<text x="378.0" y="679" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="658" width="52" height="30" rx="3" class="new"/>
+<text x="436.0" y="680" class="ma" text-anchor="middle">+</text>
+<rect x="468" y="658" width="52" height="30" rx="3" class="fut"/>
+<text x="20" y="715" class="s" text-anchor="start">… Layer N</text>
+<rect x="120" y="694" width="52" height="30" rx="3" class="old"/>
+<text x="146.0" y="715" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="694" width="52" height="30" rx="3" class="old"/>
+<text x="204.0" y="715" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="694" width="52" height="30" rx="3" class="old"/>
+<text x="262.0" y="715" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="694" width="52" height="30" rx="3" class="old"/>
+<text x="320.0" y="715" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="694" width="52" height="30" rx="3" class="old"/>
+<text x="378.0" y="715" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="694" width="52" height="30" rx="3" class="new"/>
+<text x="436.0" y="716" class="ma" text-anchor="middle">+</text>
+<rect x="468" y="694" width="52" height="30" rx="3" class="fut"/>
+<text x="24" y="756" class="st" text-anchor="start">Cells 1–5 are reused, not recomputed.</text>
+<text x="24" y="780" class="st" text-anchor="start">Adds cell 6 per layer, attends over 1–6.</text>
+<path d="M530 774h12V553h-12" class="ln"/><path d="M536 547L528 553L536 559" class="ln"/>
+<text x="24" y="804" class="st" text-anchor="start">Repeat until stop. Step 2 adds cell 7.</text>
+<rect x="20" y="842" width="30" height="20" rx="3" class="old"/>
+<text x="58" y="858" class="s" text-anchor="start">stored</text>
+<rect x="150" y="842" width="30" height="20" rx="3" class="new"/>
+<text x="188" y="858" class="s" text-anchor="start">added this step</text>
+<rect x="340" y="842" width="30" height="20" rx="3" class="fut"/>
+<text x="378" y="858" class="s" text-anchor="start">empty, later</text>
+</svg>
