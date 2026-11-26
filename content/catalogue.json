@@ -452,6 +452,36 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "agent-commander-architecture",
+      "lang": "fr",
+      "title": "Surface, harness, AI service et ACP : où s'arrête l'interchangeabilité",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "Un outil d'agent regroupe trois choix : la surface, le harness et l'AI service. ACP sépare les deux premiers, mais pas le fournisseur de modèle, la connexion ni le sandbox. Lecture de la documentation publique, sans test.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Trois choix : surface, harness, AI service",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "La surface, le harness et l'AI service sont trois choix séparables. ACP relie les deux premiers ; le fournisseur de modèle reste hors ACP. Surface et harness sont des termes de travail de l'auteur."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [

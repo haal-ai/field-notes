@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 362" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Trois choix : surface, harness, AI service</title>
+<desc id="fig1-d">Trois boîtes empilées : surface, harness, AI service. ACP relie la surface au harness. L'API du fournisseur relie le harness à l'AI service, hors ACP.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .sm{font-size:12px}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .dl{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig1 .sep{stroke:var(--line,var(--f-line));stroke-width:1;stroke-dasharray:4 3}
+.fig1 .c{text-anchor:middle}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="18">Trois choix, pas un seul</text>
+<rect class="box" x="6" y="30" width="388" height="60" rx="5"/>
+<circle class="sh" cx="26" cy="60" r="11"/>
+<text class="i c" x="26" y="65">1</text>
+<text class="s" x="46" y="56">Surface</text>
+<text class="m sm" x="46" y="76">IDE, éditeur, CLI, fenêtre d'agents</text>
+<rect class="box" x="6" y="130" width="388" height="60" rx="5"/>
+<circle class="sh" cx="26" cy="160" r="11"/>
+<text class="i c" x="26" y="165">2</text>
+<text class="s" x="46" y="156">Harness</text>
+<text class="m sm" x="46" y="176">boucle d'agent, outils, permissions</text>
+<rect class="box" x="6" y="230" width="388" height="60" rx="5"/>
+<circle class="sh" cx="26" cy="260" r="11"/>
+<text class="i c" x="26" y="265">3</text>
+<text class="s" x="46" y="256">AI service</text>
+<text class="m sm" x="46" y="276">compte, contrat, route vers le modèle, facturation</text>
+<path class="ln" d="M200 90 V130 M195 124 L200 130 L205 124"/>
+<text class="a" x="212" y="115">ACP</text>
+<path class="dl" d="M200 190 V230 M195 224 L200 230 L205 224"/>
+<text class="k" x="212" y="212">API du fournisseur</text>
+<text class="k sm" x="212" y="226">(hors ACP)</text>
+<text class="m sm" x="10" y="318">Surface, harness : termes de travail de l'auteur.</text>
+<text class="m sm" x="10" y="334">Agent Commander : étiquette de l'auteur,</text>
+<text class="m sm" x="10" y="350">pas un terme standard.</text>
+</g>
+</svg>
