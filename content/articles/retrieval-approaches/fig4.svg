@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 333" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Contrôle de taille : 10 000 vecteurs font environ 30,7 Mo</title>
+<desc id="fig4-d">10 000 vecteurs de 768 nombres, chacun sur 4 octets (float32), font 7 680 000 nombres, soit 30 720 000 octets, environ 30,7 Mo. Ce volume tient dans la mémoire vive d'une machine ordinaire ; sa barre n'en occupe qu'une petite fraction non chiffrée, la taille de la mémoire n'étant pas donnée. Seuil indicatif, non mesuré ici.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .big{fill:var(--text,var(--f-text));font-size:17px;font-weight:700}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .raised{fill:var(--raised,var(--f-raised));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .c{text-anchor:middle}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="18">Contrôle de taille</text>
+<rect class="raised" x="6" y="30" width="118" height="62" rx="5"/>
+<text class="big c" x="65" y="58">10 000</text>
+<text class="m c" x="65" y="78">vecteurs</text>
+<rect class="raised" x="146" y="30" width="108" height="62" rx="5"/>
+<text class="big c" x="200" y="58">768</text>
+<text class="m c" x="200" y="78">nombres chacun</text>
+<rect class="raised" x="276" y="30" width="118" height="62" rx="5"/>
+<text class="big c" x="335" y="58">4 octets</text>
+<text class="m c" x="335" y="78">float32</text>
+<text class="s" x="127" y="67">×</text>
+<text class="s" x="257" y="67">×</text>
+<path class="ln" d="M200 92 V108 M195 102 L200 108 L205 102"/>
+<rect class="dif" x="6" y="108" width="388" height="62" rx="5"/>
+<text class="big c" x="200" y="134">30 720 000 octets</text>
+<text class="k c" x="200" y="156">≈ 30,7 Mo</text>
+<text class="s" x="10" y="196">Mémoire vive d'une machine ordinaire</text>
+<rect class="box" x="6" y="204" width="388" height="34" rx="5"/>
+<rect class="sh" x="6" y="204" width="36" height="34" rx="5"/>
+<text class="m" x="10" y="262">Barre indicative, non à l'échelle ; la taille de la</text>
+<text class="m" x="10" y="279">mémoire n'est pas chiffrée ici.</text>
+<text class="m" x="10" y="302">Seuil indicatif, non mesuré ici.</text>
+</g>
+</svg>
