@@ -1,0 +1,1 @@
+Figure 2. Paramètres totaux et actifs par token, sur une échelle linéaire commune, en milliards. Mixtral : 47 milliards au total, 13 milliards actifs par token, soit environ 28 % (13 sur 47). DeepSeek-V3 : 671 milliards au total, 37 milliards actifs par token, soit environ 5,5 % (37 sur 671). Chiffres annoncés par les auteurs des modèles.

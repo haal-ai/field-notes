@@ -204,6 +204,36 @@
           "note": "Réécriture en français ; cinq figures ; source de benchmark inchangée."
         }
       ]
+    },
+    {
+      "slug": "moe-routing",
+      "lang": "fr",
+      "title": "MoE : comment un token choisit ses experts",
+      "section": "Inférence",
+      "type": "guide",
+      "summary": "Dans un modèle MoE, un router choisit quelques experts pour chaque token. Le guide montre le mélange, la différence entre paramètres totaux et actifs, et ce que change un hit rate quand les experts vivent sur SSD.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Une couche MoE : router, top-k, mélange",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "Le router note 8 experts, les 2 meilleurs calculent et leurs sorties sont mélangées. Valeurs illustratives."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [

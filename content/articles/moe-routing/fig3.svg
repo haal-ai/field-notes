@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 392" role="img" aria-labelledby="fig3-t fig3-d">
+<title id="fig3-t">Grille de choix du router : 6 couches sur 10 tokens</title>
+<desc id="fig3-d">Chaque case est un choix du router, pour un token et une couche, avec 2 experts marqués par 2 couleurs parmi 8. Dans l'exemple, certains experts reviennent souvent, d'autres rarement. Exemple inventé.</desc>
+<style>
+.fig3{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db;--f-ok:#1a6b2f;--f-warn:#9a4a00}
+@media (prefers-color-scheme:dark){.fig3{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c;--f-ok:#6fdc8c;--f-warn:#ffa85c}}
+.fig3 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig3 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig3 .t{fill:var(--text,var(--f-text))}
+.fig3 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig3 .m{fill:var(--muted,var(--f-muted))}
+.fig3 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig3 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig3 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig3 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig3 .gr{fill:var(--raised,var(--f-raised));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig3 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig3 .ln{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none}
+.fig3 .c{text-anchor:middle}.fig3 .e{text-anchor:end}
+.fig3 .k0{fill:#1f6fb2}.fig3 .k1{fill:#c2410c}.fig3 .k2{fill:#2e7d32}.fig3 .k3{fill:#8e44ad}.fig3 .k4{fill:#b8860b}.fig3 .k5{fill:#0e7490}.fig3 .k6{fill:#be185d}.fig3 .k7{fill:#5d6b73}@media (prefers-color-scheme:dark){.fig3 .k0{fill:#6db3f2}.fig3 .k1{fill:#ff9a62}.fig3 .k2{fill:#6fdc8c}.fig3 .k3{fill:#c89bf0}.fig3 .k4{fill:#f0c654}.fig3 .k5{fill:#5cd0e6}.fig3 .k6{fill:#f58ab8}.fig3 .k7{fill:#aab6bd}}
+</style>
+<g class="fig3">
+<text class="h" x="10" y="18">Un choix par token et par couche</text>
+<text class="m" x="10" y="38">Chaque case : les 2 experts choisis</text>
+<text class="m c" x="57" y="60">1</text>
+<text class="m c" x="92" y="60">2</text>
+<text class="m c" x="127" y="60">3</text>
+<text class="m c" x="162" y="60">4</text>
+<text class="m c" x="197" y="60">5</text>
+<text class="m c" x="232" y="60">6</text>
+<text class="m c" x="267" y="60">7</text>
+<text class="m c" x="302" y="60">8</text>
+<text class="m c" x="337" y="60">9</text>
+<text class="m c" x="372" y="60">10</text>
+<text class="m c" x="215" y="76">tokens</text>
+<text class="m c" x="18" y="108">1</text>
+<rect class="box" x="40" y="86" width="33" height="32" rx="4"/><circle class="k1" cx="50" cy="102" r="7"/><circle class="k0" cx="63" cy="102" r="7"/>
+<rect class="box" x="75" y="86" width="33" height="32" rx="4"/><circle class="k4" cx="85" cy="102" r="7"/><circle class="k0" cx="98" cy="102" r="7"/>
+<rect class="box" x="110" y="86" width="33" height="32" rx="4"/><circle class="k2" cx="120" cy="102" r="7"/><circle class="k0" cx="133" cy="102" r="7"/>
+<rect class="box" x="145" y="86" width="33" height="32" rx="4"/><circle class="k2" cx="155" cy="102" r="7"/><circle class="k0" cx="168" cy="102" r="7"/>
+<rect class="box" x="180" y="86" width="33" height="32" rx="4"/><circle class="k2" cx="190" cy="102" r="7"/><circle class="k0" cx="203" cy="102" r="7"/>
+<rect class="box" x="215" y="86" width="33" height="32" rx="4"/><circle class="k0" cx="225" cy="102" r="7"/><circle class="k2" cx="238" cy="102" r="7"/>
+<rect class="box" x="250" y="86" width="33" height="32" rx="4"/><circle class="k5" cx="260" cy="102" r="7"/><circle class="k0" cx="273" cy="102" r="7"/>
+<rect class="box" x="285" y="86" width="33" height="32" rx="4"/><circle class="k0" cx="295" cy="102" r="7"/><circle class="k4" cx="308" cy="102" r="7"/>
+<rect class="box" x="320" y="86" width="33" height="32" rx="4"/><circle class="k7" cx="330" cy="102" r="7"/><circle class="k3" cx="343" cy="102" r="7"/>
+<rect class="box" x="355" y="86" width="33" height="32" rx="4"/><circle class="k2" cx="365" cy="102" r="7"/><circle class="k7" cx="378" cy="102" r="7"/>
+<text class="m c" x="18" y="144">2</text>
+<rect class="box" x="40" y="122" width="33" height="32" rx="4"/><circle class="k0" cx="50" cy="138" r="7"/><circle class="k6" cx="63" cy="138" r="7"/>
+<rect class="box" x="75" y="122" width="33" height="32" rx="4"/><circle class="k1" cx="85" cy="138" r="7"/><circle class="k0" cx="98" cy="138" r="7"/>
+<rect class="box" x="110" y="122" width="33" height="32" rx="4"/><circle class="k0" cx="120" cy="138" r="7"/><circle class="k1" cx="133" cy="138" r="7"/>
+<rect class="box" x="145" y="122" width="33" height="32" rx="4"/><circle class="k5" cx="155" cy="138" r="7"/><circle class="k0" cx="168" cy="138" r="7"/>
+<rect class="box" x="180" y="122" width="33" height="32" rx="4"/><circle class="k3" cx="190" cy="138" r="7"/><circle class="k4" cx="203" cy="138" r="7"/>
+<rect class="box" x="215" y="122" width="33" height="32" rx="4"/><circle class="k2" cx="225" cy="138" r="7"/><circle class="k0" cx="238" cy="138" r="7"/>
+<rect class="box" x="250" y="122" width="33" height="32" rx="4"/><circle class="k0" cx="260" cy="138" r="7"/><circle class="k4" cx="273" cy="138" r="7"/>
+<rect class="box" x="285" y="122" width="33" height="32" rx="4"/><circle class="k2" cx="295" cy="138" r="7"/><circle class="k1" cx="308" cy="138" r="7"/>
+<rect class="box" x="320" y="122" width="33" height="32" rx="4"/><circle class="k3" cx="330" cy="138" r="7"/><circle class="k2" cx="343" cy="138" r="7"/>
+<rect class="box" x="355" y="122" width="33" height="32" rx="4"/><circle class="k1" cx="365" cy="138" r="7"/><circle class="k5" cx="378" cy="138" r="7"/>
+<text class="m c" x="18" y="180">3</text>
+<rect class="box" x="40" y="158" width="33" height="32" rx="4"/><circle class="k4" cx="50" cy="174" r="7"/><circle class="k0" cx="63" cy="174" r="7"/>
+<rect class="box" x="75" y="158" width="33" height="32" rx="4"/><circle class="k3" cx="85" cy="174" r="7"/><circle class="k2" cx="98" cy="174" r="7"/>
+<rect class="box" x="110" y="158" width="33" height="32" rx="4"/><circle class="k6" cx="120" cy="174" r="7"/><circle class="k4" cx="133" cy="174" r="7"/>
+<rect class="box" x="145" y="158" width="33" height="32" rx="4"/><circle class="k1" cx="155" cy="174" r="7"/><circle class="k7" cx="168" cy="174" r="7"/>
+<rect class="box" x="180" y="158" width="33" height="32" rx="4"/><circle class="k0" cx="190" cy="174" r="7"/><circle class="k2" cx="203" cy="174" r="7"/>
+<rect class="box" x="215" y="158" width="33" height="32" rx="4"/><circle class="k4" cx="225" cy="174" r="7"/><circle class="k0" cx="238" cy="174" r="7"/>
+<rect class="box" x="250" y="158" width="33" height="32" rx="4"/><circle class="k2" cx="260" cy="174" r="7"/><circle class="k0" cx="273" cy="174" r="7"/>
+<rect class="box" x="285" y="158" width="33" height="32" rx="4"/><circle class="k4" cx="295" cy="174" r="7"/><circle class="k3" cx="308" cy="174" r="7"/>
+<rect class="box" x="320" y="158" width="33" height="32" rx="4"/><circle class="k6" cx="330" cy="174" r="7"/><circle class="k1" cx="343" cy="174" r="7"/>
+<rect class="box" x="355" y="158" width="33" height="32" rx="4"/><circle class="k4" cx="365" cy="174" r="7"/><circle class="k3" cx="378" cy="174" r="7"/>
+<text class="m c" x="18" y="216">4</text>
+<rect class="box" x="40" y="194" width="33" height="32" rx="4"/><circle class="k3" cx="50" cy="210" r="7"/><circle class="k2" cx="63" cy="210" r="7"/>
+<rect class="box" x="75" y="194" width="33" height="32" rx="4"/><circle class="k6" cx="85" cy="210" r="7"/><circle class="k7" cx="98" cy="210" r="7"/>
+<rect class="box" x="110" y="194" width="33" height="32" rx="4"/><circle class="k2" cx="120" cy="210" r="7"/><circle class="k4" cx="133" cy="210" r="7"/>
+<rect class="box" x="145" y="194" width="33" height="32" rx="4"/><circle class="k0" cx="155" cy="210" r="7"/><circle class="k4" cx="168" cy="210" r="7"/>
+<rect class="box" x="180" y="194" width="33" height="32" rx="4"/><circle class="k4" cx="190" cy="210" r="7"/><circle class="k7" cx="203" cy="210" r="7"/>
+<rect class="box" x="215" y="194" width="33" height="32" rx="4"/><circle class="k5" cx="225" cy="210" r="7"/><circle class="k1" cx="238" cy="210" r="7"/>
+<rect class="box" x="250" y="194" width="33" height="32" rx="4"/><circle class="k2" cx="260" cy="210" r="7"/><circle class="k4" cx="273" cy="210" r="7"/>
+<rect class="box" x="285" y="194" width="33" height="32" rx="4"/><circle class="k0" cx="295" cy="210" r="7"/><circle class="k2" cx="308" cy="210" r="7"/>
+<rect class="box" x="320" y="194" width="33" height="32" rx="4"/><circle class="k0" cx="330" cy="210" r="7"/><circle class="k4" cx="343" cy="210" r="7"/>
+<rect class="box" x="355" y="194" width="33" height="32" rx="4"/><circle class="k0" cx="365" cy="210" r="7"/><circle class="k2" cx="378" cy="210" r="7"/>
+<text class="m c" x="18" y="252">5</text>
+<rect class="box" x="40" y="230" width="33" height="32" rx="4"/><circle class="k6" cx="50" cy="246" r="7"/><circle class="k0" cx="63" cy="246" r="7"/>
+<rect class="box" x="75" y="230" width="33" height="32" rx="4"/><circle class="k2" cx="85" cy="246" r="7"/><circle class="k6" cx="98" cy="246" r="7"/>
+<rect class="box" x="110" y="230" width="33" height="32" rx="4"/><circle class="k5" cx="120" cy="246" r="7"/><circle class="k6" cx="133" cy="246" r="7"/>
+<rect class="box" x="145" y="230" width="33" height="32" rx="4"/><circle class="k1" cx="155" cy="246" r="7"/><circle class="k2" cx="168" cy="246" r="7"/>
+<rect class="box" x="180" y="230" width="33" height="32" rx="4"/><circle class="k2" cx="190" cy="246" r="7"/><circle class="k6" cx="203" cy="246" r="7"/>
+<rect class="box" x="215" y="230" width="33" height="32" rx="4"/><circle class="k7" cx="225" cy="246" r="7"/><circle class="k0" cx="238" cy="246" r="7"/>
+<rect class="box" x="250" y="230" width="33" height="32" rx="4"/><circle class="k0" cx="260" cy="246" r="7"/><circle class="k2" cx="273" cy="246" r="7"/>
+<rect class="box" x="285" y="230" width="33" height="32" rx="4"/><circle class="k3" cx="295" cy="246" r="7"/><circle class="k0" cx="308" cy="246" r="7"/>
+<rect class="box" x="320" y="230" width="33" height="32" rx="4"/><circle class="k0" cx="330" cy="246" r="7"/><circle class="k2" cx="343" cy="246" r="7"/>
+<rect class="box" x="355" y="230" width="33" height="32" rx="4"/><circle class="k2" cx="365" cy="246" r="7"/><circle class="k3" cx="378" cy="246" r="7"/>
+<text class="m c" x="18" y="288">6</text>
+<rect class="box" x="40" y="266" width="33" height="32" rx="4"/><circle class="k7" cx="50" cy="282" r="7"/><circle class="k4" cx="63" cy="282" r="7"/>
+<rect class="box" x="75" y="266" width="33" height="32" rx="4"/><circle class="k2" cx="85" cy="282" r="7"/><circle class="k4" cx="98" cy="282" r="7"/>
+<rect class="box" x="110" y="266" width="33" height="32" rx="4"/><circle class="k4" cx="120" cy="282" r="7"/><circle class="k0" cx="133" cy="282" r="7"/>
+<rect class="box" x="145" y="266" width="33" height="32" rx="4"/><circle class="k6" cx="155" cy="282" r="7"/><circle class="k5" cx="168" cy="282" r="7"/>
+<rect class="box" x="180" y="266" width="33" height="32" rx="4"/><circle class="k6" cx="190" cy="282" r="7"/><circle class="k5" cx="203" cy="282" r="7"/>
+<rect class="box" x="215" y="266" width="33" height="32" rx="4"/><circle class="k2" cx="225" cy="282" r="7"/><circle class="k0" cx="238" cy="282" r="7"/>
+<rect class="box" x="250" y="266" width="33" height="32" rx="4"/><circle class="k4" cx="260" cy="282" r="7"/><circle class="k0" cx="273" cy="282" r="7"/>
+<rect class="box" x="285" y="266" width="33" height="32" rx="4"/><circle class="k0" cx="295" cy="282" r="7"/><circle class="k2" cx="308" cy="282" r="7"/>
+<rect class="box" x="320" y="266" width="33" height="32" rx="4"/><circle class="k0" cx="330" cy="282" r="7"/><circle class="k2" cx="343" cy="282" r="7"/>
+<rect class="box" x="355" y="266" width="33" height="32" rx="4"/><circle class="k0" cx="365" cy="282" r="7"/><circle class="k6" cx="378" cy="282" r="7"/>
+<text class="m" x="10" y="312">couches</text>
+<text class="t" x="10" y="336">Une case = un choix du router.</text>
+<text class="t" x="10" y="356">Mêmes couleurs = experts réutilisés.</text>
+<text class="m" x="10" y="380">Exemple inventé, pas une mesure.</text>
+</g>
+</svg>
