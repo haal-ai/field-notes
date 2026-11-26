@@ -346,6 +346,29 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "open-source-ai-chain",
+      "title": "La chaîne d'une IA open source, de la plateforme au modèle",
+      "lang": "fr",
+      "section": "Inférence",
+      "type": "guide",
+      "summary": "Cinq couches (modèle, inference server, API gateway, harness, plateforme de bots) reliées par des interfaces publiques : ce que chacune fait, ce qu'on peut remplacer, et ce qui change à grande échelle : la mémoire.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [

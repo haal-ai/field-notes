@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 296" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Taille du KV cache de Qwen3-30B-A3B selon le nombre de tokens</title>
+<desc id="fig4-d">Trois barres croissantes : environ 0,8 Go pour 8 192 tokens, 3,2 Go pour 32 768 tokens et 4,0 Go pour 40 960 tokens, à 98 304 octets par token. Estimation.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .bar{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .sep{stroke:var(--line,var(--f-line));stroke-width:1;stroke-dasharray:4 3}
+.fig4 .c{text-anchor:middle}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="18">KV cache de Qwen3-30B-A3B (bfloat16)</text>
+<rect class="box" x="6" y="28" width="388" height="62" rx="5"/>
+<text class="a" x="16" y="48">98 304 octets par token</text>
+<text class="t" x="16" y="68">= 2 (K et V) × 48 couches × 4 KV heads</text>
+<text class="t" x="16" y="84">   × 128 × 2 octets</text>
+<text class="s" x="10" y="112">8 192 tokens : ≈ 0,8 Go</text>
+<rect class="bar" x="10" y="120" width="76" height="22" rx="3"/>
+<text class="s" x="10" y="164">32 768 tokens : ≈ 3,2 Go</text>
+<rect class="bar" x="10" y="172" width="304" height="22" rx="3"/>
+<text class="s" x="10" y="216">40 960 tokens : ≈ 4,0 Go</text>
+<rect class="bar" x="10" y="224" width="380" height="22" rx="3"/>
+<text class="m" x="10" y="264">Estimation, hors optimisations du serveur.</text>
+<text class="m" x="10" y="282">1 Go = 10⁹ octets.</text>
+</g>
+</svg>

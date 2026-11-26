@@ -1,0 +1,1 @@
+Figure 3. Le prompt part du harness, passe par l'API gateway, puis par l'inference server, et atteint le modèle sur le GPU de la machine. Les tokens reviennent en flux par le chemin inverse. Mention : un seul client, une seule machine, une seule exécution ; aucune mesure publiée. Figure illustrative, aucun chiffre.

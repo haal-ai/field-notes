@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 438" role="img" aria-labelledby="fig5-t fig5-d">
+<title id="fig5-t">Où entre le risque d'une supply chain attack sur la passerelle</title>
+<desc id="fig5-d">Un paquet piégé publié sur un index public s'installe avec l'API gateway, qui détient des clés. Parades : épingler la version, vérifier, construire l'image soi-même. Repère : 24 mars 2026, LiteLLM 1.82.7 et 1.82.8, environ 40 minutes en ligne.</desc>
+<style>
+.fig5{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig5{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig5 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig5 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig5 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig5 .t{fill:var(--text,var(--f-text))}
+.fig5 .m{fill:var(--muted,var(--f-muted))}
+.fig5 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig5 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig5 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig5 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig5 .bar{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig5 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig5 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig5 .sep{stroke:var(--line,var(--f-line));stroke-width:1;stroke-dasharray:4 3}
+.fig5 .c{text-anchor:middle}
+</style>
+<g class="fig5">
+<text class="h" x="10" y="18">Où entre le risque</text>
+<rect class="box" x="6" y="30" width="388" height="44" rx="5"/>
+<text class="s" x="16" y="49">Index public de paquets</text>
+<text class="m" x="16" y="66">une version piégée y est publiée</text>
+<path class="ln" d="M200 74 V94 M195 88 L200 94 L205 88"/>
+<rect class="box" x="6" y="94" width="388" height="44" rx="5"/>
+<text class="s" x="16" y="113">Paquet de l'API gateway</text>
+<text class="m" x="16" y="130">installé avec la passerelle</text>
+<path class="ln" d="M200 138 V158 M195 152 L200 158 L205 152"/>
+<rect class="box" x="6" y="158" width="388" height="44" rx="5"/>
+<text class="s" x="16" y="177">Accès aux clés et identifiants</text>
+<text class="m" x="16" y="194">la passerelle les détient</text>
+<path class="ln" d="M200 202 V222 M195 216 L200 222 L205 216"/>
+<rect class="dif" x="6" y="222" width="388" height="44" rx="5"/>
+<text class="s" x="16" y="241">Fuite des secrets</text>
+<text class="m" x="16" y="258">le voleur les envoie à l'extérieur</text>
+<rect class="box" x="6" y="280" width="388" height="82" rx="5"/>
+<text class="a" x="16" y="300">Parades</text>
+<text class="t" x="16" y="320">• épingler la version de chaque paquet</text>
+<text class="t" x="16" y="338">• vérifier avant d'installer</text>
+<text class="t" x="16" y="356">• construire l'image soi-même (conseil)</text>
+<rect class="dif" x="6" y="378" width="388" height="46" rx="5"/>
+<text class="k" x="16" y="397">24 mars 2026 : LiteLLM 1.82.7 et 1.82.8</text>
+<text class="t" x="16" y="415">environ 40 minutes en ligne</text>
+</g>
+</svg>
