@@ -1,67 +1,66 @@
-# A small test of code graphs: no help on easy questions, a hint on a hard one
+# Petit essai de code graph : aucun gain sur les questions simples, une piste sur une question difficile
 
-## Conclusion first
+## En bref
 
-On a small, well-named codebase, a coding agent that searched with its own tools did as well on quality as the same agent with a code graph. It answered every question correctly. On the two easy questions, the agent alone was faster than every graph run and cheaper in all but one.
+Sur une petite base de code bien nommée, un agent seul répond aussi bien qu'avec un code graph : les neuf réponses sont justes. Sur les deux questions simples, il est plus rapide que toutes les exécutions avec graphe, et moins cher sauf une fois. Sur une question longue, le graphe coûte un peu moins de crédits. C'est une piste, pas un résultat : neuf exécutions ne prouvent rien en général.
 
-On one longer question, the graph setups cost a little less. That is a lead to test. It is not a result. This page records nine runs. Nine runs cannot show that any setup is better in general.
+## Le dispositif
 
-## What a code graph is
+Trois configurations, trois tâches, une exécution chacune.
 
-A code graph is an index of a codebase. It lists definitions, callers, types, routes and the code a change would affect. A coding agent can query the index instead of searching files one by one.
+![Trois configurations (agent seul, entire-graph, graphify) croisées avec trois tâches : neuf exécutions](fig1.svg)
 
-An agent is a program that carries out the requests of a language model. It runs tools and returns their results. The set of tools and rules around the model is the harness. Here, the agent's own tools were file search, file read and shell commands.
+Un agent est un programme qui lance des outils pour un modèle de langage. Un code graph est un index des définitions, appelants, types et routes d'une base de code.
 
-Two public code graph tools were tested. The Entire CLI plugin entire-graph precomputes this kind of index for an agent ([entire-graph repository](https://github.com/entireio/entire-graph)). The graphify package parses code with tree-sitter, runs locally and uses no language model for code ([graphify package page](https://pypi.org/project/graphifyy/)). Both pages describe the tools as they are now. This test used the versions below.
+## Ce que fait un graphe
 
-## Test record
+L'agent interroge l'index au lieu de lire fichier par fichier.
 
-Test date: the artifact that holds these results was created on 13 November 2026 and revised on 17 November 2026. The exact run dates were not recorded. The runs took place between those two dates. This range is inferred from the artifact dates.
+![Deux chemins vers la réponse : chercher fichier par fichier, ou interroger l'index du graphe](fig2.svg)
 
-Versions: Entire CLI 0.12.2, entire-graph 0.6.0 with its no-egress setting on, and graphify 0.9.108. Graphify built its index with tree-sitter only and no model. The agent model was set to automatic selection, so the real model is not identified and may have differed between runs. The model that judged the answers is also not recorded.
+## Résultats
 
-Target: one private, mostly Python application with 58 files and about 6,700 lines. The index was built in a scratch copy. I do not name the application or its files.
+La qualité ne départage rien. Les crédits sont l'unité de facturation de la plateforme ; je ne les convertis pas en argent.
 
-## Method
+### Deux petites tâches
 
-I compared three setups. The first was the agent alone, with file search, file read and shell commands. The second was the agent with entire-graph. The third was the agent with graphify. All three used the same model setting (automatic selection, so the actual model may have differed between runs), the same prompts and a fresh context. In the two graph setups, I told the agent to prefer the graph.
+Le graphe ne fait gagner ni crédits ni secondes.
 
-I used three tasks. Two were small lookup questions. One was a long task about the effect of a change. Each setup ran each task once. That makes nine runs. The full task set had nine tasks. Only three were run.
+![Crédits et secondes par configuration pour les tâches 1 et 2 : l'agent seul est le plus rapide et le moins cher, sauf graphify sur la tâche 1 pour les crédits](fig3.svg)
 
-Each task had a checklist of facts that a correct answer must contain, and a list of things it must not claim. The checklist was kept outside the repository. The source design was that a judge, not shown which setup produced the answer, scored each answer against it. The judge model is not recorded.
+### Une tâche longue
 
-I measured four things. Credits are the billing unit of the platform that ran the agents. I do not convert them to money. Peak context is the most text the model held at once. Turns are the number of agent steps. Elapsed time is wall-clock seconds. The platform logged raw token counts as zero. This page reports no token numbers.
+Graphify : 24 % de crédits en moins que l'agent seul ; entire-graph : 6 %. Avec une seule exécution, ces écarts restent dans le bruit.
 
-## Results
+![Tâche longue : crédits, secondes, tours et contexte maximal pour l'agent seul, entire-graph et graphify](fig4.svg)
 
-All nine answers were correct. Quality was tied, so quality does not separate the setups.
+## Fiche de l'essai
 
-Peak context ranged from 26,411 to 44,499 across the nine runs. In the six graph-versus-alone comparisons, the graph run held more context in four and less in two. These are single runs, so I draw no conclusion from them.
+| Élément | Valeur |
+| --- | --- |
+| Dates | Résultats créés le 13 nov. 2026, révisés le 17 nov. 2026. Dates d'exécution non notées, entre les deux (déduction) |
+| Versions | Entire CLI 0.12.2, entire-graph 0.6.0 (sans sortie réseau), graphify 0.9.108 (tree-sitter seul) |
+| Modèle | Sélection automatique, non identifié, peut avoir varié |
+| Cible | Application privée (index construit dans une copie temporaire ; application et fichiers non nommés), surtout Python, 58 fichiers, environ 6 700 lignes |
+| Consigne | Avec graphe : préférer le graphe |
+| Notation | Liste de faits cachée, juge censé ignorer la configuration (modèle juge non noté) |
+| Mesures | Crédits, contexte maximal (plus grande quantité de texte tenue par le modèle à un instant donné), tours, secondes. Tokens enregistrés à zéro : non rapportés |
 
-On the two small tasks, neither graph setup was cheaper than the agent alone. Credits summed over both tasks were 0.800 for the agent alone, 1.255 for entire-graph and 0.947 for graphify. Per task, the agent alone used 0.288 and 0.512. Entire-graph used 0.653 and 0.602. Graphify used 0.274 and 0.673. Only one graph run cost less than the agent alone: graphify on the first task, by 0.014 credits.
+## Lecture prudente
 
-The graph setups were also slower on the small tasks. On the first task the times were 25 seconds alone, 57 with entire-graph and 40 with graphify. On the second task they were 39, 50 and 61 seconds. All four graph runs were slower than the agent alone.
+Un graphe peut ajouter une étape : l'agent suivait parfois ses liens, puis lisait le fichier quand même. Je n'ai pas examiné les journaux. La consigne de préférer le graphe a peut-être alourdi les petites tâches. Ces deux explications sont plausibles, non testées.
 
-On the long task, credits were 1.545 alone, 1.448 with entire-graph and 1.167 with graphify. Times were 97, 111 and 98 seconds. Turns were 19, 24 and 15. Graphify used 24 percent fewer credits than the agent alone, and entire-graph used 6 percent fewer. With one run per setup, these gaps are within what chance could produce.
+## Limites
 
-![Credits, elapsed seconds and turns per setup for three tasks, one run each](visual.svg)
+![Limites de l'essai : une exécution par cas, trois tâches sur neuf, un seul petit dépôt privé](fig5.svg)
 
-## What the results suggest
+Une exécution par cas, sans dispersion. Trois tâches sur neuf prévues. Un seul petit dépôt : rien ne vaut pour les grands dépôts, d'autres langages ou d'autres modèles. Des versions plus récentes des outils existent peut-être. Cette page ne confirme ni ne réfute les économies annoncées par un éditeur et ne classe pas les outils.
 
-A graph can add a step. In the source notes, the agent sometimes followed graph links and then read the file anyway. I did not examine the tool logs for this. On a small, well-named codebase, that step may cost more than it saves. This is a plausible reason. I did not test it.
+Une vraie suite demande plusieurs dépôts dont un grand, des répétitions, une consigne plus souple et des tokens. Elle sera un nouveau résultat daté.
 
-The long task points the other way. Graph setups used fewer credits there. I treat this as a lead. A larger repository and more repeats are needed to confirm it.
+## Sources
 
-The instruction to prefer the graph may have added cost on the small tasks. A softer instruction might narrow the gap. I did not test this either.
+Les deux pages décrivent les outils tels qu'ils sont aujourd'hui ; l'essai a utilisé les versions de la fiche.
 
-## Limits
-
-This is n=1: one run per setup per task, nine runs in all. There is no repeat and no measure of spread. Only three of nine planned tasks ran. One small private repository was used. The result does not apply to large repositories, other languages or other models.
-
-The model setting was automatic and the actual model may have differed between runs, the judge model was not recorded, and the exact run dates are inferred. Token use was not measured. Credits are specific to one platform. Newer releases of both tools may exist. Check before relying on this record, because a newer release may behave differently.
-
-This page does not confirm or refute any vendor's savings claim. It does not rank the tools.
-
-## Next steps
-
-A real test needs more repositories, including a large one. It needs repeated runs per task, a gentler graph instruction, and token counts. A rerun will be a new dated result. It will not replace this record.
+- [Dépôt entire-graph](https://github.com/entireio/entire-graph) : précalcule l'index pour l'agent.
+- [Page du paquet graphify](https://pypi.org/project/graphifyy/) : analyse avec tree-sitter, en local, sans modèle de langage pour le code.

@@ -70,36 +70,45 @@
     },
     {
       "slug": "code-graph-pilot",
-      "title": "A small test of code graphs: no help on easy questions, a hint on a hard one",
-      "section": "Evaluation",
+      "title": "Petit essai de code graph : aucun gain sur les questions simples, une piste sur une question difficile",
+      "section": "Évaluation",
       "type": "experiment",
-      "summary": "Nine runs, three setups, one small codebase. A code graph did not help on easy questions and may have helped on one hard question. A lead, not a result.",
-      "author": "Jean Marin",
-      "perspective": "Individual view: independent analysis",
+      "lang": "fr",
+      "summary": "Neuf exécutions, trois configurations, une petite base de code. Un code graph n'a pas aidé sur les questions simples et a peut-être aidé sur une question difficile. Une piste, pas un résultat.",
       "published": "2026-11-25",
-      "edited": "2026-11-25",
+      "edited": "2026-11-26",
       "tested": "2026-11-17",
-      "tested_note": "Exact run dates not recorded; runs fell between 2026-11-13 and 2026-11-17 (inferred). 2026-11-17 is the upper bound.",
-      "versions": "Entire CLI 0.12.2; entire-graph 0.6.0 (no-egress on); graphify 0.9.108 (tree-sitter only); agent model set to automatic, not identified",
-      "method": "Three setups (agent alone, with entire-graph, with graphify), same model setting (automatic selection; actual model may differ between runs) and prompts, fresh context, graph setups told to prefer the graph. Three tasks (two small, one long), one run each, nine runs. Answers scored against a hidden facts checklist by a judge designed not to see the setup (judge model not recorded). Measured credits, peak context, turns, elapsed time.",
-      "limitations": "n=1 per setup per task; three of nine tasks run; one small private, mostly Python repository; model setting automatic (actual model may differ between runs) and judge model not recorded; run dates inferred; no token counts; credits are platform-specific; newer tool releases may exist.",
+      "tested_note": "Dates exactes des exécutions non notées ; elles se situent entre le 2026-11-13 et le 2026-11-17 (déduction). Le 2026-11-17 est la borne haute.",
+      "versions": "Entire CLI 0.12.2 ; entire-graph 0.6.0 (sans sortie réseau) ; graphify 0.9.108 (tree-sitter seul) ; modèle de l'agent en sélection automatique, non identifié",
+      "method": "Trois configurations (agent seul, avec entire-graph, avec graphify), même réglage de modèle (sélection automatique ; le modèle réel a pu varier) et mêmes consignes, contexte vierge, consigne de préférer le graphe pour les deux configurations avec graphe. Trois tâches (deux petites, une longue), une exécution chacune, neuf exécutions. Réponses notées selon une liste de faits cachée par un juge conçu pour ne pas voir la configuration (modèle juge non noté). Mesures : crédits, contexte maximal, tours, temps écoulé.",
+      "limitations": "Une exécution par configuration et par tâche ; trois tâches sur neuf jouées ; un seul petit dépôt privé, surtout en Python ; modèle en sélection automatique (le modèle réel a pu varier) et modèle juge non noté ; dates d'exécution déduites ; pas de comptes de tokens ; crédits propres à une plateforme ; des versions plus récentes des outils existent peut-être.",
       "review_due": "2027-05-25",
       "approval": "approved-publication",
       "formats": [
         "Article",
-        "Visual explanation"
+        "Explication visuelle"
       ],
       "visual": {
         "kind": "svg",
-        "title": "Credits, seconds and turns per setup, one run each",
-        "svg": "visual.svg",
+        "title": "Cinq figures : dispositif, rôle du graphe, petites tâches, tâche longue, limites",
+        "figures": [
+          "fig1.svg",
+          "fig2.svg",
+          "fig3.svg",
+          "fig4.svg",
+          "fig5.svg"
+        ],
         "alt": "alt.md",
-        "caption": "Small pilot, not a benchmark: one run per setup per task, nine runs. All nine answers were correct. Credits, seconds and turns are shown as measured. Differences may be noise."
+        "caption": "Petit essai, pas un banc d'essai : une exécution par configuration et par tâche, neuf exécutions. Les neuf réponses sont justes. Crédits, secondes et tours sont indiqués tels que mesurés. Les écarts peuvent être du bruit."
       },
       "history": [
         {
           "date": "2026-11-25",
-          "note": "First publication of the pilot record."
+          "note": "Première publication de la fiche d'essai."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Réécriture en français, figures ajoutées"
         }
       ]
     },
