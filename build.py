@@ -5,24 +5,21 @@ import html
 import json
 import re
 import shutil
+import unicodedata
 from datetime import date
 import sys
 from pathlib import Path
 
-from render import esc, inline_svg, leftovers, markdown
+import glossary
+from render import esc, figure_markers, inline_svg, leftovers, markdown
+from strings_fr import (ABOUT, JS_KEYS, KIND, SECTION_NAMES, SECTION_NOTE_DEFAULT, SECTION_NOTES, T, fr_day, fr_month_year)
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / '_site'                # public output: the only directory ever deployed
 PREVIEW_OUT = ROOT / '_preview'     # private draft preview: never deployed, git-ignored
 APPROVED = ['approved-publication-test', 'approved-publication']
 PRIVATE_TOKENS = ['teams.microsoft.com', 'sharepoint.com', '/users/', 'file://']
-ABOUT = 'About this library'
-SECTION_NOTES = {
-    'Inference': 'How models run: prompts, memory, serving.',
-    'Evaluation': 'Small tests with their setup and limits.',
-    ABOUT: 'How to read these notes.',
-}
-STATE = {'preview': False, 'out': OUT}
+STATE = {'preview': False, 'out': OUT, 'glossary': False}
 
 
 def plus_months(value, months):
@@ -36,13 +33,13 @@ def day(value):
     try:
         d = date.fromisoformat(str(value))
     except ValueError:  # only drafts reach here; validate() rejects non-ISO dates in public builds
-        return 'Set at publication'
-    return f'{d.day} {d.strftime("%b %Y")}'
+        return T['undated']
+    return fr_day(d)
 
 
 def when(value):
     if not iso(value):
-        return '<span class="undated">Set at publication</span>'
+        return f'<span class="undated">{T["undated"]}</span>'
     return f'<time datetime="{esc(value)}">{day(value)}</time>'
 
 
@@ -65,28 +62,36 @@ def body_file(article):
     return next((p for p in (article_dir(article) / n for n in ('article.md', 'draft.md')) if p.is_file()), None)
 
 
-def perspective_label(article):
-    return 'Individual view' if article['perspective'] == 'Individual perspective' else article['perspective']
+def section_name(article):
+    return SECTION_NAMES.get(article['section'], article['section'])
+
+
+def is_outdated(article, today):
+    return lifecycle(article, today)['class'] == 'archived'
+
+
+def count_label(n):
+    return T['notes_count']['one' if n == 1 else 'other'].format(n=n)
 
 
 def lifecycle(article, today):
     kind = article['type']
     if is_draft(article):
-        return {'status': 'Draft (not published)', 'class': 'draft', 'due': None,
-                'action': 'Technical review, rights review and approval before publication'}
+        return {'status': T['status_draft'], 'class': 'draft', 'due': None, 'action': T['action_draft']}
     if kind == 'news':
         due = plus_months(article['published'], 3)
-        return {'status': 'Outdated news' if today >= due else 'Current news',
-                'class': 'archived' if today >= due else 'current', 'due': due.isoformat(),
-                'action': 'Check for a replacement report' if today >= due else 'Archive news at expiry'}
+        old = today >= due
+        return {'status': T['status_news_old'] if old else T['status_news_current'],
+                'class': 'archived' if old else 'current', 'due': due.isoformat(),
+                'action': T['action_news_old'] if old else T['action_news_current']}
     if kind == 'guide':
         due = plus_months(article['reviewed'], article['review_months'])
-        return {'status': 'Due for a check' if today >= due else f'Up to date · next check {due.strftime("%B %Y")}',
-                'class': 'due' if today >= due else 'current', 'due': due.isoformat(),
-                'action': 'Technical review'}
+        late = today >= due
+        return {'status': T['status_guide_due'] if late else T['status_guide_ok'].format(month=fr_month_year(due)),
+                'class': 'due' if late else 'current', 'due': due.isoformat(), 'action': T['action_guide']}
     tested = article.get('tested')
-    return {'status': f'Experiment · tested {day(tested)}' if iso(tested) else 'Experiment', 'class': 'record', 'due': article['review_due'],
-            'action': 'Check relevance; preserve the original measurement'}
+    return {'status': T['status_experiment_dated'].format(date=day(tested)) if iso(tested) else T['status_experiment'],
+            'class': 'record', 'due': article['review_due'], 'action': T['action_experiment']}
 
 
 def validate_visual(article, preview):
@@ -114,8 +119,11 @@ def validate(catalogue, preview=False):
     """Public mode (default) refuses drafts. Preview mode accepts them for the private preview build."""
     slugs = set()
     for article in catalogue['articles']:
-        for key in ['slug', 'title', 'section', 'type', 'summary', 'author', 'perspective',
-                    'approval', 'formats', 'visual', 'history']:
+        # Articles with figN.svg markers carry their figures in the folder; others need the single 'visual' entry.
+        keys = ['slug', 'title', 'section', 'type', 'summary', 'approval', 'formats', 'history']
+        if article_markers(article):
+            article.pop('visual', None)  # figN.svg markers replace the single visual
+        for key in keys + ([] if article_markers(article) else ['visual']):
             if not article.get(key):
                 raise ValueError(f'Missing {key}: {article.get("slug", "unknown article")}')
         slug = article['slug']
@@ -125,13 +133,14 @@ def validate(catalogue, preview=False):
         draft = is_draft(article)
         if draft and not preview:
             raise ValueError(f'Draft or unapproved entry refused in a public build: {slug}')
-        if article['perspective'] != 'HAAL publication' and not article['perspective'].startswith('Individual'):
-            raise ValueError('Explicit publication perspective required')
+        if article.get('lang', 'en') not in ('fr', 'en'):
+            raise ValueError(f'Unknown lang: {slug}')
         if article['type'] not in ['guide', 'news', 'experiment']:
             raise ValueError('Unknown content type')
         if not article.get('sections') and not body_file(article):
             raise ValueError(f'Missing sections or article.md: {slug}')
-        validate_visual(article, preview)
+        if article.get('visual'):
+            validate_visual(article, preview)
         if draft:
             continue
         for key in ('published', 'edited'):
@@ -164,6 +173,49 @@ def validate(catalogue, preview=False):
             raise ValueError(f'Private/local source reference in public catalogue: {token}')
 
 
+def article_markers(article):
+    path = body_file(article)
+    return figure_markers(path.read_text()) if path else []
+
+
+def figure_html(svg, caption, alt):
+    return (f'<figure data-learning-visual="svg">{svg}<figcaption>{esc(caption)}</figcaption>'
+            f'<details class="fig-text" style="margin-top:12px;padding:10px 14px"><summary>{T["figure_text"]}</summary>{alt}</details></figure>')
+
+
+def alt_text(alt_file, label, problems):
+    """Render a text equivalent file; record placeholders and private references."""
+    if not alt_file.is_file():
+        problems.append(f'text equivalent {label} not written yet')
+        return f'<p>{T["figure_text_missing"]}</p>'
+    raw = alt_file.read_text()
+    alt, _ = markdown(raw, warnings=problems)
+    problems.extend(f'{label}: {l}' for l in leftovers(raw))
+    problems.extend(f'{label}: private reference {t}' for t in PRIVATE_TOKENS if t in raw.lower())
+    return alt
+
+
+def marker_figure(article, name, caption, problems):
+    """One figN.svg marker: inline SVG, caption from the marker, text equivalent from figN.alt.md."""
+    slug, stem = article['slug'], name[:-4]
+    folder = article_dir(article)
+    if not caption:
+        problems.append(f'{name}: empty figure caption')
+    elif leftovers(caption):
+        problems.append(f'{name}: figure caption is still a placeholder')
+    if not (folder / name).is_file():
+        problems.append(f'{name}: figure file missing')
+        return f'<p class="fig-missing">{esc(T["figure_missing"].format(name=name))}</p>'
+    raw = (folder / name).read_text()
+    try:
+        svg = inline_svg(raw, f'{slug}-{stem}')
+    except ValueError as err:
+        problems.append(f'{name}: {err}')
+        return f'<p class="fig-missing">{esc(T["figure_missing"].format(name=name))}</p>'
+    problems.extend(f'{name}: private reference {t}' for t in PRIVATE_TOKENS if t in svg.lower())
+    return figure_html(svg, caption, alt_text(folder / f'{stem}.alt.md', f'{stem}.alt.md', problems))
+
+
 def figure(article, problems):
     """The page figure: the built-in three-step flow, or the article's own inline SVG with caption and text equivalent."""
     v = article['visual']
@@ -171,38 +223,35 @@ def figure(article, problems):
         return flow(v['title'], v['nodes'], v['details'], v['caption'])
     folder = article_dir(article)
     svg = inline_svg((folder / v['svg']).read_text(), article['slug'])
-    alt_file = folder / v['alt']
-    if alt_file.is_file():
-        alt, _ = markdown(alt_file.read_text(), warnings=problems)
-        problems.extend(f'{v["alt"]}: {l}' for l in leftovers(alt_file.read_text()))
-        problems.extend(f'{v["alt"]}: private reference {t}' for t in PRIVATE_TOKENS if t in alt_file.read_text().lower())
-    else:
-        problems.append(f'text equivalent {v["alt"]} not written yet')
-        alt = '<p>The text equivalent of this figure is not written yet.</p>'
+    alt = alt_text(folder / v['alt'], v['alt'], problems)
     problems.extend(f'private reference {t} in figure' for t in PRIVATE_TOKENS if t in svg.lower())
-    caption = v['caption']
-    if leftovers(caption):
-        problems.append(f'figure caption is still a placeholder')
-    return (f'<figure data-learning-visual="svg">{svg}<figcaption>{esc(caption)}</figcaption>'
-            f'<details class="fig-text" style="margin-top:12px;padding:10px 14px"><summary>Text equivalent of this figure</summary>{alt}</details></figure>')
+    if leftovers(v['caption']):
+        problems.append('figure caption is still a placeholder')
+    return figure_html(svg, v['caption'], alt)
 
 
 def prepare(articles, preview):
-    """Render each article's figure and body. Public builds raise on any problem; preview collects them."""
+    """Render each article's figures and body. Public builds raise on any problem; preview collects them."""
     warnings = []
     for a in articles:
         problems = []
-        if preview and a['visual']['kind'] == 'flow' and (article_dir(a) / 'visual.svg').is_file():
+        if preview and (a.get('visual') or {}).get('kind') == 'flow' and (article_dir(a) / 'visual.svg').is_file():
             a['visual'] = dict(a['visual'], kind='svg', svg='visual.svg', alt='alt.md')  # preview-only adapter
-        a['_figure'] = figure(a, problems)
+        a['_figure'] = figure(a, problems) if a.get('visual') else ''
         a['_body'], a['_figure_in_body'] = None, False
         path = body_file(a)
+        markers = figure_markers(path.read_text()) if path else []
+        names = [n for _, n in markers]
+        problems.extend(f'{n}: figure used twice' for n in sorted(set(names)) if names.count(n) > 1)
+        if a.get('lang') == 'fr' and len(markers) + bool(a.get('visual')) < 3:
+            problems.append(f'a French article needs at least 3 figures (found {len(markers) + bool(a.get("visual"))})')
         if path:
             text = path.read_text()
             problems.extend(f'{path.name}: unfinished text "{l}"' for l in leftovers(text))
             problems.extend(f'{path.name}: private reference {t}' for t in PRIVATE_TOKENS if t in text.lower())
-            marker = a['visual'].get('svg')
-            a['_body'], a['_figure_in_body'] = markdown(text, marker, a['_figure'], problems)
+            marker = (a.get('visual') or {}).get('svg')
+            a['_body'], a['_figure_in_body'] = markdown(text, marker, a['_figure'], problems,
+                                                        figure_fn=lambda n, c, a=a: marker_figure(a, n, c, problems))
         if problems and not preview:
             raise ValueError(f'{a["slug"]}: ' + '; '.join(problems))
         warnings.extend(f'{a["slug"]}: {p}' for p in problems)
@@ -222,44 +271,97 @@ def flow(title, nodes, details, caption):
             f'<title>{esc(title)}</title>'+''.join(nodes_svg)+f'</svg><figcaption>{esc(caption)}</figcaption></figure>')
 
 
-def shell(title, content, prefix='', description='AI and software engineering explanations, with dates, evidence, and useful visuals.', sidebar=''):
+def js_strings():
+    """Strings site.js needs, as JSON safe to embed in a script element."""
+    return json.dumps({k: T[k] for k in JS_KEYS}, ensure_ascii=False).replace('</', '<\\/')
+
+
+def shell(title, content, prefix='', description=None, sidebar=''):
+    description = description or T['description']
     main_open, main_close = (f'<div class="site-layout">{sidebar}', '</div>') if sidebar else ('', '')
     preview = STATE['preview']
+    gloss_nav = f'<a href="{prefix}glossaire/index.html">{T["nav_glossary"]}</a>' if STATE['glossary'] else ''
+    gloss_foot = f'<a href="{prefix}glossaire/index.html">{T["nav_glossary"]}</a>' if STATE['glossary'] else ''
     extra_head = ('<meta name="robots" content="noindex,nofollow"><style>.status-draft{border:1px dashed var(--due);color:var(--due)}'
-                  '.undated{color:var(--muted)}.preview-banner{background:var(--due-bg);color:var(--due);border-bottom:1px solid var(--due);'
+                  '.undated{color:var(--muted)}.fig-missing{border:1px dashed var(--due);color:var(--due);padding:12px}'
+                  '.preview-banner{background:var(--due-bg);color:var(--due);border-bottom:1px solid var(--due);'
                   'padding:10px 20px;font-size:.875rem;text-align:center}</style>') if preview else ''
-    banner = ('<div class="preview-banner" role="note" data-preview="true">PRIVATE PREVIEW. Contains drafts that are not published or approved. Never deploy this build.</div>'
-              if preview else '')
-    title = f'[Preview] {title}' if preview else title
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="dark light">{extra_head}<meta name="description" content="{esc(description)}"><title>{esc(title)} — HAAL</title>
-<link rel="stylesheet" href="{prefix}assets/styles.css"><link rel="stylesheet" href="{prefix}assets/publication.css"><script defer src="{prefix}assets/site.js"></script><noscript><style>.js-only{{display:none!important}}</style></noscript></head>
-<body>{banner}<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><a class="brand" href="{prefix}index.html"><span class="brand-mark" aria-hidden="true">h/</span><strong>HAAL<span class="brand-sub">ENGINEERING FIELD NOTES</span></strong></a><nav class="header-nav" aria-label="Main navigation"><a href="{prefix}index.html">Catalogue</a><a href="{prefix}archive/index.html">Archive</a><a href="{prefix}maintenance/index.html">Review ledger</a></nav><button id="theme" type="button" class="theme-control">Theme: system</button></header>{main_open}<main id="main" class="publication-main">{content}<footer><a href="{prefix}index.html" class="footer-brand">HAAL / FIELD NOTES</a><span>Practical AI and software engineering notes, with dates</span><a href="{prefix}how-these-notes-age/index.html">Dates and content lifetime</a></footer></main>{main_close}</body></html>'''
+    banner = f'<div class="preview-banner" role="note" data-preview="true">{T["preview_banner"]}</div>' if preview else ''
+    title = T['preview_title'].format(title=title) if preview else title
+    return f'''<!doctype html><html lang="{T['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">{extra_head}<meta name="description" content="{esc(description)}"><title>{esc(title)} — {T['site_name']}</title>
+<link rel="stylesheet" href="{prefix}assets/styles.css"><link rel="stylesheet" href="{prefix}assets/publication.css"><script type="application/json" id="i18n">{js_strings()}</script><script defer src="{prefix}assets/site.js"></script><noscript><style>.js-only{{display:none!important}}</style></noscript></head>
+<body>{banner}<a class="skip-link" href="#main">{T['skip']}</a><header class="site-header"><a class="brand" href="{prefix}index.html"><span class="brand-mark" aria-hidden="true">h/</span><strong>{T['site_name']}<span class="brand-sub">{T['brand_sub']}</span></strong></a><nav class="header-nav" aria-label="{T['nav_aria']}"><a href="{prefix}index.html">{T['nav_catalogue']}</a>{gloss_nav}<a href="{prefix}archive/index.html">{T['nav_archive']}</a><a href="{prefix}maintenance/index.html">{T['nav_ledger']}</a></nav><button id="theme" type="button" class="theme-control">{T['theme']} : {T['theme_system']}</button></header>{main_open}<main id="main" class="publication-main">{content}<footer><a href="{prefix}index.html" class="footer-brand">{T['footer_brand']}</a><span>{T['footer_tagline']}</span><a href="{prefix}how-these-notes-age/index.html">{T['footer_dates']}</a>{gloss_foot}</footer></main>{main_close}</body></html>'''
 
 
 def slugify(text):
-    return re.sub(r'[^a-z0-9]+', '-', text.lower()).strip('-')
+    """ASCII anchor id: accents are dropped so 'Inférence' becomes 'inference'."""
+    plain = unicodedata.normalize('NFKD', text.lower()).encode('ascii', 'ignore').decode()
+    return re.sub(r'[^a-z0-9]+', '-', plain).strip('-')
 
 
 def entry(article, today, prefix=''):
     status = lifecycle(article, today)
-    return f'''<article class="entry" data-slug="{esc(article['slug'])}" data-kind="{esc(article['type'])}" data-topic="{esc(slugify(article['section']))}" data-outdated="{'true' if status['status']=='Outdated news' else 'false'}"><div class="entry-kind"><span class="kind kind-{esc(article['type'])}">{esc(article['type'].upper())}</span></div><div><a class="entry-title" href="{prefix}{article['slug']}/index.html">{esc(article['title'])}</a><p class="entry-description">{esc(article['summary'])}</p>{'<div class="entry-formats">Article with figure</div>' if any('visual' in f.lower() for f in article['formats']) else ''}</div><div class="entry-date">Published<strong>{when(article.get('published'))}</strong><span class="status status-{status['class']}">{status['status']}</span></div></article>'''
+    kind = article['type']
+    return f'''<article class="entry" data-slug="{esc(article['slug'])}" data-kind="{esc(kind)}" data-topic="{esc(slugify(section_name(article)))}" data-outdated="{'true' if status['class']=='archived' else 'false'}"><div class="entry-kind"><span class="kind kind-{esc(kind)}">{KIND[kind]}</span></div><div><a class="entry-title" href="{prefix}{article['slug']}/index.html">{esc(article['title'])}</a><p class="entry-description">{esc(article['summary'])}</p><div class="entry-formats">{T['article_with_figures']}</div></div><div class="entry-date">{T['published_label']}<strong>{when(article.get('published'))}</strong><span class="status status-{status['class']}">{status['status']}</span></div></article>'''
+
+
+def section_slug(article):
+    return slugify(section_name(article))
 
 
 def sections_of(articles, today):
-    """Group articles under their section heading: largest section first, 'About this library' last."""
+    """Group articles under their displayed section heading: largest first, the library's own section last."""
     groups = {}
     for a in articles:
-        groups.setdefault(a['section'], []).append(a)
+        groups.setdefault(section_name(a), []).append(a)
     order = sorted(groups, key=lambda name: (name == ABOUT, -len(groups[name]), name))
-    return [(name, groups[name], sum(lifecycle(a, today)['status'] != 'Outdated news' for a in groups[name])) for name in order]
+    return [(name, groups[name], sum(not is_outdated(a, today) for a in groups[name])) for name in order]
 
 
-def section_block(name, items, today):
-    sid = 'section-' + slugify(name)
-    return (f'<section class="entry-section" data-section="{esc(slugify(name))}" aria-labelledby="{sid}"><h3 id="{sid}" class="section-heading">{esc(name)}'
-            f'<span class="section-count">{len(items):02d}</span></h3><p class="section-note">{esc(SECTION_NOTES.get(name) or f"Notes on {name.lower()}.")}</p>'
-            f'{"".join(entry(a, today) for a in items)}</section>')
+SECTION_PAGE_SIZE = 20
+
+
+def section_card(name, items, today, slug):
+    """A home-page card for one section: description, count, three most recent notes, a link to its page."""
+    note = SECTION_NOTES.get(name) or SECTION_NOTE_DEFAULT.format(name=name)
+    current = [a for a in items if not is_outdated(a, today)]
+    recent = ''.join(
+        f'<li><span class="kind kind-{esc(a["type"])}">{KIND[a["type"]]}</span><a href="{esc(a["slug"])}/index.html">{esc(a["title"])}</a></li>'
+        for a in current[:3])
+    return (f'<article class="section-card"><h3><a href="sections/{slug}/index.html">{esc(name)}</a>'
+            f'<span class="section-count">{len(current):02d}</span></h3><p class="section-note">{esc(note)}</p>'
+            f'<p class="section-recent-label">{T["section_recent"]}</p><ul class="section-recent">{recent}</ul>'
+            f'<a class="section-view-all" href="sections/{slug}/index.html">{T["section_view_all"].format(n=len(current))}</a></article>')
+
+
+def section_page(name, slug, items, today, summary_visual):
+    """Write /sections/<slug>/ and its static pagination pages: newest first, 20 per page, a type filter, a per-section search box."""
+    current = sorted((a for a in items if not is_outdated(a, today)),
+                      key=lambda a: a.get('published') if iso(a.get('published')) else '0000', reverse=True)
+    pages = max(1, -(-len(current) // SECTION_PAGE_SIZE))
+    note = SECTION_NOTES.get(name) or SECTION_NOTE_DEFAULT.format(name=name)
+    news_button = (f'<button type="button" class="type-button" data-kind="news" aria-pressed="false">{T["filter_news"]}</button>'
+                   if any(a['type'] == 'news' for a in current) else '')
+    for page_num in range(1, pages + 1):
+        chunk = current[(page_num - 1) * SECTION_PAGE_SIZE: page_num * SECTION_PAGE_SIZE]
+        depth_prefix = '../../' if page_num == 1 else '../../../../'
+        rows = ''.join(entry(a, today, depth_prefix) for a in chunk)
+        crumb = f'<p class="breadcrumb"><a href="{depth_prefix}index.html">{T["crumb_catalogue"]}</a> › {esc(name)}</p>'
+        nav_links = []
+        if page_num > 1:
+            target = 'index.html' if page_num == 2 else f'../{page_num - 1}/index.html'
+            nav_links.append(f'<a href="{target}" rel="prev">{T["section_prev"]}</a>')
+        if page_num < pages:
+            nav_links.append(f'<a href="../{page_num + 1}/index.html" rel="next">{T["section_next"]}</a>')
+        pagination = (f'<nav class="pagination" aria-label="{T["section_page_of"].format(page=page_num, total=pages)}">'
+                      f'<span class="mono muted">{T["section_page_of"].format(page=page_num, total=pages)}</span>{"".join(nav_links)}</nav>') if pages > 1 else ''
+        body = f'''{crumb}<div class="eyebrow">{T['side_title']}</div><h1>{esc(name)}</h1><p class="intro">{esc(note)}</p>{summary_visual if page_num == 1 else ''}
+<div class="search-row"><label class="search-box js-only"><span class="sr-only">{T['section_search_placeholder']}</span><input id="section-search" type="search" placeholder="{esc(T['section_search_placeholder'])}" autocomplete="off"></label></div>
+<div class="filter-row js-only" role="group" aria-label="{T['section_type_filter_aria']}"><button type="button" class="type-button active" data-kind="all" aria-pressed="true">{T['filter_all']}</button><button type="button" class="type-button" data-kind="guide" aria-pressed="false">{T['filter_guide']}</button><button type="button" class="type-button" data-kind="experiment" aria-pressed="false">{T['filter_experiment']}</button>{news_button}</div>
+<div id="entries" class="entries">{rows}</div><div id="empty" class="empty" hidden>{T['empty']}</div>{pagination}'''
+        path = f'sections/{slug}/index.html' if page_num == 1 else f'sections/{slug}/page/{page_num}/index.html'
+        write(path, shell(name, body, '../../' if page_num == 1 else '../../../../', note))
 
 
 def write(path, content):
@@ -269,16 +371,44 @@ def write(path, content):
 
 
 def load_drafts(folders):
-    """Read <folder>/<slug>/entry.json staging entries (preview only). Folder names must equal slugs."""
+    """Read <folder>/<slug>/entry-fr.json (preferred) or entry.json staging entries (preview only). Folder names must equal slugs."""
     found = []
     for folder in folders:
-        for entry_file in sorted(Path(folder).glob('*/entry.json')):
+        for slug_dir in sorted(p for p in Path(folder).iterdir() if p.is_dir()):
+            entry_file = next((slug_dir / n for n in ('entry-fr.json', 'entry.json') if (slug_dir / n).is_file()), None)
+            if not entry_file:
+                continue
             article = json.loads(entry_file.read_text())
             if article.get('slug') != entry_file.parent.name:
                 raise ValueError(f'Folder name must equal slug: {entry_file.parent}')
             article['_dir'] = str(entry_file.parent)
             found.append(article)
     return found
+
+
+def article_texts(article):
+    """Every text a reader could meet in an article: body, captions, text equivalents and figure labels."""
+    folder, texts = article_dir(article), []
+    path = body_file(article)
+    if path:
+        texts.append(glossary.plain(path.read_text()))
+    for f in sorted(folder.glob('fig*.alt.md')) + sorted(folder.glob('fig*.svg')) + sorted(folder.glob('visual.svg')) + sorted(folder.glob('alt.md')):
+        raw = f.read_text()
+        texts.append(glossary.plain(re.sub(r'<[^>]+>', ' ', raw) if f.suffix == '.svg' else raw))
+    return texts
+
+
+def check_glossary(entries, texts):
+    """Problems: a key term used in an article without an entry, or an entry no article uses."""
+    problems = []
+    everything = [x for t in texts.values() for x in t]
+    for term in glossary.used_terms(everything):
+        if not any(e['regex'].search(term) for e in entries):
+            problems.append(f'key term used but not defined: {term}')
+    for e in entries:
+        if not any(e['regex'].search(x) for x in everything):
+            problems.append(f'entry not used by any article: {e["term"]}')
+    return problems
 
 
 def build(today=None, preview=False, drafts=()):
@@ -289,9 +419,19 @@ def build(today=None, preview=False, drafts=()):
     out = PREVIEW_OUT if preview else OUT
     STATE.update(preview=preview, out=out)
     catalogue = json.loads((ROOT / 'content/catalogue.json').read_text())
-    catalogue['articles'] += load_drafts(drafts)
+    staged = load_drafts(drafts)
+    staged_slugs = {a['slug'] for a in staged}  # a staged entry replaces the catalogue entry with the same slug
+    catalogue['articles'] = [a for a in catalogue['articles'] if a['slug'] not in staged_slugs] + staged
     validate(catalogue, preview)
     warnings = prepare(catalogue['articles'], preview)
+    gloss_file = next((Path(d) / 'glossaire.md' for d in drafts if (Path(d) / 'glossaire.md').is_file()), ROOT / 'content/glossaire.md')
+    gloss = glossary.parse(gloss_file.read_text()) if gloss_file.is_file() else []
+    STATE['glossary'] = bool(gloss)
+    texts = {a['slug']: article_texts(a) for a in catalogue['articles']}
+    gloss_problems = check_glossary(gloss, texts) if gloss else []
+    if gloss_problems and not preview:
+        raise ValueError('Glossary: ' + '; '.join(gloss_problems))
+    warnings.extend(f'glossaire: {p}' for p in gloss_problems)
     # Delete only stale files in our dedicated generated output directory.
     if out.exists():
         for stale in sorted(out.rglob('*'), key=lambda p: len(p.parts), reverse=True):
@@ -303,81 +443,94 @@ def build(today=None, preview=False, drafts=()):
     shutil.copytree(ROOT / 'assets', out / 'assets', dirs_exist_ok=True)
     pub_key = lambda a: (a.get('published') if iso(a.get('published')) else '0000', a['slug'])
     articles = sorted(catalogue['articles'], key=pub_key, reverse=True)
-    entries = [a for a in articles if lifecycle(a, today)['status'] != 'Outdated news']
-    summary_visual = flow('Choose a reading path', ['News', 'Guides', 'Experiments'],
-                          ['Dated observations · three months', 'Longer-lived explanations · review dates', 'Recorded tests · versions and limits'],
-                          'Choose news for a dated update, a guide for an explanation, or an experiment for evidence from a specific setup.')
+    entries = [a for a in articles if not is_outdated(a, today)]
+    summary_visual = flow(T['choose_visual_title'], T['choose_visual_nodes'], T['choose_visual_details'], T['choose_visual_caption'])
     listing = sorted(articles, key=lambda a: a.get('published') if iso(a.get('published')) else '0000', reverse=True)
     groups = sections_of(listing, today)
     candidates = [a for a in articles if not is_draft(a)] or articles
     # Feature a content article, never the library's own "about" page; the catalogue may name one.
     named = catalogue.get('featured')
     featured = next((a for a in candidates if a['slug'] == named), None) or next(
-        (a for a in candidates if a['section'] != ABOUT and a['type'] == 'guide'), candidates[0])
+        (a for a in candidates if section_name(a) != ABOUT and a['type'] == 'guide'), candidates[0])
     fs = lifecycle(featured, today)
-    fv = featured['visual']
+    fv = featured.get('visual') or {}
     # Only the built-in three-step flow fits the card; tall article figures stay on the article page.
     featured_visual = flow(fv['title'], fv['nodes'], fv['details'], fv['caption']) if fv.get('nodes') else ''
     published = [a for a in articles if not is_draft(a)]
-    stats = (f'<div class="library-stats"><strong>{len(published)} {"note" if len(published) == 1 else "notes"}</strong>'
-             f'<span>Last updated {day(max(a["edited"] for a in published))}</span></div>') if published else ''
-    side_groups = ''.join(
-        f'<li class="side-group" data-section="{esc(slugify(t))}"><a class="side-section" href="#section-{esc(slugify(t))}">{esc(t)}<span class="side-count">{n:02d}</span></a><ul class="side-articles">'
-        + ''.join(f'<li data-slug="{esc(a["slug"])}"><a href="{esc(a["slug"])}/index.html">{esc(a["title"])}</a></li>'
-                  for a in v if lifecycle(a, today)['status'] != 'Outdated news') + '</ul></li>'
+    stats = (f'<div class="library-stats"><strong>{count_label(len(published))}</strong>'
+             f'<span>{T["updated"].format(date=day(max(a["edited"] for a in published)))}</span></div>') if published else ''
+    side_items = ''.join(
+        f'<li><a class="side-section" href="sections/{slugify(t)}/index.html">{esc(t)}<span class="side-count">{n:02d}</span></a></li>'
         for t, v, n in groups if n)
-    sidebar = (f'<aside class="sidebar" aria-label="Sections and articles"><details class="side-sections" open><summary class="side-summary">Sections</summary>'
-               f'<ul class="side-list"><li><a class="side-section side-all" href="#browse">All sections<span class="side-count">{len(entries):02d}</span></a></li>{side_groups}</ul></details>'
-               '<a href="maintenance/index.html" class="sidebar-note">A date on every page.<br>A clear limit on every claim.</a></aside>')
-    news_button = ('<button type="button" class="type-button" data-kind="news" aria-pressed="false">News &amp; magazine</button>'
+    sidebar = (f'<aside class="sidebar" aria-label="{T["side_aria"]}"><details class="side-sections" open><summary class="side-summary">{T["side_title"]}</summary>'
+               f'<ul class="side-list"><li><a class="side-section side-all" href="#browse">{T["side_all"]}<span class="side-count">{len(entries):02d}</span></a></li>{side_items}</ul></details></aside>')
+    news_button = (f'<button type="button" class="type-button" data-kind="news" aria-pressed="false">{T["filter_news"]}</button>'
                    if any(a['type'] == 'news' for a in articles) else '')
-    home = f'''<section id="library"><div class="eyebrow">OPEN SOURCE · OPEN WEIGHTS · PRACTICAL ENGINEERING</div><div class="intro-row"><div><h1>Understand it.<br><span>Try it. Document it.</span></h1><p class="intro">AI and software engineering, with useful visuals.<br>Each page shows its author, dates and review status.</p></div>{stats}</div>
-<div class="library-topline"><div><span class="section-number">01 /</span> <h2>Start with an explanation</h2></div><span class="mono muted">TEXT FIRST. VISUAL WHEN USEFUL.</span></div>
-<a class="featured{"" if featured_visual else " featured-single"}" href="{featured['slug']}/index.html"><div class="featured-copy"><div class="entry-kicker"><span class="kind kind-{esc(featured['type'])}">{esc(featured['type'].upper())}</span><span>{esc(featured['section'].upper())}</span></div><h3>{esc(featured['title'])}</h3><p>{esc(featured['summary'])}</p><div class="featured-footer"><span>Read the explanation</span><span class="mono">ARTICLE + VISUAL</span></div><div class="featured-dates">Published {when(featured.get('published'))} · Edited {when(featured.get('edited'))} <span class="status status-{fs['class']}">{fs['status']}</span></div></div>{f'<div class="featured-visual">{featured_visual}</div>' if featured_visual else ''}</a>
-<section id="browse" class="browse" aria-labelledby="browse-title"><div class="library-topline"><div><span class="section-number">02 /</span> <h2 id="browse-title">Browse the field notes</h2></div><span id="result-count" class="mono muted" aria-live="polite">{len(listing)} entries</span></div>
-<div class="search-row"><label class="search-box js-only"><span class="sr-only">Search titles and descriptions</span><input id="search" type="search" placeholder="Find an explanation, experiment, or subject…" autocomplete="off"></label><label class="archive-control js-only"><input id="archive" type="checkbox"> Show older news</label></div>
-<div class="filter-row js-only" role="group" aria-label="Content type"><button type="button" class="type-button active" data-kind="all" aria-pressed="true">All entries</button><button type="button" class="type-button" data-kind="guide" aria-pressed="false">Guides</button><button type="button" class="type-button" data-kind="experiment" aria-pressed="false">Experiments</button>{news_button}</div>
-<div id="entries" class="entries">{''.join(section_block(name, items, today) for name, items, n in groups)}</div><div id="empty" class="empty" hidden>No matching entries. Try another filter or clear the search.</div><p><a href="archive/index.html">Open the news archive</a></p></section>
-<section id="principles" class="principles"><div class="library-topline"><div><span class="section-number">03 /</span> <h2>Useful today. Honest about time.</h2></div></div><div class="principle-grid"><div><span class="kind kind-news">NEWS</span><h3>A three-month window</h3><p>A dated observation. After three calendar months, it moves to the archive and shows an outdated notice. Editing it does not restart the clock.</p></div><div><span class="kind kind-guide">GUIDE</span><h3>Knowledge worth revisiting</h3><p>A longer-lived explanation. It shows its last technical review and next review date. A missed review means due for a check, not no longer valid.</p></div><div><span class="kind kind-experiment">EXPERIMENT</span><h3>Results from a known setup</h3><p>The test date, versions, method, and limits stay with the result. An old measurement remains historical evidence; it does not describe a newer release.</p></div></div>{summary_visual}</section>
-<section id="about" class="about"><div><span class="side-label">ABOUT THIS LIBRARY</span><h2>Practical work,<br>with its context attached.</h2></div><div><p>HAAL publications share explanations and experiments about AI and software engineering. Each article identifies its author, scope, sources, and limits. Personal views are labelled separately.</p><p class="muted">No account required. No engagement counters. Every page is written for this library and cites public sources.</p></div></section></section>'''
-    write('index.html', shell('Catalogue', home, sidebar=sidebar))
+    cards = ''.join(section_card(name, items, today, slugify(name)) for name, items, n in groups if n)
+
+    def search_entry(a):
+        # entry() already renders kind, title, summary, date and status; add data-topic and a section tag for the flat results list.
+        html = entry(a, today).replace('<article class="entry"', f'<article class="entry" data-topic="{esc(slugify(section_name(a)))}"', 1)
+        return html.replace('</div><div class="entry-date">', f'<p class="entry-section-tag">{esc(section_name(a))}</p></div><div class="entry-date">')
+
+    search_index = ''.join(search_entry(a) for a in listing)
+    home = f'''<section id="library"><div class="eyebrow">{T['eyebrow']}</div><div class="intro-row"><div><h1>{T['hero']}</h1><p class="intro">{T['intro']}</p></div>{stats}</div>
+<div class="library-topline"><div><span class="section-number">01 /</span> <h2>{T['start_title']}</h2></div><span class="mono muted">{T['start_hint']}</span></div>
+<a class="featured{"" if featured_visual else " featured-single"}" href="{featured['slug']}/index.html"><div class="featured-copy"><div class="entry-kicker"><span class="kind kind-{esc(featured['type'])}">{KIND[featured['type']]}</span><span>{esc(section_name(featured).upper())}</span></div><h3>{esc(featured['title'])}</h3><p>{esc(featured['summary'])}</p><div class="featured-footer"><span>{T['featured_read']}</span><span class="mono">{T['featured_tag']}</span></div><div class="featured-dates">{T['published_on']} {when(featured.get('published'))} · {T['edited_on']} {when(featured.get('edited'))} <span class="status status-{fs['class']}">{fs['status']}</span></div></div>{f'<div class="featured-visual">{featured_visual}</div>' if featured_visual else ''}</a>
+<section id="browse" class="browse" aria-labelledby="browse-title"><div class="library-topline"><div><span class="section-number">02 /</span> <h2 id="browse-title">{T['browse_sections_title']}</h2></div><span id="result-count" class="mono muted" aria-live="polite" hidden></span></div>
+<div class="search-row"><label class="search-box js-only"><span class="sr-only">{T['search_label']}</span><input id="search" type="search" placeholder="{T['search_placeholder']}" autocomplete="off"></label><label class="archive-control js-only"><input id="archive" type="checkbox"> {T['show_old_news']}</label></div>
+<div class="filter-row js-only" role="group" aria-label="{T['filter_aria']}" hidden id="search-filters"><button type="button" class="type-button active" data-kind="all" aria-pressed="true">{T['filter_all']}</button><button type="button" class="type-button" data-kind="guide" aria-pressed="false">{T['filter_guide']}</button><button type="button" class="type-button" data-kind="experiment" aria-pressed="false">{T['filter_experiment']}</button>{news_button}</div>
+<div id="section-cards" class="section-cards">{cards}</div>
+<div id="search-results" class="entries" hidden aria-live="polite"></div>
+<div id="search-index" hidden>{search_index}</div>
+<div id="empty" class="empty" hidden>{T['empty']}</div><p><a href="archive/index.html">{T['open_archive']}</a></p></section>
+<section id="principles" class="principles"><div class="library-topline"><div><span class="section-number">03 /</span> <h2>{T['principles_title']}</h2></div></div><div class="principle-grid"><div><span class="kind kind-news">{KIND['news']}</span><h3>{T['principle_news_title']}</h3><p>{T['principle_news']}</p></div><div><span class="kind kind-guide">{KIND['guide']}</span><h3>{T['principle_guide_title']}</h3><p>{T['principle_guide']}</p></div><div><span class="kind kind-experiment">{KIND['experiment']}</span><h3>{T['principle_experiment_title']}</h3><p>{T['principle_experiment']}</p></div></div>{summary_visual}</section>
+<section id="about" class="about"><div><span class="side-label">{T['about_label']}</span><h2>{T['about_title']}</h2></div><div><p>{T['about_1']}</p><p class="muted">{T['about_2']}</p><p class="muted">{T['about_3']}</p></div></section></section>'''
+    write('index.html', shell(T['nav_catalogue'], home, sidebar=sidebar))
+    for name, items, n in groups:
+        if n:
+            section_page(name, slugify(name), items, today, summary_visual)
     ledger = []
     for a in articles:
         status = lifecycle(a, today)
         visual = a['_figure']
-        review_meta = f'<div>Last technical review<strong>{when(a.get("reviewed"))}</strong></div>' if a['type']=='guide' else ''
-        metadata = f'''<div class="article-metadata"><div>Author / perspective<strong>{esc(a['author'])} · {esc(perspective_label(a))}</strong></div><div>First published<strong>{when(a.get('published'))}</strong></div><div>Last edited<strong>{when(a.get('edited'))}</strong></div>{review_meta}<div>{'News expires' if a['type']=='news' else 'Next review'}<strong>{when(status['due'])}</strong></div></div>'''
-        paragraphs = a['_body'] if a['_body'] is not None else ''.join('<section><h2>'+esc(s['title'])+'</h2>'+''.join('<p>'+esc(p)+'</p>' for p in s['paragraphs'])+'</section>' for s in a['sections'])
+        review_meta = f'<div>{T["meta_reviewed"]}<strong>{when(a.get("reviewed"))}</strong></div>' if a['type']=='guide' else ''
+        metadata = f'''<div class="article-metadata"><div>{T['meta_published']}<strong>{when(a.get('published'))}</strong></div><div>{T['meta_edited']}<strong>{when(a.get('edited'))}</strong></div>{review_meta}<div>{T['meta_expires'] if a['type']=='news' else T['meta_next']}<strong>{when(status['due'])}</strong></div></div>'''
+        paragraphs = glossary.link_terms(a['_body'], gloss, '../glossaire/index.html') if (gloss and a['_body'] is not None) else a['_body'] if a['_body'] is not None else ''.join('<section><h2>'+esc(s['title'])+'</h2>'+''.join('<p>'+esc(p)+'</p>' for p in s['paragraphs'])+'</section>' for s in a['sections'])
         if a['_figure_in_body']:
             visual = ''
-        notice = {'news':'A dated report. It moves to the archive after three calendar months.', 'guide':'A missed review date means the guide is due for a check. It does not establish that the content is wrong.', 'experiment':'These results apply to the recorded setup. Check the versions and test date.'}[a['type']]
+        notice = T['notice_' + a['type']]
         if is_draft(a):
-            notice = 'Draft preview. Not published and not approved. Dates are set at release.'
-        if a['perspective'].startswith('Individual'):
-            notice += f'</p><p>Individual view: the analysis of {esc(a["author"])}. It is not a HAAL publication or position.'
-        history = '<details><summary>Revision history</summary><ul>'+''.join('<li>'+day(r['date'])+' — '+esc(r['note'])+'</li>' for r in a['history'])+'</ul></details>'
-        body = f'''<article class="public-article"><a href="../index.html">Catalogue</a><div class="entry-kicker"><span class="kind kind-{a['type']}">{a['type'].upper()}</span><span>{esc(a['section'])}</span></div><h1>{esc(a['title'])}</h1><p class="article-deck">{esc(a['summary'])}</p>{metadata}<div class="article-notice"><span class="status status-{status['class']}">{status['status']}</span><p>{notice}</p></div>{visual}<div class="reader-body">{paragraphs}{history}</div></article>'''
+            notice = T['notice_draft']
+        notice += '</p><p>' + esc(T['notice_all'])  # on every article, drafts included
+        history = f'<details><summary>{T["history"]}</summary><ul>'+''.join('<li>'+day(r['date'])+' — '+esc(r['note'])+'</li>' for r in a['history'])+'</ul></details>'
+        lang_attr = '' if a.get('lang') == 'fr' else ' lang="en"'  # entries not yet rewritten are still English text
+        body = f'''<article class="public-article"{lang_attr}><a href="../index.html">{T['crumb_catalogue']}</a><div class="entry-kicker"><span class="kind kind-{a['type']}">{KIND[a['type']]}</span><a href="../sections/{section_slug(a)}/index.html">{esc(section_name(a))}</a></div><h1>{esc(a['title'])}</h1><p class="article-deck">{esc(a['summary'])}</p>{metadata}<div class="article-notice"><span class="status status-{status['class']}">{status['status']}</span><p>{notice}</p></div>{visual}<div class="reader-body">{paragraphs}{history}</div></article>'''
         write(a['slug']+'/index.html', shell(a['title'], body, '../', a['summary']))
-        ledger.append({'slug':a['slug'],'title':a['title'],'content_type':a['type'],'perspective':a['perspective'],
+        ledger.append({'slug':a['slug'],'title':a['title'],'content_type':a['type'],
                        'published':a.get('published'),'last_reviewed':a.get('reviewed'),'tested':a.get('tested'),
                        'action':status['action'],'due':status['due'],'status':status['status'],
-                       'owner':'HAAL Publisher','path':'../'+a['slug']+'/index.html'})
-    review_visual = flow('Review decisions', ['Check the due date', 'Inspect content and sources', 'Record the result'],
-                         ['A timer identifies work', 'A person or assisted review checks accuracy', 'Keep dates and revision evidence'],
-                         'The daily build refreshes date labels. It does not perform a technical review or approve new content.')
-    rows=''.join(f'<li><a href="{esc(r["path"])}">{esc(r["title"])}</a><p>{esc(r["action"])} · Due {when(r["due"])} · {esc(r["status"])}</p></li>' for r in sorted(ledger,key=lambda r:r['due'] or '9999'))
-    ledger_page = f'<div class="eyebrow">PUBLICATION MAINTENANCE</div><h1>What needs review,<br><span>and when.</span></h1><p class="intro">Computed on {day(today)} (UTC in the scheduled build). Dates come from the publication catalogue.</p>{review_visual}<h2>Review queue</h2><ol class="review-queue">{rows}</ol><p><a href="ledger.json">Download the maintenance ledger (JSON)</a></p>'
-    write('maintenance/index.html',shell('Review ledger',ledger_page,'../'))
-    write('maintenance/ledger.json',json.dumps({'computed_on':today.isoformat(),'items':ledger},indent=2)+'\n')
-    archive=[a for a in articles if lifecycle(a,today)['status']=='Outdated news']
-    archive_visual=flow('The news archive',['Original report','Three-month boundary','Historical reference'],['First publication stays fixed','News becomes outdated','Read with its original context'],'Archiving changes how news is presented. It preserves the original report and publication date.')
-    archive_body='<h1>News archive</h1><p class="intro">Dated reports remain accessible after their current-news window ends.</p>'+archive_visual
-    archive_body+=''.join(entry(a,today,'../') for a in archive) if archive else '<h2>Archive policy</h2><p>No news report has reached its three-month boundary yet. The first news entry expires on '+day(plus_months('2026-11-25',3))+'.</p>'
-    write('archive/index.html',shell('News archive',archive_body,'../'))
-    write('catalogue.json',json.dumps({'as_of':today.isoformat(),'release_marker':catalogue['release_marker'],'articles':[{k:a[k] for k in ['slug','title','section','type','published','summary','formats','perspective']} for a in articles]},indent=2)+'\n')
-    write('404.html',shell('Page not found','<h1>This page is not in the catalogue.</h1>'+summary_visual+'<p><a href="./index.html">Open the catalogue</a></p>'))
+                       'path':'../'+a['slug']+'/index.html'})
+    review_visual = flow(T['ledger_visual_title'], T['ledger_visual_nodes'], T['ledger_visual_details'], T['ledger_visual_caption'])
+    rows=''.join(f'<li><a href="{esc(r["path"])}">{esc(r["title"])}</a><p>{T["ledger_row"].format(action=esc(r["action"]), due=when(r["due"]), status=esc(r["status"]))}</p></li>' for r in sorted(ledger,key=lambda r:r['due'] or '9999'))
+    ledger_page = f'<div class="eyebrow">{T["ledger_eyebrow"]}</div><h1>{T["ledger_title"]}</h1><p class="intro">{esc(T["ledger_intro"].format(date=day(today)))}</p>{review_visual}<h2>{T["ledger_queue"]}</h2><ol class="review-queue">{rows}</ol><p><a href="ledger.json">{T["ledger_download"]}</a></p>'
+    write('maintenance/index.html',shell(T['ledger_title_short'],ledger_page,'../'))
+    write('maintenance/ledger.json',json.dumps({'computed_on':today.isoformat(),'items':ledger},indent=2,ensure_ascii=False)+'\n')
+    archive=[a for a in articles if is_outdated(a,today)]
+    archive_visual=flow(T['archive_visual_title'],T['archive_visual_nodes'],T['archive_visual_details'],T['archive_visual_caption'])
+    archive_body=f'<h1>{T["archive_title"]}</h1><p class="intro">{T["archive_intro"]}</p>'+archive_visual
+    archive_body+=''.join(entry(a,today,'../') for a in archive) if archive else f'<h2>{T["archive_policy"]}</h2><p>'+T['archive_none'].format(date=day(plus_months('2026-11-25',3)))+'</p>'
+    write('archive/index.html',shell(T['archive_title'],archive_body,'../'))
+    write('catalogue.json',json.dumps({'as_of':today.isoformat(),'release_marker':catalogue['release_marker'],'articles':[{k:a.get(k) for k in ['slug','title','section','type','published','summary','formats']} for a in articles]},indent=2,ensure_ascii=False)+'\n')
+    write('404.html',shell(T['notfound_title'],f'<h1>{T["notfound_h1"]}</h1>'+summary_visual+f'<p><a href="./index.html">{T["open_catalogue"]}</a></p>'))
     for gone in catalogue.get('retired', []):
-        write(gone['slug']+'/index.html', shell('Page retired', f'<h1>This page has been retired.</h1><p>{esc(gone["note"])}</p>'+summary_visual+'<p><a href="../index.html">Open the catalogue</a></p>', '../'))
+        write(gone['slug']+'/index.html', shell(T['retired_title'], f'<h1>{T["retired_h1"]}</h1><p>{esc(gone["note"])}</p>'+summary_visual+f'<p><a href="../index.html">{T["open_catalogue"]}</a></p>', '../'))
+    if gloss:
+        uses = {e['slug']: [(a['slug'], a['title']) for a in articles if any(e['regex'].search(x) for x in texts[a['slug']])] for e in gloss}
+        gloss_visual = flow(T['glossary_visual_title'], T['glossary_visual_nodes'], T['glossary_visual_details'], T['glossary_visual_caption'])
+        gloss_body = f'<h1>{T["glossary_title"]}</h1><p class="intro">{T["glossary_intro"]}</p>{gloss_visual}' + glossary.render_entries(gloss, uses, '../')
+        write('glossaire/index.html', shell(T['glossary_title'], gloss_body, '../'))
+        glossary.check_links({str(p): p.read_text() for p in out.rglob('*.html')}, {e['slug'] for e in gloss})
     write('.nojekyll','')
     for w in warnings:
         print('PREVIEW WARNING:', w, file=sys.stderr)

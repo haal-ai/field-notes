@@ -1,0 +1,7 @@
+Trois pistes pour réduire ou gérer le KV cache : trois leviers différents.
+
+1. Partager K et V (MQA, GQA). Un modèle à 32 têtes de query Q peut n'avoir que 8 KV heads : chaque jeu K/V est partagé par quatre têtes Q. Pour simplifier, la figure dessine huit têtes de query Q reliées à des jeux de keys et values. Multi-têtes : une paire K/V par tête, donc huit. GQA : un jeu K/V par groupe de têtes (ici deux groupes de quatre). MQA : un seul jeu K/V pour toutes les têtes. Exemple chiffré : passer de 32 à 8 KV heads ramène 52,4 Go à 13,1 Go (52,4 ÷ 4 = 13,1 ; voir la figure 4). Réserve : cela demande en général un entraînement ou un ré-entraînement. Sources : voir la ligne « Sources de la figure » sous la figure.
+
+2. Ranger par blocs (PagedAttention). Une réservation classique donne à chaque séquence une grande zone contiguë, avec de l'espace perdu. PagedAttention range la mémoire en blocs de taille fixe ; les séquences A et B sont réparties dans des blocs non contigus, avec peu d'espace perdu. Les auteurs annoncent un throughput 2 à 4 fois supérieur à latency égale, face à FasterTransformer et Orca, sur leur banc d'essai. Source : Kwon et al. (arxiv.org/abs/2309.06180).
+
+3. Faire vérifier (speculative decoding). Un petit modèle propose plusieurs tokens ; le grand modèle les vérifie en parallèle. Le schéma (exemple illustratif) montre quatre tokens proposés, dont trois gardés et un rejeté. La distribution de sortie est la même que sans cette technique. Source : Leviathan et al. (arxiv.org/abs/2211.17192).

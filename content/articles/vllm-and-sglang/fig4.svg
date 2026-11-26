@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 446" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">SGLang : un arbre radix, une seule copie du préfixe partagé</title>
+<desc id="fig4-d">Un arbre part d'une racine. Un nœud unique contient le prompt partagée, stockée une fois. Chaque requête ajoute sa suite. Gains annoncés par le projet, cas choisis : jusqu'à 6,4 fois (2023), jusqu'à 15,5 fois avec HiCache, jusqu'à 6 fois et 80 % de TTFT en moins.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .j{fill:var(--accent-ink,var(--f-ink))}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig4 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .hat{stroke:var(--muted,var(--f-muted));stroke-width:1}
+.fig4 .hatl{stroke:var(--muted,var(--f-muted));stroke-width:1}
+.fig4 .sep{stroke:var(--line,var(--f-line));stroke-width:1;stroke-dasharray:4 3}
+.fig4 .c{text-anchor:middle}.fig4 .e{text-anchor:end}
+</style>
+<defs><pattern id="fig4-hat" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line class="hatl" x1="0" y1="0" x2="0" y2="6"/></pattern></defs>
+<g class="fig4">
+<text class="h" x="10" y="18">SGLang : un arbre radix (radix tree)</text>
+<path class="ln" d="M64 90H78M206 90H226M226 52V128M226 52H240M226 90H240M226 128H240"/>
+<rect class="bar" x="8" y="72" width="56" height="36" rx="4"/><text class="t c" x="36" y="95">racine</text>
+<rect class="sh" x="78" y="64" width="128" height="52" rx="4"/><text class="i c" x="142" y="86">prompt partagée</text><text class="i c" x="142" y="104">(une copie)</text>
+<rect class="bar" x="240" y="36" width="152" height="32" rx="4"/><text class="t c" x="316" y="57">requête 1 : suite</text>
+<rect class="bar" x="240" y="74" width="152" height="32" rx="4"/><text class="t c" x="316" y="95">requête 2 : suite</text>
+<rect class="bar" x="240" y="112" width="152" height="32" rx="4"/><text class="t c" x="316" y="133">requête 3 : suite</text>
+<text class="m" x="10" y="168">Exemple illustratif : seule la suite est calculée.</text>
+<line class="sep" x1="0" x2="400" y1="182" y2="182"/>
+<text class="h" x="10" y="208">Gains annoncés par le projet</text>
+<rect class="dif" x="6" y="218" width="388" height="30" rx="5"/><text class="k" x="15" y="238">Cas choisis par le projet, pas des mesures indépendantes</text>
+<rect class="box" x="6" y="258" width="388" height="46" rx="5"/><text class="a" x="15" y="278">jusqu'à 6,4 ×</text><text class="t" x="15" y="296">throughput, article d'origine (2023)</text>
+<rect class="box" x="6" y="312" width="388" height="46" rx="5"/><text class="a" x="15" y="332">jusqu'à 15,5 ×</text><text class="t" x="15" y="350">throughput d'entrée effectif, avec HiCache</text>
+<rect class="box" x="6" y="366" width="388" height="46" rx="5"/><text class="a" x="15" y="386">jusqu'à 6 ×</text><text class="t" x="15" y="404">throughput ; jusqu'à 80 % de TTFT en moins</text>
+<text class="m" x="10" y="434">TTFT : attente avant le premier token.</text>
+</g>
+</svg>

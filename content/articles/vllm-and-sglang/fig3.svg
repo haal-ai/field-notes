@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 698" role="img" aria-labelledby="fig3-t fig3-d">
+<title id="fig3-t">vLLM : blocs paginés, hachage et réutilisation entre requêtes</title>
+<desc id="fig3-d">Trois requêtes partagent le même début. La première calcule les blocs B1, B2, B3 puis son bloc propre. Les deux autres réutilisent B1 à B3, repérés par leur hachage, et ne calculent que leur bloc propre. Taille de bloc par défaut : 64 tokens dans la v0.34.0, 16 auparavant.</desc>
+<style>
+.fig3{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig3{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig3 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig3 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig3 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig3 .t{fill:var(--text,var(--f-text))}
+.fig3 .m{fill:var(--muted,var(--f-muted))}
+.fig3 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig3 .j{fill:var(--accent-ink,var(--f-ink))}
+.fig3 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig3 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig3 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig3 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig3 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig3 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig3 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig3 .hat{stroke:var(--muted,var(--f-muted));stroke-width:1}
+.fig3 .hatl{stroke:var(--muted,var(--f-muted));stroke-width:1}
+.fig3 .sep{stroke:var(--line,var(--f-line));stroke-width:1;stroke-dasharray:4 3}
+.fig3 .c{text-anchor:middle}.fig3 .e{text-anchor:end}
+</style>
+<defs><pattern id="fig3-hat" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line class="hatl" x1="0" y1="0" x2="0" y2="6"/></pattern></defs>
+<g class="fig3">
+<text class="h" x="10" y="16">vLLM : des blocs de taille fixe, réutilisés</text>
+<text class="m" x="10" y="39">Exemple illustratif : trois requêtes commencent par le</text>
+<text class="m" x="10" y="56">même prompt. Le nombre de blocs est illustratif.</text>
+<text class="s" x="6" y="88">Requête</text>
+<text class="s" x="6" y="102">1</text>
+<rect class="bar" x="62" y="68" width="80" height="40" rx="3"/>
+<text class="t c" x="102.0" y="85">B1</text>
+<text class="m c" x="102.0" y="101">calculé</text>
+<rect class="bar" x="144" y="68" width="80" height="40" rx="3"/>
+<text class="t c" x="184.0" y="85">B2</text>
+<text class="m c" x="184.0" y="101">calculé</text>
+<rect class="bar" x="226" y="68" width="80" height="40" rx="3"/>
+<text class="t c" x="266.0" y="85">B3</text>
+<text class="m c" x="266.0" y="101">calculé</text>
+<rect class="dif" x="308" y="68" width="80" height="40" rx="3"/>
+<text class="k c" x="348" y="85">propre</text>
+<text class="k c" x="348" y="101">calculé</text>
+<text class="s" x="6" y="136">Requête</text>
+<text class="s" x="6" y="150">2</text>
+<rect class="sh" x="62" y="116" width="80" height="40" rx="3"/>
+<text class="i c" x="102.0" y="133">B1</text>
+<text class="j c" x="102.0" y="149">réutilisé</text>
+<rect class="sh" x="144" y="116" width="80" height="40" rx="3"/>
+<text class="i c" x="184.0" y="133">B2</text>
+<text class="j c" x="184.0" y="149">réutilisé</text>
+<rect class="sh" x="226" y="116" width="80" height="40" rx="3"/>
+<text class="i c" x="266.0" y="133">B3</text>
+<text class="j c" x="266.0" y="149">réutilisé</text>
+<rect class="dif" x="308" y="116" width="80" height="40" rx="3"/>
+<text class="k c" x="348" y="133">propre</text>
+<text class="k c" x="348" y="149">calculé</text>
+<text class="s" x="6" y="184">Requête</text>
+<text class="s" x="6" y="198">3</text>
+<rect class="sh" x="62" y="164" width="80" height="40" rx="3"/>
+<text class="i c" x="102.0" y="181">B1</text>
+<text class="j c" x="102.0" y="197">réutilisé</text>
+<rect class="sh" x="144" y="164" width="80" height="40" rx="3"/>
+<text class="i c" x="184.0" y="181">B2</text>
+<text class="j c" x="184.0" y="197">réutilisé</text>
+<rect class="sh" x="226" y="164" width="80" height="40" rx="3"/>
+<text class="i c" x="266.0" y="181">B3</text>
+<text class="j c" x="266.0" y="197">réutilisé</text>
+<rect class="dif" x="308" y="164" width="80" height="40" rx="3"/>
+<text class="k c" x="348" y="181">propre</text>
+<text class="k c" x="348" y="197">calculé</text>
+<text class="m" x="10" y="225">Plein = bloc réutilisé ; bordure grise = bloc calculé ;</text>
+<text class="m" x="10" y="242">ambre = bloc propre à la requête.</text>
+<line class="sep" x1="0" x2="400" y1="258" y2="258"/>
+<rect class="box" x="6" y="270" width="388" height="86" rx="5"/>
+<text class="s" x="15" y="292">Hachage</text>
+<text class="t" x="15" y="311">empreinte courte, faite des tokens du bloc et du</text>
+<text class="t" x="15" y="328">hachage du bloc précédent [5].</text>
+<text class="a" x="15" y="347">hachage de B2 = tokens de B2 + hachage de B1</text>
+<rect class="box" x="6" y="362" width="388" height="105" rx="5"/>
+<text class="t" x="15" y="384">Seuls les blocs pleins sont mis en cache.</text>
+<text class="t" x="15" y="404">Fonction de hachage par défaut : sha256 depuis v0.11</text>
+<text class="t" x="15" y="421">[5].</text>
+<text class="t" x="15" y="441">Sel de cache (cache salt) facultatif par requête :</text>
+<text class="t" x="15" y="458">sépare les caches des utilisateurs [5].</text>
+<rect class="box" x="6" y="473" width="388" height="48" rx="5"/>
+<text class="t" x="15" y="495">Blocs non contigus en mémoire, comme des pages de</text>
+<text class="t" x="15" y="512">système d'exploitation : peu de place perdue [3].</text>
+<rect class="dif" x="6" y="527" width="388" height="86" rx="5"/>
+<text class="s" x="15" y="549">Taille de bloc par défaut</text>
+<text class="t" x="15" y="568">Anciens textes : 16 tokens.</text>
+<text class="t" x="15" y="587">v0.34.0 : 64 tokens par défaut ; option --block-size 16</text>
+<text class="t" x="15" y="604">pour l'ancienne valeur [1].</text>
+<rect class="box" x="6" y="619" width="388" height="65" rx="5"/>
+<text class="t" x="15" y="641">vLLM v0.34.0 : ordre d'admission tenant compte du</text>
+<text class="t" x="15" y="658">cache, optionnel, avec l'option</text>
+<text class="t" x="15" y="675">--cache-aware-admission-window [1].</text>
+</g>
+</svg>

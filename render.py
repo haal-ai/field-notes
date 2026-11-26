@@ -38,11 +38,21 @@ def inline(text, warnings):
     return re.sub(r'\x00(\d+)\x00', lambda m: codes[int(m.group(1))], text)
 
 
-def markdown(text, figure_file=None, figure_html='', warnings=None, skip_title=True):
+FIGURE_MARKER = re.compile(r'!\[([^\]]*)\]\((fig\d+\.svg)\)')
+
+
+def figure_markers(text):
+    """Standalone marker lines '![caption](figN.svg)' as (caption, file) pairs, in page order."""
+    text = re.sub(r'<!--.*?-->', '', text, flags=re.S)
+    return [(m.group(1).strip(), m.group(2)) for l in text.splitlines() if (m := FIGURE_MARKER.fullmatch(l.strip()))]
+
+
+def markdown(text, figure_file=None, figure_html='', warnings=None, skip_title=True, figure_fn=None):
     """Render headings, paragraphs, lists, tables, quotes, code, links and one figure marker.
 
     The first '# ' heading is the page title and is dropped. A line holding only
-    ![...](figure_file) marks where the figure goes. Returns (html, figure_used).
+    ![...](figure_file) marks where the single legacy figure goes. With figure_fn, every
+    line '![caption](figN.svg)' becomes figure_fn(file, caption). Returns (html, legacy_figure_used).
     """
     warnings = warnings if warnings is not None else []
     text = re.sub(r'<!--.*?-->', '', text, flags=re.S)
@@ -73,6 +83,10 @@ def markdown(text, figure_file=None, figure_html='', warnings=None, skip_title=T
                 continue
             level = max(level, 2)
             out.append(f'<h{level}>{inline(body, warnings)}</h{level}>')
+        elif figure_fn and FIGURE_MARKER.fullmatch(line.strip()):
+            m = FIGURE_MARKER.fullmatch(line.strip())
+            out.append(figure_fn(m.group(2), m.group(1).strip()))
+            i += 1
         elif figure_file and re.fullmatch(r'!\[[^\]]*\]\(' + re.escape(figure_file) + r'\)', line.strip()):
             if used:
                 warnings.append('more than one figure marker')
@@ -120,16 +134,19 @@ def leftovers(text):
 
 # ---------- inline SVG ----------
 
-def _scope_selector(sel, scope):
+def _scope_selector(sel, scope, root_classes=()):
+    """Prefix one selector with the figure id. A class carried by the <svg> root matches the root itself
+    (#id) and, as before, a descendant (#id .cls), so rules written either way keep working."""
     sel = sel.strip()
     if re.match(r'svg(?![\w-])', sel):
         return '#' + scope + sel[3:]
-    if re.match(r'\.fig(?![\w-])', sel):
-        return '#' + scope + sel[4:]
+    for cls in root_classes:
+        if re.match(r'\.' + re.escape(cls) + r'(?![\w-])', sel):
+            return f'#{scope}{sel[len(cls) + 1:]},#{scope} {sel}'
     return f'#{scope} {sel}'
 
 
-def scope_css(css, scope):
+def scope_css(css, scope, root_classes=()):
     """Prefix every selector so a figure's styles cannot leak onto the page (or the reverse)."""
     css = re.sub(r'/\*.*?\*/', '', css, flags=re.S)
     out, i = [], 0
@@ -143,10 +160,10 @@ def scope_css(css, scope):
             while depth:
                 depth += (css[k] == '{') - (css[k] == '}')
                 k += 1
-            out.append(f'{head}{{{scope_css(css[j + 1:k - 1], scope)}}}')
+            out.append(f'{head}{{{scope_css(css[j + 1:k - 1], scope, root_classes)}}}')
         else:
             k = css.index('}', j) + 1
-            out.append(','.join(_scope_selector(s, scope) for s in head.split(',')) + css[j:k])
+            out.append(','.join(_scope_selector(s, scope, root_classes) for s in head.split(',')) + css[j:k])
         i = k
 
 
@@ -168,11 +185,14 @@ def inline_svg(raw, slug):
     if not box:
         raise ValueError(f'{slug}: figure needs a viewBox')
     scope = f'fig-{slug}'
-    css = ''.join(scope_css(m.group(1), scope) for m in re.finditer(r'<style[^>]*>(.*?)</style>', svg, re.S))
+    root_classes = re.search(r'\sclass="([^"]*)"', head)
+    root_classes = root_classes.group(1).split() if root_classes else []
+    css = ''.join(scope_css(m.group(1), scope, root_classes) for m in re.finditer(r'<style[^>]*>(.*?)</style>', svg, re.S))
     svg = re.sub(r'<style[^>]*>.*?</style>', '', svg, flags=re.S)
     ids = set(re.findall(r'\sid="([^"]+)"', svg))
     for name in ids:
         svg = svg.replace(f' id="{name}"', f' id="{scope}-{name}"').replace(f'url(#{name})', f'url(#{scope}-{name})')
+        css = css.replace(f'url(#{name})', f'url(#{scope}-{name})')  # paint servers referenced from the stylesheet
         svg = svg.replace(f'href="#{name}"', f'href="#{scope}-{name}"')
     svg = re.sub(r'aria-labelledby="([^"]+)"', lambda m: 'aria-labelledby="' + ' '.join(f'{scope}-{t}' for t in m.group(1).split()) + '"', svg)
     head = re.match(r'<svg\b[^>]*>', svg).group(0)

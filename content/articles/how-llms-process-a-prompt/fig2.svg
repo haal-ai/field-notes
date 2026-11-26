@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 792" role="img" aria-labelledby="fig2-t fig2-d">
+<title id="fig2-t">Attention : un token compare sa query Q aux keys K, puis mélange les values V</title><desc id="fig2-d">Exemple illustratif. Cinq tokens en ligne : The, capital, of, France, is. Le dernier, « is », produit une query Q. Chaque token, y compris « is », porte une key K et une value V. Des flèches partent de Q vers les cinq keys ; leur épaisseur, et des barres d'attention weights, montrent des attention weights qualitatifs, sans chiffres. Les values V sont mélangées selon ces attention weights, ce qui donne le nouveau vecteur de « is ». Un encadré explique qu'une attention head est une copie indépendante de la comparaison, et que le modèle empile des couches.</desc>
+<style>
+svg{--c-bg:#f7f9fa;--c-surface:#edf2f4;--c-text:#152a34;--c-muted:#506571;--c-line:#b9cbd2;--c-accent:#146b5c;--c-ink:#e6f7f2;--c-warn:#865025}
+@media(prefers-color-scheme:dark){svg{--c-bg:#0e1419;--c-surface:#131d25;--c-text:#e5ecee;--c-muted:#a0b0ba;--c-line:#30404c;--c-accent:#79d8c4;--c-ink:#0e2421;--c-warn:#edbd91}}
+.panel{fill:var(--surface,var(--c-surface));stroke:var(--line,var(--c-line));stroke-width:1}
+.tok{fill:var(--bg,var(--c-bg));stroke:var(--text,var(--c-text));stroke-width:1.5}
+.tokn{fill:var(--bg,var(--c-bg));stroke:var(--accent,var(--c-accent));stroke-width:3}
+.old{fill:var(--accent,var(--c-accent));stroke:var(--accent,var(--c-accent))}
+.new{fill:var(--bg,var(--c-bg));stroke:var(--accent,var(--c-accent));stroke-width:3}
+.fut{fill:none;stroke:var(--muted,var(--c-muted));stroke-width:1.5;stroke-dasharray:5 4}
+.bad{fill:none;stroke:var(--warn,var(--c-warn));stroke-width:2;stroke-dasharray:3 3}
+.pill{fill:var(--bg,var(--c-bg));stroke:var(--muted,var(--c-muted));stroke-width:1.5;stroke-dasharray:4 3}
+.ln{stroke:var(--accent,var(--c-accent));stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.lnd{stroke:var(--muted,var(--c-muted));stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.h{fill:var(--text,var(--c-text));font:700 20px system-ui,sans-serif}
+.s{fill:var(--muted,var(--c-muted));font:17px system-ui,sans-serif}
+.m{fill:var(--text,var(--c-text));font:18px ui-monospace,monospace}
+.mi{fill:var(--accent-ink,var(--c-ink));font:700 18px ui-monospace,monospace}
+.ma{fill:var(--accent,var(--c-accent));font:700 20px ui-monospace,monospace}
+.mb{fill:var(--text,var(--c-text));font:700 22px ui-monospace,monospace}
+.n{fill:var(--muted,var(--c-muted));font:16px ui-monospace,monospace}
+.st{fill:var(--text,var(--c-text));font:17px system-ui,sans-serif}
+.sb{fill:var(--text,var(--c-text));font:700 17px system-ui,sans-serif}
+.sa{fill:var(--accent,var(--c-accent));font:700 17px system-ui,sans-serif}
+</style>
+<text x="20" y="28" class="h" text-anchor="start">Attention : « is » regarde les tokens précédents</text>
+<rect x="344" y="38" width="196" height="28" rx="14" class="pill"/>
+<text x="442" y="58" class="s" text-anchor="middle">exemple illustratif</text>
+<rect x="20" y="76" width="96" height="40" rx="4" class="tok"/>
+<text x="68.0" y="102.0" class="m" text-anchor="middle">The</text>
+<rect x="126" y="76" width="96" height="40" rx="4" class="tok"/>
+<text x="174.0" y="102.0" class="m" text-anchor="middle">capital</text>
+<rect x="232" y="76" width="96" height="40" rx="4" class="tok"/>
+<text x="280.0" y="102.0" class="m" text-anchor="middle">of</text>
+<rect x="338" y="76" width="96" height="40" rx="4" class="tok"/>
+<text x="386.0" y="102.0" class="m" text-anchor="middle">France</text>
+<rect x="444" y="76" width="96" height="40" rx="4" class="tokn"/>
+<text x="492.0" y="102.0" class="m" text-anchor="middle">is</text>
+<rect x="462" y="136" width="60" height="34" rx="4" class="new"/>
+<text x="492.0" y="159.0" class="ma" text-anchor="middle">Q</text>
+<text x="20" y="160" class="s" text-anchor="start">Query Q de « is »</text>
+<path d="M492 172L68 212" class="ln" style="stroke-width:2"/>
+<path d="M68 212L76.3 215.6" class="ln" style="stroke-width:2"/>
+<path d="M68 212L75.5 207.0" class="ln" style="stroke-width:2"/>
+<path d="M492 172L174 212" class="ln" style="stroke-width:1.5"/>
+<path d="M174 212L182.4 215.3" class="ln" style="stroke-width:1.5"/>
+<path d="M174 212L181.3 206.7" class="ln" style="stroke-width:1.5"/>
+<path d="M492 172L280 212" class="ln" style="stroke-width:1"/>
+<path d="M280 212L288.6 214.8" class="ln" style="stroke-width:1"/>
+<path d="M280 212L287.0 206.3" class="ln" style="stroke-width:1"/>
+<path d="M492 172L386 212" class="ln" style="stroke-width:4"/>
+<path d="M386 212L396.9 213.5" class="ln" style="stroke-width:4"/>
+<path d="M386 212L393.2 203.7" class="ln" style="stroke-width:4"/>
+<path d="M492 172L492 212" class="ln" style="stroke-width:6"/>
+<path d="M492 212L497.3 202.3" class="ln" style="stroke-width:6"/>
+<path d="M492 212L486.7 202.3" class="ln" style="stroke-width:6"/>
+<rect x="20" y="214" width="96" height="32" rx="4" class="tok"/>
+<text x="68.0" y="236.0" class="m" text-anchor="middle">K</text>
+<rect x="20" y="256" width="96" height="32" rx="4" class="old"/>
+<text x="68.0" y="278.0" class="mi" text-anchor="middle">V</text>
+<rect x="126" y="214" width="96" height="32" rx="4" class="tok"/>
+<text x="174.0" y="236.0" class="m" text-anchor="middle">K</text>
+<rect x="126" y="256" width="96" height="32" rx="4" class="old"/>
+<text x="174.0" y="278.0" class="mi" text-anchor="middle">V</text>
+<rect x="232" y="214" width="96" height="32" rx="4" class="tok"/>
+<text x="280.0" y="236.0" class="m" text-anchor="middle">K</text>
+<rect x="232" y="256" width="96" height="32" rx="4" class="old"/>
+<text x="280.0" y="278.0" class="mi" text-anchor="middle">V</text>
+<rect x="338" y="214" width="96" height="32" rx="4" class="tok"/>
+<text x="386.0" y="236.0" class="m" text-anchor="middle">K</text>
+<rect x="338" y="256" width="96" height="32" rx="4" class="old"/>
+<text x="386.0" y="278.0" class="mi" text-anchor="middle">V</text>
+<rect x="444" y="214" width="96" height="32" rx="4" class="tok"/>
+<text x="492.0" y="236.0" class="m" text-anchor="middle">K</text>
+<rect x="444" y="256" width="96" height="32" rx="4" class="old"/>
+<text x="492.0" y="278.0" class="mi" text-anchor="middle">V</text>
+<text x="20" y="318" class="sb" text-anchor="start">attention weights</text>
+<rect x="20" y="328" width="24" height="16" rx="3" class="old"/>
+<rect x="126" y="328" width="14" height="16" rx="3" class="old"/>
+<rect x="232" y="328" width="6" height="16" rx="3" class="old"/>
+<rect x="338" y="328" width="48" height="16" rx="3" class="old"/>
+<rect x="444" y="328" width="96" height="16" rx="3" class="old"/>
+<text x="20" y="366" class="s" text-anchor="start">Les attention weights sont qualitatifs : plus la barre est longue,</text>
+<text x="20" y="388" class="s" text-anchor="start">plus la flèche est épaisse et plus le token compte.</text>
+<path d="M280 396L280 430" class="ln"/>
+<path d="M280 430L284.3 422.1" class="ln"/>
+<path d="M280 430L275.7 422.1" class="ln"/>
+<text x="296" y="420" class="s" text-anchor="start">mélange des V pondéré</text>
+<rect x="20" y="436" width="520" height="40" rx="4" class="tokn"/>
+<text x="280.0" y="462.0" class="m" text-anchor="middle">nouveau vecteur de « is »</text>
+<text x="20" y="510" class="sb" text-anchor="start">Query Q : ce que je cherche</text>
+<text x="20" y="534" class="sb" text-anchor="start">Key K : ce que je propose</text>
+<text x="20" y="558" class="sb" text-anchor="start">Value V : le contenu à transmettre</text>
+<rect x="10" y="598" width="540" height="186" rx="6" class="panel"/>
+<text x="24" y="626" class="st" text-anchor="start">Une attention head = une copie indépendante de cette</text>
+<text x="24" y="650" class="st" text-anchor="start">comparaison, avec ses propres Q, K, V.</text>
+<text x="24" y="678" class="st" text-anchor="start">Son couple K, V s'appelle ici KV head. Un modèle</text>
+<text x="24" y="702" class="st" text-anchor="start">exécute plusieurs têtes en parallèle.</text>
+<text x="24" y="730" class="st" text-anchor="start">Le modèle empile des couches ; un token les traverse toutes,</text>
+<text x="24" y="754" class="st" text-anchor="start">l'une après l'autre.</text>
+</svg>

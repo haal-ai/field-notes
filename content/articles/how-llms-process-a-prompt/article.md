@@ -1,106 +1,67 @@
-# How an LLM processes a prompt
+# Comment un LLM traite un prompt
 
-## What to take away
+## L'essentiel
 
-- Long prompts are slow to start because prefill must process every token.
-- Long answers arrive one token per step. Each step reads a larger cache, so steps can take longer in very long contexts. This is a tendency, not a measurement made here.
-- Long chats cost memory because the cache grows with every token.
-- Attention designs and serving engines target the cache because the cache limits decoding.
+- Un long prompt démarre lentement : le prefill lit chaque token.
+- Une longue réponse arrive un token à la fois. Chaque étape relit un cache plus gros, donc elle peut ralentir en contexte très long (tendance, pas une mesure faite ici).
+- Une longue conversation coûte de la mémoire : le cache grandit à chaque token.
 
-## Two jobs, not one
+## Du texte aux nombres
 
-A large language model (LLM) answers in two phases. The first phase is prefill. The second is decoding.
+Un grand modèle de langage (LLM) autorégressif (il écrit un token à la fois) ne lit pas les lettres. Un tokenizer coupe le texte en tokens, souvent des mots ou des morceaux de mots. Chaque token devient un identifiant, puis un vecteur : un embedding.
 
-Prefill reads every token of your prompt in one parallel pass. A token is a small piece of text, often a word or part of a word. Decoding then generates the answer one token at a time. Each new token depends on all the tokens before it.
+![Le prompt « The capital of France is » découpé en cinq tokens, puis en identifiants, puis en vecteurs (exemple en anglais, illustratif ; le découpage réel dépend du tokenizer).](fig1.svg)
 
-Both phases use the same model. They stress the hardware in different ways. Prefill is mostly compute-bound, which means limited by raw arithmetic. Decoding is mostly memory-bound, which means limited by how fast the hardware can move data from memory. This is a general tendency, not a law. Batching many users together, or using a short context, can change the balance. [NVIDIA describes both phases](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization).
+## L'attention : chaque token regarde les précédents
 
-Two measures follow from the split. Time to first token (TTFT) is the wait before the first answer token appears. In a lightly loaded system, it is mostly the cost of prefill. Inter-token latency is the gap between later tokens. It is mostly the cost of one decoding step.
+Dans chaque couche (layer) du modèle, l'attention laisse un token puiser dans les précédents. Chaque token y produit une query (Q), une key (K) et une value (V). Le résultat : un nouveau vecteur, mélange des values pondéré par la comparaison de Q aux keys ([Vaswani et al.](https://arxiv.org/abs/1706.03762)).
 
-## Figure: the two lanes
+![Attention : le token « is » compare sa query Q aux keys K des tokens précédents et à la sienne, puis mélange leurs values V. Une KV head est le couple K et V d'une attention head (exemple illustratif).](fig2.svg)
 
-Terms in the figure (KV cache, K, V, cell) are defined below.
+Source de la figure : [Vaswani et al.](https://arxiv.org/abs/1706.03762).
 
-![Two lanes: prefill reads the prompt once and fills the KV cache; decoding adds one token at a time and re-reads the cache.](visual.svg)
+## Deux phases, un cache
 
-## From text to numbers
+Le même modèle travaille en deux phases. Le prefill lit tout le prompt d'un coup : il est surtout limité par le calcul (compute-bound). Le decoding écrit la réponse un token à la fois : il est surtout limité par la mémoire (memory-bound). C'est une tendance, pas une loi ([NVIDIA](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization)).
 
-The model cannot read letters. A tokenizer first cuts your text into tokens. Each token has an integer ID. For example, the text "The capital of France is" might become five IDs. This split is illustrative, not real tokenizer output. The exact split depends on the tokenizer.
+Deux mesures en découlent. Le délai avant le premier token (time to first token, TTFT) est surtout le coût du prefill. La latency entre tokens (inter-token latency) est surtout le coût d'une étape de decoding.
 
-The model then turns each ID into an embedding. An embedding is a list of numbers, also called a vector, that represents the token. These vectors are what the model computes with.
+Le modèle garde K et V de chaque token et jette Q ([Hugging Face](https://huggingface.co/docs/transformers/en/cache_explanation)). Ces vecteurs forment le KV cache, propre à chaque couche. Chaque étape ajoute le K et le V du nouveau token, puis relit tout le cache. Sans cache, elle recalculerait tout l'historique. La relecture pèse lourd en contexte long ([Shazeer](https://arxiv.org/abs/1911.02150)). En contexte court, les weights du modèle pèsent davantage dans la mémoire lue ([NVIDIA](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization) cite les weights, les keys, les values et les activations).
 
-## Layers
+![Prefill : cinq cellules K V remplies d'un coup. Decoding : une cellule ajoutée par couche et par étape, jusqu'au token de fin. À la dernière position, les logits (un score par token du vocabulaire) donnent le premier token de la réponse. « Paris » est un exemple illustratif.](fig3.svg)
 
-The model is a stack of layers. A layer is one repeated block of computation. Each layer takes the vectors from the layer below and returns improved vectors. Layers do not multiply tokens. One token passes through every layer in turn. The sequence length does not change inside the model.
+À retenir : le cache contient un K et un V par token, par couche et par KV head. Chaque couche a son cache : la couche 10 ne réutilise pas celui de la couche 3. On garde K et V, on jette Q : seule la query du dernier token sert à prédire la suite. Sans cache, chaque étape recalculerait K et V de tout l'historique.
 
-Each layer has its own parameters. This matters later, because each layer keeps its own cache.
+Sources de la figure : [NVIDIA](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization) ; [Hugging Face](https://huggingface.co/docs/transformers/en/cache_explanation).
 
-## Attention
+## Quelle taille fait le cache ?
 
-Attention is the step that lets a token use information from other tokens. Each layer computes three vectors for every token: a query (Q), a key (K), and a value (V). Learned weight matrices produce them. The query says what this token is looking for. Each key says what a token offers. Each value carries the content to pass on.
+Le cache grandit avec le contexte, selon la formule de [NVIDIA](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization) : 2 × couches × KV heads × taille de tête × tokens × octets par nombre. Dans l'exemple, il atteint environ 52,4 Go pour 100 000 tokens : plus que la mémoire d'un petit GPU.
 
-The layer compares the query of the current token with the keys of the tokens before it and its own key. The comparison gives weights. The layer then mixes the values using those weights. The mix becomes the token's new vector. This is the core idea of the Transformer design in [Vaswani et al., "Attention Is All You Need"](https://arxiv.org/abs/1706.03762). Modern models run several attention heads in parallel. A head is one independent copy of this comparison, with its own Q, K, and V. This page calls one head's K and V pair a KV head.
+![Taille du cache pour 100 000 tokens (32 couches, 32 KV heads, tête de 128, 2 octets) : 524 288 octets par token, 52 428 800 000 octets au total, soit 52,4 Go. Avec 8 KV heads : 13,1 Go, 4 fois moins (exemple chiffré, pas une mesure).](fig4.svg)
 
-## Prefill: read the prompt once
+Sources de la figure : [NVIDIA](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization) (formule) ; [Ainslie et al.](https://arxiv.org/abs/2305.13245) (GQA).
 
-In prefill, all prompt tokens go through all layers together. In every layer, the model computes Q, K, and V for every prompt token. It uses Q and K to run attention. Then it keeps K and V and discards Q. In the standard design, only the newest token's query is needed to predict the next token, so old queries are not kept ([Hugging Face docs](https://huggingface.co/docs/transformers/en/cache_explanation)).
+## Trois pistes autour du cache
 
-The kept K and V vectors are the KV cache. It holds one K and one V per token, per layer, per KV head. Caching is done per layer, and each layer has its own K and V, so layer 10 cannot reuse the K and V of layer 3. [NVIDIA](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization) and the [Hugging Face docs](https://huggingface.co/docs/transformers/en/cache_explanation) both describe this.
+Trois idées s'attaquent au cache ou à son coût. Le partage de K et V, avec 8 KV heads au lieu de 32, ramène l'exemple à 13,1 Go.
 
-In standard decoder-only models, the model produces logits at the last prompt position. Logits are raw scores, one for every token in the vocabulary (the full list of tokens the model knows). A selection rule picks the first answer token from them. The simplest rule takes the highest score. Other rules add randomness. This page does not cover them. The prefill keys and values are used to generate the first new token ([NVIDIA](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization)); the use of the last position's logits is shown in the code example of the [Hugging Face docs](https://huggingface.co/docs/transformers/en/cache_explanation).
+![Trois pistes autour du cache. Partager K et V : MQA (un seul jeu) et GQA (un jeu par groupe) ; entraînement ou ré-entraînement en général nécessaire. Ranger par blocs : PagedAttention, throughput 2 à 4 fois supérieur à latency égale face à FasterTransformer et Orca, sur le banc d'essai des auteurs. Vérifier : le speculative decoding fait proposer des tokens par un petit modèle et les fait vérifier par le grand, sans changer la distribution de sortie.](fig5.svg)
 
-## Decoding: write the answer one token at a time
+Sources de la figure : [Shazeer](https://arxiv.org/abs/1911.02150) (MQA) ; [Ainslie et al.](https://arxiv.org/abs/2305.13245) (GQA) ; [Kwon et al.](https://arxiv.org/abs/2309.06180) (PagedAttention) ; [Leviathan et al.](https://arxiv.org/abs/2211.17192) (speculative decoding).
 
-Decoding is autoregressive. That means each new token becomes part of the input for the next step.
+Ces pistes visent toutes le même goulot : le cache limite le decoding.
 
-One decoding step has five parts:
+## Et ensuite ?
 
-1. Take the token chosen in the last step.
-2. Turn it into an embedding.
-3. Run it through every layer.
-4. In each layer, compute the token's own K and V, add them to the cache, and attend over the whole cache.
-5. Read the new logits and choose the next token.
-
-The loop repeats until the model emits an end token or reaches a length limit. The word "decoding" is also used for turning token IDs back into text. This page uses decoding only for the loop above.
-
-The cache saves work. Without it, every step would recompute K and V for the whole history. With it, each step computes them for one token only. The price is memory. Each step also reads the entire cache.
-
-That read can become a large part of the step time, especially for long contexts. At short contexts, the model weights matter more ([NVIDIA](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization) lists weights, keys, values and activations as memory traffic). [Shazeer, "Fast Transformer Decoding"](https://arxiv.org/abs/1911.02150) names the cost of repeatedly loading keys and values as a limit on incremental decoding.
-
-## How big is the cache?
-
-The cache grows with context length. NVIDIA gives the same formula ([NVIDIA](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization)). A rough size is:
-
-cache bytes = 2 × layers × KV heads × head size × tokens × bytes per number
-
-The factor 2 counts K and V. The sizes below are an illustration, not a measurement. They assume standard multi-head attention (every head has its own K and V), a 16-bit number (2 bytes), one request, and no compression.
-
-Take 32 layers, 32 KV heads, a head size of 128, and 100,000 tokens.
-
-- Per token: 2 × 32 × 32 × 128 × 2 bytes = 524,288 bytes, about 0.5 MB.
-- For 100,000 tokens: 524,288 × 100,000 = 52,428,800,000 bytes, about 52.4 GB. Here GB means 10^9 bytes.
-
-The cache for a single long request can be larger than a small GPU's memory. Real engines add their own overhead on top.
-
-## Why smaller caches matter
-
-Several designs shrink or manage the cache.
-
-Multi-query attention (MQA) shares one K and V set across all query heads, as proposed by [Shazeer](https://arxiv.org/abs/1911.02150). Grouped-query attention (GQA) shares K and V across groups of query heads, as proposed by [Ainslie et al.](https://arxiv.org/abs/2305.13245). GQA models usually need training or uptraining to work well; it is not a drop-in switch. If 32 query heads share 8 KV heads, the cache has 8 KV heads instead of 32. In the example above, the cache falls from 52.4 GB to 13.1 GB. That is 4 times smaller, by arithmetic: 52.4 ÷ 4 = 13.1.
-
-Serving engines also manage cache memory. The cache is large and grows during a request. [Kwon et al.](https://arxiv.org/abs/2309.06180) describe PagedAttention, which stores the cache in blocks to reduce wasted memory. The authors report 2 to 4 times higher throughput at the same latency, compared with FasterTransformer and Orca. That result applies to their own test setup only.
-
-A different idea speeds up decoding without changing the output. In speculative decoding, a small model proposes several tokens, and the large model checks them in parallel. [Leviathan et al.](https://arxiv.org/abs/2211.17192) show this keeps the output distribution the same.
-
-## Where this goes next
-
-Research on very long contexts keeps changing. This page covers the stable mechanics only. Treat any newer paper as a separate claim to check against its own sources.
+La recherche sur les contextes très longs évolue vite. Cette page ne couvre que les mécanismes stables : vérifiez tout article plus récent dans ses propres sources.
 
 ## Sources
 
-- Vaswani et al., Attention Is All You Need: https://arxiv.org/abs/1706.03762
-- Shazeer, Fast Transformer Decoding: https://arxiv.org/abs/1911.02150
-- Ainslie et al., GQA: https://arxiv.org/abs/2305.13245
-- Kwon et al., Efficient Memory Management for LLM Serving with PagedAttention: https://arxiv.org/abs/2309.06180
-- Leviathan et al., Fast Inference from Transformers via Speculative Decoding: https://arxiv.org/abs/2211.17192
-- NVIDIA, Mastering LLM Techniques: Inference Optimization: https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization
+- Vaswani et al., Attention Is All You Need : https://arxiv.org/abs/1706.03762
+- Shazeer, Fast Transformer Decoding : https://arxiv.org/abs/1911.02150
+- Ainslie et al., GQA : https://arxiv.org/abs/2305.13245
+- Kwon et al., Efficient Memory Management for LLM Serving with PagedAttention : https://arxiv.org/abs/2309.06180
+- Leviathan et al., Fast Inference from Transformers via Speculative Decoding : https://arxiv.org/abs/2211.17192
+- NVIDIA, Mastering LLM Techniques: Inference Optimization : https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization
+- Hugging Face, Cache explanation : https://huggingface.co/docs/transformers/en/cache_explanation

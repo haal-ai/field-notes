@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="fr" class="fig" role="img" aria-labelledby="fig4-t fig4-d" viewBox="0 0 360 784" width="360"><title id="fig4-t">Deux voies : décoder les weights avant le produit, ou multiplier des entiers puis dequantization du résultat (LLM.int8())</title><desc id="fig4-d">Voie 1, weights seuls : les entiers de 4 bits sont décodés avant le produit avec les activations (pour AWQ, en nombres de 16 bits). Voie 2, LLM.int8() : weights et activations en entiers de 8 bits sont multipliés, le résultat est un entier de 32 bits, puis dequantization avec les constantes de scale, puis les sorties sont additionnées en 16 bits. Trois repères de qualité : LLM.int8() garde quelques caractéristiques en 16 bits ; AWQ protège 1 % des weights ; GPTQ choisit ses arrondis. Un modèle entier après dequantization retrouve sa taille, pas sa précision.</desc><style>
+.fig{--c-bg:var(--bg,#f7f9fa);--c-sf:var(--surface,#edf2f4);--c-rs:var(--raised,#e4ecef);--c-tx:var(--text,#152a34);--c-mu:var(--muted,#506571);--c-ln:var(--line,#b9cbd2);--c-ac:var(--accent,#146b5c);--c-ai:var(--accent-ink,#e6f7f2);--c-du:var(--due,#865025);--c-db:var(--due-bg,#faeee1)}
+@media (prefers-color-scheme:dark){.fig{--c-bg:var(--bg,#0e1419);--c-sf:var(--surface,#131d25);--c-rs:var(--raised,#192630);--c-tx:var(--text,#e5ecee);--c-mu:var(--muted,#a0b0ba);--c-ln:var(--line,#30404c);--c-ac:var(--accent,#79d8c4);--c-ai:var(--accent-ink,#0e2421);--c-du:var(--due,#edbd91);--c-db:var(--due-bg,#32271e)}}
+.fig .h{fill:var(--c-tx);font:600 16px system-ui,sans-serif}
+.fig .l{fill:var(--c-tx);font:600 14px system-ui,sans-serif}
+.fig .m{fill:var(--c-mu);font:13px system-ui,sans-serif}
+.fig .t{fill:var(--c-tx);font:13px system-ui,sans-serif}
+.fig .b{font-weight:700}
+.fig .num{fill:var(--c-tx);font:12px ui-monospace,SFMono-Regular,Consolas,monospace}
+.fig .mono{fill:var(--c-tx);font:13px ui-monospace,SFMono-Regular,Consolas,monospace}
+.fig .e{text-anchor:end}.fig .c{text-anchor:middle}
+.fig .hl{fill:var(--c-du);font-weight:700}
+.fig .cell{fill:var(--c-bg);stroke:var(--c-ln);stroke-width:1}
+.fig .q{fill:var(--c-ai);stroke:var(--c-ac)}
+.fig .cell.hi{fill:var(--c-db);stroke:var(--c-du);stroke-width:3}
+.fig .box{fill:var(--c-bg);stroke:var(--c-ln);stroke-width:1.5}
+.fig .panel{fill:var(--c-rs);stroke:var(--c-ln);stroke-width:1}
+.fig .acc{fill:var(--c-ai);stroke:var(--c-ac);stroke-width:2}
+.fig .warn{fill:var(--c-db);stroke:var(--c-du);stroke-width:2}
+.fig .arrow,.fig .axis{stroke:var(--c-mu);stroke-width:1.5;fill:none}
+.fig .dash{stroke:var(--c-du);stroke-width:2;stroke-dasharray:5 4;fill:none}
+.fig .errbar{fill:var(--c-mu)}.fig .errbar.hi{fill:var(--c-du)}
+.fig .err{fill:var(--c-mu);font:12px ui-monospace,SFMono-Regular,Consolas,monospace}
+.fig .err.hi{fill:var(--c-du);font-weight:700}
+.fig .bar{fill:var(--c-mu);stroke:var(--c-tx);stroke-width:1.5}
+.fig .bar.hi2{fill:var(--c-ac);stroke:var(--c-tx);stroke-width:1.5}
+.fig .bit{fill:var(--c-mu);stroke:var(--c-tx);stroke-width:1}
+.fig .bit.ac{fill:var(--c-ac)}
+.fig .sep{stroke:var(--c-ln);stroke-width:1}
+.fig .tick{stroke:var(--c-tx);stroke-width:2}
+</style><rect width="360" height="784" fill="var(--c-sf)"/><text x="10" y="22" class="h">Où a lieu la dequantization ?</text><rect x="10" y="32" width="340" height="226" rx="4" class="panel"/><text x="20" y="56" class="l">Voie 1 : weights seuls (GPTQ, AWQ)</text><rect x="40" y="66" width="280" height="30" rx="3" class="box"/><text x="180" y="86" class="t c">weights en entiers de 4 bits</text><path d="M180 96V138" class="arrow"/><path d="M174 131l6 7 6-7" class="arrow"/><text x="194" y="108" class="m">décoder (entier ×</text><text x="194" y="122" class="m">scale)</text><rect x="40" y="138" width="280" height="48" rx="3" class="box"/><text x="180" y="158" class="t c">weights décodés × activations</text><text x="180" y="176" class="m c">(AWQ : 16 bits × 16 bits)</text><path d="M180 186V216" class="arrow"/><path d="M174 209l6 7 6-7" class="arrow"/><text x="194" y="205" class="m">produit</text><rect x="40" y="216" width="280" height="30" rx="3" class="box"/><text x="180" y="236" class="l c">sortie</text><rect x="20" y="264" width="320" height="48" rx="3" class="acc"/><text x="180" y="284" class="l c">Dequantization : sur les weights,</text><text x="180" y="302" class="l c">avant le produit</text><rect x="10" y="324" width="340" height="226" rx="4" class="panel"/><text x="20" y="348" class="l">Voie 2 : LLM.int8()</text><rect x="40" y="358" width="280" height="30" rx="3" class="box"/><text x="180" y="378" class="t c">weights int8 × activations int8</text><path d="M180 388V424" class="arrow"/><path d="M174 417l6 7 6-7" class="arrow"/><text x="194" y="402" class="m">multiplication entière</text><rect x="40" y="424" width="280" height="30" rx="3" class="box"/><text x="180" y="444" class="t c">résultat entier 32 bits</text><path d="M180 454V486" class="arrow"/><path d="M174 479l6 7 6-7" class="arrow"/><text x="194" y="468" class="m">dequantization</text><text x="194" y="482" class="m">(constantes de scale)</text><rect x="40" y="486" width="280" height="30" rx="3" class="box"/><text x="180" y="506" class="t c">sortie 16 bits, sorties additionnées</text><rect x="20" y="556" width="320" height="48" rx="3" class="acc"/><text x="180" y="576" class="l c">Dequantization : sur le résultat,</text><text x="180" y="594" class="l c">après le produit</text><text x="10" y="628" class="m">activations = nombres calculés à partir de</text><text x="10" y="644" class="m">l’entrée (les weights, eux, sont fixes)</text><path d="M10 656L350 656" class="axis"/><text x="10" y="676" class="h">Protéger les valeurs importantes</text><text x="10" y="696" class="t">LLM.int8() : > 99,9 % en 8 bits, reste en 16</text><text x="10" y="712" class="t">AWQ : 1 % des weights protégés · GPTQ : arrondis</text><rect x="10" y="724" width="340" height="48" rx="3" class="warn"/><text x="180" y="744" class="l c">Modèle entier après dequantization :</text><text x="180" y="762" class="l c">la taille revient, pas la précision</text></svg>

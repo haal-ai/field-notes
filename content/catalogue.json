@@ -5,198 +5,203 @@
   "articles": [
     {
       "slug": "how-these-notes-age",
-      "title": "How these notes age",
-      "section": "About this library",
+      "title": "Comment vieillissent ces notes",
+      "lang": "fr",
+      "section": "À propos de la bibliothèque",
       "type": "guide",
-      "summary": "Publication, editing, review, and expiry are different events. Here is how to read their dates.",
-      "author": "Jean Marin",
-      "perspective": "HAAL publication",
+      "summary": "Publication, modification, relecture et prochaine relecture sont quatre dates distinctes. Voici comment les lire.",
       "published": "2026-11-25",
-      "edited": "2026-11-25",
+      "edited": "2026-11-26",
       "reviewed": "2026-11-25",
       "review_months": 6,
-      "approval": "approved-publication-test",
+      "approval": "approved-publication",
       "formats": [
         "Article",
-        "Visual explanation"
-      ],
-      "visual": {
-        "kind": "flow",
-        "title": "Three different clocks",
-        "nodes": [
-          "First publication",
-          "Last edit",
-          "Technical review"
-        ],
-        "details": [
-          "News age starts here",
-          "Records a change",
-          "Checks the content"
-        ],
-        "caption": "An edit changes the edit date. Only a technical review changes the review date. Neither resets the age of a news report."
-      },
-      "sections": [
-        {
-          "title": "News has a defined lifetime",
-          "paragraphs": [
-            "News and magazine editions describe information available at a known time. After three calendar months, the site labels them Outdated news and moves them out of the current listing. The archive remains accessible.",
-            "A later edit does not renew that news window. A materially new report gets a new dated entry and links to the earlier one."
-          ]
-        },
-        {
-          "title": "Guides need review",
-          "paragraphs": [
-            "A guide explains knowledge that can remain useful for longer. Its last technical review and next review date are visible. The default proposed review period is six months. Fast-changing instructions use three months.",
-            "Due for a check means the planned check has not been recorded. It does not prove the content is wrong. Known errors require an immediate correction or warning."
-          ]
-        },
-        {
-          "title": "Experiments keep their context",
-          "paragraphs": [
-            "An experiment is a record of one test setup. It keeps the test date, product versions, method, results, and limitations. A dated result does not guarantee the same behavior in a newer release."
-          ]
-        }
+        "Explication visuelle"
       ],
       "history": [
         {
           "date": "2026-11-25",
-          "note": "Initial public test page for the publication process."
+          "note": "Page de test initiale du processus de publication."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Réécriture en français, trois figures ajoutées, étiquette « Actualité ancienne » expliquée."
         }
       ]
     },
     {
       "slug": "quantization-explained",
-      "title": "Quantization: how a model fits in less memory",
-      "section": "Inference",
+      "title": "Quantization : faire tenir un modèle dans moins de mémoire",
+      "section": "Inférence",
+      "lang": "fr",
       "type": "guide",
-      "summary": "Quantization stores model weights with fewer bits. This guide shows how groups and scales work, what 4-bit really costs, and what is lost.",
-      "author": "Jean Marin",
-      "perspective": "Individual view: independent analysis",
+      "summary": "La quantization range les weights d'un modèle avec moins de bits. Ce guide montre comment fonctionnent groupes et scales, ce que coûte vraiment « 4 bits » et ce qui se perd.",
       "published": "2026-11-25",
-      "edited": "2026-11-25",
+      "edited": "2026-11-26",
       "reviewed": "2026-11-25",
       "review_months": 6,
       "approval": "approved-publication",
       "formats": [
         "Article",
-        "Visual explanation"
+        "Explication visuelle"
       ],
       "visual": {
         "kind": "svg",
-        "title": "One group of weights in three steps, and model size at three precisions",
-        "svg": "visual.svg",
-        "alt": "alt.md",
-        "caption": "Quantization stores each weight as a small integer plus one scale shared by the group. The group shrinks from 128 to 48 bits, and the restored values differ slightly from the originals. At scale, a 7-billion-weight model drops from 14.00 GB (16 bits per weight) to 3.72 GB (4.25 bits per weight). The weights are invented numbers for teaching, not from a real model. The 8-weight group is a stand-in; real groups are larger (for example 64). The same example is worked in the article text."
+        "title": "Un groupe de weights : quantization en trois étapes",
+        "svg": "fig2.svg",
+        "alt": "fig2.alt.md",
+        "caption": "La quantization range chaque weight sous forme d'un petit entier, avec un scale partagée par le groupe. Le groupe passe de 128 à 48 bits, et les valeurs restituées diffèrent légèrement des originales. Les weights sont des nombres inventés pour l'exemple, pas ceux d'un vrai modèle. Le groupe de 8 weights est un exemple : les vrais groupes sont plus grands (par exemple 64)."
       },
       "history": [
         {
           "date": "2026-11-25",
-          "note": "First publication."
+          "note": "Première publication."
         },
         {
           "date": "2026-11-25",
-          "note": "Revise: added a dequantization section. Independent review pass with fixes; fixes applied."
+          "note": "Révision : section sur la dequantization ajoutée. Relecture indépendante : réussie avec corrections, corrections appliquées."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Réécriture en français, figures ajoutées ; corrections de la relecture appliquées."
         }
       ]
     },
     {
       "slug": "code-graph-pilot",
-      "title": "A small test of code graphs: no help on easy questions, a hint on a hard one",
-      "section": "Evaluation",
+      "title": "Petit essai de code graph : aucun gain sur les questions simples, une piste sur une question difficile",
+      "section": "Évaluation",
       "type": "experiment",
-      "summary": "Nine runs, three setups, one small codebase. A code graph did not help on easy questions and may have helped on one hard question. A lead, not a result.",
-      "author": "Jean Marin",
-      "perspective": "Individual view: independent analysis",
+      "lang": "fr",
+      "summary": "Neuf exécutions, trois configurations, une petite base de code. Un code graph n'a pas aidé sur les questions simples et a peut-être aidé sur une question difficile. Une piste, pas un résultat.",
       "published": "2026-11-25",
-      "edited": "2026-11-25",
+      "edited": "2026-11-26",
       "tested": "2026-11-17",
-      "tested_note": "Exact run dates not recorded; runs fell between 2026-11-13 and 2026-11-17 (inferred). 2026-11-17 is the upper bound.",
-      "versions": "Entire CLI 0.12.2; entire-graph 0.6.0 (no-egress on); graphify 0.9.108 (tree-sitter only); agent model set to automatic, not identified",
-      "method": "Three setups (agent alone, with entire-graph, with graphify), same model setting (automatic selection; actual model may differ between runs) and prompts, fresh context, graph setups told to prefer the graph. Three tasks (two small, one long), one run each, nine runs. Answers scored against a hidden facts checklist by a judge designed not to see the setup (judge model not recorded). Measured credits, peak context, turns, elapsed time.",
-      "limitations": "n=1 per setup per task; three of nine tasks run; one small private, mostly Python repository; model setting automatic (actual model may differ between runs) and judge model not recorded; run dates inferred; no token counts; credits are platform-specific; newer tool releases may exist.",
+      "tested_note": "Dates exactes des exécutions non notées ; elles se situent entre le 2026-11-13 et le 2026-11-17 (déduction). Le 2026-11-17 est la borne haute.",
+      "versions": "Entire CLI 0.12.2 ; entire-graph 0.6.0 (sans sortie réseau) ; graphify 0.9.108 (tree-sitter seul) ; modèle de l'agent en sélection automatique, non identifié",
+      "method": "Trois configurations (agent seul, avec entire-graph, avec graphify), même réglage de modèle (sélection automatique ; le modèle réel a pu varier) et mêmes consignes, contexte vierge, consigne de préférer le graphe pour les deux configurations avec graphe. Trois tâches (deux petites, une longue), une exécution chacune, neuf exécutions. Réponses notées selon une liste de faits cachée par un juge conçu pour ne pas voir la configuration (modèle juge non noté). Mesures : crédits, contexte maximal, tours, temps écoulé.",
+      "limitations": "Une exécution par configuration et par tâche ; trois tâches sur neuf jouées ; un seul petit dépôt privé, surtout en Python ; modèle en sélection automatique (le modèle réel a pu varier) et modèle juge non noté ; dates d'exécution déduites ; pas de comptes de tokens ; crédits propres à une plateforme ; des versions plus récentes des outils existent peut-être.",
       "review_due": "2027-05-25",
       "approval": "approved-publication",
       "formats": [
         "Article",
-        "Visual explanation"
+        "Explication visuelle"
       ],
       "visual": {
         "kind": "svg",
-        "title": "Credits, seconds and turns per setup, one run each",
-        "svg": "visual.svg",
+        "title": "Cinq figures : dispositif, rôle du graphe, petites tâches, tâche longue, limites",
+        "figures": [
+          "fig1.svg",
+          "fig2.svg",
+          "fig3.svg",
+          "fig4.svg",
+          "fig5.svg"
+        ],
         "alt": "alt.md",
-        "caption": "Small pilot, not a benchmark: one run per setup per task, nine runs. All nine answers were correct. Credits, seconds and turns are shown as measured. Differences may be noise."
+        "caption": "Petit essai, pas un banc d'essai : une exécution par configuration et par tâche, neuf exécutions. Les neuf réponses sont justes. Crédits, secondes et tours sont indiqués tels que mesurés. Les écarts peuvent être du bruit."
       },
       "history": [
         {
           "date": "2026-11-25",
-          "note": "First publication of the pilot record."
+          "note": "Première publication de la fiche d'essai."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Réécriture en français, figures ajoutées"
         }
       ]
     },
     {
       "slug": "how-llms-process-a-prompt",
-      "title": "How an LLM processes a prompt",
-      "section": "Inference",
+      "lang": "fr",
+      "title": "Comment un LLM traite un prompt",
+      "section": "Inférence",
       "type": "guide",
-      "summary": "A model reads your prompt once, then writes the answer one token at a time. The KV cache explains why long prompts start slowly and long chats use memory.",
-      "author": "Jean Marin",
-      "perspective": "Individual view: independent analysis",
+      "summary": "Un modèle lit votre prompt en une fois, puis écrit la réponse un token à la fois. Le KV cache explique pourquoi les longs prompts démarrent lentement et pourquoi les longues conversations consomment de la mémoire.",
+      "featured_summary": "Le modèle lit le prompt une fois, puis répond token par token. Cinq figures montrent le cache qui grandit et ce qui permet de le réduire.",
       "published": "2026-11-25",
-      "edited": "2026-11-25",
+      "edited": "2026-11-26",
       "reviewed": "2026-11-25",
       "review_months": 6,
       "approval": "approved-publication",
       "formats": [
         "Article",
-        "Visual explanation"
+        "Explication visuelle"
       ],
       "visual": {
         "kind": "svg",
-        "title": "Prefill, then decoding, sharing one KV cache",
-        "svg": "visual.svg",
-        "alt": "alt.md",
-        "caption": "Prefill passes all prompt tokens through the layers together and stores one key and one value per token, per layer. Decoding passes one new token through the same layers, attends over the whole cache, and adds one entry per layer. The cache grows at every step. Illustrative: the five-token split and the answer \"Paris\" are examples, not real tokenizer or model output."
+        "title": "Prefill, puis decoding, avec un même KV cache",
+        "svg": "fig3.svg",
+        "alt": "fig3.alt.md",
+        "caption": "Le prefill fait passer tous les tokens du prompt dans les couches et stocke une key et une value par token et par couche. Le decoding fait passer un seul nouveau token, applique l'attention sur tout le cache et ajoute une entrée par couche. Le cache grandit à chaque étape. Illustratif : le découpage en cinq tokens et la réponse « Paris » sont des exemples, pas une sortie réelle d'un tokenizer ou d'un modèle."
       },
+      "figures": [
+        {
+          "svg": "fig1.svg",
+          "caption": "Du texte aux vecteurs : tokens, identifiants, embeddings (exemple illustratif).",
+          "alt": "fig1.alt.md"
+        },
+        {
+          "svg": "fig2.svg",
+          "caption": "Attention : un token compare sa query Q aux keys K des tokens précédents, puis mélange leurs values V (exemple illustratif).",
+          "alt": "fig2.alt.md"
+        },
+        {
+          "svg": "fig3.svg",
+          "caption": "Prefill, puis decoding : le cache grandit d'une cellule par couche et par étape (exemple illustratif).",
+          "alt": "fig3.alt.md"
+        },
+        {
+          "svg": "fig4.svg",
+          "caption": "Taille du cache pour 100 000 tokens : 52,4 Go avec 32 KV heads, 13,1 Go avec 8 KV heads (exemple chiffré).",
+          "alt": "fig4.alt.md"
+        },
+        {
+          "svg": "fig5.svg",
+          "caption": "Trois pistes : partager K et V, ranger le cache par blocs, faire vérifier des tokens proposés.",
+          "alt": "fig5.alt.md"
+        }
+      ],
       "history": [
         {
           "date": "2026-11-25",
-          "note": "Initial publication."
+          "note": "Publication initiale."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Réécriture en français, figures ajoutées."
         }
       ]
     },
     {
       "slug": "vllm-and-sglang",
-      "title": "vLLM and SGLang: two ways to stop wasting GPU memory",
-      "section": "Inference",
+      "title": "vLLM et SGLang : deux façons d'économiser la mémoire GPU",
+      "section": "Inférence",
+      "lang": "fr",
       "type": "guide",
-      "summary": "Both servers save GPU memory by managing the KV cache. They take different routes. Checked against vLLM v0.34.0 and SGLang v0.5.23 on 25 Nov 2026.",
-      "author": "Jean Marin",
-      "perspective": "Individual view: independent analysis",
+      "summary": "Les deux serveurs économisent la mémoire GPU en gérant le KV cache, par des voies différentes. Vérifié sur vLLM v0.34.0 et SGLang v0.5.23 le 25 novembre 2026.",
       "published": "2026-11-25",
-      "edited": "2026-11-25",
+      "edited": "2026-11-26",
       "reviewed": "2026-11-25",
       "review_months": 3,
       "approval": "approved-publication",
       "formats": [
         "Article",
-        "Visual explanation"
+        "Explication visuelle"
       ],
-      "visual": {
-        "kind": "svg",
-        "title": "One request, two servers",
-        "svg": "visual.svg",
-        "alt": "alt.md",
-        "caption": "One request passes through the same five steps in vLLM and SGLang. They differ at step 3: vLLM matches hashed cache blocks, SGLang matches a prefix in a radix tree. This is a simplification: both projects now cache shared prefixes, and each keeps adding features. The shared-prompt example is illustrative, not measured."
-      },
       "history": [
         {
           "date": "2026-11-25",
-          "note": "Initial publication. Checked against vLLM v0.34.0 and SGLang v0.5.23 on 2026-11-25."
+          "note": "Publication initiale, d'après vLLM v0.34.0 et SGLang v0.5.23 (25 novembre 2026)."
         },
         {
           "date": "2026-11-25",
-          "note": "Revise: replaced outdated benchmark source with a newer one, and added a second, disagreeing test."
+          "note": "Révision : source de benchmark périmée remplacée par une plus récente, et ajout d'un second test qui n'est pas d'accord avec le premier."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Réécriture en français ; cinq figures ; source de benchmark inchangée."
         }
       ]
     }
@@ -204,7 +209,7 @@
   "retired": [
     {
       "slug": "publication-trial",
-      "note": "This publication-process test page has been retired."
+      "note": "Cette page de test du processus de publication a été retirée."
     }
   ]
 }
