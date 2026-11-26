@@ -71,3 +71,31 @@
 @media(max-width:1100px){.site-layout{grid-template-columns:230px minmax(0,1fr)}}
 .search-results .entry-section-tag{display:none}
 .entry-section-tag{font-size:.75rem;color:var(--muted);margin:4px 0 0}
+/* Market news page: day-grouped cards, theme chips, a stacked weekly bar chart. */
+.news-day{margin:0 0 30px}
+.news-day-heading{font-size:1.0625rem;font-weight:560;letter-spacing:-.01em;margin:30px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line);text-transform:capitalize;scroll-margin-top:20px}
+.news-list{margin-top:10px}
+.news-card{border:1px solid var(--line);border-radius:4px;padding:16px 18px;margin:0 0 12px;background:var(--surface)}
+.news-card-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.news-theme{font-size:.6875rem;letter-spacing:.04em;padding:3px 7px;border-radius:2px;font-family:ui-monospace,monospace;color:var(--accent-ink);background:var(--accent)}
+.news-theme-securite{background:#c0604a}.news-theme-outils-et-agents{background:#146b5c}.news-theme-modeles{background:#555084}
+.news-theme-business{background:#785413}.news-theme-infrastructure-et-inference{background:#2f6fa6}
+.news-theme-cloud-et-plateformes{background:#5a7a2e}.news-theme-recherche-et-benchmarks{background:#8a4b8f}
+.news-theme{color:#fff}
+.news-vendor{font-size:.8125rem;color:var(--muted)}
+.news-card h3{margin:0 0 7px;font-size:1rem;font-weight:560}
+.news-card h3 a{color:var(--text);text-decoration:none}.news-card h3 a:hover{color:var(--accent);text-decoration:underline}
+.news-text{font-size:.9375rem;line-height:1.7;color:var(--muted);margin:0 0 9px}
+.news-source-note{font-size:.8125rem;line-height:1.6;color:var(--muted);font-style:italic;margin:0 0 9px;padding-left:10px;border-left:2px solid var(--line)}
+.news-meta{font-size:.75rem;color:var(--muted);margin:0}.news-domain{font-family:ui-monospace,monospace}
+.news-chip{display:inline-flex;align-items:center;gap:6px}
+.news-notice{margin:18px 0}
+.news-home{margin:28px 0;padding-top:9px;border-top:1px solid var(--line)}
+.news-home-list{list-style:none;margin:14px 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.news-home-list li{display:flex;align-items:baseline;gap:10px;font-size:.9375rem}
+.news-home-list a{color:var(--text);text-decoration:none}.news-home-list a:hover{color:var(--accent);text-decoration:underline}
+.archive-month-list{list-style:none;margin:20px 0;padding:0}
+.archive-month-list li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:.9375rem}
+.archive-month-list a{color:var(--accent);text-decoration:none}.archive-month-list a:hover{text-decoration:underline}
+.news-card[hidden]{display:none}
+@media(max-width:760px){.news-card{padding:14px}.news-day-heading{font-size:1rem}}
