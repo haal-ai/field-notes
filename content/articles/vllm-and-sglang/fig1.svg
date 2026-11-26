@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 434" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Parcours d'une requête dans vLLM et SGLang : cinq étapes, dont une seule diffère</title>
+<desc id="fig1-d">Une requête suit cinq étapes dans les deux serveurs : arrivée HTTP, découpage en tokens, recherche de cache réutilisable, calcul de la partie manquante, envoi token par token. Seule l'étape 3 diffère : vLLM compare des blocs pleins au même hachage, SGLang cherche un préfixe dans un arbre radix.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .j{fill:var(--accent-ink,var(--f-ink))}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig1 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .hat{stroke:var(--muted,var(--f-muted));stroke-width:1}
+.fig1 .hatl{stroke:var(--muted,var(--f-muted));stroke-width:1}
+.fig1 .sep{stroke:var(--line,var(--f-line));stroke-width:1;stroke-dasharray:4 3}
+.fig1 .c{text-anchor:middle}.fig1 .e{text-anchor:end}
+</style>
+<defs><pattern id="fig1-hat" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line class="hatl" x1="0" y1="0" x2="0" y2="6"/></pattern></defs>
+<g class="fig1">
+<text class="h" x="10" y="18">Une requête, cinq étapes</text>
+<rect class="box" x="6" y="28" width="388" height="34" rx="5"/>
+<circle class="sh" cx="26" cy="50" r="11"/><text class="i c" x="26" y="55">1</text>
+<text class="s" x="46" y="54">La requête arrive (HTTP)</text>
+<path class="ln" d="M200 62 V76 M195 70 L200 76 L205 70"/>
+<rect class="box" x="6" y="76" width="388" height="50" rx="5"/>
+<circle class="sh" cx="26" cy="98" r="11"/><text class="i c" x="26" y="103">2</text>
+<text class="s" x="46" y="102">Le texte devient des tokens</text>
+<text class="m" x="46" y="119">token : petit morceau de mot</text>
+<path class="ln" d="M200 126 V140 M195 134 L200 140 L205 134"/>
+<rect class="dif" x="6" y="140" width="388" height="112" rx="5"/>
+<circle class="sh" cx="26" cy="162" r="11"/><text class="i c" x="26" y="167">3</text>
+<text class="s" x="46" y="166">Recherche de cache réutilisable</text>
+<text class="k" x="46" y="186">DIFFÈRE ENTRE LES DEUX</text>
+<text class="s" x="46" y="210">vLLM</text><text class="t" x="100" y="210">blocs pleins au même hachage</text>
+<text class="s" x="46" y="232">SGLang</text><text class="t" x="100" y="232">préfixe dans un arbre radix</text>
+<path class="ln" d="M200 252 V266 M195 260 L200 266 L205 260"/>
+<rect class="box" x="6" y="266" width="388" height="50" rx="5"/>
+<circle class="sh" cx="26" cy="288" r="11"/><text class="i c" x="26" y="293">4</text>
+<text class="s" x="46" y="292">Calcul de la seule partie non en cache</text>
+<text class="m" x="46" y="309">prefill : lecture de le prompt</text>
+<path class="ln" d="M200 316 V330 M195 324 L200 330 L205 324"/>
+<rect class="box" x="6" y="330" width="388" height="50" rx="5"/>
+<circle class="sh" cx="26" cy="352" r="11"/><text class="i c" x="26" y="357">5</text>
+<text class="s" x="46" y="356">Envoi token par token</text>
+<text class="m" x="46" y="373">decoding : un token à la fois</text>
+<text class="m" x="10" y="404">Simplification : aujourd'hui, les deux projets</text><text class="m" x="10" y="421">gardent les préfixes partagés.</text>
+</g>
+</svg>

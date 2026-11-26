@@ -1,0 +1,7 @@
+Figure 4. SGLang : arbre radix (radix tree). Les requêtes au même début partagent la même branche [6][7]. Exemple illustratif. Un arbre part d'une racine. Un nœud unique contient le prompt partagée, stocké en une seule copie. Chaque requête (1, 2 et 3) ajoute sa propre suite. Une nouvelle requête trouve son plus long préfixe commun et ne calcule que le reste.
+
+Gains annoncés par le projet : ce sont des cas choisis, pas des mesures indépendantes.
+- Jusqu'à 6,4 × de throughput (tokens produits par seconde) au maximum, sur les tâches des auteurs, face aux références disponibles à la première parution, en décembre 2023. Cela ne décrit pas les versions actuelles [6].
+- HiCache (niveaux plus lents et plus grands sous la mémoire GPU : mémoire de l'hôte, puis stockage externe) : jusqu'à 15,5 × de throughput d'entrée effectif [8]. Cas : DeepSeek-V4-Flash, 4 GPU H200, conversations multi-tours, stockage Mooncake (magasin externe de KV cache). Référence, mémoire GPU seule : 9,4 K contre 145,5 K tokens/s ; cache réussi à près de 98 %. Le throughput d'entrée effectif compte aussi les tokens dont le cache a été réutilisé : ce n'est pas une vitesse de calcul brute.
+- Billet plus ancien : jusqu'à 6 × de throughput et jusqu'à 80 % de délai en moins avant le premier token (TTFT, l'attente avant le premier token) [9].
+- SGLang v0.5.23 : pour les modèles de type DeepSeek (MLA) en parallélisme de contexte au decoding, le cache de préfixes peut résider dans le niveau L3 de HiCache, sur fichiers, le plus lent [2].

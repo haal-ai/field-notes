@@ -1,0 +1,5 @@
+Figure 3. vLLM : blocs paginés et hachage. Exemple illustratif ; le nombre de blocs est illustratif. Trois requêtes partagent le même début. La requête 1 calcule les trois blocs communs B1, B2, B3, puis son bloc propre. Les requêtes 2 et 3 réutilisent B1, B2 et B3, repérés par leur hachage, et ne calculent que leur bloc propre.
+
+Le hachage est une empreinte courte, faite des tokens du bloc et du hachage du bloc précédent : hachage de B2 = tokens de B2 + hachage de B1 [5]. Seuls les blocs pleins sont mis en cache. La fonction de hachage par défaut est sha256 depuis v0.11 [5]. Un sel de cache (cache salt) facultatif, par requête, sépare les caches des utilisateurs [5]. Les blocs ne sont pas contigus en mémoire, comme des pages de système d'exploitation, donc peu de place est perdue [3].
+
+Taille de bloc par défaut : 16 tokens dans les anciens textes ; 64 tokens dans la v0.34.0, avec l'option --block-size 16 pour retrouver l'ancienne valeur [1]. La v0.34.0 ajoute aussi un ordre d'admission tenant compte du cache, optionnel, avec l'option --cache-aware-admission-window [1].

@@ -176,36 +176,32 @@
     },
     {
       "slug": "vllm-and-sglang",
-      "title": "vLLM and SGLang: two ways to stop wasting GPU memory",
-      "section": "Inference",
+      "title": "vLLM et SGLang : deux façons d'économiser la mémoire GPU",
+      "section": "Inférence",
+      "lang": "fr",
       "type": "guide",
-      "summary": "Both servers save GPU memory by managing the KV cache. They take different routes. Checked against vLLM v0.34.0 and SGLang v0.5.23 on 25 Nov 2026.",
-      "author": "Jean Marin",
-      "perspective": "Individual view: independent analysis",
+      "summary": "Les deux serveurs économisent la mémoire GPU en gérant le KV cache, par des voies différentes. Vérifié sur vLLM v0.34.0 et SGLang v0.5.23 le 25 novembre 2026.",
       "published": "2026-11-25",
-      "edited": "2026-11-25",
+      "edited": "2026-11-26",
       "reviewed": "2026-11-25",
       "review_months": 3,
       "approval": "approved-publication",
       "formats": [
         "Article",
-        "Visual explanation"
+        "Explication visuelle"
       ],
-      "visual": {
-        "kind": "svg",
-        "title": "One request, two servers",
-        "svg": "visual.svg",
-        "alt": "alt.md",
-        "caption": "One request passes through the same five steps in vLLM and SGLang. They differ at step 3: vLLM matches hashed cache blocks, SGLang matches a prefix in a radix tree. This is a simplification: both projects now cache shared prefixes, and each keeps adding features. The shared-prompt example is illustrative, not measured."
-      },
       "history": [
         {
           "date": "2026-11-25",
-          "note": "Initial publication. Checked against vLLM v0.34.0 and SGLang v0.5.23 on 2026-11-25."
+          "note": "Publication initiale, d'après vLLM v0.34.0 et SGLang v0.5.23 (25 novembre 2026)."
         },
         {
           "date": "2026-11-25",
-          "note": "Revise: replaced outdated benchmark source with a newer one, and added a second, disagreeing test."
+          "note": "Révision : source de benchmark périmée remplacée par une plus récente, et ajout d'un second test qui n'est pas d'accord avec le premier."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Réécriture en français ; cinq figures ; source de benchmark inchangée."
         }
       ]
     }
