@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 422" role="img" aria-labelledby="fig5-t fig5-d">
+<title id="fig5-t">Check-list défenseur en six points</title>
+<desc id="fig5-d">Six points reliés aux recommandations du FBI. Avant : inventorier et réduire l'exposition ; identité et droits ; secrets. Pendant : limites de débit et alertes sur les API sensibles. Après : journaux et preuves ; signalement à l'autorité compétente.</desc>
+<style>
+.fig5{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db;--f-bad:#8a2d2d;--f-badbg:#f8e6e6}
+@media (prefers-color-scheme:dark){.fig5{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c;--f-bad:#f0a9a9;--f-badbg:#33211f}}
+.fig5 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig5 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig5 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig5 .t{fill:var(--text,var(--f-text))}
+.fig5 .m{fill:var(--muted,var(--f-muted))}
+.fig5 .sm{font-size:12px}
+.fig5 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig5 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig5 .x{fill:var(--f-bad);font-weight:700}
+.fig5 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig5 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig5 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig5 .bad{fill:var(--f-badbg);stroke:var(--f-bad);stroke-width:1}
+.fig5 .sh{fill:var(--accent,var(--f-accent))}
+.fig5 .bar{fill:var(--accent,var(--f-accent))}
+.fig5 .barm{fill:var(--f-line)}
+.fig5 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig5 .sep{stroke:var(--line,var(--f-line));stroke-width:1;stroke-dasharray:4 3;fill:none}
+.fig5 .c{text-anchor:middle}
+</style>
+<g class="fig5">
+<text class="h" x="10" y="18">Check-list défenseur</text><rect class="box" x="6" y="28" width="388" height="152" rx="5"/><text class="a" x="14" y="48">AVANT</text><rect class="sh" x="14" y="56" width="14" height="14" rx="3"/><text class="t" x="38" y="68">Inventorier et réduire l'exposition :</text><text class="t" x="38" y="85">tout ce qui est visible depuis Internet</text><rect class="sh" x="14" y="98" width="14" height="14" rx="3"/><text class="t" x="38" y="110">Identité et droits : moindre privilège,</text><text class="t" x="38" y="127">surveiller les ajouts d'identifiants</text><rect class="sh" x="14" y="140" width="14" height="14" rx="3"/><text class="t" x="38" y="152">Secrets : chercher et renouveler ceux</text><text class="t" x="38" y="169">exposés dans le code et les pipelines</text><rect class="box" x="6" y="188" width="388" height="64" rx="5"/><text class="a" x="14" y="208">PENDANT</text><rect class="sh" x="14" y="216" width="14" height="14" rx="3"/><text class="t" x="38" y="228">Limites de débit et alertes sur les API</text><text class="t" x="38" y="245">sensibles (consultations en série)</text><rect class="box" x="6" y="260" width="388" height="114" rx="5"/><text class="a" x="14" y="280">APRÈS</text><rect class="sh" x="14" y="288" width="14" height="14" rx="3"/><text class="t" x="38" y="300">Journaux et preuves : les garder avant</text><text class="t" x="38" y="317">de retirer un accès non autorisé</text><rect class="sh" x="14" y="330" width="14" height="14" rx="3"/><text class="t" x="38" y="342">Signaler à l'autorité compétente</text><text class="t" x="38" y="359">(États-Unis : FBI, ic3.gov)</text><text class="m sm" x="10" y="394">Recommandations : FBI, FLASH-20261113-001.</text><text class="m sm" x="10" y="410">Références générales : CISA KEV, OWASP Top 10, NIST CSF.</text>
+</g>
+</svg>

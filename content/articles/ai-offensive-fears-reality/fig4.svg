@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 442" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Ce qui change, ce qui reste humain</title>
+<desc id="fig4-d">À gauche, ce qui change : vitesse, échelle, coût, barrière d'entrée, délai de correction. À droite, ce qui reste humain : périmètre, vérification, responsabilité. Selon GTIG, exploits zero-day par mois : moyenne de 8 en 2025, moyenne de 11 en 2026, 22 pour le seul mois d'août 2026. Selon Check Point : 230 constats, 400 791 messages d'agent, aucun gain.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db;--f-bad:#8a2d2d;--f-badbg:#f8e6e6}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c;--f-bad:#f0a9a9;--f-badbg:#33211f}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .sm{font-size:12px}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .x{fill:var(--f-bad);font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .bad{fill:var(--f-badbg);stroke:var(--f-bad);stroke-width:1}
+.fig4 .sh{fill:var(--accent,var(--f-accent))}
+.fig4 .bar{fill:var(--accent,var(--f-accent))}
+.fig4 .barm{fill:var(--f-line)}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .sep{stroke:var(--line,var(--f-line));stroke-width:1;stroke-dasharray:4 3;fill:none}
+.fig4 .c{text-anchor:middle}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="18">Ce qui change, ce qui reste humain</text><rect class="dif" x="6" y="28" width="190" height="156" rx="5"/><rect class="box" x="204" y="28" width="190" height="156" rx="5"/><text class="k" x="14" y="48">CE QUI CHANGE</text><text class="t" x="14" y="70">Vitesse</text><text class="t" x="14" y="90">Échelle</text><text class="t" x="14" y="110">Coût</text><text class="t" x="14" y="130">Barrière d'entrée</text><text class="t" x="14" y="150">Délai de correction (patch)</text><text class="a" x="212" y="48">RESTE HUMAIN</text><text class="t" x="212" y="70">Choisir le périmètre</text><text class="t" x="212" y="90">autorisé</text><text class="t" x="212" y="110">Vérifier qu'un résultat</text><text class="t" x="212" y="130">est réel</text><text class="t" x="212" y="150">Assumer le droit d'agir</text><text class="s" x="10" y="208">Exploits zero-day par mois (GTIG)</text><rect class="bar" x="40" y="272.8" width="60" height="27.2" rx="3"/><text class="s c" x="70" y="266.8">8</text><text class="t sm c" x="70" y="316">moyenne 2025</text><rect class="bar" x="150" y="262.6" width="60" height="37.4" rx="3"/><text class="s c" x="180" y="256.6">11</text><text class="t sm c" x="180" y="316">moyenne 2026</text><rect class="bar" x="260" y="225.2" width="60" height="74.8" rx="3"/><text class="s c" x="290" y="219.2">22</text><text class="t sm c" x="290" y="316">août 2026</text><path class="sep" d="M10 300 H390"/><text class="t sm" x="10" y="336">Divulgations et exploits presque doublés de</text><text class="t sm" x="10" y="352">janvier à août 2026 (GTIG, rapport de novembre 2026).</text><rect class="box" x="6" y="364" width="388" height="62" rx="5"/><text class="s sm" x="14" y="384">Un cas observé (Check Point, une console sur dix) :</text><text class="t sm" x="14" y="402">230 constats, 400 791 messages d'agent,</text><text class="t sm" x="14" y="418">aucun gain observé.</text>
+</g>
+</svg>
