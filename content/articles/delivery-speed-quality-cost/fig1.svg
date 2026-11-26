@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 446" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Chaîne de livraison avec boucle de réparation</title>
+<desc id="fig1-d">Cinq étapes se suivent : demande, préparation, code et tests, intégration et vérifications, acceptation. Si les vérifications échouent, on retourne au code et aux tests : c'est la réparation. Git, CI, environnement et agents servent à chaque tour.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .j{fill:var(--accent-ink,var(--f-ink))}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig1 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .dsh{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2;stroke-dasharray:5 3}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .lk{stroke:var(--news,var(--f-news));stroke-width:1.5;fill:none;stroke-dasharray:5 3}
+.fig1 .rg{stroke:var(--accent,var(--f-accent));stroke-width:6;stroke-linecap:round;fill:none}
+.fig1 .grid{stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .tick{stroke:var(--text,var(--f-text));stroke-width:1.5}
+.fig1 .dot{fill:var(--news,var(--f-news));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig1 .ah{fill:var(--accent,var(--f-accent))}
+.fig1 .ahk{fill:var(--news,var(--f-news))}
+.fig1 .c{text-anchor:middle}.fig1 .e{text-anchor:end}
+</style>
+<defs><marker id="fig1-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0 0L10 5L0 10z"/></marker><marker id="fig1-ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ahk" d="M0 0L10 5L0 10z"/></marker></defs>
+<g class="fig1">
+<text class="h" x="10" y="18">La chaîne de livraison</text>
+<text class="m" x="10" y="40">Écrire le code n'est qu'une étape sur cinq.</text>
+<rect class="box" x="15" y="58" width="255" height="36" rx="5"/>
+<text class="s" x="27" y="81">1. Demande</text>
+<line class="ln" x1="142" y1="94" x2="142" y2="110" marker-end="url(#fig1-ar)"/>
+<rect class="box" x="15" y="110" width="255" height="36" rx="5"/>
+<text class="s" x="27" y="133">2. Préparation</text>
+<line class="ln" x1="142" y1="146" x2="142" y2="162" marker-end="url(#fig1-ar)"/>
+<rect class="bar" x="15" y="162" width="255" height="36" rx="5"/>
+<text class="s" x="27" y="185">3. Code et tests</text>
+<line class="ln" x1="142" y1="198" x2="142" y2="214" marker-end="url(#fig1-ar)"/>
+<rect class="box" x="15" y="214" width="255" height="36" rx="5"/>
+<text class="s" x="27" y="237">4. Intégration et vérifications</text>
+<line class="ln" x1="142" y1="250" x2="142" y2="266" marker-end="url(#fig1-ar)"/>
+<rect class="box" x="15" y="266" width="255" height="36" rx="5"/>
+<text class="s" x="27" y="289">5. Acceptation</text>
+<path class="lk" d="M270 232 H382 V180 H274" marker-end="url(#fig1-ak)"/>
+<text class="k" x="284" y="210">Réparation</text>
+<text class="s" x="10" y="336">Chaque tour consomme encore :</text>
+<rect class="box" x="15" y="346" width="180" height="30" rx="5"/>
+<text class="t" x="27" y="366">Git</text>
+<rect class="box" x="205" y="346" width="180" height="30" rx="5"/>
+<text class="t" x="217" y="366">CI</text>
+<rect class="box" x="15" y="384" width="180" height="30" rx="5"/>
+<text class="t" x="27" y="404">environnement</text>
+<rect class="box" x="205" y="384" width="180" height="30" rx="5"/>
+<text class="t" x="217" y="404">agents</text>
+<text class="m" x="10" y="436">Structure de méthode, non mesurée.</text>
+</g>
+</svg>

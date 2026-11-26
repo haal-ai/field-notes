@@ -422,6 +422,36 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "delivery-speed-quality-cost",
+      "lang": "fr",
+      "title": "Livrer avec des agents de code : vitesse, qualité, coût",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "Résumé de recherches publiques, suivi d'une étude proposée : des agents en parallèle peuvent réussir leurs tests puis échouer une fois combinés, et le gain de temps dépend du découpage. Aucune expérience menée ; coût local contre cloud et coût de la CI non mesurés publiquement.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Une fusion propre qui casse",
+        "svg": "fig2.svg",
+        "alt": "fig2.alt.md",
+        "caption": "Deux branches réussissent leurs tests et fusionnent sans conflit, mais les vérifications sur le résultat combiné échouent. Exemple illustratif inventé pour la page."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [
