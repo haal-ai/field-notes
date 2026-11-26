@@ -32,19 +32,24 @@ class PublicationChecks(unittest.TestCase):
         news=copy.deepcopy(next(a for a in self.data['articles'] if a['type']=='guide'))
         news.update(type='news')
         news['edited']='2027-02-24'
-        self.assertEqual(build.lifecycle(news,date(2027,2,24))['status'],'Current news')
-        self.assertEqual(build.lifecycle(news,date(2027,2,25))['status'],'Outdated news')
+        self.assertEqual(build.lifecycle(news,date(2027,2,24))['status'],'Actualité en cours')
+        self.assertEqual(build.lifecycle(news,date(2027,2,25))['status'],'Actualité ancienne')
 
     def test_publication_and_visual_gates(self):
-        for field,value in [('approval','draft'),('visual',{})]:
-            data=copy.deepcopy(self.data)
-            data['articles'][0][field]=value
-            with self.assertRaises(ValueError):
-                build.validate(data)
+        data=copy.deepcopy(self.data)
+        data['articles'][0]['approval']='draft'
+        with self.assertRaises(ValueError):
+            build.validate(data)
+        # a sections-only article (no article.md, so no figN.svg markers) still needs its single 'visual' entry
+        no_markers={'slug':'no-markers-fixture','title':'T','section':'Inference','type':'guide','summary':'S',
+                    'approval':'approved-publication','formats':['Article'],'history':[],
+                    'sections':[{'title':'T','paragraphs':['P']}],'visual':{}}
+        with self.assertRaises(ValueError):
+            build.validate({'articles':[no_markers]})
 
     def test_review_due_does_not_mean_wrong(self):
         guide=next(a for a in self.data['articles'] if a['type']=='guide')
-        self.assertEqual(build.lifecycle(guide,date(2027,5,25))['status'],'Due for a check')
+        self.assertEqual(build.lifecycle(guide,date(2027,5,25))['status'],'À relire')
 
     def test_all_generated_pages_have_visuals_and_valid_local_links(self):
         pages=list(build.OUT.rglob('*.html'))
