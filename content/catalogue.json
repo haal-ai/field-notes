@@ -369,6 +369,29 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "ai-security-testing",
+      "lang": "fr",
+      "title": "Tester la sécurité d'un agent : des vérifications bornées",
+      "section": "Sécurité",
+      "type": "guide",
+      "summary": "Pour tester un agent, on part de ses capacités réelles, on apparie un essai autorisé et un essai refusé, et on juge avec un observer extérieur au modèle. Cinq figures, une méthode de travail proposée, quatre cadres publics.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [

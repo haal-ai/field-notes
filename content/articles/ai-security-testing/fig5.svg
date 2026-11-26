@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 378" role="img" aria-labelledby="fig5-t fig5-d">
+<title id="fig5-t">Quatre points de vue sur les mêmes preuves : AISVS, AICM version 1, AIUC-1, OSV</title>
+<desc id="fig5-d">AISVS (exigences techniques, 3 niveaux, version 1.01), AICM version 1 (243 objectifs, 18 domaines), AIUC-1 (certification d'agents) et OSV (failles connues des paquets) éclairent une même observation, avec ses limites.</desc>
+<style>
+.fig5{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig5{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig5 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig5 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig5 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig5 .t{fill:var(--text,var(--f-text))}
+.fig5 .m{fill:var(--muted,var(--f-muted))}
+.fig5 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig5 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig5 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig5 .big{fill:var(--accent,var(--f-accent));font-size:28px;font-weight:700}
+.fig5 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig5 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig5 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig5 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig5 .c{text-anchor:middle}
+</style>
+<g class="fig5">
+<text class="h" x="10" y="18">Quatre points de vue, mêmes preuves</text>
+<rect class="box" x="6" y="28" width="190" height="96" rx="5"/>
+<text class="a" x="16" y="48">AISVS</text>
+<text class="s" x="16" y="68">Exigences vérifiables</text>
+<text class="m" x="16" y="85">3 niveaux</text>
+<text class="m" x="16" y="102">version 1.01</text>
+<rect class="box" x="204" y="28" width="190" height="96" rx="5"/>
+<text class="a" x="214" y="48">AICM (version 1)</text>
+<text class="s" x="214" y="68">Objectifs de contrôle</text>
+<text class="m" x="214" y="85">243 objectifs, 18 domaines</text>
+<text class="m" x="214" y="102">questionnaire AI-CAIQ</text>
+<path class="ln" d="M101 124 V148 M299 124 V148 M101 148 H299 M200 148 V160"/>
+<rect class="dif" x="70" y="160" width="260" height="36" rx="5"/>
+<text class="k c" x="200" y="183">Observation et limites</text>
+<path class="ln" d="M101 232 V220 M299 232 V220 M101 220 H299 M200 196 V220"/>
+<rect class="box" x="6" y="232" width="190" height="96" rx="5"/>
+<text class="a" x="16" y="252">AIUC-1</text>
+<text class="s" x="16" y="272">Certification d'agents</text>
+<text class="m" x="16" y="289">périmètre, évaluations,</text>
+<text class="m" x="16" y="306">audit, certification</text>
+<rect class="box" x="204" y="232" width="190" height="96" rx="5"/>
+<text class="a" x="214" y="252">OSV</text>
+<text class="s" x="214" y="272">Failles connues</text>
+<text class="m" x="214" y="289">des paquets : recherche</text>
+<text class="m" x="214" y="306">par paquet et version</text>
+<text class="m" x="10" y="350">Ils ne se remplacent pas.</text>
+<text class="m" x="10" y="367">AICM : la version 1.1 existe, non reprise ici.</text>
+</g>
+</svg>

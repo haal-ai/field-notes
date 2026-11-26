@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 448" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Six étiquettes de résultat, de la preuve la plus forte à la plus faible</title>
+<desc id="fig4-d">Six étiquettes ordonnées : enforcement observé, comportement du modèle observé, source seulement, bloqué par compatibilité, erreur de fixture ou incertain, sans objet.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .big{fill:var(--accent,var(--f-accent));font-size:28px;font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .c{text-anchor:middle}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="18">Six étiquettes, de la plus forte à la plus faible</text>
+<rect class="dif" x="6" y="28" width="388" height="62" rx="5"/>
+<circle class="sh" cx="26" cy="46" r="11"/>
+<text class="i c" x="26" y="51">1</text>
+<text class="s" x="46" y="51">Enforcement observé</text>
+<text class="t" x="46" y="68">Montre : refus + chemin autorisé qui aboutit</text>
+<text class="m" x="46" y="84">Limite : pas tous les cas couverts</text>
+<rect class="box" x="6" y="98" width="388" height="62" rx="5"/>
+<circle class="sh" cx="26" cy="116" r="11"/>
+<text class="i c" x="26" y="121">2</text>
+<text class="s" x="46" y="121">Comportement du modèle observé</text>
+<text class="t" x="46" y="138">Montre : refus avant tout appel d'outil</text>
+<text class="m" x="46" y="154">Limite : pas un blocage système</text>
+<rect class="box" x="6" y="168" width="388" height="62" rx="5"/>
+<circle class="sh" cx="26" cy="186" r="11"/>
+<text class="i c" x="26" y="191">3</text>
+<text class="s" x="46" y="191">Source seulement</text>
+<text class="t" x="46" y="208">Montre : lu dans la doc ou le code</text>
+<text class="m" x="46" y="224">Limite : non exécuté</text>
+<rect class="box" x="6" y="238" width="388" height="62" rx="5"/>
+<circle class="sh" cx="26" cy="256" r="11"/>
+<text class="i c" x="26" y="261">4</text>
+<text class="s" x="46" y="261">Bloqué par compatibilité</text>
+<text class="t" x="46" y="278">Montre : le test n'a pas pu tourner</text>
+<text class="m" x="46" y="294">Limite : aucune conclusion</text>
+<rect class="box" x="6" y="308" width="388" height="62" rx="5"/>
+<circle class="sh" cx="26" cy="326" r="11"/>
+<text class="i c" x="26" y="331">5</text>
+<text class="s" x="46" y="331">Erreur de fixture ou incertain</text>
+<text class="t" x="46" y="348">Montre : le montage est douteux</text>
+<text class="m" x="46" y="364">Limite : à refaire</text>
+<rect class="box" x="6" y="378" width="388" height="62" rx="5"/>
+<circle class="sh" cx="26" cy="396" r="11"/>
+<text class="i c" x="26" y="401">6</text>
+<text class="s" x="46" y="401">Sans objet</text>
+<text class="t" x="46" y="418">Montre : l'exigence ne s'applique pas</text>
+<text class="m" x="46" y="434">Limite : rien à conclure</text>
+</g>
+</svg>
