@@ -59,6 +59,7 @@ La latency est le temps d'attente. Entre deux tokens, c'est le temps d'une étap
 Le throughput est la quantité de travail faite par seconde, par exemple le nombre de tokens produits par seconde pour l'ensemble des requêtes. Il ne dit rien de la latency d'une requête seule.
 
 ## memory bandwidth
+match: memory bandwidth|bandwidth
 La memory bandwidth est le nombre d'octets que la puce peut lire en mémoire par seconde. Quand la lecture limite la vitesse, on dit que le travail est limité par la mémoire.
 
 ## weights
@@ -97,3 +98,57 @@ Un agent est un programme qui lance des outils (recherche, lecture de fichiers, 
 ## FP16, FP8, bf16, int8
 match: FP16|FP8|FP4|bf16|int8|int4
 Formats de nombres de 16, 8 ou 4 bits. FP16, FP8 et bf16 sont des nombres à virgule ; int8 et int4 sont des entiers. Moins il y a de bits, moins il faut de mémoire.
+
+## MCP
+Le MCP (Model Context Protocol) est un protocole ouvert qui relie un agent à des outils et à des sources de données.
+
+## context window
+Le context window est la quantité maximale de tokens qu'un modèle lit en une fois.
+
+## time to first token
+Le time to first token est le délai entre l'envoi d'une requête et l'apparition du premier token de réponse.
+
+## mixture-of-experts
+Un modèle mixture-of-experts n'active qu'une partie de ses paramètres (les « experts ») pour chaque token, au lieu de tous les utiliser.
+
+## open-weight
+Un modèle open-weight a ses weights publiés et téléchargeables, à la différence d'un modèle fermé accessible seulement par une API.
+
+## checkpoint
+Un checkpoint est un fichier, ou un ensemble de fichiers, qui contient les weights d'un modèle à un moment donné de son entraînement.
+
+## skill
+match: skills?
+Une skill est un ensemble d'instructions et de fichiers qu'un agent charge pour une tâche précise.
+
+## hook
+match: hooks?
+Un hook est un petit programme déclenché automatiquement à un moment précis du travail d'un agent.
+
+## harness
+Le harness est le logiciel qui entoure un modèle pour en faire un agent : outils, boucle d'exécution, permissions.
+
+## sandbox
+Une sandbox est un environnement isolé où un agent exécute des commandes sans toucher au reste du système.
+
+## worktree
+match: worktrees?
+Un worktree (Git) est une copie de travail supplémentaire d'un même dépôt, sur une autre branche que la copie principale.
+
+## preview
+Une preview est une version anticipée d'un produit ou d'un modèle, pas encore stable ni complète.
+
+## GA
+match: \bGA\b
+GA (disponibilité générale) désigne une version considérée stable et complète, ouverte à tous les clients, après la preview.
+
+## benchmark
+match: benchmarks?
+Un benchmark est un test standardisé qui mesure la performance d'un modèle ou d'un outil.
+
+## disaggregated serving
+Le disaggregated serving fait tourner le prefill et le decoding (aussi appelé decode) sur des machines séparées.
+
+## forward pass
+match: forward passe?s?
+Un forward pass est un passage complet d'une entrée à travers le modèle.

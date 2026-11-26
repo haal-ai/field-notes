@@ -9,11 +9,17 @@ MONTHS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'ao�
           'septembre', 'octobre', 'novembre', 'décembre']
 MONTHS_SHORT = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août',
                 'sept.', 'oct.', 'nov.', 'déc.']
+WEEKDAYS = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
 
 
 def fr_day(d):
     """25 nov. 2026 (1er déc. 2026 for the first of the month)."""
     return f'{"1er" if d.day == 1 else d.day} {MONTHS_SHORT[d.month - 1]} {d.year}'
+
+
+def fr_full_day(d):
+    """mercredi 26 novembre 2026 (1er for the first of the month)."""
+    return f'{WEEKDAYS[d.weekday()]} {"1er" if d.day == 1 else d.day} {MONTHS[d.month - 1]} {d.year}'
 
 
 def fr_month_year(d):
@@ -36,6 +42,10 @@ SECTION_NOTES = {
 SECTION_NOTE_DEFAULT = 'Notes sur ce sujet : {name}.'
 
 KIND = {'guide': 'GUIDE', 'news': 'ACTUALITÉ', 'experiment': 'EXPÉRIENCE'}
+
+# Market-news page strings
+NEWS_THEMES_FR = ['Sécurité', 'Outils et agents', 'Modèles', 'Business', 'Infrastructure et inférence',
+                  'Cloud et plateformes', 'Recherche et benchmarks']
 
 T = {
     # page shell
@@ -185,6 +195,24 @@ T = {
     'open_catalogue': 'Ouvrir le catalogue',
     'retired_title': 'Page retirée',
     'retired_h1': 'Cette page a été retirée.',
+    # market news
+    'nav_news': 'Nouvelles',
+    'news_title': 'Les nouvelles du marché — les 4 dernières semaines',
+    'news_title_short': 'Nouvelles du marché',
+    'news_intro': 'Des nouvelles partagées par les éditeurs et les équipes, reprises telles que partagées, sans réécriture. Mises à jour tous les jours. Les plus récentes en haut.',
+    'news_chart_caption_prefix': 'Figure : ',
+    'news_search_placeholder': 'Chercher une nouvelle, un éditeur, un thème…',
+    'news_filter_aria': 'Filtrer les nouvelles par thème',
+    'news_empty': 'Aucune nouvelle ne correspond. Essayez un autre thème ou effacez la recherche.',
+    'news_meta_shared': 'Nouvelle partagée',
+    'news_source': 'Source',
+    'news_open_archives': 'Ouvrir les archives des nouvelles (par mois)',
+    'news_home_title': 'Dernières nouvelles',
+    'news_home_more': 'Voir toutes les nouvelles',
+    'news_archive_title': 'Archives des nouvelles',
+    'news_archive_intro': 'Les nouvelles de plus de quatre semaines restent ici, classées par mois, jamais supprimées.',
+    'news_archive_month_empty': 'Aucune nouvelle ce mois-là.',
+    'news_notice': 'Ces nouvelles sont partagées telles que reçues, sans réécriture. Elles passent aux archives après quatre semaines, mais restent lisibles.',
 }
 
 # The strings site.js needs (theme button, counts, search). Sent to the page as JSON.

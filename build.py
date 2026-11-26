@@ -6,20 +6,22 @@ import json
 import re
 import shutil
 import unicodedata
+from collections import OrderedDict
 from datetime import date
 import sys
 from pathlib import Path
 
 import glossary
+import news
 from render import esc, figure_markers, inline_svg, leftovers, markdown
-from strings_fr import (ABOUT, JS_KEYS, KIND, SECTION_NAMES, SECTION_NOTE_DEFAULT, SECTION_NOTES, T, fr_day, fr_month_year)
+from strings_fr import (ABOUT, JS_KEYS, KIND, SECTION_NAMES, SECTION_NOTE_DEFAULT, SECTION_NOTES, T, fr_day, fr_full_day, fr_month_year)
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / '_site'                # public output: the only directory ever deployed
 PREVIEW_OUT = ROOT / '_preview'     # private draft preview: never deployed, git-ignored
 APPROVED = ['approved-publication-test', 'approved-publication']
 PRIVATE_TOKENS = ['teams.microsoft.com', 'sharepoint.com', '/users/', 'file://']
-STATE = {'preview': False, 'out': OUT, 'glossary': False}
+STATE = {'preview': False, 'out': OUT, 'glossary': False, 'news': False}
 
 
 def plus_months(value, months):
@@ -282,6 +284,7 @@ def shell(title, content, prefix='', description=None, sidebar=''):
     preview = STATE['preview']
     gloss_nav = f'<a href="{prefix}glossaire/index.html">{T["nav_glossary"]}</a>' if STATE['glossary'] else ''
     gloss_foot = f'<a href="{prefix}glossaire/index.html">{T["nav_glossary"]}</a>' if STATE['glossary'] else ''
+    news_nav = f'<a href="{prefix}nouvelles/index.html">{T["nav_news"]}</a>' if STATE['news'] else ''
     extra_head = ('<meta name="robots" content="noindex,nofollow"><style>.status-draft{border:1px dashed var(--due);color:var(--due)}'
                   '.undated{color:var(--muted)}.fig-missing{border:1px dashed var(--due);color:var(--due);padding:12px}'
                   '.preview-banner{background:var(--due-bg);color:var(--due);border-bottom:1px solid var(--due);'
@@ -291,7 +294,7 @@ def shell(title, content, prefix='', description=None, sidebar=''):
     return f'''<!doctype html><html lang="{T['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark light">{extra_head}<meta name="description" content="{esc(description)}"><title>{esc(title)} — {T['site_name']}</title>
 <link rel="stylesheet" href="{prefix}assets/styles.css"><link rel="stylesheet" href="{prefix}assets/publication.css"><script type="application/json" id="i18n">{js_strings()}</script><script defer src="{prefix}assets/site.js"></script><noscript><style>.js-only{{display:none!important}}</style></noscript></head>
-<body>{banner}<a class="skip-link" href="#main">{T['skip']}</a><header class="site-header"><a class="brand" href="{prefix}index.html"><span class="brand-mark" aria-hidden="true">h/</span><strong>{T['site_name']}<span class="brand-sub">{T['brand_sub']}</span></strong></a><nav class="header-nav" aria-label="{T['nav_aria']}"><a href="{prefix}index.html">{T['nav_catalogue']}</a>{gloss_nav}<a href="{prefix}archive/index.html">{T['nav_archive']}</a><a href="{prefix}maintenance/index.html">{T['nav_ledger']}</a></nav><button id="theme" type="button" class="theme-control">{T['theme']} : {T['theme_system']}</button></header>{main_open}<main id="main" class="publication-main">{content}<footer><a href="{prefix}index.html" class="footer-brand">{T['footer_brand']}</a><span>{T['footer_tagline']}</span><a href="{prefix}how-these-notes-age/index.html">{T['footer_dates']}</a>{gloss_foot}</footer></main>{main_close}</body></html>'''
+<body>{banner}<a class="skip-link" href="#main">{T['skip']}</a><header class="site-header"><a class="brand" href="{prefix}index.html"><span class="brand-mark" aria-hidden="true">h/</span><strong>{T['site_name']}<span class="brand-sub">{T['brand_sub']}</span></strong></a><nav class="header-nav" aria-label="{T['nav_aria']}"><a href="{prefix}index.html">{T['nav_catalogue']}</a>{news_nav}{gloss_nav}<a href="{prefix}archive/index.html">{T['nav_archive']}</a><a href="{prefix}maintenance/index.html">{T['nav_ledger']}</a></nav><button id="theme" type="button" class="theme-control">{T['theme']} : {T['theme_system']}</button></header>{main_open}<main id="main" class="publication-main">{content}<footer><a href="{prefix}index.html" class="footer-brand">{T['footer_brand']}</a><span>{T['footer_tagline']}</span><a href="{prefix}how-these-notes-age/index.html">{T['footer_dates']}</a>{gloss_foot}</footer></main>{main_close}</body></html>'''
 
 
 def slugify(text):
@@ -364,6 +367,86 @@ def section_page(name, slug, items, today, summary_visual):
         write(path, shell(name, body, '../../' if page_num == 1 else '../../../../', note))
 
 
+def load_news():
+    """Load content/news/news.json; [] if the file is missing. Raises ValueError on any privacy/schema problem."""
+    path = ROOT / 'content/news/news.json'
+    if not path.is_file():
+        return []
+    records = json.loads(path.read_text())
+    problems = news.check(records)
+    if problems:
+        raise ValueError('News: ' + '; '.join(problems))
+    return news.sorted_desc(records)
+
+
+def news_home_block(records, today):
+    """The home page's small 'Dernières nouvelles' block: the 5 newest, a link to the full page."""
+    current = [r for r in records if news.in_window(r, today)]
+    if not current:
+        return ''
+    top5 = current[:5]
+    rows = ''.join(
+        f'<li><span class="news-theme news-theme-{esc(news._slug(r["theme"]))}">{esc(r["theme"])}</span>'
+        f'<a href="{esc(news.source_url(r))}">{esc(r["title_fr"])}</a></li>' for r in top5)
+    return (f'<section id="news-home" class="news-home"><div class="library-topline"><div><h2>{T["news_home_title"]}</h2></div></div>'
+            f'<ul class="news-home-list">{rows}</ul><a href="nouvelles/index.html">{T["news_home_more"]}</a></section>')
+
+
+def news_notice():
+    return f'<div class="article-notice news-notice"><p>{esc(T["news_notice"])}</p><p>{esc(T["notice_all"])}</p></div>'
+
+
+def news_page(records, today):
+    """Write /nouvelles/: figure, theme chips + search, newest-first list grouped by day. Records older than
+    WINDOW_DAYS go to the archive instead and are not written here."""
+    current = [r for r in records if news.in_window(r, today)]
+    weeks_for_text = None
+
+    def _caption_and_text(weeks):
+        nonlocal weeks_for_text
+        weeks_for_text = weeks
+        return news.chart_caption(weeks)
+    svg, caption = news.chart_svg(current, today, _caption_and_text)
+    figure = (f'<figure data-learning-visual="svg">{svg}<figcaption>{esc(caption)}</figcaption>'
+              f'<details class="fig-text" style="margin-top:12px;padding:10px 14px"><summary>{T["figure_text"]}</summary>'
+              f'{news.chart_text_equivalent(weeks_for_text)}</details></figure>')
+    chips = news.theme_chips(current, T['news_filter_aria'])
+    by_day = news.by_day(current)
+    days_html = ''.join(news.day_section(iso_date, fr_full_day(date.fromisoformat(iso_date)), recs)
+                        for iso_date, recs in by_day.items())
+    body = f'''<div class="eyebrow">{T['side_title']}</div><h1>{esc(T['news_title'])}</h1><p class="intro">{esc(T['news_intro'])}</p>
+{figure}{news_notice()}
+<div class="search-row"><label class="search-box js-only"><span class="sr-only">{T['news_search_placeholder']}</span><input id="news-search" type="search" placeholder="{esc(T['news_search_placeholder'])}" autocomplete="off"></label></div>
+{chips}
+<div id="news-list" class="news-list">{days_html}</div><div id="empty" class="empty" hidden>{T['news_empty']}</div>
+<p><a href="archives/index.html">{T['news_open_archives']}</a></p>'''
+    write('nouvelles/index.html', shell(T['news_title_short'], body, '../', T['news_intro']))
+
+
+def news_archive(records, today):
+    """Write /nouvelles/archives/ and one page per month for every record outside the 4-week window, oldest months first link, newest first within a month."""
+    older = [r for r in records if not news.in_window(r, today)]
+    months = OrderedDict()
+    for r in sorted(older, key=lambda r: (r['date'], r['id']), reverse=True):
+        months.setdefault(news.month_key(r['date']), []).append(r)
+    archive_visual = flow(T['archive_visual_title'], T['archive_visual_nodes'], T['archive_visual_details'], T['archive_visual_caption'])
+    index_rows = ''.join(
+        f'<li><a href="{key}/index.html">{esc(news.month_label(key))}</a> <span class="mono muted">{len(recs):02d}</span></li>'
+        for key, recs in months.items())
+    index_body = f'''<p class="breadcrumb"><a href="../../index.html">{T['crumb_catalogue']}</a> › <a href="../index.html">{T['news_title_short']}</a> › {T['news_archive_title']}</p>
+<div class="eyebrow">{T['side_title']}</div><h1>{esc(T['news_archive_title'])}</h1><p class="intro">{esc(T['news_archive_intro'])}</p>{archive_visual}
+<ul class="archive-month-list">{index_rows}</ul>''' if months else f'''<p class="breadcrumb"><a href="../../index.html">{T['crumb_catalogue']}</a> › <a href="../index.html">{T['news_title_short']}</a> › {T['news_archive_title']}</p>
+<div class="eyebrow">{T['side_title']}</div><h1>{esc(T['news_archive_title'])}</h1><p class="intro">{esc(T['news_archive_intro'])}</p>{archive_visual}<p>{esc(T['news_archive_month_empty'])}</p>'''
+    write('nouvelles/archives/index.html', shell(T['news_archive_title'], index_body, '../../'))
+    for key, recs in months.items():
+        by_day_recs = news.by_day(recs)
+        days_html = ''.join(news.day_section(iso_date, fr_full_day(date.fromisoformat(iso_date)), day_recs)
+                            for iso_date, day_recs in by_day_recs.items())
+        crumb = f'<p class="breadcrumb"><a href="../../../index.html">{T["crumb_catalogue"]}</a> › <a href="../../index.html">{T["news_title_short"]}</a> › <a href="../index.html">{T["news_archive_title"]}</a> › {esc(news.month_label(key))}</p>'
+        body = f'{crumb}<div class="eyebrow">{T["side_title"]}</div><h1>{esc(news.month_label(key))}</h1>{archive_visual}{news_notice()}<div class="news-list">{days_html}</div>'
+        write(f'nouvelles/archives/{key}/index.html', shell(news.month_label(key), body, '../../../../'))
+
+
 def write(path, content):
     dest = STATE['out'] / path
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -427,7 +510,11 @@ def build(today=None, preview=False, drafts=()):
     gloss_file = next((Path(d) / 'glossaire.md' for d in drafts if (Path(d) / 'glossaire.md').is_file()), ROOT / 'content/glossaire.md')
     gloss = glossary.parse(gloss_file.read_text()) if gloss_file.is_file() else []
     STATE['glossary'] = bool(gloss)
+    news_records = load_news()
+    STATE['news'] = bool(news_records)
     texts = {a['slug']: article_texts(a) for a in catalogue['articles']}
+    if news_records:
+        texts['__news__'] = [r['title_fr'] + ' ' + r['text_fr'] for r in news_records]
     gloss_problems = check_glossary(gloss, texts) if gloss else []
     if gloss_problems and not preview:
         raise ValueError('Glossary: ' + '; '.join(gloss_problems))
@@ -485,11 +572,15 @@ def build(today=None, preview=False, drafts=()):
 <div id="search-index" hidden>{search_index}</div>
 <div id="empty" class="empty" hidden>{T['empty']}</div><p><a href="archive/index.html">{T['open_archive']}</a></p></section>
 <section id="principles" class="principles"><div class="library-topline"><div><span class="section-number">03 /</span> <h2>{T['principles_title']}</h2></div></div><div class="principle-grid"><div><span class="kind kind-news">{KIND['news']}</span><h3>{T['principle_news_title']}</h3><p>{T['principle_news']}</p></div><div><span class="kind kind-guide">{KIND['guide']}</span><h3>{T['principle_guide_title']}</h3><p>{T['principle_guide']}</p></div><div><span class="kind kind-experiment">{KIND['experiment']}</span><h3>{T['principle_experiment_title']}</h3><p>{T['principle_experiment']}</p></div></div>{summary_visual}</section>
+{news_home_block(news_records, today) if news_records else ''}
 <section id="about" class="about"><div><span class="side-label">{T['about_label']}</span><h2>{T['about_title']}</h2></div><div><p>{T['about_1']}</p><p class="muted">{T['about_2']}</p><p class="muted">{T['about_3']}</p></div></section></section>'''
     write('index.html', shell(T['nav_catalogue'], home, sidebar=sidebar))
     for name, items, n in groups:
         if n:
             section_page(name, slugify(name), items, today, summary_visual)
+    if news_records:
+        news_page(news_records, today)
+        news_archive(news_records, today)
     ledger = []
     for a in articles:
         status = lifecycle(a, today)
@@ -527,6 +618,10 @@ def build(today=None, preview=False, drafts=()):
         write(gone['slug']+'/index.html', shell(T['retired_title'], f'<h1>{T["retired_h1"]}</h1><p>{esc(gone["note"])}</p>'+summary_visual+f'<p><a href="../index.html">{T["open_catalogue"]}</a></p>', '../'))
     if gloss:
         uses = {e['slug']: [(a['slug'], a['title']) for a in articles if any(e['regex'].search(x) for x in texts[a['slug']])] for e in gloss}
+        if news_records:
+            for e in gloss:
+                if any(e['regex'].search(x) for x in texts['__news__']):
+                    uses[e['slug']].append(('nouvelles', T['news_title_short']))
         gloss_visual = flow(T['glossary_visual_title'], T['glossary_visual_nodes'], T['glossary_visual_details'], T['glossary_visual_caption'])
         gloss_body = f'<h1>{T["glossary_title"]}</h1><p class="intro">{T["glossary_intro"]}</p>{gloss_visual}' + glossary.render_entries(gloss, uses, '../')
         write('glossaire/index.html', shell(T['glossary_title'], gloss_body, '../'))

@@ -65,3 +65,26 @@ if(sideBox&&narrow()){sideBox.removeAttribute('open');
   sideBox.addEventListener('click',e=>{if(e.target.closest('a'))sideBox.removeAttribute('open');});}
 function markSection(){document.querySelectorAll('.side-section').forEach(a=>{if(a.getAttribute('href')===location.hash)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});}
 addEventListener('hashchange',markSection);markSection();
+
+// News page: theme chips + search, scoped to #news-list; day headings with no visible cards hide too.
+const newsCards=document.querySelectorAll('#news-list .news-card');
+if(newsCards.length){
+  const cards=[...newsCards];
+  const state={theme:'all',query:''};
+  const setActive=(sel,attr,val)=>document.querySelectorAll(sel).forEach(b=>{const on=b.getAttribute(attr)===val;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});
+  function render(){
+    let n=0;
+    cards.forEach(c=>{
+      const show=(state.theme==='all'||c.dataset.theme===state.theme)&&c.textContent.toLowerCase().includes(state.query);
+      c.hidden=!show;if(show)n++;
+    });
+    document.querySelectorAll('#news-list .news-day').forEach(day=>{day.hidden=!day.querySelector('.news-card:not([hidden])');});
+    $('empty').hidden=n!==0;
+    setActive('.news-chip','data-theme',state.theme);
+  }
+  document.addEventListener('click',e=>{
+    const k=e.target.closest('[data-theme]');if(k&&k.tagName==='BUTTON'){state.theme=k.dataset.theme;render();}
+  });
+  const newsSearch=$('news-search');
+  if(newsSearch)newsSearch.addEventListener('input',e=>{state.query=e.target.value.toLowerCase().trim();render();});
+}
