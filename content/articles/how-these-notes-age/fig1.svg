@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 390" role="img" aria-labelledby="fig1-title fig1-desc" font-family="Inter,ui-sans-serif,system-ui,sans-serif">
+<title id="fig1-title">Les quatre dates d'une page</title>
+<desc id="fig1-desc">Quatre dates distinctes : première publication (ne change jamais), dernière modification (correction ou ajout), dernière relecture (contenu relu), prochaine relecture (date prévue de la prochaine relecture, en pointillé car à venir). Une modification ne remplace pas une relecture.</desc>
+<rect width="390" height="390" fill="var(--bg,#f7f9fa)"/>
+<g stroke="var(--line,#b9cbd2)" stroke-width="1.5">
+<rect x="16" y="12" width="358" height="60" rx="8" fill="var(--surface,#edf2f4)"/>
+<rect x="16" y="102" width="358" height="60" rx="8" fill="var(--surface,#edf2f4)"/>
+<rect x="16" y="192" width="358" height="60" rx="8" fill="var(--surface,#edf2f4)"/>
+<rect x="16" y="282" width="358" height="60" rx="8" fill="var(--raised,#e4ecef)" stroke-dasharray="6 4"/>
+</g>
+<g fill="var(--accent,#146b5c)"><circle cx="46" cy="42" r="15"/><circle cx="46" cy="132" r="15"/><circle cx="46" cy="222" r="15"/><circle cx="46" cy="312" r="15"/></g>
+<g fill="var(--accent-ink,#e6f7f2)" font-size="15" font-weight="700" text-anchor="middle"><text x="46" y="47">1</text><text x="46" y="137">2</text><text x="46" y="227">3</text><text x="46" y="317">4</text></g>
+<g fill="var(--text,#152a34)" font-size="15" font-weight="700"><text x="74" y="38">Première publication</text><text x="74" y="128">Dernière modification</text><text x="74" y="218">Dernière relecture</text><text x="74" y="308">Prochaine relecture</text></g>
+<g fill="var(--muted,#506571)" font-size="13"><text x="74" y="58">Ne change jamais</text><text x="74" y="148">Une correction ou un ajout</text><text x="74" y="238">Page relue</text><text x="74" y="328">Date de la prochaine relecture</text></g>
+<text x="195" y="372" text-anchor="middle" fill="var(--text,#152a34)" font-size="13" font-weight="600">Une modification ne remplace pas une relecture.</text>
+</svg>

@@ -5,62 +5,28 @@
   "articles": [
     {
       "slug": "how-these-notes-age",
-      "title": "How these notes age",
-      "section": "About this library",
+      "title": "Comment vieillissent ces notes",
+      "lang": "fr",
+      "section": "À propos de la bibliothèque",
       "type": "guide",
-      "summary": "Publication, editing, review, and expiry are different events. Here is how to read their dates.",
-      "author": "Jean Marin",
-      "perspective": "HAAL publication",
+      "summary": "Publication, modification, relecture et prochaine relecture sont quatre dates distinctes. Voici comment les lire.",
       "published": "2026-11-25",
-      "edited": "2026-11-25",
+      "edited": "2026-11-26",
       "reviewed": "2026-11-25",
       "review_months": 6,
-      "approval": "approved-publication-test",
+      "approval": "approved-publication",
       "formats": [
         "Article",
-        "Visual explanation"
-      ],
-      "visual": {
-        "kind": "flow",
-        "title": "Three different clocks",
-        "nodes": [
-          "First publication",
-          "Last edit",
-          "Technical review"
-        ],
-        "details": [
-          "News age starts here",
-          "Records a change",
-          "Checks the content"
-        ],
-        "caption": "An edit changes the edit date. Only a technical review changes the review date. Neither resets the age of a news report."
-      },
-      "sections": [
-        {
-          "title": "News has a defined lifetime",
-          "paragraphs": [
-            "News and magazine editions describe information available at a known time. After three calendar months, the site labels them Outdated news and moves them out of the current listing. The archive remains accessible.",
-            "A later edit does not renew that news window. A materially new report gets a new dated entry and links to the earlier one."
-          ]
-        },
-        {
-          "title": "Guides need review",
-          "paragraphs": [
-            "A guide explains knowledge that can remain useful for longer. Its last technical review and next review date are visible. The default proposed review period is six months. Fast-changing instructions use three months.",
-            "Due for a check means the planned check has not been recorded. It does not prove the content is wrong. Known errors require an immediate correction or warning."
-          ]
-        },
-        {
-          "title": "Experiments keep their context",
-          "paragraphs": [
-            "An experiment is a record of one test setup. It keeps the test date, product versions, method, results, and limitations. A dated result does not guarantee the same behavior in a newer release."
-          ]
-        }
+        "Explication visuelle"
       ],
       "history": [
         {
           "date": "2026-11-25",
-          "note": "Initial public test page for the publication process."
+          "note": "Page de test initiale du processus de publication."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Réécriture en français, trois figures ajoutées, étiquette « Actualité ancienne » expliquée."
         }
       ]
     },

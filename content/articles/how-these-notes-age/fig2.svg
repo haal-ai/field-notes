@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 250" role="img" aria-labelledby="fig2-title fig2-desc" font-family="Inter,ui-sans-serif,system-ui,sans-serif">
+<title id="fig2-title">Frise de trois mois d'une actualité</title>
+<desc id="fig2-desc">Jour 0 : publication. Entre 0 et 3 mois : l'actualité est affichée ; une modification éventuelle, vers un mois et demi, ne remet pas l’âge de l’actualité à zéro. À trois mois civils : passage aux archives, page toujours lisible.</desc>
+<defs><pattern id="fig2-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="var(--raised,#e4ecef)"/><rect width="3" height="8" fill="var(--line,#b9cbd2)"/></pattern></defs>
+<rect width="390" height="250" fill="var(--bg,#f7f9fa)"/>
+<text x="159" y="22" text-anchor="middle" fill="var(--text,#152a34)" font-size="13" font-weight="700">Modification</text>
+<text x="159" y="38" text-anchor="middle" fill="var(--muted,#506571)" font-size="12">(ne remet pas l’âge à zéro)</text>
+<path d="M159 46V66" stroke="var(--news,#785413)" stroke-width="2.5"/>
+<rect x="24" y="66" width="270" height="38" fill="var(--accent,#146b5c)"/>
+<rect x="294" y="66" width="72" height="38" fill="url(#fig2-hatch)" stroke="var(--muted,#506571)" stroke-width="1.5"/>
+<text x="62" y="91" fill="var(--accent-ink,#e6f7f2)" font-size="14" font-weight="700">Affichée</text>
+<text x="330" y="91" text-anchor="middle" fill="var(--text,#152a34)" font-size="12" font-weight="700" style="paint-order:stroke" stroke="var(--raised,#e4ecef)" stroke-width="4">Archives</text>
+<path d="M159 66l-9-14h18z" fill="var(--news,#785413)"/>
+<g stroke="var(--text,#152a34)" stroke-width="2"><path d="M24 104v10"/><path d="M114 104v10"/><path d="M204 104v10"/><path d="M294 104v10"/></g>
+<g fill="var(--muted,#506571)" font-size="12" text-anchor="middle"><text x="24" y="130">0</text><text x="114" y="130">1</text><text x="204" y="130">2</text><text x="294" y="130">3</text></g>
+<text x="366" y="130" text-anchor="end" fill="var(--muted,#506571)" font-size="12">mois</text>
+<path d="M24 138v14" stroke="var(--accent,#146b5c)" stroke-width="2.5"/><circle cx="24" cy="156" r="5" fill="var(--accent,#146b5c)"/>
+<text x="24" y="182" fill="var(--text,#152a34)" font-size="13" font-weight="700">Publication</text>
+<path d="M294 138v14" stroke="var(--text,#152a34)" stroke-width="2.5"/><rect x="289" y="151" width="10" height="10" fill="var(--text,#152a34)"/>
+<text x="366" y="182" text-anchor="end" fill="var(--text,#152a34)" font-size="13" font-weight="700">Passage aux archives</text>
+<text x="366" y="198" text-anchor="end" fill="var(--muted,#506571)" font-size="12">3 mois civils ·</text><text x="366" y="213" text-anchor="end" fill="var(--muted,#506571)" font-size="12">page toujours lisible</text>
+<text x="195" y="242" text-anchor="middle" fill="var(--text,#152a34)" font-size="13" font-weight="600">Une modification ne repousse pas l'échéance.</text>
+</svg>
