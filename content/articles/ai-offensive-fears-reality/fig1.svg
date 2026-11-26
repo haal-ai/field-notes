@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 416" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Deux annonces, deux peurs</title>
+<desc id="fig1-d">Deux annonces et la peur qu'elles lancent. InfoQ, octobre 2026, projet REA : des agents pilotent des outils de reverse engineering ; peur : n'importe qui peut lire et refaire un logiciel ; constat : avis personnel, des parties choisies se lisent ; un produit complet n'est pas démontré. FBI, 13 novembre 2026, alerte FLASH : un cadre de pentest piloté par des LLM est utilisé par des acteurs malveillants (FBI), de la cible aux droits privilégiés en moins de 3 heures (citant Microsoft) ; peur : l'IA attaque seule, vite, partout ; constat : mêmes cibles faibles, trafic très bruyant qui peut déclencher des alertes, constats d'éditeurs relayés.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db;--f-bad:#8a2d2d;--f-badbg:#f8e6e6}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c;--f-bad:#f0a9a9;--f-badbg:#33211f}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .sm{font-size:12px}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .x{fill:var(--f-bad);font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .bad{fill:var(--f-badbg);stroke:var(--f-bad);stroke-width:1}
+.fig1 .sh{fill:var(--accent,var(--f-accent))}
+.fig1 .bar{fill:var(--accent,var(--f-accent))}
+.fig1 .barm{fill:var(--f-line)}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .sep{stroke:var(--line,var(--f-line));stroke-width:1;stroke-dasharray:4 3;fill:none}
+.fig1 .c{text-anchor:middle}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="18">Deux annonces, deux peurs</text><rect class="box" x="6" y="30" width="388" height="164" rx="5"/><text class="s" x="14" y="50">InfoQ · octobre 2026 · projet REA</text><text class="t sm" x="14" y="70">Des agents de code pilotent des outils de reverse</text><text class="t sm" x="14" y="86">engineering existants, via MCP.</text><text class="t sm" x="14" y="102">Selon InfoQ : plus de 200 000 étoiles GitHub.</text><text class="t sm" x="14" y="118">Démonstrations ciblées (une fonction, un calcul).</text><text class="x" x="14" y="138">PEUR</text><text class="s sm" x="60" y="138">« N'importe qui peut lire et refaire un logiciel »</text><text class="a" x="14" y="160">CONSTAT</text><text class="t sm" x="86" y="160">Avis : des parties choisies se lisent.</text><text class="t sm" x="86" y="176">Un produit complet n'est pas démontré.</text><rect class="box" x="6" y="202" width="388" height="190" rx="5"/><text class="s" x="14" y="222">FBI · 13 novembre 2026 · alerte FLASH</text><text class="t sm" x="14" y="242">Un cadre de pentest piloté par des LLM est utilisé</text><text class="t sm" x="14" y="258">par des acteurs malveillants (FBI).</text><text class="t sm" x="14" y="274">Cible aux droits privilégiés en moins de 3 heures</text><text class="t sm" x="14" y="290">(citant Microsoft). Plus de 1 600 consoles</text><text class="t sm" x="14" y="306">exposées début novembre.</text><text class="x" x="14" y="326">PEUR</text><text class="s sm" x="60" y="326">« L'IA attaque seule, vite, partout »</text><text class="a" x="14" y="348">CONSTAT</text><text class="t sm" x="86" y="348">Mêmes cibles faibles. Trafic très bruyant :</text><text class="t sm" x="86" y="364">il peut déclencher des alertes.</text><text class="t sm" x="86" y="380">Constats d'éditeurs relayés, non mesurés.</text><text class="m sm" x="10" y="408">Sources : InfoQ ; FBI, FLASH-20261113-001.</text>
+</g>
+</svg>

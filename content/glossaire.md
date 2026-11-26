@@ -469,3 +469,35 @@ Le tool calling est la capacité d'un modèle à demander l'exécution d'un outi
 ## Agent Commander (terme de travail)
 match: Agent Commander
 Agent Commander est l'étiquette que l'auteur donne à une surface organisée autour de plusieurs agents. Ce n'est pas un terme standard. Il ne désigne pas la fonction « Agent Command Center » de Devin.
+
+## reverse engineering
+match: reverse engineering
+Le reverse engineering consiste à étudier un logiciel déjà compilé pour comprendre comment il fonctionne, sans son code source. C'est une pratique ancienne, utilisée en sécurité comme en maintenance.
+
+## decompiler
+match: decompilers?
+Un decompiler transforme un programme compilé en code lisible par un humain. Le résultat est souvent approximatif.
+
+## pentest
+match: pentests?
+Un pentest est un test d'intrusion autorisé. On attaque un système avec l'accord de son propriétaire, dans un périmètre écrit, pour trouver ses failles.
+
+## patch
+match: patch(?:es)?
+Un patch est un correctif publié par l'éditeur pour réparer une faille.
+
+## zero-day
+match: zero-days?
+Une faille zero-day est encore inconnue de l'éditeur : aucun correctif n'existe.
+
+## exploit
+match: exploits?
+Un exploit est un programme ou une méthode qui tire parti d'une faille.
+
+## hardening
+match: hardening
+Le hardening réduit la surface d'attaque d'un système : on désactive, on restreint et on met à jour.
+
+## FLASH
+match: FLASH
+Un FLASH est une alerte courte et rapide publiée par le FBI. Elle donne aux défenseurs des informations utiles sur une menace en cours.

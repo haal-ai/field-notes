@@ -482,6 +482,36 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "ai-offensive-fears-reality",
+      "lang": "fr",
+      "title": "IA offensive : les peurs et la réalité",
+      "section": "Sécurité",
+      "type": "guide",
+      "summary": "L'article ouvre sur les deux annonces qui ont lancé les peurs : le projet REA (InfoQ, octobre 2026) et l'alerte FLASH du FBI (13 novembre 2026). Il sépare ce qui est vrai de ce qui reste humain : l'IA n'invente pas de nouvelle attaque, elle abaisse la barrière d'entrée et accélère. Il finit par une check-list défenseur.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Deux annonces, deux peurs",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "Deux annonces (REA, alerte FLASH du FBI), la peur qu'elles lancent et ce que disent les sources. Situation au 26 novembre 2026."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [
