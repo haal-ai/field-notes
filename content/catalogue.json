@@ -32,36 +32,39 @@
     },
     {
       "slug": "quantization-explained",
-      "title": "Quantization: how a model fits in less memory",
-      "section": "Inference",
+      "title": "Quantization : faire tenir un modèle dans moins de mémoire",
+      "section": "Inférence",
+      "lang": "fr",
       "type": "guide",
-      "summary": "Quantization stores model weights with fewer bits. This guide shows how groups and scales work, what 4-bit really costs, and what is lost.",
-      "author": "Jean Marin",
-      "perspective": "Individual view: independent analysis",
+      "summary": "La quantization range les weights d'un modèle avec moins de bits. Ce guide montre comment fonctionnent groupes et scales, ce que coûte vraiment « 4 bits » et ce qui se perd.",
       "published": "2026-11-25",
-      "edited": "2026-11-25",
+      "edited": "2026-11-26",
       "reviewed": "2026-11-25",
       "review_months": 6,
       "approval": "approved-publication",
       "formats": [
         "Article",
-        "Visual explanation"
+        "Explication visuelle"
       ],
       "visual": {
         "kind": "svg",
-        "title": "One group of weights in three steps, and model size at three precisions",
-        "svg": "visual.svg",
-        "alt": "alt.md",
-        "caption": "Quantization stores each weight as a small integer plus one scale shared by the group. The group shrinks from 128 to 48 bits, and the restored values differ slightly from the originals. At scale, a 7-billion-weight model drops from 14.00 GB (16 bits per weight) to 3.72 GB (4.25 bits per weight). The weights are invented numbers for teaching, not from a real model. The 8-weight group is a stand-in; real groups are larger (for example 64). The same example is worked in the article text."
+        "title": "Un groupe de weights : quantization en trois étapes",
+        "svg": "fig2.svg",
+        "alt": "fig2.alt.md",
+        "caption": "La quantization range chaque weight sous forme d'un petit entier, avec un scale partagée par le groupe. Le groupe passe de 128 à 48 bits, et les valeurs restituées diffèrent légèrement des originales. Les weights sont des nombres inventés pour l'exemple, pas ceux d'un vrai modèle. Le groupe de 8 weights est un exemple : les vrais groupes sont plus grands (par exemple 64)."
       },
       "history": [
         {
           "date": "2026-11-25",
-          "note": "First publication."
+          "note": "Première publication."
         },
         {
           "date": "2026-11-25",
-          "note": "Revise: added a dequantization section. Independent review pass with fixes; fixes applied."
+          "note": "Révision : section sur la dequantization ajoutée. Relecture indépendante : réussie avec corrections, corrections appliquées."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Réécriture en français, figures ajoutées ; corrections de la relecture appliquées."
         }
       ]
     },

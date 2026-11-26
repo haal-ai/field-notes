@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="fr" class="fig" role="img" aria-labelledby="fig3-t fig3-d" viewBox="0 0 360 640" width="360"><title id="fig3-t">Dequantization à la volée : entiers de 4 bits en mémoire, décodés dans le noyau de multiplication juste avant le produit</title><desc id="fig3-d">Les weights sont stockés en entiers de 4 bits avec un scale de 16 bits par groupe. Le noyau les lit, les décode (entier × scale), puis multiplie par les activations. Pour AWQ, le résultat du décodage est un nombre de 16 bits (FP16) et les weights décodés ne sont pas réécrits en mémoire principale. Formules : entier × scale ; avec zero-point : (entier − zero-point) × scale. Exemple Q4_0 : entiers stockés + 8.</desc><style>
+.fig{--c-bg:var(--bg,#f7f9fa);--c-sf:var(--surface,#edf2f4);--c-rs:var(--raised,#e4ecef);--c-tx:var(--text,#152a34);--c-mu:var(--muted,#506571);--c-ln:var(--line,#b9cbd2);--c-ac:var(--accent,#146b5c);--c-ai:var(--accent-ink,#e6f7f2);--c-du:var(--due,#865025);--c-db:var(--due-bg,#faeee1)}
+@media (prefers-color-scheme:dark){.fig{--c-bg:var(--bg,#0e1419);--c-sf:var(--surface,#131d25);--c-rs:var(--raised,#192630);--c-tx:var(--text,#e5ecee);--c-mu:var(--muted,#a0b0ba);--c-ln:var(--line,#30404c);--c-ac:var(--accent,#79d8c4);--c-ai:var(--accent-ink,#0e2421);--c-du:var(--due,#edbd91);--c-db:var(--due-bg,#32271e)}}
+.fig .h{fill:var(--c-tx);font:600 16px system-ui,sans-serif}
+.fig .l{fill:var(--c-tx);font:600 14px system-ui,sans-serif}
+.fig .m{fill:var(--c-mu);font:13px system-ui,sans-serif}
+.fig .t{fill:var(--c-tx);font:13px system-ui,sans-serif}
+.fig .b{font-weight:700}
+.fig .num{fill:var(--c-tx);font:12px ui-monospace,SFMono-Regular,Consolas,monospace}
+.fig .mono{fill:var(--c-tx);font:13px ui-monospace,SFMono-Regular,Consolas,monospace}
+.fig .e{text-anchor:end}.fig .c{text-anchor:middle}
+.fig .hl{fill:var(--c-du);font-weight:700}
+.fig .cell{fill:var(--c-bg);stroke:var(--c-ln);stroke-width:1}
+.fig .q{fill:var(--c-ai);stroke:var(--c-ac)}
+.fig .cell.hi{fill:var(--c-db);stroke:var(--c-du);stroke-width:3}
+.fig .box{fill:var(--c-bg);stroke:var(--c-ln);stroke-width:1.5}
+.fig .panel{fill:var(--c-rs);stroke:var(--c-ln);stroke-width:1}
+.fig .acc{fill:var(--c-ai);stroke:var(--c-ac);stroke-width:2}
+.fig .warn{fill:var(--c-db);stroke:var(--c-du);stroke-width:2}
+.fig .arrow,.fig .axis{stroke:var(--c-mu);stroke-width:1.5;fill:none}
+.fig .dash{stroke:var(--c-du);stroke-width:2;stroke-dasharray:5 4;fill:none}
+.fig .errbar{fill:var(--c-mu)}.fig .errbar.hi{fill:var(--c-du)}
+.fig .err{fill:var(--c-mu);font:12px ui-monospace,SFMono-Regular,Consolas,monospace}
+.fig .err.hi{fill:var(--c-du);font-weight:700}
+.fig .bar{fill:var(--c-mu);stroke:var(--c-tx);stroke-width:1.5}
+.fig .bar.hi2{fill:var(--c-ac);stroke:var(--c-tx);stroke-width:1.5}
+.fig .bit{fill:var(--c-mu);stroke:var(--c-tx);stroke-width:1}
+.fig .bit.ac{fill:var(--c-ac)}
+.fig .sep{stroke:var(--c-ln);stroke-width:1}
+.fig .tick{stroke:var(--c-tx);stroke-width:2}
+</style><rect width="360" height="640" fill="var(--c-sf)"/><text x="10" y="22" class="h">Décoder juste avant la multiplication</text><rect x="10" y="34" width="290" height="66" rx="3" class="box"/><text x="155" y="54" class="l c">1 · Mémoire principale (GPU)</text><text x="155" y="72" class="t c">entiers de 4 bits</text><text x="155" y="90" class="t c">+ scale de 16 bits par groupe</text><path d="M155 100V134" class="arrow"/><path d="M149 127l6 7 6-7" class="arrow"/><text x="167" y="122" class="m">lecture : peu d’octets</text><rect x="10" y="134" width="290" height="190" rx="3" class="acc"/><text x="20" y="156" class="l">2 · Noyau (kernel)</text><text x="20" y="172" class="m">noyau = petit programme du GPU</text><rect x="22" y="180" width="266" height="66" rx="3" class="box"/><text x="155" y="200" class="l c">a. décoder</text><text x="155" y="218" class="t c">entier × scale</text><text x="155" y="236" class="t c">(AWQ : nombre de 16 bits, FP16)</text><path d="M155 246V266" class="arrow"/><path d="M149 259l6 7 6-7" class="arrow"/><rect x="22" y="266" width="266" height="48" rx="3" class="box"/><text x="155" y="286" class="l c">b. multiplier</text><text x="155" y="304" class="t c">par les activations d’entrée</text><path d="M155 324V354" class="arrow"/><path d="M149 347l6 7 6-7" class="arrow"/><rect x="10" y="354" width="290" height="48" rx="3" class="box"/><text x="155" y="374" class="l c">3 · Résultat</text><text x="155" y="392" class="t c">produit matriciel</text><path d="M300 194H330V62H300" class="dash"/><circle cx="330" cy="139" r="11" class="warn"/><path d="M325 134l10 10m0-10l-10 10" class="dash" style="stroke-dasharray:none"/><text x="10" y="434" class="hl">✕ AWQ : weights décodés non réécrits</text><text x="10" y="452" class="hl">en mémoire principale</text><path d="M10 466L350 466" class="axis"/><text x="10" y="488" class="h">Formules</text><text x="10" y="510" class="mono">valeur = entier × scale</text><text x="10" y="528" class="mono">−7 × 0,1143 = −0,8001 → −0,80</text><text x="10" y="550" class="m">avec zero-point :</text><text x="10" y="568" class="mono">(entier − zero-point) × scale</text><text x="10" y="590" class="mono">Q4_1 : entier × scale + minimum</text><rect x="10" y="602" width="340" height="30" rx="3" class="panel"/><text x="180" y="622" class="l c">Q4_0 : entiers stockés + 8, on retranche 8</text></svg>
