@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 414" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Structure d'une skill</title>
+<desc id="fig1-d">Une skill est un dossier avec un fichier SKILL.md obligatoire (frontmatter name de 1 à 64 caractères et description de 1 à 1024, puis instructions en Markdown) et trois dossiers facultatifs : scripts, references, assets.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db;--f-bad:#9b2c2c;--f-badbg:#fbe9e7}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c;--f-bad:#f2a49a;--f-badbg:#3a1f1d}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted));font-size:12px}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .r{fill:var(--f-bad);font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;fill:var(--text,var(--f-text))}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .rb{fill:var(--raised,var(--f-raised));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .bad{fill:var(--f-badbg);stroke:var(--f-bad);stroke-width:2}
+.fig1 .sh{fill:var(--accent,var(--f-accent));stroke:none}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .c{text-anchor:middle}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="20" >Une skill est un dossier</text>
+<rect class="box" x="6" y="32" width="388" height="44" rx="5"/>
+<text class="s" x="16" y="52" style="font-family:ui-monospace,Menlo,monospace">ma-skill/</text>
+<text class="m" x="16" y="69" >son nom = le nom du dossier</text>
+<rect class="dif" x="6" y="86" width="388" height="150" rx="5"/>
+<text class="s" x="16" y="106" style="font-family:ui-monospace,Menlo,monospace">SKILL.md</text>
+<rect class="sh" x="300" y="92" width="86" height="18" rx="9"/><text class="i c" x="343.0" y="105" >obligatoire</text>
+<rect class="rb" x="16" y="116" width="368" height="60" rx="5"/>
+<text class="s" x="26" y="136" >frontmatter</text>
+<text class="t" x="26" y="154" >name : 1 à 64 caractères (a-z, 0-9, tirets)</text>
+<text class="t" x="26" y="170" >description : 1 à 1024 caractères</text>
+<rect class="rb" x="16" y="184" width="368" height="40" rx="5"/>
+<text class="s" x="26" y="209" >instructions en Markdown</text>
+<rect class="box" x="6" y="246" width="388" height="40" rx="5"/>
+<text class="s" x="16" y="271" style="font-family:ui-monospace,Menlo,monospace">scripts/</text>
+<text class="m" x="130" y="271" >code à exécuter</text>
+<rect class="sh" x="300" y="257" width="86" height="18" rx="9"/><text class="i c" x="343.0" y="270" >facultatif</text>
+<rect class="box" x="6" y="294" width="388" height="40" rx="5"/>
+<text class="s" x="16" y="319" style="font-family:ui-monospace,Menlo,monospace">references/</text>
+<text class="m" x="130" y="319" >documents à lire au besoin</text>
+<rect class="sh" x="300" y="305" width="86" height="18" rx="9"/><text class="i c" x="343.0" y="318" >facultatif</text>
+<rect class="box" x="6" y="342" width="388" height="40" rx="5"/>
+<text class="s" x="16" y="367" style="font-family:ui-monospace,Menlo,monospace">assets/</text>
+<text class="m" x="130" y="367" >modèles, images, données</text>
+<rect class="sh" x="300" y="353" width="86" height="18" rx="9"/><text class="i c" x="343.0" y="366" >facultatif</text>
+<text class="m" x="10" y="404" >Source : spécification Agent Skills.</text>
+</g>
+</svg>

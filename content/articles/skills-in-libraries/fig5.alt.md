@@ -1,0 +1,1 @@
+Figure 5. Un paquet apporte du texte de skill et parfois des scripts ; l'agent les suit à chaque session. Avant d'approuver : 1, lire le texte de la skill ; 2, chercher des scripts et le champ allowed-tools (expérimental) ; 3, n'approuver que certaines skills, avec skills: [guide, migrate]. Sources : pnpm, Agent skills ; spécification Agent Skills.

@@ -234,6 +234,36 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "skills-in-libraries",
+      "lang": "fr",
+      "title": "Des skills livrées dans les bibliothèques",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "Des bibliothèques livrent maintenant une skill dans leur paquet, qui suit la version installée. pnpm la trouve dans vos dépendances directes mais ne la lie qu'après votre approval, car une skill guide l'agent à chaque session.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Du paquet à l'agent avec pnpm",
+        "svg": "fig4.svg",
+        "alt": "fig4.alt.md",
+        "caption": "Une skill publiée dans un paquet est trouvée par pnpm, mise en attente, puis liée à l'agent seulement après pnpm approve. Illustratif : le paquet « exemple-lib » est fictif."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [
