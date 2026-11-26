@@ -21,9 +21,9 @@ jobs:
         run: python3 build.py
       - name: Check dates, visuals, links, and approval gates
         run: python3 -m unittest discover -s tests -v
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
         if: github.event_name != 'pull_request'
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         if: github.event_name != 'pull_request'
         with:
           path: _site
@@ -40,4 +40,4 @@ jobs:
     steps:
       - name: Deploy GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
