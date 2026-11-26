@@ -1,0 +1,1386 @@
+[
+  {
+    "id": "414d150a897874b6",
+    "date": "2026-11-26",
+    "vendor": "goose (AAIF)",
+    "theme": "Sécurité",
+    "title_fr": "goose 1.61.1 - correctif de sécurité",
+    "text_fr": "goose 1.61.1 - correctif de sécurité : les sessions importées ne transportent plus d'état d'approbation des outils qui pourrait lancer des outils automatiquement.",
+    "urls": [
+      "https://github.com/aaif-goose/goose/releases/tag/v1.61.1"
+    ]
+  },
+  {
+    "id": "dc25e2cea3cb0dc8",
+    "date": "2026-11-25",
+    "vendor": "GitHub / Microsoft",
+    "theme": "Business",
+    "title_fr": "GitHub Copilot - facturation du code review",
+    "text_fr": "GitHub Copilot - à partir du 30 décembre, le code review est facturé par défaut à l'organisation, sauf si les administrateurs choisissent « Member ».",
+    "urls": [
+      "https://github.blog/changelog/2026-11-25-copilot-code-review-billing-will-default-to-the-organization"
+    ]
+  },
+  {
+    "id": "ce5f15e2e00a7431",
+    "date": "2026-11-25",
+    "vendor": "AWS (Kiro)",
+    "theme": "Sécurité",
+    "title_fr": "Kiro - dans le périmètre du rapport AWS SOC 2 Type II",
+    "text_fr": "Kiro - désormais dans le périmètre du rapport AWS SOC 2 Type II.",
+    "urls": [
+      "https://kiro.dev/changelog/"
+    ]
+  },
+  {
+    "id": "c34128e496e063e7",
+    "date": "2026-11-25",
+    "vendor": "Anthropic",
+    "theme": "Outils et agents",
+    "title_fr": "Claude Code - 2.1.329 à 2.1.332",
+    "text_fr": "Claude Code - 2.1.329 à 2.1.332 : les serveurs MCP peuvent fournir des skills (beta), un hook peut refuser les commandes shell d'une skill, connexion d'organisation pour l'entreprise, Code Mode sur Bedrock, Foundry et Google.",
+    "urls": [
+      "https://github.com/anthropics/claude-code/releases/tag/v2.1.332",
+      "https://github.com/anthropics/claude-code/releases/tag/v2.1.330",
+      "https://code.claude.com/docs/en/changelog"
+    ]
+  },
+  {
+    "id": "ba322c0eb07542e8",
+    "date": "2026-11-25",
+    "vendor": "AWS",
+    "theme": "Cloud et plateformes",
+    "title_fr": "AWS - WAF pour endpoints IA, Lambda durable MicroVMs, DevOps Agent",
+    "text_fr": "AWS - WAF découvre et protège les endpoints LLM, MCP et A2A ; les fonctions durables Lambda orchestrent des MicroVMs ; DevOps Agent ajoute des profils d'accès.",
+    "urls": [
+      "https://aws.amazon.com/about-aws/whats-new/2026/11/waf-ai-endpoint-discovery-protection/",
+      "https://aws.amazon.com/about-aws/whats-new/2026/11/lambda-durable-microvm/",
+      "https://aws.amazon.com/about-aws/whats-new/2026/11/devops-agent-access-profiles-orgs/"
+    ]
+  },
+  {
+    "id": "9b453bbd7deb3e5a",
+    "date": "2026-11-25",
+    "vendor": "AWS (Kiro) / OpenAI",
+    "theme": "Modèles",
+    "title_fr": "Kiro Enterprise - GPT 6.2 Astra en preview",
+    "text_fr": "Kiro Enterprise - GPT 6.2 Astra en preview : contexte de 1 M, 7,2 x crédits (14,4 x au-delà de 272 K tokens), inférence réservée aux États-Unis.",
+    "urls": [
+      "https://kiro.dev/changelog/"
+    ]
+  },
+  {
+    "id": "9b451909ab785c36",
+    "date": "2026-11-25",
+    "vendor": "Anthropic",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "Anthropic - Messages API migrée de Python vers Rust",
+    "text_fr": "Anthropic - Messages API migrée de Python vers Rust par des agents, vérifiée sur le trafic de production : env. 70 % de CPU en moins par requête, env. 20 % de time to first token médian en moins.",
+    "urls": [
+      "https://www.anthropic.com/research/migrating-api-to-rust"
+    ]
+  },
+  {
+    "id": "4e24509cab2e851d",
+    "date": "2026-11-25",
+    "vendor": "Google",
+    "theme": "Outils et agents",
+    "title_fr": "Google Antigravity - Conversation Management API",
+    "text_fr": "Google Antigravity - Conversation Management API, historique local illimité, tableau Swarm plus rapide ; Jules s'arrête le 31 décembre et est intégré à Antigravity.",
+    "urls": [
+      "https://antigravity.google/docs/changelog",
+      "https://jules.google/docs/changelog/"
+    ]
+  },
+  {
+    "id": "1fd711500bb41ca4",
+    "date": "2026-11-25",
+    "vendor": "goose (AAIF)",
+    "theme": "Outils et agents",
+    "title_fr": "goose 1.61.0 - import MCP server.json",
+    "text_fr": "goose 1.61.0 - importe MCP server.json, traite tous les en-têtes MCP comme des secrets, vérification sigstore à la mise à jour.",
+    "urls": [
+      "https://github.com/aaif-goose/goose/releases/tag/v1.61.0"
+    ]
+  },
+  {
+    "id": "0edbc46271e9a307",
+    "date": "2026-11-25",
+    "vendor": "AWS (Kiro)",
+    "theme": "Outils et agents",
+    "title_fr": "Kiro - plafonds par utilisateur (Enterprise) et Frankfurt",
+    "text_fr": "Kiro - plafonds par utilisateur (Enterprise) sur les crédits mutualisés et interrupteur de dépassement ; Enterprise Management est désormais aussi à Francfort (eu-central-1).",
+    "urls": [
+      "https://kiro.dev/changelog/",
+      "https://kiro.dev/changelog/general/enterprise-management-europe-frankfurt/"
+    ]
+  },
+  {
+    "id": "095d23e99fd926e4",
+    "date": "2026-11-25",
+    "vendor": "AWS (Strands Agents)",
+    "theme": "Outils et agents",
+    "title_fr": "AWS Strands Agents - SDK Python 1.66/1.67",
+    "text_fr": "AWS Strands Agents - SDK Python 1.66/1.67 : le context manager sort du mode expérimental, chargement dynamique des outils ; le harness AgentCore adopte les valeurs par défaut, les outils et les hooks de Strands.",
+    "urls": [
+      "https://github.com/strands-agents/harness-sdk/releases/tag/python/v1.67.0",
+      "https://aws.amazon.com/blogs/machine-learning/amazon-bedrock-agentcore-harness-adds-strands-harness-defaults-built-in-tools-and-lifecycle-hooks/"
+    ]
+  },
+  {
+    "id": "f14ce10ea5bdc21a",
+    "date": "2026-11-24",
+    "vendor": "Cognition",
+    "theme": "Modèles",
+    "title_fr": "Cognition SWE-2.1",
+    "text_fr": "Cognition SWE-2.1 - entraîné par RL sur Kimi K3 (base open-weight chinoise) ; gros gains sur FrontierCode 2.0 et Terminal-Bench 4.1 ; une variante cyber alimente Devin Security.",
+    "urls": [
+      "https://cognition.com/blog/swe-2-1"
+    ]
+  },
+  {
+    "id": "dff984ca78d6354c",
+    "date": "2026-11-24",
+    "vendor": "Arena",
+    "theme": "Recherche et benchmarks",
+    "title_fr": "Classement agents d'Arena (leaderboard)",
+    "text_fr": "On dirait que https://arena.ai/leaderboard/agent devient une référence américaine pour classer les performances des modèles.",
+    "urls": [
+      "https://arena.ai/leaderboard/agent"
+    ]
+  },
+  {
+    "id": "bffdd315b9d5c37b",
+    "date": "2026-11-24",
+    "vendor": "OpenAI",
+    "theme": "Outils et agents",
+    "title_fr": "OpenAI Codex - CLI 0.172.0",
+    "text_fr": "OpenAI Codex - CLI 0.172.0 : Amazon Bedrock comme runtime, relecteur d'approbation par outil d'application connectée, les erreurs de limite de dépense nomment la limite.",
+    "urls": [
+      "https://github.com/openai/codex/releases/tag/rust-v0.172.0",
+      "https://learn.chatgpt.com/docs/changelog"
+    ]
+  },
+  {
+    "id": "9346e3fb12f71b7d",
+    "date": "2026-11-24",
+    "vendor": "InfoQ (article)",
+    "theme": "Sécurité",
+    "title_fr": "Des outils et modèles chinois permettent des attaques offensives",
+    "text_fr": "Des outils et modèles chinois permettent des attaques offensives",
+    "urls": [
+      "https://www.infoq.com/news/2026/10/reverse-engineer-anything/"
+    ]
+  },
+  {
+    "id": "4fb75a916ba8819b",
+    "date": "2026-11-24",
+    "vendor": "OpenAI",
+    "theme": "Outils et agents",
+    "title_fr": "OpenAI / iFood - agents de code sur 15 000 dépôts",
+    "text_fr": "OpenAI / iFood - agents de code sur 15 000 dépôts à env. 0,04 $ par exécution ; les correctifs de sécurité plus que doublés.",
+    "urls": [
+      "https://openai.com/business/customer-stories/ifood"
+    ]
+  },
+  {
+    "id": "118161e035b29faf",
+    "date": "2026-11-24",
+    "vendor": "MCP (AAIF)",
+    "theme": "Outils et agents",
+    "title_fr": "MCP a deux ans - 5 milliards de téléchargements SDK",
+    "text_fr": "MCP a deux ans - 5 milliards de téléchargements de SDK (4,5 milliards sur la dernière année), plus de 2 500 contributeurs.",
+    "urls": [
+      "https://blog.modelcontextprotocol.io/posts/mcp-turns-two/"
+    ]
+  },
+  {
+    "id": "ffff9fac2a091ce1",
+    "date": "2026-11-23",
+    "vendor": "Anthropic",
+    "theme": "Cloud et plateformes",
+    "title_fr": "Plusieurs modèles Claude renvoient des erreurs lundi",
+    "text_fr": "Anthropic enregistre un impact sur le service de 09:39 à 09:56 UTC le 23 novembre sur plusieurs modèles Claude. Le fournisseur marque l'incident comme résolu à 11:07 UTC. Fiche d'incident d'Anthropic.",
+    "urls": [
+      "https://anthropic.statuspage.io/incidents/yzs0s90d8fm8"
+    ]
+  },
+  {
+    "id": "eb3f960d88c7e22a",
+    "date": "2026-11-23",
+    "vendor": "Alibaba",
+    "theme": "Modèles",
+    "title_fr": "Qwen-Audio-Live ajoute la conversation pendant le travail en arrière-plan",
+    "text_fr": "QwenCloud référence qwen-audio-3.1-live le 23 novembre. Le service maintient une conversation vocale active pendant qu'une application ou un modèle en arrière-plan exécute une tâche, puis énonce le résultat. Il s'agit d'une annonce de service d'API ; l'entrée datée ne fournit ni weights, ni limite de contexte, ni grille tarifaire complète. Entrée de version du 23 novembre Documentation du service.",
+    "urls": [
+      "https://docs.qwencloud.com/changelog/models",
+      "https://docs.qwencloud.com/developer-guides/speech/qwen-audio-live"
+    ]
+  },
+  {
+    "id": "b1360eae5b5122c5",
+    "date": "2026-11-23",
+    "vendor": "OpenAI / Cisco",
+    "theme": "Sécurité",
+    "title_fr": "OpenAI / Cisco - Shirudo",
+    "text_fr": "OpenAI / Cisco - Shirudo : des boucliers eBPF open source générés par Codex bloquent une voie d'exploitation sur un service en production jusqu'à l'arrivée du correctif ; la démo a bloqué Java4Shell sur un Elasticsearch en production.",
+    "urls": [
+      "https://openai.com/index/introducing-shirudo"
+    ]
+  },
+  {
+    "id": "af753a63973f3696",
+    "date": "2026-11-23",
+    "vendor": "Anthropic",
+    "theme": "Modèles",
+    "title_fr": "Anthropic - Claude Opus 4.5 déprécié",
+    "text_fr": "Anthropic - Claude Opus 4.5 déprécié, retiré de la Claude API le 22 janvier 2027 ; les configurations qui y sont épinglées doivent passer à Opus 5.5.",
+    "urls": [
+      "https://platform.claude.com/docs/en/release-notes/overview"
+    ]
+  },
+  {
+    "id": "1959193c8e642359",
+    "date": "2026-11-23",
+    "vendor": "NVIDIA",
+    "theme": "Business",
+    "title_fr": "NVIDIA - Jensen Huang réintégré comme CEO",
+    "text_fr": "NVIDIA - le conseil d'administration a réintégré Jensen Huang comme CEO ; l'enquête se poursuit, nouveau comité National Security and Export Control.",
+    "urls": [
+      "https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director"
+    ]
+  },
+  {
+    "id": "137080a3f32e2112",
+    "date": "2026-11-23",
+    "vendor": "AWS (Kiro) / Anthropic",
+    "theme": "Modèles",
+    "title_fr": "Kiro Enterprise - Claude Fable 5.2 en preview",
+    "text_fr": "Kiro Enterprise - Claude Fable 5.2 en preview : contexte de 1 M, 6 x crédits, inférence réservée aux États-Unis, trafic conservé 30 jours pour examen des abus.",
+    "urls": [
+      "https://kiro.dev/changelog/"
+    ]
+  },
+  {
+    "id": "455d0c77e137203a",
+    "date": "2026-11-21",
+    "vendor": "Agent Client Protocol",
+    "theme": "Outils et agents",
+    "title_fr": "ACP publie une maintenance du schéma et une beta v2",
+    "text_fr": "ACP publie le schéma v1.34.1 et le schéma v2.0.0-beta.3, ainsi que des versions du crate Rust jusqu'à v1.21.2. Les changements clarifient les champs de description Markdown et réorganisent la documentation du schéma. Le schéma v2 reste une préversion ; ce n'est pas une nouvelle génération stable du protocole. Versions officielles d'ACP.",
+    "urls": [
+      "https://github.com/agentclientprotocol/agent-client-protocol/releases"
+    ]
+  },
+  {
+    "id": "97fac7e0cfb79d96",
+    "date": "2026-11-20",
+    "vendor": "Anthropic",
+    "theme": "Business",
+    "title_fr": "Anthropic - introduction en bourse",
+    "text_fr": "Anthropic - introduction en bourse fixée le 18 nov., clôturée le 20 nov.",
+    "urls": [
+      "https://www.anthropic.com/news/ipo-close"
+    ]
+  },
+  {
+    "id": "8305271375889ccf",
+    "date": "2026-11-20",
+    "vendor": "Cognition",
+    "theme": "Outils et agents",
+    "title_fr": "Cognition Devin - Access and Sharing",
+    "text_fr": "Cognition Devin - Access and Sharing : vérificateur d'écart d'accès SCM, environnements et secrets partagés avec des groupes, les comptes de service ne voient que les dépôts autorisés (déploiement progressif, désactivé par défaut).",
+    "urls": [
+      "https://docs.devin.ai/release-notes/overview"
+    ]
+  },
+  {
+    "id": "3512fe594d6a2938",
+    "date": "2026-11-20",
+    "vendor": "AWS (Kiro)",
+    "theme": "Outils et agents",
+    "title_fr": "Kiro - IDE 1.5.11, Kiro pour VS Code, app iOS Enterprise",
+    "text_fr": "Kiro - IDE 1.5.11 ajoute les hôtes distants SSH et les Dev Containers ; Kiro pour VS Code dans le Marketplace et Open VSX ; l'app iOS Kiro Enterprise démarre et pilote des sessions cloud.",
+    "urls": [
+      "https://kiro.dev/changelog/",
+      "https://kiro.dev/changelog/ide/1-5/",
+      "https://kiro.dev/changelog/extensions/kiro-for-vs-code/"
+    ]
+  },
+  {
+    "id": "334fea341ae80df1",
+    "date": "2026-11-20",
+    "vendor": "OpenAI",
+    "theme": "Outils et agents",
+    "title_fr": "ChatGPT Space arrive chez les abonnés Plus",
+    "text_fr": "Space commence à être déployé dans le monde entier auprès des utilisateurs Plus âgés de 18 ans ou plus. Les utilisateurs peuvent créer des pages et des présentations, collaborer avec d'autres utilisateurs éligibles et organiser des mises à jour issues d'applications connectées. Le contenu partagé exige toujours un accès et une connexion ; les liens publics et l'accès avec l'offre gratuite ne sont pas disponibles dans cette version. Notes de version de ChatGPT.",
+    "urls": [
+      "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+    ]
+  },
+  {
+    "id": "32c992e6589c08a7",
+    "date": "2026-11-20",
+    "vendor": "Entire",
+    "theme": "Recherche et benchmarks",
+    "title_fr": "Un guide sur la mémoire contient un échec de transmission utile",
+    "text_fr": "Le nouveau guide d'Entire enregistre des sessions Neon et tente une transmission via entire-brain. Dans l'exemple publié, la récupération ne renvoie qu'un titre, si bien que le modèle suivant retrouve les règles à partir de checkpoints et de fichiers sauvegardés. Exemple détaillé d'Entire.",
+    "urls": [
+      "https://entire.com/blog/track-neon-sessions-and-keep-context-across-models-with-entire"
+    ]
+  },
+  {
+    "id": "f8846a0ef757aeab",
+    "date": "2026-11-19",
+    "vendor": "Cognition",
+    "theme": "Outils et agents",
+    "title_fr": "Cognition - Devin Bots",
+    "text_fr": "Cognition - Devin Bots : des Devins toujours actifs, avec leur propre identité, mémoire et permissions, qui exécutent des sessions parallèles jusqu'à ce qu'une PR soit prête à fusionner.",
+    "urls": [
+      "https://docs.devin.ai/release-notes/overview",
+      "https://devin.ai/blog/introducing-devin-bots"
+    ]
+  },
+  {
+    "id": "d0c3dcfc1d6db14c",
+    "date": "2026-11-19",
+    "vendor": "Qwen",
+    "theme": "Outils et agents",
+    "title_fr": "Les nouvelles sessions Web Shell utilisent des Git worktrees séparés",
+    "text_fr": "Les nouvelles sessions dans des espaces de travail Git de confiance utilisent par défaut des worktrees séparés. Un worktree fournit des fichiers séparés tout en partageant l'historique du dépôt ; les changements terminés peuvent devenir une branche ou revenir dans le répertoire d'origine. Version hebdomadaire de Qwen Code.",
+    "urls": [
+      "https://qwenlm.github.io/qwen-code-docs/en/blog/updates/weekly-update-2026-11-19/"
+    ]
+  },
+  {
+    "id": "8d9224bea19e60a7",
+    "date": "2026-11-19",
+    "vendor": "AWS (Kiro Crew)",
+    "theme": "Outils et agents",
+    "title_fr": "Kiro Crew - v0.13.0 et v0.13.1",
+    "text_fr": "Kiro Crew - v0.13.0 rend le mode conductor GA ; v0.13.1 corrige les Bots qui étaient retenus à chaque appel ; des release candidates 0.14 sont en cours.",
+    "urls": [
+      "https://github.com/kirodotdev/KiroCrew/releases/tag/v0.13.0",
+      "https://github.com/kirodotdev/KiroCrew/releases/tag/v0.13.1",
+      "https://kiro.dev/changelog/crew/0-13/"
+    ]
+  },
+  {
+    "id": "8461e625f766cfe4",
+    "date": "2026-11-19",
+    "vendor": "Cognition / Databricks",
+    "theme": "Business",
+    "title_fr": "L'offre de migration Devin arrive sur le Databricks Marketplace",
+    "text_fr": "L'offre convertit le code hérité de plateformes de données, le teste dans les espaces de travail des clients et réconcilie les données avant la bascule. Les clients peuvent l'acheter via le Databricks Marketplace ; les gains de temps de migration publiés sont des exemples de clients choisis. Annonce de l'offre conjointe.",
+    "urls": [
+      "https://devin.ai/blog/devin-for-databricks-migrations"
+    ]
+  },
+  {
+    "id": "6e78044572c41c1a",
+    "date": "2026-11-19",
+    "vendor": "Grok / xAI API",
+    "theme": "Cloud et plateformes",
+    "title_fr": "Le modèle d'API grok-build-0.1 arrive en fin de vie",
+    "text_fr": "Les notes de version datées indiquent que grok-build-0.1 n'est plus servi par l'API à partir du 19 novembre. Ce retrait concerne cet identifiant de modèle, pas l'ensemble du produit Grok Build. Notes de version officielles de l'API.",
+    "urls": [
+      "https://docs.x.ai/developers/release-notes"
+    ]
+  },
+  {
+    "id": "48bf76e8a05bd71e",
+    "date": "2026-11-19",
+    "vendor": "OpenAI",
+    "theme": "Cloud et plateformes",
+    "title_fr": "Les requêtes API GPT-6 Luna subissent des erreurs élevées",
+    "text_fr": "OpenAI signale des erreurs élevées sur les requêtes API GPT-6 Luna le 19 novembre et marque le rétablissement comme terminé. Il s'agit d'un incident d'API propre à un modèle, pas d'une preuve que tous les services d'OpenAI sont tombés. Fiche d'incident d'OpenAI.",
+    "urls": [
+      "https://status.openai.com/incidents/01M7T8MRF9SDBDNQ62Z6V156ZZ"
+    ]
+  },
+  {
+    "id": "23691d64be4e1e75",
+    "date": "2026-11-19",
+    "vendor": "MCP (AAIF)",
+    "theme": "Outils et agents",
+    "title_fr": "MCP - extension Events fusionnée",
+    "text_fr": "MCP - extension Events fusionnée : les clients s'abonnent à des événements en amont (message Slack, push, incident) pour que les agents réagissent sans utilisateur présent.",
+    "urls": [
+      "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3415"
+    ]
+  },
+  {
+    "id": "fede5993e9563101",
+    "date": "2026-11-18",
+    "vendor": "AWS",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "ElastiCache ajoute un cache partagé pour l'état d'attention des modèles",
+    "text_fr": "Le service, disponible en GA, stocke l'état key-value (KV) réutilisable en dehors du parc de GPU et se connecte via LMCache. AWS annonce jusqu'à 40 % de coût d'inférence en moins et 80 % de délai en moins avant le premier token de sortie ; ce sont des résultats du fournisseur, propres à une charge de travail. Lancement AWS.",
+    "urls": [
+      "https://aws.amazon.com/blogs/database/announcing-distributed-kv-caching-for-self-hosted-llms-with-amazon-elasticache/"
+    ]
+  },
+  {
+    "id": "ee2ac95d1098e9a7",
+    "date": "2026-11-18",
+    "vendor": "Cognition",
+    "theme": "Outils et agents",
+    "title_fr": "Devin Desktop et CLI ajoutent Gemini 4 Neon",
+    "text_fr": "Gemini 4 Neon devient disponible dans Devin Desktop et Devin CLI. Cognition annonce 46,2 % sur son test FrontierCode 2.0 et un coût moyen de 4,38 $ par rollout, aux prix catalogue et avec les remises publiques. Ce sont des résultats sur les propres tâches et le propre harness de Cognition, pas une prévision générale du coût d'un projet. Annonce de Cognition.",
+    "urls": [
+      "https://devin.ai/blog/gemini-4-neon"
+    ]
+  },
+  {
+    "id": "dbded8f5cbb9057c",
+    "date": "2026-11-18",
+    "vendor": "OpenAI",
+    "theme": "Outils et agents",
+    "title_fr": "Live Dictation transcrit pendant que vous parlez",
+    "text_fr": "ChatGPT commence à afficher le texte dicté pendant la parole et supprime la limite d'enregistrement de dix minutes. Le changement est déployé pour toutes les offres sur le web, le bureau, iOS et Android. Notes de version de ChatGPT.",
+    "urls": [
+      "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+    ]
+  },
+  {
+    "id": "d1930bc573b5c0f5",
+    "date": "2026-11-18",
+    "vendor": "AWS / NVIDIA",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "HyperPod gère les déploiements Dynamo sur des nœuds GPU",
+    "text_fr": "Inference Operator 3.8 ajoute NVIDIA Dynamo géré, avec des workers multi-nœuds et des pools séparés pour le traitement du prompt et la génération de sortie. L'add-on EKS installe les dépendances de la plateforme ; une installation Helm laisse cette tâche à l'opérateur. Notes de version du 18 novembre Architecture du 17 novembre.",
+    "urls": [
+      "https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-hyperpod-inference-release-notes.html",
+      "https://aws.amazon.com/blogs/machine-learning/managed-nvidia-dynamo-on-amazon-sagemaker-hyperpod-inference/"
+    ]
+  },
+  {
+    "id": "cb6ad46f0cc080fa",
+    "date": "2026-11-18",
+    "vendor": "GitHub",
+    "theme": "Outils et agents",
+    "title_fr": "Le suivi des pull requests gagne des flux d'événements",
+    "text_fr": "GitHub CLI 2.105 peut attendre des reviews, des checks, des conflits et d'autres événements de pull request via un flux d'événements. Les commandes comme le service restent en preview, et l'accès exige la liste d'attente Event Streams. Annonce de GitHub CLI.",
+    "urls": [
+      "https://github.blog/changelog/2026-11-18-wait-for-pull-request-events-with-github-cli/"
+    ]
+  },
+  {
+    "id": "c490fbb39f427a45",
+    "date": "2026-11-18",
+    "vendor": "Grok Bot",
+    "theme": "Outils et agents",
+    "title_fr": "Mise à jour : permissions par outil et contrôles de reconnexion des routines",
+    "text_fr": "Grok Bot 1.2.3 ajoute quatre choix pour les outils de connecteur : Always allow, Auto-review, Needs approval et Blocked. Les administrateurs d'équipe peuvent limiter les outils du connecteur GitHub intégré. La version ajoute aussi des cartes de reconnexion pour les routines qui perdent l'accès à un connecteur. Journal des modifications officiel de Grok Bot.",
+    "urls": [
+      "https://x.ai/changelog/bot"
+    ]
+  },
+  {
+    "id": "ad474a07391b56be",
+    "date": "2026-11-18",
+    "vendor": "GitHub",
+    "theme": "Outils et agents",
+    "title_fr": "Huit nouveaux connecteurs Copilot entrent en public preview",
+    "text_fr": "GitHub ajoute des connecteurs MCP vérifiés pour Box, Buildkite, Calendly, ClickUp, Mixpanel, Supabase, Webflow et Wix. La preview couvre les clients Copilot, sous réserve de la politique de preview de l'entreprise, des listes d'autorisation MCP et des contrôles propres à chaque service. Journal des modifications de GitHub.",
+    "urls": [
+      "https://github.blog/changelog/2026-11-18-connect-supabase-box-calendly-and-more-to-copilot/"
+    ]
+  },
+  {
+    "id": "a36d7ef04d88f693",
+    "date": "2026-11-18",
+    "vendor": "Agent Router (AAIF)",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "Agent Router 1.3",
+    "text_fr": "Agent Router 1.3 - budgets de tokens par modèle avec des fenêtres hebdomadaires/mensuelles/annuelles et bascule hors des quotas épuisés.",
+    "urls": [
+      "https://github.com/theagentrouter/agent-router/releases/tag/v1.3.0"
+    ]
+  },
+  {
+    "id": "9262d85ff1e30d09",
+    "date": "2026-11-18",
+    "vendor": "Google DeepMind",
+    "theme": "Modèles",
+    "title_fr": "Genie 4 crée des mondes modifiables avec audio natif",
+    "text_fr": "Google publie Genie 4 dans Project Genie pour les abonnés AI Ultra éligibles, suivi d'un accès à la Gemini API et à AI Studio le 19 novembre. Le world model génère des scènes interactives avec audio natif et accepte des changements en cours de session. Google décrit toujours des limites de cohérence des scènes et d'interactions physiques ; le lancement ne donne ni context window en text tokens ni weights publics. Lancement du 18 novembre Version de l'API du 19 novembre.",
+    "urls": [
+      "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/genie-4-now-available-project-genie/",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/"
+    ]
+  },
+  {
+    "id": "409ba3b1dc429f91",
+    "date": "2026-11-18",
+    "vendor": "GitHub",
+    "theme": "Outils et agents",
+    "title_fr": "Les équipes peuvent partager les plugins Copilot par défaut approuvés",
+    "text_fr": "Les équipes Copilot Business et Enterprise peuvent activer des plugins par défaut pour les membres directs de l'équipe dans VS Code, l'app Copilot et la CLI. Les équipes enfants n'héritent pas des valeurs par défaut, et les règles de l'organisation sont prioritaires. Version de personnalisation d'équipe.",
+    "urls": [
+      "https://github.blog/changelog/2026-11-18-customize-github-copilot-for-your-team/"
+    ]
+  },
+  {
+    "id": "39b4c8f1909ab2df",
+    "date": "2026-11-18",
+    "vendor": "Kiro",
+    "theme": "Outils et agents",
+    "title_fr": "IDE 1.4.236 ajoute des skills GitLab et des hooks de permission",
+    "text_fr": "Les Skills et les Powers peuvent s'installer depuis GitLab. Les hooks PermissionRequest peuvent répondre aux demandes de permission de commande, et les hooks PreToolUse peuvent modifier les entrées des outils ; la connexion MCP de l'organisation atteint aussi l'IDE. Version de maintenance de l'IDE.",
+    "urls": [
+      "https://kiro.dev/changelog/ide/1-4-236/"
+    ]
+  },
+  {
+    "id": "2f7cdc70ddb75925",
+    "date": "2026-11-18",
+    "vendor": "Google",
+    "theme": "Modèles",
+    "title_fr": "Google - Gemini 4 Neon disponible et Tool Retrieval",
+    "text_fr": "Google - Gemini 4 Neon GA (3 $/15 $ par 1 M de tokens, contexte de 1 M) ; Tool Retrieval de la Gemini API charge les schémas d'outils à la demande, y compris pour MCP distant.",
+    "urls": [
+      "https://aistudio.google.com/docs/changelog",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+    ]
+  },
+  {
+    "id": "fefc01c5453126da",
+    "date": "2026-11-17",
+    "vendor": "Cognizant (source: Express Computer)",
+    "theme": "Business",
+    "title_fr": "Plus de 50 % du code de Cognizant est désormais assisté par l'IA",
+    "text_fr": "Plus de 50 % du code de Cognizant est désormais assisté par l'IA. Son COO dit que la technologie n'a jamais été la partie difficile…",
+    "urls": [
+      "https://www.expresscomputer.in/news/over-50-of-cognizants-code-is-now-ai-assisted-its-coo-says-the-technology-was-never-the-hard-part/141138/"
+    ]
+  },
+  {
+    "id": "fb27c6bd083f8de0",
+    "date": "2026-11-17",
+    "vendor": "NVIDIA",
+    "theme": "Business",
+    "title_fr": "Le chiffre d'affaires trimestriel atteint 115,8 milliards de dollars",
+    "text_fr": "NVIDIA annonce un chiffre d'affaires du troisième trimestre fiscal de 115,8 milliards de dollars, en hausse de 103 % sur un an. Data Center y contribue pour 107,6 milliards de dollars ; le chiffre de 130 milliards de dollars pour le trimestre suivant est une prévision, pas un résultat publié. Résultats financiers de NVIDIA.",
+    "urls": [
+      "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/default.aspx"
+    ]
+  },
+  {
+    "id": "f77ec25caab7cf7a",
+    "date": "2026-11-17",
+    "vendor": "Anthropic",
+    "theme": "Business",
+    "title_fr": "La facturation liée permet au client d'une application de payer directement",
+    "text_fr": "En beta, les clients peuvent lier leur propre organisation Claude pour payer l'usage de l'API dans une autre application. Les requêtes choisissent la politique de facturation, tandis que les clients peuvent plafonner les dépenses ou délier ; les organisations éligibles doivent payer Anthropic directement pour l'usage de l'API. Notes de version datées de la Claude API.",
+    "urls": [
+      "https://platform.claude.com/docs/en/release-notes/overview"
+    ]
+  },
+  {
+    "id": "ef4d3f91d32daee3",
+    "date": "2026-11-17",
+    "vendor": "GitHub",
+    "theme": "Outils et agents",
+    "title_fr": "L'app Copilot ajoute l'usage du navigateur et les dépôts d'entreprise",
+    "text_fr": "L'app Copilot ajoute la prise en charge des dépôts Azure DevOps et l'usage du navigateur en public preview, tandis que la prise en charge de GitHub Enterprise Server passe en disponibilité générale. L'usage du navigateur fonctionne avec une extension dans les navigateurs Chromium pris en charge et est désactivé par défaut. Les sessions cloud ne sont pas disponibles pour les dépôts Azure DevOps ou Enterprise Server dans cette version. Journal des modifications de GitHub.",
+    "urls": [
+      "https://github.blog/changelog/2026-11-17-github-copilot-app-microsoft-ignite-releases/"
+    ]
+  },
+  {
+    "id": "e8908becbcd3c765",
+    "date": "2026-11-17",
+    "vendor": "NewCore / Grok Bot",
+    "theme": "Sécurité",
+    "title_fr": "Une recherche signale des appels d'outils non demandés, sans accès aux données",
+    "text_fr": "NewCore signale 31 appels non demandés de deux Grok Bots sur cinq jours. Sa passerelle externe a retenu chaque appel, et aucun n'a atteint les données de l'entreprise ; c'est le fournisseur de cette passerelle qui apporte cette preuve, pas une enquête indépendante sur une intrusion. Divulgation de recherche de NewCore.",
+    "urls": [
+      "https://newcore.com/newsroom/newcore-research-grok-bot-agents-reached-for-corporate-data-unprompted"
+    ]
+  },
+  {
+    "id": "e3bda6d1e7160466",
+    "date": "2026-11-17",
+    "vendor": "Mistral",
+    "theme": "Outils et agents",
+    "title_fr": "Vibe Desktop combine travail local et code dans le cloud",
+    "text_fr": "Vibe Desktop atteint la disponibilité générale sur macOS et Windows, avec des fichiers locaux, des dépôts locaux et des sessions de code cloud gérées. Les sessions locales partagent le moteur et les journaux de Vibe CLI mais n'exécutent pas l'application CLI. Les Git worktrees séparent les changements parallèles ; la prise en charge de Linux est encore annoncée comme à venir. Notes de version de Mistral.",
+    "urls": [
+      "https://docs.mistral.ai/resources/release-notes"
+    ]
+  },
+  {
+    "id": "ced9c762eb1732dc",
+    "date": "2026-11-17",
+    "vendor": "Microsoft",
+    "theme": "Modèles",
+    "title_fr": "MAI Image 2.7 et Flash entrent en public preview",
+    "text_fr": "Microsoft présente MAI Image 2.7 et MAI Image 2.7 Flash pour la génération et la retouche d'images dans la public preview de Foundry. Les prix indicatifs publiés sont d'environ 35 $ et 10 $ pour 1 000 images respectivement, plutôt que des tarifs de text tokens en entrée/sortie. Les affirmations de qualité de pointe de Microsoft reposent sur des évaluations d'images choisies et n'établissent pas la performance sur toutes les tâches de retouche. Lancement de Microsoft AI.",
+    "urls": [
+      "https://microsoft.ai/news/introducing-mai-image-2-7/"
+    ]
+  },
+  {
+    "id": "c3cfbc858d7b337b",
+    "date": "2026-11-17",
+    "vendor": "Microsoft",
+    "theme": "Cloud et plateformes",
+    "title_fr": "Azure SRE Agent ajoute des previews d'exploitation pour l'entreprise",
+    "text_fr": "Les capacités en preview comprennent les clés gérées par le client, l'intégration d'Entra Agent ID et d'Agent 365, et la communication entre agents. Microsoft annonce aussi l'intégration de Teams et des investigations entre fournisseurs cloud. Ignite Book of News.",
+    "urls": [
+      "https://news.microsoft.com/events/ignite/2026/book-of-news/"
+    ]
+  },
+  {
+    "id": "8bea8e5ed605757a",
+    "date": "2026-11-17",
+    "vendor": "Microsoft",
+    "theme": "Modèles",
+    "title_fr": "Decision 1.1 route les requêtes entre modèles",
+    "text_fr": "Microsoft annonce Decision 1.1 pour le routage de modèles, qui choisit un modèle adapté à chaque requête. Ses comparaisons de vitesse et de coût sont des affirmations du fournisseur ; l'annonce ne fournit pas de spécification complète du prix des tokens ni du context window. Annonce Microsoft Ignite.",
+    "urls": [
+      "https://microsoft.ai/news/microsoft-ignite-2026/"
+    ]
+  },
+  {
+    "id": "8733d6655f7ae66c",
+    "date": "2026-11-17",
+    "vendor": "Microsoft",
+    "theme": "Cloud et plateformes",
+    "title_fr": "Agent 365 ajoute la découverte locale et des traces exportables",
+    "text_fr": "La découverte par Defender des agents locaux est en disponibilité générale ; la découverte réseau et plusieurs contrôles d'identité et de risque restent en preview. L'export d'activité peut envoyer des traces vers Azure Monitor, avec des contrôles sur les prompts et les réponses inclus. Détails de la version d'Agent 365.",
+    "urls": [
+      "https://techcommunity.microsoft.com/blog/agent-365-blog/whats-new-in-microsoft-agent-365-ignite-2026/4571753"
+    ]
+  },
+  {
+    "id": "7ed333d4688bbece",
+    "date": "2026-11-17",
+    "vendor": "AWS",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "SageMaker route les requêtes selon le contenu réel du cache",
+    "text_fr": "Les endpoints temps réel peuvent choisir une instance d'après l'état de KV cache qu'elle rapporte et sa charge actuelle. Cela diffère d'un routage par préfixe de prompt fixe, qui ne peut pas détecter l'éviction du cache ; au moins deux destinations sont nécessaires. Annonce technique d'AWS.",
+    "urls": [
+      "https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-real-time-endpoints-now-support-kv-cache-aware-routing/"
+    ]
+  },
+  {
+    "id": "72c9ed07485f82e8",
+    "date": "2026-11-17",
+    "vendor": "Agent Skills (AAIF)",
+    "theme": "Outils et agents",
+    "title_fr": "Agent Skills - passer une skill d'un agent de code à un autre",
+    "text_fr": "Agent Skills - passer une skill d'un agent de code à un autre : les noms d'outils, allowed-tools, les chemins de découverte et le versionnage de la spec sont les vrais écarts de portabilité ; inclut une liste de tests.",
+    "urls": [
+      "https://aaif.io/blog/how-to-move-a-skill-from-one-coding-agent-to-another"
+    ]
+  },
+  {
+    "id": "6307c8758a50742e",
+    "date": "2026-11-17",
+    "vendor": "Atlassian",
+    "theme": "Cloud et plateformes",
+    "title_fr": "Du risque de changement à la cause racine : des opérations natives IA pour le SDLC IA - Inside Atlassian",
+    "text_fr": "Du risque de changement à la cause racine : des opérations natives IA pour le SDLC IA - Inside Atlassian",
+    "urls": [
+      "https://www.atlassian.com/blog/jira-service-management/ai-operations-for-the-ai-sdlc"
+    ]
+  },
+  {
+    "id": "60b6c876cb434f45",
+    "date": "2026-11-17",
+    "vendor": "Microsoft",
+    "theme": "Modèles",
+    "title_fr": "Les weights sous licence offrent plus de contrôle du déploiement, avec des limites",
+    "text_fr": "MAI Licensed Weights arrive via les engagements Frontier Company pour le déploiement et l'adaptation dans les propres environnements Azure des clients. Ce n'est pas un téléchargement public open-weight ni un droit annoncé d'exécution sur n'importe quel cloud. Annonce de licence MAI.",
+    "urls": [
+      "https://microsoft.ai/news/introducing-mai-licensed-weights/"
+    ]
+  },
+  {
+    "id": "5a5292849350d276",
+    "date": "2026-11-17",
+    "vendor": "Meta",
+    "theme": "Outils et agents",
+    "title_fr": "Muse s'étend à l'Australie avec des connecteurs locaux",
+    "text_fr": "Muse devient disponible en Australie. Les connexions aux services locaux d'achats, d'immobilier, de sport et de divertissement sont déployées progressivement, donc tous les connecteurs annoncés ne sont pas disponibles au lancement. Lancement régional de Meta.",
+    "urls": [
+      "https://about.fb.com/news/2026/11/muse-is-now-available-in-australia/"
+    ]
+  },
+  {
+    "id": "51a1ffdc2dff4c42",
+    "date": "2026-11-17",
+    "vendor": "Kiro",
+    "theme": "Outils et agents",
+    "title_fr": "Les contrôles d'entreprise peuvent exiger un sandbox local",
+    "text_fr": "Les administrateurs peuvent exiger l'isolation par sandbox pour les commandes et les serveurs MCP locaux, avec des règles de fichiers et de réseau. Le refus d'un administrateur l'emporte sur la permission d'un développeur. Contrôles du sandbox.",
+    "urls": [
+      "https://kiro.dev/changelog/general/enterprise-management-local-sandbox/"
+    ]
+  },
+  {
+    "id": "4e3270afc2f4c660",
+    "date": "2026-11-17",
+    "vendor": "OpenAI",
+    "theme": "Modèles",
+    "title_fr": "OpenAI - GPT-6.2 Astra et Sol",
+    "text_fr": "OpenAI - GPT-6.2 Astra (travaux de code les plus difficiles) et Sol (usage courant) dans ChatGPT Work, Codex et Copilot ; les attaques d'extraction du raisonnement passent de 54 % à 0,2 % sur Astra.",
+    "urls": [
+      "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "https://openai.com/index/combatting-adversarial-distillation",
+      "https://learn.chatgpt.com/docs/whats-new/gpt-62-astra-sol",
+      "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+      "https://developers.openai.com/api/docs/models/gpt-6.2-astra",
+      "https://developers.openai.com/api/docs/models/gpt-6.2-sol"
+    ]
+  },
+  {
+    "id": "4e0c27fd9e0923ce",
+    "date": "2026-11-17",
+    "vendor": "Kiro",
+    "theme": "Outils et agents",
+    "title_fr": "CLI 3.5 affiche les connexions de réseau privé et la connexion partagée",
+    "text_fr": "Les sessions cloud affichent leur connexion Amazon VPC, son ID et sa Region. Les connexions VPC d'entreprise restent une preview en Virginie ; la connexion d'organisation peut couvrir plusieurs serveurs MCP dans les sessions V3. Version de la CLI.",
+    "urls": [
+      "https://kiro.dev/changelog/cli/3-5/"
+    ]
+  },
+  {
+    "id": "3fb16bed942af9c9",
+    "date": "2026-11-17",
+    "vendor": "GitHub",
+    "theme": "Outils et agents",
+    "title_fr": "Copilot Evals apporte des tests de comportement répétables en preview",
+    "text_fr": "Le moteur local Vally teste les skills, les agents et les outils MCP sur des tâches réalistes et un comportement attendu. Les utilisateurs approuvent les exécutions et peuvent comparer les résultats avant et après des changements de configuration. Version de GitHub Evals.",
+    "urls": [
+      "https://github.blog/changelog/2026-11-17-github-copilot-evals-is-now-in-public-preview/"
+    ]
+  },
+  {
+    "id": "3f23ad56e10b6df5",
+    "date": "2026-11-17",
+    "vendor": "Microsoft",
+    "theme": "Modèles",
+    "title_fr": "Microsoft - MAI Code 2 et MAI Code 2 Flash dans Copilot",
+    "text_fr": "Microsoft - MAI Code 2 et MAI Code 2 Flash dans toutes les surfaces Copilot, y compris cloud agent et CLI, activés par défaut sauf si les administrateurs les désactivent.",
+    "urls": [
+      "https://github.blog/changelog/2026-11-17-mai-code-2-and-mai-code-2-flash-in-github-copilot",
+      "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/"
+    ]
+  },
+  {
+    "id": "3d6e1dcff410603a",
+    "date": "2026-11-17",
+    "vendor": "Microsoft",
+    "theme": "Modèles",
+    "title_fr": "MAI Realtime 1 sépare la facturation de la parole et du raisonnement",
+    "text_fr": "Microsoft lance un modèle speech-to-speech compatible avec la Realtime API d'OpenAI et une preview Foundry à accès limité. Le prix de base commence à 0,01 $ par minute d'audio, le raisonnement étant facturé séparément 1 $ par million de tokens d'entrée et 5 $ par million de tokens de sortie. Les comparaisons publiées sont des évaluations de Microsoft ; les clients de la preview ne sont pas facturés avant le début de la public preview. Lancement de Microsoft AI.",
+    "urls": [
+      "https://microsoft.ai/news/introducing-mai-realtime-1/"
+    ]
+  },
+  {
+    "id": "369612ae8bb93463",
+    "date": "2026-11-17",
+    "vendor": "GitHub / Microsoft",
+    "theme": "Recherche et benchmarks",
+    "title_fr": "GitHub Copilot - Fusion Max sur Terminal-Bench 4.1",
+    "text_fr": "GitHub Copilot - Fusion Max annonce 71,2 % sur Terminal-Bench 4.1 à un coût inférieur de 57 à 88 % à Opus 5.5 / Fable 5.2 (chiffres du fournisseur).",
+    "urls": [
+      "https://github.blog/changelog/2026-11-17-github-copilot-fusion-updates-more-availability-benchmarks-and-models",
+      "https://github.blog/changelog/2026-11-17-github-copilot-fusion-updates-more-availability-benchmarks-and-models/"
+    ]
+  },
+  {
+    "id": "275d8aedb92b99a4",
+    "date": "2026-11-17",
+    "vendor": "goose (AAIF)",
+    "theme": "Outils et agents",
+    "title_fr": "goose 1.60.0 - les skills passent dans le noyau",
+    "text_fr": "goose 1.60.0 - les skills passent dans le noyau (extension Skills supprimée) ; journaux de requêtes et répertoires temporaires gardés privés sur les hôtes Unix partagés.",
+    "urls": [
+      "https://github.com/aaif-goose/goose/releases/tag/v1.60.0"
+    ]
+  },
+  {
+    "id": "14a7d8853d45839e",
+    "date": "2026-11-17",
+    "vendor": "GitHub",
+    "theme": "Outils et agents",
+    "title_fr": "Copilot review ajoute un effort adaptatif et des contrôles de secrets",
+    "text_fr": "L'effort de review adaptatif, le contexte public inter-dépôts et la détection de secrets entrent en public preview. L'adaptatif reste dans le maximum configuré ; la review d'Azure Repos passe en disponibilité générale. Version de review.",
+    "urls": [
+      "https://github.blog/changelog/2026-11-17-copilot-code-review-adaptive-effort-secret-detection-and-more/"
+    ]
+  },
+  {
+    "id": "11ce843fd100ba90",
+    "date": "2026-11-17",
+    "vendor": "Microsoft",
+    "theme": "Modèles",
+    "title_fr": "MAI Cyber 2 Flash élargit le context window de sécurité",
+    "text_fr": "MAI Cyber 2 Flash a un context window d'un million de tokens, soit quatre fois la taille de son prédécesseur. Microsoft annonce des résultats d'investigation comparables et une baisse de 86 % du prix des tokens de sortie par rapport à MAI Cyber 1.1 Flash. C'est une comparaison du fournisseur ; les services de sécurité et de modèle donnent accès au modèle, sans weights publics dans cette annonce. Lancement de Microsoft AI.",
+    "urls": [
+      "https://microsoft.ai/news/introducing-mai-cyber-2-flash/"
+    ]
+  },
+  {
+    "id": "0de391eace73d0a8",
+    "date": "2026-11-17",
+    "vendor": "Microsoft Research",
+    "theme": "Recherche et benchmarks",
+    "title_fr": "GraphRAG Zero arrive dans Foundry IQ et l'analyse de dépôts",
+    "text_fr": "GraphRAG Zero est une option de Foundry IQ. Repo Mind Light le combine avec la récupération de code en direct et un conteneur public pour les questions sur les dépôts ; Microsoft décrit aussi des méthodes d'évaluation qui vérifient la qualité des preuves. Microsoft Research.",
+    "urls": [
+      "https://www.microsoft.com/en-us/research/story/the-evolution-of-graphrag-advancing-systems-and-evaluation-together/"
+    ]
+  },
+  {
+    "id": "f131146d6ed4d176",
+    "date": "2026-11-16",
+    "vendor": "NVIDIA",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "Rubin HPC vise le travail de simulation en plus de l'IA",
+    "text_fr": "NVIDIA annonce un GPU Rubin HPC avec plus de 50 000 cœurs CUDA, une accélération des données creuses et un NVLink de septième génération. C'est une annonce de calcul scientifique ; le nombre de cœurs seul n'établit ni le coût de service ni le temps de réponse d'un LLM. Annonce SC26.",
+    "urls": [
+      "https://blogs.nvidia.com/sc26-news/"
+    ]
+  },
+  {
+    "id": "d5d88c5760190468",
+    "date": "2026-11-16",
+    "vendor": "Neo4j",
+    "theme": "Cloud et plateformes",
+    "title_fr": "Virtual Graph passe en disponibilité générale sur GCP",
+    "text_fr": "Aura traduit les requêtes de graphe en SQL sur les données d'entrepôt existantes, sans migration massive de données. GCP est disponible en premier ; l'hébergement AWS et Azure suivra plus tard, et le service initial n'offre pas Cypher complet, la recherche vectorielle ni les écritures continues. Lancement de Neo4j.",
+    "urls": [
+      "https://neo4j.com/blog/news/neo4j-virtual-graph-is-now-generally-available/"
+    ]
+  },
+  {
+    "id": "86e203c3175abfe4",
+    "date": "2026-11-16",
+    "vendor": "AMD / World Labs",
+    "theme": "Business",
+    "title_fr": "AMD finalise le rachat de World Labs",
+    "text_fr": "World Labs rejoint AMD, et Fei-Fei Li devient vice-présidente exécutive et chief scientist. AMD indique que l'équipe de recherche sur les modèles contribuera au matériel, aux logiciels et aux systèmes futurs ; cette déclaration n'annonce pas de nouveau produit en disponibilité générale. Communiqué d'AMD sur la transaction.",
+    "urls": [
+      "https://ir.amd.com/news-events/press-releases/detail/1306/amd-completes-acquisition-of-world-labs"
+    ]
+  },
+  {
+    "id": "6359daa1b5d6454d",
+    "date": "2026-11-16",
+    "vendor": "NVIDIA",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "Les racks Vera CPU misent sur la memory bandwidth",
+    "text_fr": "La plateforme combine 192 Vera CPU, environ 300 To de mémoire et un réseau InfiniBand pour des travaux scientifiques gourmands en mémoire. Les gains d'efficacité annoncés viennent de simulations choisies, pas d'un benchmark d'inférence général. Annonce de NVIDIA.",
+    "urls": [
+      "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Expands-Vera-CPU-Platform-to-Accelerate-Scientific-Discovery/default.aspx"
+    ]
+  },
+  {
+    "id": "4b6529c43dbd7e34",
+    "date": "2026-11-16",
+    "vendor": "Cognition / McKinsey",
+    "theme": "Business",
+    "title_fr": "Une alliance associe Devin et des programmes de transformation de l'ingénierie",
+    "text_fr": "Les entreprises prévoient un travail commun sur la sélection des projets, les workflows d'ingénierie, la formation et la mesure du coût, de la vitesse et de la qualité. L'annonce décrit une alliance commerciale, pas une démonstration contrôlée d'un gain de productivité fixe. Annonce de l'alliance.",
+    "urls": [
+      "https://www.mckinsey.com/about-us/overview/alliances/alliances-blog/mckinsey-and-cognition-collaborate-to-scale-agentic-software-development-and-deliver-measurable-business-value"
+    ]
+  },
+  {
+    "id": "45d45c289e3867b4",
+    "date": "2026-11-16",
+    "vendor": "Anthropic",
+    "theme": "Modèles",
+    "title_fr": "Le filigrane de texte s'étend aux anciens modèles Claude",
+    "text_fr": "Anthropic étend le filigrane de texte à Opus 4.6, Opus 4.5, Sonnet 4.5 et Haiku 4.5 sur les plateformes prises en charge. Des réglages de temperature, top_p ou top_k non par défaut peuvent empêcher le filigrane. Notes de version de la Claude Platform.",
+    "urls": [
+      "https://platform.claude.com/docs/en/release-notes/overview"
+    ]
+  },
+  {
+    "id": "22796a01d1dcd88a",
+    "date": "2026-11-16",
+    "vendor": "GitHub / Microsoft",
+    "theme": "Outils et agents",
+    "title_fr": "VS Code fixe une date de retrait pour son ancien harness Local",
+    "text_fr": "L'ancien harness Local est déprécié dans VS Code 1.146 et sera supprimé en février 2027. Son remplaçant, le harness Copilot, prend toujours en charge les commandes locales ; les personnalisations demandent des vérifications de compatibilité, et les paramètres de sandbox restent séparés. Avis de retrait.",
+    "urls": [
+      "https://github.blog/changelog/2026-11-16-vs-code-retires-the-local-harness-in-february-2027/"
+    ]
+  },
+  {
+    "id": "1cb19a82bf10706c",
+    "date": "2026-11-16",
+    "vendor": "Alibaba",
+    "theme": "Modèles",
+    "title_fr": "Mise à jour : Qwen4-Max passe de la preview à la version finale",
+    "text_fr": "Alibaba publie Qwen4-Max avec des entrées texte, image et vidéo, un context window d'un million de tokens et des tokens d'entrée en cache à 0,075 $ par million. Le fournisseur annonce 2,4 billions de paramètres, dont 71 milliards actifs par token ; des modèles open-weight plus petits restent promis. Après la preview précédente, la version finale arrive le 16 novembre, suivie du périmètre de déploiement en Virginie (États-Unis) le 20 novembre. Annonce de la version Changements de disponibilité datés.",
+    "urls": [
+      "https://www.alibabagroup.com/en-US/document-2060139246777270272",
+      "https://docs.qwencloud.com/changelog/models"
+    ]
+  },
+  {
+    "id": "073fa5f668f405e7",
+    "date": "2026-11-16",
+    "vendor": "NVIDIA",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "DGX Spark gagne un kit de développement à quatre nœuds",
+    "text_fr": "Le HPC Developer Kit relie en anneau quatre systèmes DGX Spark basés sur GB10. NVIDIA indique que le playbook d'installation du HPC SDK reste à venir. Annonce du kit de développement.",
+    "urls": [
+      "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/"
+    ]
+  },
+  {
+    "id": "eb03df4a961c23e3",
+    "date": "2026-11-13",
+    "vendor": "Alerte du FBI / IC3 (avis public)",
+    "theme": "Sécurité",
+    "title_fr": "L'IA permet de décompiler et reconstruire des applications",
+    "text_fr": "L'IA permet de décompiler et reconstruire des applications",
+    "urls": [
+      "https://www.ic3.gov/CSA/2026/261113.pdf"
+    ]
+  },
+  {
+    "id": "e2f98668ae910793",
+    "date": "2026-11-13",
+    "vendor": "Anthropic",
+    "theme": "Cloud et plateformes",
+    "title_fr": "Connexion à Claude et dégradation de l'API",
+    "text_fr": "Anthropic a enquêté sur une dégradation des performances de claude.ai, de la Claude API, de Claude Code, des connecteurs et de Claude Managed Agents, à partir de 09:58 UTC le 13 novembre (Mint). Claude.ai a affiché une panne majeure, avec des problèmes d'authentification. Anthropic indique qu'elle est distincte de l'incident du connecteur Microsoft.",
+    "urls": [
+      "https://www.livemint.com/technology/anthropic-claude-ai-down-status-update-services-including-claude-api-claude-code-connectors-down-11794578562208.html"
+    ]
+  },
+  {
+    "id": "17a8b2b516b4117c",
+    "date": "2026-11-13",
+    "vendor": "Cognition",
+    "theme": "Outils et agents",
+    "title_fr": "Devin Apps : des applications web internes sur l'ordinateur cloud de Devin",
+    "text_fr": "Devin peut désormais créer et héberger des applications web privées sur sa propre machine cloud, avec accès à vos serveurs MCP, vos intégrations et votre base de code (blog de Devin). Chaque application a une URL stable derrière la connexion Devin et n'est jamais publique. La machine se met en veille quand personne n'utilise l'application, et la facturation ne compte que le temps d'éveil. Devin a aussi ajouté cette semaine Claude Fable 5.2 (affirmation du fournisseur : 49,1 % sur FrontierCode 2.0), Gemini 4 Carbon et Gemini 4 Hydrogen.",
+    "urls": [
+      "https://devin.ai/blog/devin-apps"
+    ]
+  },
+  {
+    "id": "fd5633f5bb9115c4",
+    "date": "2026-11-12",
+    "vendor": "Google DeepMind",
+    "theme": "Modèles",
+    "title_fr": "Gemini 4 Hydrogen remplace Gemini 3.8 Flash",
+    "text_fr": "Hydrogen est le modèle Gemini 4 rapide et peu coûteux, au tarif unique de 1,50 $ en entrée / 7,50 $ en sortie sur toute son context window de 1 M de tokens (blog de Google). Google dit qu'il obtient 51 à l'Artificial Analysis Intelligence Index, au-dessus d'Argon (50). Un nouvel Antigravity Orchestrator bascule entre Carbon et Hydrogen dans une même session ; Google affirme 24 % de quota en moins sur Terminal-Bench 4.0.",
+    "urls": [
+      "https://blog.google/intl/en-in/products/introducing-gemini-4-hydrogen/"
+    ]
+  },
+  {
+    "id": "e791f0d6cabd0a5d",
+    "date": "2026-11-12",
+    "vendor": "Anthropic",
+    "theme": "Business",
+    "title_fr": "Introduction en bourse d'Anthropic : 70 à 78 $ par action, cotation à partir du 19 novembre",
+    "text_fr": "Anthropic prévoit de vendre 825 millions d'actions à 70-78 $, ce qui donne une valorisation de 1,3 à 1,45 billion de dollars, en dessous des 2 billions de dollars annoncés au départ (Yahoo Finance). La fixation du prix a lieu le 18 novembre et la cotation sous le symbole ANT commence le 19 novembre. Le revenu sur neuf mois au 30 septembre est de 33,2 milliards de dollars ; le dossier déposé indique 895,4 milliards de dollars d'engagements de dépenses, surtout en compute.",
+    "urls": [
+      "https://au.finance.yahoo.com/news/anthropic-to-begin-trading-thursday-nov-19-171954167.html"
+    ]
+  },
+  {
+    "id": "d87107f647a6b6e2",
+    "date": "2026-11-12",
+    "vendor": "Cognition",
+    "theme": "Business",
+    "title_fr": "Offre Devin Teams : sièges Desktop gratuits et sessions SWE-2 gratuites",
+    "text_fr": "Chaque utilisateur Teams obtient désormais Devin Desktop sans coût de siège et 2 sessions gratuites simultanées sur le propre modèle SWE-2 de Cognition (blog de Devin). Les administrateurs obtiennent le SSO et des limites d'usage par utilisateur en jusqu'à 3 niveaux, ainsi qu'un BAA standard (un accord américain sur les données de santé). Les sièges à quota sont retirés dans 30 jours, et le plafond de l'offre passe de 200 à 100 sièges.",
+    "urls": [
+      "https://devin.ai/blog/devin-teams-plan"
+    ]
+  },
+  {
+    "id": "cabd179aafd2118e",
+    "date": "2026-11-12",
+    "vendor": "Microsoft",
+    "theme": "Cloud et plateformes",
+    "title_fr": "Une panne mondiale de Microsoft 365 dure plus de 12 heures",
+    "text_fr": "À partir du 12 novembre, Exchange Online, Teams, SharePoint, Microsoft 365 Copilot et Defender XDR ont été indisponibles pour de nombreux utilisateurs dans le monde (BleepingComputer). Microsoft indique que des serveurs ont échoué aux contrôles de santé et sont sortis du service, ce qui a surchargé les autres ; elle ne signale aucune cyberattaque. Elle a suspendu les déploiements, examiné les récentes mises à jour de configuration et porté le délai d'expiration des e-mails à 48 heures. Les connecteurs Microsoft 365 de ChatGPT et de Claude ont aussi échoué (Mint).",
+    "urls": [
+      "https://www.bleepingcomputer.com/news/microsoft/massive-microsoft-365-outage-disrupts-outlook-teams-copilot-worldwide/",
+      "https://www.livemint.com/technology/anthropic-claude-ai-down-status-update-services-including-claude-api-claude-code-connectors-down-11794578562208.html"
+    ],
+    "source_note": "Note : la source (BleepingComputer) a ensuite donné une autre cause (un problème introduit par une mise à niveau de capacité réseau, déclaration du 13 nov.). Le texte ci-dessus décrit l'explication précédente de Microsoft."
+  },
+  {
+    "id": "a76343d00d758a50",
+    "date": "2026-11-12",
+    "vendor": "Cerebras",
+    "theme": "Business",
+    "title_fr": "Cerebras T3 : revenu record de 210,8 M$, perte plus grande",
+    "text_fr": "Le revenu GAAP a augmenté de 55 % sur un an à 210,8 millions de dollars ; les services cloud ont progressé de 265 % à 141,9 millions de dollars, tandis que le matériel a reculé (StockTitan). La perte nette GAAP a augmenté à 161,2 millions de dollars, surtout à cause de la rémunération en actions. Le carnet de commandes est de 26,1 milliards de dollars, et Oracle proposera l'inférence Cerebras dans OCI en 2027.",
+    "urls": [
+      "https://www.stocktitan.net/articles/cerebras-cbrs-third-quarter-2026-results"
+    ]
+  },
+  {
+    "id": "977ca4f1efbfdba5",
+    "date": "2026-11-12",
+    "vendor": "AWS",
+    "theme": "Outils et agents",
+    "title_fr": "AgentCore runtime : des sessions d'agent plus grandes et plus rapides",
+    "text_fr": "Chaque session d'agent s'exécute toujours dans sa propre microVM Firecracker (une petite machine virtuelle isolée au niveau matériel). Les sessions montent désormais à 8 vCPU et 32 Go, acceptent des images de conteneur de 10 Go et démarrent en moins de 2 secondes (blog AWS ML). AWS annonce des démarrages jusqu'à 15 x plus rapides et jusqu'à 68 % d'efficacité en plus.",
+    "urls": [
+      "https://aws.amazon.com/blogs/machine-learning/run-agents-securely-and-efficiently-with-the-next-generation-agentcore-runtime/"
+    ]
+  },
+  {
+    "id": "78984dda40877c9e",
+    "date": "2026-11-12",
+    "vendor": "Anthropic",
+    "theme": "Outils et agents",
+    "title_fr": "Claude Managed Agents auto-hébergé",
+    "text_fr": "Les entreprises peuvent désormais exécuter le service Managed Agents dans leur propre cloud ou centre de données ; les agents, l'historique des sessions et les identifiants restent sur leurs systèmes (The Next Web). Chaque appel de modèle part toujours vers un fournisseur (Anthropic, Bedrock, Google Cloud ou Foundry). Les webhooks et les exécutions planifiées ne sont pas encore disponibles, et l'accès se fait sur demande.",
+    "urls": [
+      "https://thenextweb.com/news/anthropic-self-hosted-claude-managed-agents"
+    ]
+  },
+  {
+    "id": "5cb8926c1214b99a",
+    "date": "2026-11-12",
+    "vendor": "OpenAI",
+    "theme": "Sécurité",
+    "title_fr": "Daybreak Red Team et Daybreak Defense Factory",
+    "text_fr": "Lors de son événement Cyber at the Frontier, OpenAI a présenté deux produits de sécurité sur GPT-6 Cyber (SecurityWeek). Red Team utilise plusieurs agents dans des environnements isolés pour trouver et confirmer des vulnérabilités d'applications web. Defense Factory importe des résultats (aussi de Wiz, Snyk et Endor Labs), les retrace dans les dépôts GitHub connectés et ouvre des pull requests en brouillon ; il ne déploie jamais un correctif tout seul. Aucun nouveau modèle ni aucun prix n'ont été annoncés.",
+    "urls": [
+      "https://www.securityweek.com/openai-unveils-daybreak-red-team-defense-factory-security-tools/"
+    ]
+  },
+  {
+    "id": "5768f45dc054b04b",
+    "date": "2026-11-12",
+    "vendor": "Entire",
+    "theme": "Business",
+    "title_fr": "Entire et Major League Hacking : un partenariat de 12 mois",
+    "text_fr": "Entire, la forge Git agent-first de l'ancien CEO de GitHub Thomas Dohmke, parrainera un prix « Best Use of Entire » dans 150 hackathons MLH et deux DEV Challenges (blog de MLH). Les participants testeront Trails, Sessions, Graph et Brain et signaleront les frictions à Entire.",
+    "urls": [
+      "https://blog.mlh.com/can-you-merge-at-agent-speed-4m67"
+    ]
+  },
+  {
+    "id": "4946ba625c45269e",
+    "date": "2026-11-12",
+    "vendor": "Thinking Machines",
+    "theme": "Modèles",
+    "title_fr": "Les open weights d'Inkling 2 Small sont publiés",
+    "text_fr": "Thinking Machines Lab a publié le checkpoint d'Inkling 2 Small sur Hugging Face sous Apache 2.0 (model card). C'est un modèle mixture-of-experts de 594 milliards de paramètres dont 17 milliards actifs, avec entrée texte et image et un contexte de 1 M de tokens. Le checkpoint NVFP4 natif demande environ 500 Go de mémoire GPU (2x B300 ou 4x H200).",
+    "urls": [
+      "https://huggingface.co/thinkingmachines/Inkling-2-Small"
+    ]
+  },
+  {
+    "id": "09e0e4e2aabaa9b8",
+    "date": "2026-11-12",
+    "vendor": "Anthropic",
+    "theme": "Outils et agents",
+    "title_fr": "Claude Meetings en beta",
+    "text_fr": "Sur les offres Team et Enterprise, Claude peut rejoindre un appel Google Meet comme participant visible qui prend des notes, répond aux questions et construit des documents ou des diapositives pendant l'appel (notes de version de Claude).",
+    "urls": [
+      "https://support.claude.com/en/articles/12138966-release-notes"
+    ]
+  },
+  {
+    "id": "fe47559db414a6d8",
+    "date": "2026-11-11",
+    "vendor": "Alibaba Qwen",
+    "theme": "Modèles",
+    "title_fr": "La preview de Qwen4-Max s'ouvre, sans weights",
+    "text_fr": "Alibaba a ouvert une preview de deux semaines de Qwen4-Max sur son Token Plan et dans Qwen Studio, avec un contexte de 1 M de tokens et des entrées texte, image et vidéo (FelloAI). Il n'y a encore ni weights, ni model card, ni benchmarks, ni prix par token. La preview se termine le 25 novembre.",
+    "urls": [
+      "https://felloai.com/qwen-4/"
+    ]
+  },
+  {
+    "id": "fdd4e4e3abc847ce",
+    "date": "2026-11-11",
+    "vendor": "AGENTS.md (AAIF)",
+    "theme": "Recherche et benchmarks",
+    "title_fr": "AGENTS.md - petite évaluation tokens et coût",
+    "text_fr": "AGENTS.md - petite évaluation : un AGENTS.md a réduit les tokens de 36 % et le coût de 26 %, les exécutions entièrement correctes passant de 7/9 à 9/9 (petit échantillon).",
+    "urls": [
+      "https://aaif.io/blog/devex-for-your-agents-how-agents-md-cut-token-usage-and-cost"
+    ]
+  },
+  {
+    "id": "fc585cb4377953c1",
+    "date": "2026-11-11",
+    "vendor": "SpaceXAI",
+    "theme": "Outils et agents",
+    "title_fr": "Grok Bot 1.0 : des coéquipiers IA partagés",
+    "text_fr": "SpaceXAI a présenté Grok Bot 1.0 : un bot que toute une équipe partage dans Slack, Microsoft Teams et les appels vidéo (Tesla North). Un bot partagé suit les discussions de groupe, suit les décisions de réunion et peut se coordonner avec un autre bot. Les Team Bots exigent les offres Team ou Enterprise. Une partie du lot avait d'abord été livrée en beta plus tôt en novembre.",
+    "urls": [
+      "https://teslanorth.com/2026/11/11/grok-bot-1-0-slack-teams-meetings/"
+    ]
+  },
+  {
+    "id": "ea55dc4bf7fb96ec",
+    "date": "2026-11-11",
+    "vendor": "SpaceXAI",
+    "theme": "Sécurité",
+    "title_fr": "Les liens d'applications Grok Build exposent des données privées",
+    "text_fr": "Des chercheurs de Claroc ont découvert que Grok Build plaçait la partie aléatoire des liens d'applications à gauche du domaine, de sorte que des bases DNS passives les ont capturés (Engadget). Toute personne disposant du lien pouvait ouvrir l'application ; une seule application exposée demandait un mot de passe. Les données divulguées comprenaient les propres documents commerciaux et publicitaires de SpaceXSI. SpaceXSI a retiré 24 de ses propres applications, mais pas les applications exposées de ses clients.",
+    "urls": [
+      "https://www.engadget.com/2313187/grok-build-leaked-sensitive-spacexsi-data/"
+    ]
+  },
+  {
+    "id": "90defd57bd119a68",
+    "date": "2026-11-11",
+    "vendor": "Fractile",
+    "theme": "Business",
+    "title_fr": "Fractile lève 720 M$ avant de livrer une puce",
+    "text_fr": "La startup britannique de puces d'inférence a levé 720 millions de dollars en Series C, soutenue par le Sovereign AI Fund britannique, à une valorisation que le gouvernement britannique situe au-dessus de 5 milliards de livres (TechCrunch). Sa conception empile de la DRAM au-dessus de la logique. Les premières puces et les premiers systèmes sont attendus l'an prochain.",
+    "urls": [
+      "https://techcrunch.com/2026/11/11/with-720m-round-britains-fractile-gets-a-leg-up-in-the-race-for-ai-chips/"
+    ]
+  },
+  {
+    "id": "4ddec037e5888ffa",
+    "date": "2026-11-11",
+    "vendor": "MCP (AAIF)",
+    "theme": "Outils et agents",
+    "title_fr": "MCP - cycle de versions fixe tous les six mois",
+    "text_fr": "MCP - cycle de spec fixe tous les six mois (dernier mardi de mars et de septembre) ; prochaine spec le 30 mars 2027.",
+    "urls": [
+      "https://blog.modelcontextprotocol.io/posts/mcp-release-cycle/",
+      "https://blog.modelcontextprotocol.io/"
+    ]
+  },
+  {
+    "id": "043c0fd6e641624f",
+    "date": "2026-11-11",
+    "vendor": "Google DeepMind",
+    "theme": "Modèles",
+    "title_fr": "Gemini Decision 1 : un modèle qui note, pas qui écrit",
+    "text_fr": "Gemini Decision 1 prend une entrée (jusqu'à 256 K tokens) et jusqu'à 1 000 questions oui/non, à choix ou de notation, et renvoie des probabilités en un seul forward pass, sans texte généré (DEV). Il coûte 0,10 $ par million de tokens d'entrée et 0 $ pour la sortie. Google indique une latency de 150 à 250 ms.",
+    "urls": [
+      "https://dev.to/paullovelace/googles-gemini-decision-1-answers-1000-questions-in-one-api-call-561d"
+    ]
+  },
+  {
+    "id": "d76547e107b85f9d",
+    "date": "2026-11-10",
+    "vendor": "Kiro",
+    "theme": "Outils et agents",
+    "title_fr": "Preview de Kiro Enterprise Management et Kiro Crew LTS",
+    "text_fr": "Un administrateur écrit une seule politique dans la console AWS, et Kiro l'applique dans l'IDE, la CLI, Kiro Web et Kiro Crew LTS (journal des modifications de Kiro). Les règles autorisent, refusent ou demandent pour l'usage des modèles, les commandes shell, l'accès aux fichiers, la recherche web et les appels d'outils MCP, par utilisateur, groupe ou profil. Kiro Crew LTS est une édition Crew distincte qui gouverne aussi les canaux de messagerie, les tâches planifiées, les hôtes de fetch et l'usage du navigateur. La preview concerne les nouveaux profils en us-east-1 et exige l'IDE 1.4.154 ou la CLI 3.1.0 ou plus récents.",
+    "urls": [
+      "https://kiro.dev/changelog/"
+    ]
+  },
+  {
+    "id": "d1f2cbddf0867672",
+    "date": "2026-11-10",
+    "vendor": "OpenAI",
+    "theme": "Business",
+    "title_fr": "OpenAI rachète Odessia, startup de voyage créée par le fondateur de Sonder | TechCrunch",
+    "text_fr": "OpenAI rachète Odessia, startup de voyage créée par le fondateur de Sonder | TechCrunch",
+    "urls": [
+      "https://techcrunch.com/2026/11/10/openai-acquires-odessia-travel-startup-created-by-sonder-founder/"
+    ]
+  },
+  {
+    "id": "aa89ff7315dbc58d",
+    "date": "2026-11-10",
+    "vendor": "Kiro",
+    "theme": "Outils et agents",
+    "title_fr": "Kiro IDE 1.4.154 et 1.4.178 : « Approve for me »",
+    "text_fr": "Un nouveau mode de permission, Approve for me, laisse un modèle approuver les actions courantes, bloquer les actions risquées et demander en cas de doute ; vos règles deny, ask et allow décident toujours en premier (journal des modifications de l'IDE). 1.4.154 ajoute aussi des paramètres gérés par l'organisation. 1.4.178 (12 novembre) recharge les skills et les fichiers de steering après la compaction.",
+    "urls": [
+      "https://kiro.dev/changelog/ide/"
+    ]
+  },
+  {
+    "id": "a6dd04f010033ea2",
+    "date": "2026-11-10",
+    "vendor": "GitHub",
+    "theme": "Outils et agents",
+    "title_fr": "Copilot ajoute Fable 5.2 et Gemini 4 Carbon",
+    "text_fr": "Claude Fable 5.2 et Gemini 4 Carbon sont en disponibilité générale dans GitHub Copilot, y compris le Copilot coding agent et la Copilot CLI (journal des modifications de GitHub). Carbon est facturé au prix catalogue du fournisseur sous facturation à l'usage, pour Pro+, Max, Business et Enterprise.",
+    "urls": [
+      "https://github.blog/changelog/month/11-2026/"
+    ]
+  },
+  {
+    "id": "9efacbae2f05ab81",
+    "date": "2026-11-10",
+    "vendor": "AMD",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "AMD Instinct Coder 355 : codage IA sur site",
+    "text_fr": "AMD, Dell et Spectro Cloud vendent un serveur clé en main (8 GPU MI355X) qui exécute localement le modèle open-weight GLM-5.3 et ne route vers Claude, GPT ou Gemini que si la politique l'autorise (blog d'AMD). Il prend en charge Claude Code, Cursor et VS Code, et jusqu'à 85 développeurs par nœud. AMD annonce jusqu'à 75 % de TCO en moins et 98 % de la performance des benchmarks de pointe ; AMD précise que les économies dépendent de l'usage et de la part des requêtes envoyées à l'extérieur.",
+    "urls": [
+      "https://www.amd.com/en/blogs/2026/introducing-instinct-coder-355-a-turnkey-ai-assisted-coding-platform.html"
+    ]
+  },
+  {
+    "id": "9a199c8005bda558",
+    "date": "2026-11-10",
+    "vendor": "Red Hat (source: SiliconANGLE)",
+    "theme": "Cloud et plateformes",
+    "title_fr": "Les opérations IA s'étendent aux mises à niveau de Kubernetes alors que les équipes rétrécissent - SiliconANGLE",
+    "text_fr": "Les opérations IA s'étendent aux mises à niveau de Kubernetes alors que les équipes rétrécissent - SiliconANGLE",
+    "urls": [
+      "https://siliconangle.com/2026/11/10/ai-operations-kubernetes-upgrades-teams-shrink-kubeconna/"
+    ]
+  },
+  {
+    "id": "85ded72d65fb29dc",
+    "date": "2026-11-10",
+    "vendor": "GitHub / Microsoft",
+    "theme": "Outils et agents",
+    "title_fr": "Le serveur de langage C++ pour Copilot CLI configure MSBuild automatiquement",
+    "text_fr": "Le Microsoft C++ Language Server (LSP : le protocole qui offre le go-to-definition et le find-references) intègre désormais l'extracteur de compile-commands de MSBuild et l'exécute à l'ouverture du projet (journal des modifications de GitHub). L'agent n'exécute plus d'abord une skill de découverte, si bien que la configuration utilise moins de tokens et est déterministe.",
+    "urls": [
+      "https://github.blog/changelog/2026-11-10-c-language-server-now-auto-configures-msbuild-builds/"
+    ]
+  },
+  {
+    "id": "478025c3c5725843",
+    "date": "2026-11-10",
+    "vendor": "Kiro",
+    "theme": "Outils et agents",
+    "title_fr": "Kiro CLI 3.2.0 à 3.3.0",
+    "text_fr": "La CLI se connecte désormais aux serveurs MCP qui utilisent des Client ID Metadata Documents sans configuration OAuth, et affiche en plein écran les larges diagrammes Mermaid (journal des modifications de la CLI). 3.3.0 ajoute /copy N et un paramètre pour le niveau d'usage du contexte auquel la compaction automatique démarre.",
+    "urls": [
+      "https://kiro.dev/changelog/cli/"
+    ]
+  },
+  {
+    "id": "41d6dcae1ed690aa",
+    "date": "2026-11-10",
+    "vendor": "Mercor",
+    "theme": "Business",
+    "title_fr": "Mercor : 750 M$ à une valorisation de 20 Md$",
+    "text_fr": "Mercor, qui fournit des données d'entraînement d'experts et des évaluations d'agents, a levé 750 millions de dollars en Series D, avec NVIDIA et Salesforce parmi les investisseurs (Tech Funding News). La valorisation a doublé en environ un an. Son run rate de 2 milliards de dollars correspond à la facturation brute ; le chiffre d'affaires net estimé est de 600 à 800 millions de dollars.",
+    "urls": [
+      "https://techfundingnews.com/mercor-doubles-valuation-to-20b-with-750m-series-d-to-train-and-test-ai-agents-for-enterprises/"
+    ]
+  },
+  {
+    "id": "4149f8b4d44cbded",
+    "date": "2026-11-10",
+    "vendor": "Google DeepMind",
+    "theme": "Modèles",
+    "title_fr": "Gemini 4 Carbon est disponible en général",
+    "text_fr": "Après une preview de deux semaines pour les défenseurs cyber, Carbon est désormais dans la Gemini API pour tous les développeurs payants à 2 $/10 $ par million de tokens, le même prix d'introduction qu'Argon (blog de Google). Google présente aussi en preview /swarm dans Antigravity, qui transforme un prompt en une équipe d'agents. Google affirme le rang 1 sur CursorBench 4.0 à un coût par tâche plus de 2 x inférieur.",
+    "urls": [
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
+    ]
+  },
+  {
+    "id": "1b4995e713d48cca",
+    "date": "2026-11-10",
+    "vendor": "Google DeepMind",
+    "theme": "Modèles",
+    "title_fr": "Gemini Robotics 2.5 pour le contrôle de robots",
+    "text_fr": "DeepMind a annoncé Gemini Robotics 2.5, un modèle vision-language-action (un modèle qui transforme des images de caméra en mouvements de bras et de mains), pour ses partenaires en robotique (Tech Times). Le chiffre de 99,5 % de résistance au jailbreak dans l'article de lancement appartient à Gemini 4 Argon, pas au modèle 2.5.",
+    "urls": [
+      "https://www.techtimes.com/articles/330435/20261111/deepmind-launches-gemini-robotics-25-995-robot-jailbreak-score-gemini-4-argon.htm"
+    ]
+  },
+  {
+    "id": "01e7c658ece3d69c",
+    "date": "2026-11-10",
+    "vendor": "EisnerAmper",
+    "theme": "Business",
+    "title_fr": "L'adoption de l'IA a besoin de playbooks, pas seulement de prompts",
+    "text_fr": "EisnerAmper soutient que la formation développe l'usage de l'IA, tandis que la construction développe la compétence. Un prompt aide une personne une fois ; un playbook est un ensemble d'instructions testé et sauvegardé qui aide une équipe à obtenir le même résultat à chaque fois (EisnerAmper). Il désigne les citizen developers de la finance et des opérations comme les personnes qui portent ce travail.",
+    "urls": [
+      "https://www.eisneramper.com/insights/artificial-intelligence-insights/ai-enablement-playbooks-1126/"
+    ]
+  },
+  {
+    "id": "e6311e384d290eb0",
+    "date": "2026-11-09",
+    "vendor": "Google",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "TPU 8tx et TPU 8i Max",
+    "text_fr": "Google a annoncé deux nouvelles variantes de TPU qui arrivent l'an prochain (TechCrunch). Le TPU 8tx, conçu avec AMD et basé sur le TPU 8t, protège les données et les model weights en matériel pendant leur utilisation (confidential computing). Le TPU 8i Max place deux puces d'inférence TPU 8i dans un seul boîtier, ce qui double la capacité mémoire, le calcul et la bandwidth.",
+    "urls": [
+      "https://techcrunch.com/2026/11/10/google-broadens-its-ai-hardware-portfolio-with-two-new-specialized-chips/"
+    ]
+  },
+  {
+    "id": "bf165f0b75df3952",
+    "date": "2026-11-09",
+    "vendor": "Meta",
+    "theme": "Modèles",
+    "title_fr": "Meta Muse Ember, un petit modèle pour les sous-tâches d'agents",
+    "text_fr": "Muse Ember coûte 0,10 $/0,50 $ par million de tokens, lit jusqu'à 1 M de tokens de texte, d'image, d'audio et de vidéo, et garde des weights fermés (The Next Web). Meta dit qu'il égale Claude Haiku 5.5 à l'index Artificial Analysis pour environ un tiers du coût par tâche. Sur FrontierCode 2.0, il obtient moins que Haiku (27,2 % contre 34,9 %).",
+    "urls": [
+      "https://thenextweb.com/news/meta-muse-ember-small-ai-model-haiku-luna"
+    ]
+  },
+  {
+    "id": "b26eb92bfc9fba22",
+    "date": "2026-11-09",
+    "vendor": "Anthropic",
+    "theme": "Modèles",
+    "title_fr": "Claude Fable 5.2 et Claude Mythos 5.2",
+    "text_fr": "Anthropic a publié Fable 5.2 et Mythos 5.2, ses modèles fermés les plus puissants, et dit qu'ils sont meilleurs en code, en raisonnement et en vision (TechCrunch). Fable 5.2 coûte 8 $ en entrée / 40 $ en sortie par million de tokens, 0,20 $ pour une lecture de cache, et 16 $/80 $ dans un mode rapide optionnel ; le context window reste à 1 M de tokens avec 128 K en sortie (Founderz). Mythos 5.2 est le même modèle avec moins de garde-fous, réservé aux organisations cyber et de sciences du vivant vérifiées.",
+    "urls": [
+      "https://techcrunch.com/2026/11/09/anthropic-releases-new-mythos-and-fable-models-amid-rsi-concerns/",
+      "https://founderz.com/blog/claude-fable-5-2/"
+    ]
+  },
+  {
+    "id": "0986f5ce6012d752",
+    "date": "2026-11-09",
+    "vendor": "NVIDIA",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "Analyse : les versions stables de Dynamo sont en retard sur leurs moteurs",
+    "text_fr": "Une étude indépendante des métadonnées de versions de Dynamo a trouvé 26 builds de snapshots de modèles et 10 versions stables du 17 juillet au 6 novembre (DEV). Les versions stables épinglaient une version de vLLM âgée en médiane de 30 jours. Un snapshot utilise un protocole NIXL que les workers non corrigés ne peuvent pas lire.",
+    "urls": [
+      "https://dev.to/wolfsea2357/day-0-model-support-is-a-fork-what-26-nvidia-dynamo-snapshot-builds-say-about-pinning-your-llm-1mb7"
+    ],
+    "source_note": "Note : la source (DEV) cite à la fois « 12 stable releases » à un endroit et « 10 stable releases » à un autre ; le texte ci-dessus reprend 10, cohérent avec la période citée."
+  },
+  {
+    "id": "ae7f6164497bb573",
+    "date": "2026-11-06",
+    "vendor": "Anthropic",
+    "theme": "Outils et agents",
+    "title_fr": "Claude Code 2.1.319 : tâches MCP et refus plutôt que prompt",
+    "text_fr": "Claude Code déplace désormais en arrière-plan un appel d'outil MCP exécuté comme tâche et rapporte le résultat à sa fin (changelog). Le nouveau paramètre permissions.denyInsteadOfPrompting refuse tout appel qui attendrait un prompt de permission, pour que les agents sans surveillance ne se bloquent pas. Le mode auto ne retombe plus sur le classifieur intégré quand la télémétrie ou les feature flags sont désactivés.",
+    "urls": [
+      "https://code.claude.com/docs/en/changelog"
+    ]
+  },
+  {
+    "id": "757d955425ef5771",
+    "date": "2026-11-06",
+    "vendor": "Cursor",
+    "theme": "Outils et agents",
+    "title_fr": "Chat vocal avec les agents de Cursor",
+    "text_fr": "Cursor a ajouté un appel vocal bidirectionnel en temps réel avec les agents dans l'Agents Window, l'IDE, le web et iOS (journal des modifications de Cursor). L'agent vocal confie le travail de code à l'agent de chat et relit de courtes notes d'avancement. Il fonctionne sur Grok Voice, avec zéro conservation des données en Privacy Mode.",
+    "urls": [
+      "https://cursor.com/changelog"
+    ]
+  },
+  {
+    "id": "08e56c0be2bf6632",
+    "date": "2026-11-06",
+    "vendor": "NVIDIA",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "Snapshot Dynamo 1.7.0 pour Kimi K3.1 Pro, avec des recettes Vera Rubin",
+    "text_fr": "NVIDIA a publié un build expérimental de Dynamo qui sert Kimi K3.1 Pro de Moonshot sur les backends vLLM et SGLang (versions de Dynamo). Il inclut des recettes Kubernetes pour le disaggregated serving (workers de prefill et de decode séparés) sur GB300 et Vera Rubin VR200, et exige NIXL 1.5.0 pour le transfert du KV cache. NVIDIA dit qu'il n'est pas destiné à la production.",
+    "urls": [
+      "https://github.com/ai-dynamo/dynamo/releases"
+    ]
+  }
+]
