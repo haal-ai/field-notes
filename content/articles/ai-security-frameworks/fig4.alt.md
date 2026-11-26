@@ -1,0 +1,1 @@
+Figure 4. Réutiliser une preuve. Un enregistrement de test (configuration, résultat attendu, résultat obtenu, journaux) est relié à trois éléments : une exigence AISVS, un contrôle AICM et une exigence AIUC-1. Question de contrôle : mêmes conditions de test, même périmètre, même version ? Si oui, on réutilise la preuve. Si non, on refait le test. Exemple générique, sans chiffres.

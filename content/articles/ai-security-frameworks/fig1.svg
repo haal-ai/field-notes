@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 404" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Trois questions, trois vues de la sécurité de l'IA</title>
+<desc id="fig1-d">AISVS : quelles exigences tester, 191 exigences. AICM et STAR for AI : quels contrôles a le service, 247 objectifs en 18 domaines. AIUC-1 : quelles preuves externes pour un agent, 50 exigences en 6 principes. Ce n'est pas un classement.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .sh{fill:var(--accent,var(--f-accent))}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .c{text-anchor:middle}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="18">Trois questions, trois vues</text>
+<rect class="box" x="6" y="30" width="388" height="102" rx="5"/>
+<text class="a" x="18" y="52">AISVS</text>
+<text class="s" x="18" y="70">Quelles exigences tester</text>
+<text class="s" x="18" y="88">dans cette application ?</text>
+<text class="t" x="18" y="106">Niveaux : 51 + 95 + 45 = 191 exigences</text>
+<text class="m" x="18" y="124">Preuve : résultats de tests, pas de certificat</text>
+<rect class="box" x="6" y="142" width="388" height="102" rx="5"/>
+<text class="a" x="18" y="164">AICM et STAR for AI</text>
+<text class="s" x="18" y="182">Quels contrôles ce service a-t-il,</text>
+<text class="s" x="18" y="200">et qui les fournit ?</text>
+<text class="t" x="18" y="218">247 objectifs de contrôle, 18 domaines</text>
+<text class="m" x="18" y="236">Preuve : réponses au questionnaire AI-CAIQ</text>
+<rect class="box" x="6" y="254" width="388" height="102" rx="5"/>
+<text class="a" x="18" y="276">AIUC-1</text>
+<text class="s" x="18" y="294">Quelles preuves externes</text>
+<text class="s" x="18" y="312">pour cet agent ?</text>
+<text class="t" x="18" y="330">50 exigences, 6 principes</text>
+<text class="m" x="18" y="348">Preuve : rapport d'audit et certificat</text>
+<text class="m" x="10" y="376">Emphase, pas classement.</text>
+<text class="m" x="10" y="393">Chiffres au 2026-11-26.</text>
+
+</g>
+</svg>

@@ -392,6 +392,36 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "ai-security-frameworks",
+      "lang": "fr",
+      "title": "Sécurité de l'IA : quel framework ouvrir pour quelle question ?",
+      "section": "Sécurité",
+      "type": "guide",
+      "summary": "AISVS, AICM avec STAR for AI et AIUC-1 répondent à trois questions différentes. Ce guide montre ce que chacun produit comme preuve et pourquoi un même nom de contrôle ne prouve pas la même couverture.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Trois questions, trois vues de la sécurité de l'IA",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "AISVS pose la question des exigences à tester, AICM et STAR for AI celle des contrôles d'un service, AIUC-1 celle des preuves externes pour un agent. Ce n'est pas un classement. Chiffres au 2026-11-26."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [
