@@ -37,6 +37,9 @@ ABOUT = 'À propos de la bibliothèque'
 SECTION_NOTES = {
     'Inférence': 'Comment les modèles fonctionnent : requêtes, mémoire, serveurs.',
     'Évaluation': 'Petits tests, avec leur protocole et leurs limites.',
+    'Agents': 'Agents de code : outils, git, livraison, architecture.',
+    "Recherche d'information": 'Retrouver les bons passages : mots, sens, graphes.',
+    'Sécurité': 'Tester et cadrer la sécurité des systèmes d\'IA.',
     ABOUT: 'Comment lire ces notes.',
 }
 SECTION_NOTE_DEFAULT = 'Notes sur ce sujet : {name}.'

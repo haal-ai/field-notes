@@ -26,6 +26,7 @@ class Links(HTMLParser):
 class PublicationChecks(unittest.TestCase):
     def setUp(self):
         self.data=json.loads((build.ROOT/'content/catalogue.json').read_text())
+        self.data['articles']=[a for a in self.data['articles'] if not build.is_draft(a)]  # staged drafts are not public
 
     def test_calendar_expiry_and_edit(self):
         self.assertEqual(str(build.plus_months('2027-11-30',3)),'2028-02-29')
