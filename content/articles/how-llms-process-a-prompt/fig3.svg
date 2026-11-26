@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 1216" role="img" aria-labelledby="fig3-t fig3-d">
+<title id="fig3-t">Prefill, decoding et KV cache : le cache grandit d'une cellule par couche et par étape</title><desc id="fig3-d">Schéma en deux panneaux. Prompt « The capital of France is » découpé en 5 tokens (exemple illustratif), qui entrent ensemble. Panneau 1, prefill, une seule fois : tous les tokens en parallèle, surtout limité par le calcul ; le délai avant le premier token (TTFT) est surtout le prefill. Chaque couche (1, 2, … N) stocke une cellule K/V par token : les cellules 1 à 5 sont remplies. La dernière position donne des logits, un score par token du vocabulaire ; une règle de sélection choisit le premier token, « Paris » (exemple). Panneau 2, decoding, un token par étape en boucle : souvent limité par la mémoire ; la latency entre tokens est surtout une étape. « Paris » est la seule nouvelle entrée ; les cellules 1 à 5 sont réutilisées, la cellule 6 est ajoutée par couche, l'attention porte sur 1 à 6. L'étape 2 ajoute la cellule 7. Une flèche en pointillés ramène à l'entrée. Légende : cellule pleine = stockée ; bord épais avec « + » = ajoutée à cette étape ; pointillés = vide, plus tard.</desc>
+<style>
+svg{--c-bg:#f7f9fa;--c-surface:#edf2f4;--c-text:#152a34;--c-muted:#506571;--c-line:#b9cbd2;--c-accent:#146b5c;--c-ink:#e6f7f2;--c-warn:#865025}
+@media(prefers-color-scheme:dark){svg{--c-bg:#0e1419;--c-surface:#131d25;--c-text:#e5ecee;--c-muted:#a0b0ba;--c-line:#30404c;--c-accent:#79d8c4;--c-ink:#0e2421;--c-warn:#edbd91}}
+.panel{fill:var(--surface,var(--c-surface));stroke:var(--line,var(--c-line));stroke-width:1}
+.tok{fill:var(--bg,var(--c-bg));stroke:var(--text,var(--c-text));stroke-width:1.5}
+.tokn{fill:var(--bg,var(--c-bg));stroke:var(--accent,var(--c-accent));stroke-width:3}
+.old{fill:var(--accent,var(--c-accent));stroke:var(--accent,var(--c-accent))}
+.new{fill:var(--bg,var(--c-bg));stroke:var(--accent,var(--c-accent));stroke-width:3}
+.fut{fill:none;stroke:var(--muted,var(--c-muted));stroke-width:1.5;stroke-dasharray:5 4}
+.bad{fill:none;stroke:var(--warn,var(--c-warn));stroke-width:2;stroke-dasharray:3 3}
+.pill{fill:var(--bg,var(--c-bg));stroke:var(--muted,var(--c-muted));stroke-width:1.5;stroke-dasharray:4 3}
+.ln{stroke:var(--accent,var(--c-accent));stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.lnd{stroke:var(--muted,var(--c-muted));stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.h{fill:var(--text,var(--c-text));font:700 20px system-ui,sans-serif}
+.s{fill:var(--muted,var(--c-muted));font:17px system-ui,sans-serif}
+.m{fill:var(--text,var(--c-text));font:18px ui-monospace,monospace}
+.mi{fill:var(--accent-ink,var(--c-ink));font:700 18px ui-monospace,monospace}
+.ma{fill:var(--accent,var(--c-accent));font:700 20px ui-monospace,monospace}
+.mb{fill:var(--text,var(--c-text));font:700 22px ui-monospace,monospace}
+.n{fill:var(--muted,var(--c-muted));font:16px ui-monospace,monospace}
+.st{fill:var(--text,var(--c-text));font:17px system-ui,sans-serif}
+.sb{fill:var(--text,var(--c-text));font:700 17px system-ui,sans-serif}
+.sa{fill:var(--accent,var(--c-accent));font:700 17px system-ui,sans-serif}
+</style>
+<text x="20" y="26" class="h" text-anchor="start">Prompt découpé en 5 tokens (exemple illustratif)</text>
+<rect x="20" y="38" width="96" height="40" rx="4" class="tok"/>
+<text x="68.0" y="64.0" class="m" text-anchor="middle">The</text>
+<rect x="126" y="38" width="96" height="40" rx="4" class="tok"/>
+<text x="174.0" y="64.0" class="m" text-anchor="middle">capital</text>
+<rect x="232" y="38" width="96" height="40" rx="4" class="tok"/>
+<text x="280.0" y="64.0" class="m" text-anchor="middle">of</text>
+<rect x="338" y="38" width="96" height="40" rx="4" class="tok"/>
+<text x="386.0" y="64.0" class="m" text-anchor="middle">France</text>
+<rect x="444" y="38" width="96" height="40" rx="4" class="tok"/>
+<text x="492.0" y="64.0" class="m" text-anchor="middle">is</text>
+<path d="M280 80L280 108" class="ln"/>
+<path d="M280 108L284.3 100.1" class="ln"/>
+<path d="M280 108L275.7 100.1" class="ln"/>
+<text x="296" y="100" class="s" text-anchor="start">les 5 entrent ensemble</text>
+<rect x="10" y="112" width="540" height="436" rx="6" class="panel"/>
+<text x="24" y="142" class="h" text-anchor="start">1  Prefill : une seule fois</text>
+<text x="24" y="166" class="s" text-anchor="start">Tous les tokens en parallèle. Surtout limité par le calcul.</text>
+<rect x="24" y="178" width="420" height="30" rx="15" class="pill"/>
+<text x="234" y="199" class="st" text-anchor="middle">TTFT = surtout le prefill</text>
+<text x="20" y="236" class="s" text-anchor="start">KV cache : une cellule K/V par token et par couche</text>
+<text x="146" y="260" class="n" text-anchor="middle">1</text>
+<text x="204" y="260" class="n" text-anchor="middle">2</text>
+<text x="262" y="260" class="n" text-anchor="middle">3</text>
+<text x="320" y="260" class="n" text-anchor="middle">4</text>
+<text x="378" y="260" class="n" text-anchor="middle">5</text>
+<text x="436" y="260" class="n" text-anchor="middle">6</text>
+<text x="494" y="260" class="n" text-anchor="middle">7</text>
+<text x="20" y="291" class="s" text-anchor="start">Couche 1</text>
+<rect x="120" y="270" width="52" height="30" rx="3" class="old"/>
+<text x="146" y="291" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="270" width="52" height="30" rx="3" class="old"/>
+<text x="204" y="291" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="270" width="52" height="30" rx="3" class="old"/>
+<text x="262" y="291" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="270" width="52" height="30" rx="3" class="old"/>
+<text x="320" y="291" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="270" width="52" height="30" rx="3" class="old"/>
+<text x="378" y="291" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="270" width="52" height="30" rx="3" class="fut"/>
+<rect x="468" y="270" width="52" height="30" rx="3" class="fut"/>
+<text x="20" y="327" class="s" text-anchor="start">Couche 2</text>
+<rect x="120" y="306" width="52" height="30" rx="3" class="old"/>
+<text x="146" y="327" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="306" width="52" height="30" rx="3" class="old"/>
+<text x="204" y="327" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="306" width="52" height="30" rx="3" class="old"/>
+<text x="262" y="327" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="306" width="52" height="30" rx="3" class="old"/>
+<text x="320" y="327" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="306" width="52" height="30" rx="3" class="old"/>
+<text x="378" y="327" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="306" width="52" height="30" rx="3" class="fut"/>
+<rect x="468" y="306" width="52" height="30" rx="3" class="fut"/>
+<text x="20" y="363" class="s" text-anchor="start">… Couche N</text>
+<rect x="120" y="342" width="52" height="30" rx="3" class="old"/>
+<text x="146" y="363" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="342" width="52" height="30" rx="3" class="old"/>
+<text x="204" y="363" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="342" width="52" height="30" rx="3" class="old"/>
+<text x="262" y="363" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="342" width="52" height="30" rx="3" class="old"/>
+<text x="320" y="363" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="342" width="52" height="30" rx="3" class="old"/>
+<text x="378" y="363" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="342" width="52" height="30" rx="3" class="fut"/>
+<rect x="468" y="342" width="52" height="30" rx="3" class="fut"/>
+<text x="24" y="400" class="st" text-anchor="start">Les cellules 1 à 5 sont remplies et stockées.</text>
+<text x="24" y="424" class="st" text-anchor="start">Dernière position : logits = un score brut par token du</text>
+<text x="24" y="448" class="st" text-anchor="start">vocabulaire. Une règle de sélection (la plus simple : le</text>
+<text x="24" y="472" class="st" text-anchor="start">meilleur score) choisit le premier token de la réponse</text>
+<text x="24" y="496" class="st" text-anchor="start">(exemple) :</text>
+<text x="24" y="528" class="ma" text-anchor="start">« Paris »</text>
+<path d="M280 550L280 586" class="ln"/>
+<path d="M280 586L284.3 578.1" class="ln"/>
+<path d="M280 586L275.7 578.1" class="ln"/>
+<text x="296" y="564" class="s" text-anchor="start">le cache reste ;</text>
+<text x="296" y="584" class="s" text-anchor="start">la boucle commence</text>
+<rect x="10" y="590" width="540" height="546" rx="6" class="panel"/>
+<text x="24" y="620" class="h" text-anchor="start">2  Decoding : un token par étape, en boucle</text>
+<text x="24" y="644" class="s" text-anchor="start">Souvent limité par la mémoire : chaque étape relit le cache.</text>
+<rect x="24" y="658" width="420" height="30" rx="15" class="pill"/>
+<text x="234" y="679" class="st" text-anchor="middle">latency entre tokens = surtout une étape</text>
+<rect x="24" y="704" width="96" height="34" rx="4" class="tokn"/>
+<text x="72.0" y="727.0" class="m" text-anchor="middle">Paris</text>
+<text x="134" y="727" class="s" text-anchor="start">→ seule nouvelle entrée de cette étape</text>
+<text x="20" y="770" class="s" text-anchor="start">KV cache : une cellule K/V par token et par couche</text>
+<text x="146" y="794" class="n" text-anchor="middle">1</text>
+<text x="204" y="794" class="n" text-anchor="middle">2</text>
+<text x="262" y="794" class="n" text-anchor="middle">3</text>
+<text x="320" y="794" class="n" text-anchor="middle">4</text>
+<text x="378" y="794" class="n" text-anchor="middle">5</text>
+<text x="436" y="794" class="n" text-anchor="middle">6</text>
+<text x="494" y="794" class="n" text-anchor="middle">7</text>
+<text x="20" y="825" class="s" text-anchor="start">Couche 1</text>
+<rect x="120" y="804" width="52" height="30" rx="3" class="old"/>
+<text x="146" y="825" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="804" width="52" height="30" rx="3" class="old"/>
+<text x="204" y="825" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="804" width="52" height="30" rx="3" class="old"/>
+<text x="262" y="825" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="804" width="52" height="30" rx="3" class="old"/>
+<text x="320" y="825" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="804" width="52" height="30" rx="3" class="old"/>
+<text x="378" y="825" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="804" width="52" height="30" rx="3" class="new"/>
+<text x="436" y="826" class="ma" text-anchor="middle">+</text>
+<rect x="468" y="804" width="52" height="30" rx="3" class="fut"/>
+<text x="20" y="861" class="s" text-anchor="start">Couche 2</text>
+<rect x="120" y="840" width="52" height="30" rx="3" class="old"/>
+<text x="146" y="861" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="840" width="52" height="30" rx="3" class="old"/>
+<text x="204" y="861" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="840" width="52" height="30" rx="3" class="old"/>
+<text x="262" y="861" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="840" width="52" height="30" rx="3" class="old"/>
+<text x="320" y="861" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="840" width="52" height="30" rx="3" class="old"/>
+<text x="378" y="861" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="840" width="52" height="30" rx="3" class="new"/>
+<text x="436" y="862" class="ma" text-anchor="middle">+</text>
+<rect x="468" y="840" width="52" height="30" rx="3" class="fut"/>
+<text x="20" y="897" class="s" text-anchor="start">… Couche N</text>
+<rect x="120" y="876" width="52" height="30" rx="3" class="old"/>
+<text x="146" y="897" class="mi" text-anchor="middle">K V</text>
+<rect x="178" y="876" width="52" height="30" rx="3" class="old"/>
+<text x="204" y="897" class="mi" text-anchor="middle">K V</text>
+<rect x="236" y="876" width="52" height="30" rx="3" class="old"/>
+<text x="262" y="897" class="mi" text-anchor="middle">K V</text>
+<rect x="294" y="876" width="52" height="30" rx="3" class="old"/>
+<text x="320" y="897" class="mi" text-anchor="middle">K V</text>
+<rect x="352" y="876" width="52" height="30" rx="3" class="old"/>
+<text x="378" y="897" class="mi" text-anchor="middle">K V</text>
+<rect x="410" y="876" width="52" height="30" rx="3" class="new"/>
+<text x="436" y="898" class="ma" text-anchor="middle">+</text>
+<rect x="468" y="876" width="52" height="30" rx="3" class="fut"/>
+<text x="24" y="936" class="st" text-anchor="start">Cellules 1 à 5 réutilisées, non recalculées.</text>
+<text x="24" y="960" class="st" text-anchor="start">Ajoute la cellule 6 par couche ; attention sur 1 à 6.</text>
+<text x="24" y="984" class="st" text-anchor="start">Répéter jusqu'à un token de fin ou une limite de</text>
+<text x="24" y="1008" class="st" text-anchor="start">longueur. L'étape 2 ajoute la cellule 7.</text>
+<text x="24" y="1038" class="s" text-anchor="start">Une étape : prendre le token choisi → vecteur → toutes les</text>
+<text x="24" y="1061" class="s" text-anchor="start">couches → ajouter K, V au cache et attention sur tout le</text>
+<text x="24" y="1084" class="s" text-anchor="start">cache → nouveaux logits → token suivant. « Decoding »</text>
+<text x="24" y="1107" class="s" text-anchor="start">désigne ici seulement cette boucle.</text>
+<path d="M530 976h12V721h-12" class="ln"/><path d="M536 715L528 721L536 727" class="ln"/>
+<rect x="24" y="1150" width="30" height="20" rx="3" class="old"/>
+<text x="62" y="1166" class="s" text-anchor="start">stockée</text>
+<rect x="150" y="1150" width="30" height="20" rx="3" class="new"/>
+<text x="188" y="1166" class="s" text-anchor="start">ajoutée à cette étape</text>
+<rect x="24" y="1180" width="30" height="20" rx="3" class="fut"/>
+<text x="62" y="1196" class="s" text-anchor="start">vide, plus tard</text>
+</svg>

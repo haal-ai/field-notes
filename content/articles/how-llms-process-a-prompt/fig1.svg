@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 706" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Du texte aux nombres : texte, tokens, identifiants, vecteurs</title><desc id="fig1-d">Schéma en quatre rangées empilées, exemple illustratif. Texte (prompt) : « The capital of France is ». Un tokenizer le coupe en cinq tokens : The, capital, of, France, is. Chaque token reçoit un identifiant entier, ID 1 à ID 5 (valeurs non montrées). L'embedding transforme chaque identifiant en vecteur, une liste de nombres, dessinée comme une colonne [ … ] sans valeurs. Le modèle calcule avec ces vecteurs. Le découpage réel dépend du tokenizer.</desc>
+<style>
+svg{--c-bg:#f7f9fa;--c-surface:#edf2f4;--c-text:#152a34;--c-muted:#506571;--c-line:#b9cbd2;--c-accent:#146b5c;--c-ink:#e6f7f2;--c-warn:#865025}
+@media(prefers-color-scheme:dark){svg{--c-bg:#0e1419;--c-surface:#131d25;--c-text:#e5ecee;--c-muted:#a0b0ba;--c-line:#30404c;--c-accent:#79d8c4;--c-ink:#0e2421;--c-warn:#edbd91}}
+.panel{fill:var(--surface,var(--c-surface));stroke:var(--line,var(--c-line));stroke-width:1}
+.tok{fill:var(--bg,var(--c-bg));stroke:var(--text,var(--c-text));stroke-width:1.5}
+.tokn{fill:var(--bg,var(--c-bg));stroke:var(--accent,var(--c-accent));stroke-width:3}
+.old{fill:var(--accent,var(--c-accent));stroke:var(--accent,var(--c-accent))}
+.new{fill:var(--bg,var(--c-bg));stroke:var(--accent,var(--c-accent));stroke-width:3}
+.fut{fill:none;stroke:var(--muted,var(--c-muted));stroke-width:1.5;stroke-dasharray:5 4}
+.bad{fill:none;stroke:var(--warn,var(--c-warn));stroke-width:2;stroke-dasharray:3 3}
+.pill{fill:var(--bg,var(--c-bg));stroke:var(--muted,var(--c-muted));stroke-width:1.5;stroke-dasharray:4 3}
+.ln{stroke:var(--accent,var(--c-accent));stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.lnd{stroke:var(--muted,var(--c-muted));stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.h{fill:var(--text,var(--c-text));font:700 20px system-ui,sans-serif}
+.s{fill:var(--muted,var(--c-muted));font:17px system-ui,sans-serif}
+.m{fill:var(--text,var(--c-text));font:18px ui-monospace,monospace}
+.mi{fill:var(--accent-ink,var(--c-ink));font:700 18px ui-monospace,monospace}
+.ma{fill:var(--accent,var(--c-accent));font:700 20px ui-monospace,monospace}
+.mb{fill:var(--text,var(--c-text));font:700 22px ui-monospace,monospace}
+.n{fill:var(--muted,var(--c-muted));font:16px ui-monospace,monospace}
+.st{fill:var(--text,var(--c-text));font:17px system-ui,sans-serif}
+.sb{fill:var(--text,var(--c-text));font:700 17px system-ui,sans-serif}
+.sa{fill:var(--accent,var(--c-accent));font:700 17px system-ui,sans-serif}
+</style>
+<text x="20" y="28" class="h" text-anchor="start">Du texte aux nombres</text>
+<rect x="344" y="10" width="196" height="28" rx="14" class="pill"/>
+<text x="442" y="30" class="s" text-anchor="middle">exemple illustratif</text>
+<text x="20" y="66" class="sb" text-anchor="start">Texte (prompt)</text>
+<rect x="20" y="76" width="520" height="44" rx="4" class="tok"/>
+<text x="280.0" y="104.0" class="m" text-anchor="middle">The capital of France is</text>
+<path d="M280 122L280 160" class="ln"/>
+<path d="M280 160L284.3 152.1" class="ln"/>
+<path d="M280 160L275.7 152.1" class="ln"/>
+<text x="296" y="148" class="s" text-anchor="start">tokenizer</text>
+<text x="20" y="186" class="sb" text-anchor="start">Tokens</text>
+<rect x="20" y="196" width="96" height="40" rx="4" class="tok"/>
+<text x="68.0" y="222.0" class="m" text-anchor="middle">The</text>
+<rect x="126" y="196" width="96" height="40" rx="4" class="tok"/>
+<text x="174.0" y="222.0" class="m" text-anchor="middle">capital</text>
+<rect x="232" y="196" width="96" height="40" rx="4" class="tok"/>
+<text x="280.0" y="222.0" class="m" text-anchor="middle">of</text>
+<rect x="338" y="196" width="96" height="40" rx="4" class="tok"/>
+<text x="386.0" y="222.0" class="m" text-anchor="middle">France</text>
+<rect x="444" y="196" width="96" height="40" rx="4" class="tok"/>
+<text x="492.0" y="222.0" class="m" text-anchor="middle">is</text>
+<path d="M280 238L280 276" class="ln"/>
+<path d="M280 276L284.3 268.1" class="ln"/>
+<path d="M280 276L275.7 268.1" class="ln"/>
+<text x="296" y="264" class="s" text-anchor="start">un identifiant entier par token</text>
+<text x="20" y="302" class="sb" text-anchor="start">Identifiants</text>
+<rect x="20" y="312" width="96" height="40" rx="4" class="tok"/>
+<text x="68.0" y="338.0" class="m" text-anchor="middle">ID 1</text>
+<rect x="126" y="312" width="96" height="40" rx="4" class="tok"/>
+<text x="174.0" y="338.0" class="m" text-anchor="middle">ID 2</text>
+<rect x="232" y="312" width="96" height="40" rx="4" class="tok"/>
+<text x="280.0" y="338.0" class="m" text-anchor="middle">ID 3</text>
+<rect x="338" y="312" width="96" height="40" rx="4" class="tok"/>
+<text x="386.0" y="338.0" class="m" text-anchor="middle">ID 4</text>
+<rect x="444" y="312" width="96" height="40" rx="4" class="tok"/>
+<text x="492.0" y="338.0" class="m" text-anchor="middle">ID 5</text>
+<path d="M280 354L280 392" class="ln"/>
+<path d="M280 392L284.3 384.1" class="ln"/>
+<path d="M280 392L275.7 384.1" class="ln"/>
+<text x="296" y="380" class="s" text-anchor="start">embedding</text>
+<text x="20" y="418" class="sb" text-anchor="start">Vecteurs (embeddings)</text>
+<rect x="20" y="428" width="96" height="110" rx="4" class="tokn"/>
+<text x="68" y="452" class="ma" text-anchor="middle">[ … ]</text>
+<rect x="34" y="464" width="68" height="18" rx="3" class="old"/>
+<text x="68.0" y="479.0" class="mi" text-anchor="middle"></text>
+<text x="68" y="478" class="mi" text-anchor="middle">…</text>
+<rect x="34" y="488" width="68" height="18" rx="3" class="old"/>
+<text x="68.0" y="503.0" class="mi" text-anchor="middle"></text>
+<text x="68" y="502" class="mi" text-anchor="middle">…</text>
+<rect x="34" y="512" width="68" height="18" rx="3" class="old"/>
+<text x="68.0" y="527.0" class="mi" text-anchor="middle"></text>
+<text x="68" y="526" class="mi" text-anchor="middle">…</text>
+<rect x="126" y="428" width="96" height="110" rx="4" class="tokn"/>
+<text x="174" y="452" class="ma" text-anchor="middle">[ … ]</text>
+<rect x="140" y="464" width="68" height="18" rx="3" class="old"/>
+<text x="174.0" y="479.0" class="mi" text-anchor="middle"></text>
+<text x="174" y="478" class="mi" text-anchor="middle">…</text>
+<rect x="140" y="488" width="68" height="18" rx="3" class="old"/>
+<text x="174.0" y="503.0" class="mi" text-anchor="middle"></text>
+<text x="174" y="502" class="mi" text-anchor="middle">…</text>
+<rect x="140" y="512" width="68" height="18" rx="3" class="old"/>
+<text x="174.0" y="527.0" class="mi" text-anchor="middle"></text>
+<text x="174" y="526" class="mi" text-anchor="middle">…</text>
+<rect x="232" y="428" width="96" height="110" rx="4" class="tokn"/>
+<text x="280" y="452" class="ma" text-anchor="middle">[ … ]</text>
+<rect x="246" y="464" width="68" height="18" rx="3" class="old"/>
+<text x="280.0" y="479.0" class="mi" text-anchor="middle"></text>
+<text x="280" y="478" class="mi" text-anchor="middle">…</text>
+<rect x="246" y="488" width="68" height="18" rx="3" class="old"/>
+<text x="280.0" y="503.0" class="mi" text-anchor="middle"></text>
+<text x="280" y="502" class="mi" text-anchor="middle">…</text>
+<rect x="246" y="512" width="68" height="18" rx="3" class="old"/>
+<text x="280.0" y="527.0" class="mi" text-anchor="middle"></text>
+<text x="280" y="526" class="mi" text-anchor="middle">…</text>
+<rect x="338" y="428" width="96" height="110" rx="4" class="tokn"/>
+<text x="386" y="452" class="ma" text-anchor="middle">[ … ]</text>
+<rect x="352" y="464" width="68" height="18" rx="3" class="old"/>
+<text x="386.0" y="479.0" class="mi" text-anchor="middle"></text>
+<text x="386" y="478" class="mi" text-anchor="middle">…</text>
+<rect x="352" y="488" width="68" height="18" rx="3" class="old"/>
+<text x="386.0" y="503.0" class="mi" text-anchor="middle"></text>
+<text x="386" y="502" class="mi" text-anchor="middle">…</text>
+<rect x="352" y="512" width="68" height="18" rx="3" class="old"/>
+<text x="386.0" y="527.0" class="mi" text-anchor="middle"></text>
+<text x="386" y="526" class="mi" text-anchor="middle">…</text>
+<rect x="444" y="428" width="96" height="110" rx="4" class="tokn"/>
+<text x="492" y="452" class="ma" text-anchor="middle">[ … ]</text>
+<rect x="458" y="464" width="68" height="18" rx="3" class="old"/>
+<text x="492.0" y="479.0" class="mi" text-anchor="middle"></text>
+<text x="492" y="478" class="mi" text-anchor="middle">…</text>
+<rect x="458" y="488" width="68" height="18" rx="3" class="old"/>
+<text x="492.0" y="503.0" class="mi" text-anchor="middle"></text>
+<text x="492" y="502" class="mi" text-anchor="middle">…</text>
+<rect x="458" y="512" width="68" height="18" rx="3" class="old"/>
+<text x="492.0" y="527.0" class="mi" text-anchor="middle"></text>
+<text x="492" y="526" class="mi" text-anchor="middle">…</text>
+<text x="20" y="574" class="st" text-anchor="start">Chaque token reçoit un identifiant entier. Le vecteur est une</text>
+<text x="20" y="598" class="st" text-anchor="start">liste de nombres : un embedding. Le modèle calcule</text>
+<text x="20" y="622" class="st" text-anchor="start">avec ces vecteurs.</text>
+<text x="20" y="650" class="s" text-anchor="start">Le découpage réel dépend du tokenizer. Les identifiants et</text>
+<text x="20" y="674" class="s" text-anchor="start">les vecteurs sont dessinés sans valeurs.</text>
+</svg>

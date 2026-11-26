@@ -114,32 +114,63 @@
     },
     {
       "slug": "how-llms-process-a-prompt",
-      "title": "How an LLM processes a prompt",
-      "section": "Inference",
+      "lang": "fr",
+      "title": "Comment un LLM traite un prompt",
+      "section": "Inférence",
       "type": "guide",
-      "summary": "A model reads your prompt once, then writes the answer one token at a time. The KV cache explains why long prompts start slowly and long chats use memory.",
-      "author": "Jean Marin",
-      "perspective": "Individual view: independent analysis",
+      "summary": "Un modèle lit votre prompt en une fois, puis écrit la réponse un token à la fois. Le KV cache explique pourquoi les longs prompts démarrent lentement et pourquoi les longues conversations consomment de la mémoire.",
+      "featured_summary": "Le modèle lit le prompt une fois, puis répond token par token. Cinq figures montrent le cache qui grandit et ce qui permet de le réduire.",
       "published": "2026-11-25",
-      "edited": "2026-11-25",
+      "edited": "2026-11-26",
       "reviewed": "2026-11-25",
       "review_months": 6,
       "approval": "approved-publication",
       "formats": [
         "Article",
-        "Visual explanation"
+        "Explication visuelle"
       ],
       "visual": {
         "kind": "svg",
-        "title": "Prefill, then decoding, sharing one KV cache",
-        "svg": "visual.svg",
-        "alt": "alt.md",
-        "caption": "Prefill passes all prompt tokens through the layers together and stores one key and one value per token, per layer. Decoding passes one new token through the same layers, attends over the whole cache, and adds one entry per layer. The cache grows at every step. Illustrative: the five-token split and the answer \"Paris\" are examples, not real tokenizer or model output."
+        "title": "Prefill, puis decoding, avec un même KV cache",
+        "svg": "fig3.svg",
+        "alt": "fig3.alt.md",
+        "caption": "Le prefill fait passer tous les tokens du prompt dans les couches et stocke une key et une value par token et par couche. Le decoding fait passer un seul nouveau token, applique l'attention sur tout le cache et ajoute une entrée par couche. Le cache grandit à chaque étape. Illustratif : le découpage en cinq tokens et la réponse « Paris » sont des exemples, pas une sortie réelle d'un tokenizer ou d'un modèle."
       },
+      "figures": [
+        {
+          "svg": "fig1.svg",
+          "caption": "Du texte aux vecteurs : tokens, identifiants, embeddings (exemple illustratif).",
+          "alt": "fig1.alt.md"
+        },
+        {
+          "svg": "fig2.svg",
+          "caption": "Attention : un token compare sa query Q aux keys K des tokens précédents, puis mélange leurs values V (exemple illustratif).",
+          "alt": "fig2.alt.md"
+        },
+        {
+          "svg": "fig3.svg",
+          "caption": "Prefill, puis decoding : le cache grandit d'une cellule par couche et par étape (exemple illustratif).",
+          "alt": "fig3.alt.md"
+        },
+        {
+          "svg": "fig4.svg",
+          "caption": "Taille du cache pour 100 000 tokens : 52,4 Go avec 32 KV heads, 13,1 Go avec 8 KV heads (exemple chiffré).",
+          "alt": "fig4.alt.md"
+        },
+        {
+          "svg": "fig5.svg",
+          "caption": "Trois pistes : partager K et V, ranger le cache par blocs, faire vérifier des tokens proposés.",
+          "alt": "fig5.alt.md"
+        }
+      ],
       "history": [
         {
           "date": "2026-11-25",
-          "note": "Initial publication."
+          "note": "Publication initiale."
+        },
+        {
+          "date": "2026-11-26",
+          "note": "Réécriture en français, figures ajoutées."
         }
       ]
     },

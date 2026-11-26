@@ -1,0 +1,263 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 1366" role="img" aria-labelledby="fig5-t fig5-d">
+<title id="fig5-t">Trois pistes pour réduire ou gérer le cache : partager K et V, ranger par blocs, faire vérifier</title><desc id="fig5-d">Trois panneaux empilés. 1, partager K et V : huit têtes de query Q ; en multi-têtes, une paire K/V par tête ; en GQA, un jeu K/V par groupe (ici 2 groupes de 4) ; en MQA, un seul jeu K/V. Exemple : 32 → 8 KV heads, 52,4 ÷ 4 = 13,1 Go. Réserve : demande en général un entraînement ou ré-entraînement. 2, ranger par blocs (PagedAttention) : à gauche la réservation classique d'une grande zone par séquence, avec espace perdu ; puis des blocs de taille fixe non contigus, avec peu d'espace perdu. Throughput 2 à 4 fois supérieur à latency égale selon les auteurs, sur leur banc d'essai. 3, faire vérifier (speculative decoding) : un petit modèle propose des tokens, le grand modèle les vérifie en parallèle ; même distribution de sortie.</desc>
+<style>
+svg{--c-bg:#f7f9fa;--c-surface:#edf2f4;--c-text:#152a34;--c-muted:#506571;--c-line:#b9cbd2;--c-accent:#146b5c;--c-ink:#e6f7f2;--c-warn:#865025}
+@media(prefers-color-scheme:dark){svg{--c-bg:#0e1419;--c-surface:#131d25;--c-text:#e5ecee;--c-muted:#a0b0ba;--c-line:#30404c;--c-accent:#79d8c4;--c-ink:#0e2421;--c-warn:#edbd91}}
+.panel{fill:var(--surface,var(--c-surface));stroke:var(--line,var(--c-line));stroke-width:1}
+.tok{fill:var(--bg,var(--c-bg));stroke:var(--text,var(--c-text));stroke-width:1.5}
+.tokn{fill:var(--bg,var(--c-bg));stroke:var(--accent,var(--c-accent));stroke-width:3}
+.old{fill:var(--accent,var(--c-accent));stroke:var(--accent,var(--c-accent))}
+.new{fill:var(--bg,var(--c-bg));stroke:var(--accent,var(--c-accent));stroke-width:3}
+.fut{fill:none;stroke:var(--muted,var(--c-muted));stroke-width:1.5;stroke-dasharray:5 4}
+.bad{fill:none;stroke:var(--warn,var(--c-warn));stroke-width:2;stroke-dasharray:3 3}
+.pill{fill:var(--bg,var(--c-bg));stroke:var(--muted,var(--c-muted));stroke-width:1.5;stroke-dasharray:4 3}
+.ln{stroke:var(--accent,var(--c-accent));stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.lnd{stroke:var(--muted,var(--c-muted));stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.h{fill:var(--text,var(--c-text));font:700 20px system-ui,sans-serif}
+.s{fill:var(--muted,var(--c-muted));font:17px system-ui,sans-serif}
+.m{fill:var(--text,var(--c-text));font:18px ui-monospace,monospace}
+.mi{fill:var(--accent-ink,var(--c-ink));font:700 18px ui-monospace,monospace}
+.ma{fill:var(--accent,var(--c-accent));font:700 20px ui-monospace,monospace}
+.mb{fill:var(--text,var(--c-text));font:700 22px ui-monospace,monospace}
+.n{fill:var(--muted,var(--c-muted));font:16px ui-monospace,monospace}
+.st{fill:var(--text,var(--c-text));font:17px system-ui,sans-serif}
+.sb{fill:var(--text,var(--c-text));font:700 17px system-ui,sans-serif}
+.sa{fill:var(--accent,var(--c-accent));font:700 17px system-ui,sans-serif}
+</style>
+<text x="20" y="28" class="h" text-anchor="start">Trois pistes pour réduire ou gérer le cache</text>
+<rect x="10" y="44" width="540" height="482" rx="6" class="panel"/>
+<text x="24" y="74" class="h" text-anchor="start">1  Partager K et V (MQA, GQA)</text>
+<text x="24" y="98" class="s" text-anchor="start">Q = query d'une tête ; KV = un jeu de keys et values.</text>
+<rect x="24" y="120" width="28" height="28" rx="3" class="tok"/>
+<text x="38.0" y="140" class="n" text-anchor="middle">Q</text>
+<rect x="60" y="120" width="28" height="28" rx="3" class="tok"/>
+<text x="74.0" y="140" class="n" text-anchor="middle">Q</text>
+<rect x="96" y="120" width="28" height="28" rx="3" class="tok"/>
+<text x="110.0" y="140" class="n" text-anchor="middle">Q</text>
+<rect x="132" y="120" width="28" height="28" rx="3" class="tok"/>
+<text x="146.0" y="140" class="n" text-anchor="middle">Q</text>
+<rect x="168" y="120" width="28" height="28" rx="3" class="tok"/>
+<text x="182.0" y="140" class="n" text-anchor="middle">Q</text>
+<rect x="204" y="120" width="28" height="28" rx="3" class="tok"/>
+<text x="218.0" y="140" class="n" text-anchor="middle">Q</text>
+<rect x="240" y="120" width="28" height="28" rx="3" class="tok"/>
+<text x="254.0" y="140" class="n" text-anchor="middle">Q</text>
+<rect x="276" y="120" width="28" height="28" rx="3" class="tok"/>
+<text x="290.0" y="140" class="n" text-anchor="middle">Q</text>
+<rect x="24" y="176" width="28" height="28" rx="3" class="old"/>
+<text x="38.0" y="196" class="mi" text-anchor="middle">KV</text>
+<path d="M38 150L38 174" class="ln"/>
+<path d="M38 174L42.3 166.1" class="ln"/>
+<path d="M38 174L33.7 166.1" class="ln"/>
+<rect x="60" y="176" width="28" height="28" rx="3" class="old"/>
+<text x="74.0" y="196" class="mi" text-anchor="middle">KV</text>
+<path d="M74 150L74 174" class="ln"/>
+<path d="M74 174L78.3 166.1" class="ln"/>
+<path d="M74 174L69.7 166.1" class="ln"/>
+<rect x="96" y="176" width="28" height="28" rx="3" class="old"/>
+<text x="110.0" y="196" class="mi" text-anchor="middle">KV</text>
+<path d="M110 150L110 174" class="ln"/>
+<path d="M110 174L114.3 166.1" class="ln"/>
+<path d="M110 174L105.7 166.1" class="ln"/>
+<rect x="132" y="176" width="28" height="28" rx="3" class="old"/>
+<text x="146.0" y="196" class="mi" text-anchor="middle">KV</text>
+<path d="M146 150L146 174" class="ln"/>
+<path d="M146 174L150.3 166.1" class="ln"/>
+<path d="M146 174L141.7 166.1" class="ln"/>
+<rect x="168" y="176" width="28" height="28" rx="3" class="old"/>
+<text x="182.0" y="196" class="mi" text-anchor="middle">KV</text>
+<path d="M182 150L182 174" class="ln"/>
+<path d="M182 174L186.3 166.1" class="ln"/>
+<path d="M182 174L177.7 166.1" class="ln"/>
+<rect x="204" y="176" width="28" height="28" rx="3" class="old"/>
+<text x="218.0" y="196" class="mi" text-anchor="middle">KV</text>
+<path d="M218 150L218 174" class="ln"/>
+<path d="M218 174L222.3 166.1" class="ln"/>
+<path d="M218 174L213.7 166.1" class="ln"/>
+<rect x="240" y="176" width="28" height="28" rx="3" class="old"/>
+<text x="254.0" y="196" class="mi" text-anchor="middle">KV</text>
+<path d="M254 150L254 174" class="ln"/>
+<path d="M254 174L258.3 166.1" class="ln"/>
+<path d="M254 174L249.7 166.1" class="ln"/>
+<rect x="276" y="176" width="28" height="28" rx="3" class="old"/>
+<text x="290.0" y="196" class="mi" text-anchor="middle">KV</text>
+<path d="M290 150L290 174" class="ln"/>
+<path d="M290 174L294.3 166.1" class="ln"/>
+<path d="M290 174L285.7 166.1" class="ln"/>
+<text x="324" y="134" class="st" text-anchor="start">Multi-têtes : une paire</text>
+<text x="324" y="156" class="st" text-anchor="start">K/V par tête</text>
+<rect x="24" y="224" width="28" height="28" rx="3" class="tok"/>
+<text x="38.0" y="244" class="n" text-anchor="middle">Q</text>
+<rect x="60" y="224" width="28" height="28" rx="3" class="tok"/>
+<text x="74.0" y="244" class="n" text-anchor="middle">Q</text>
+<rect x="96" y="224" width="28" height="28" rx="3" class="tok"/>
+<text x="110.0" y="244" class="n" text-anchor="middle">Q</text>
+<rect x="132" y="224" width="28" height="28" rx="3" class="tok"/>
+<text x="146.0" y="244" class="n" text-anchor="middle">Q</text>
+<rect x="168" y="224" width="28" height="28" rx="3" class="tok"/>
+<text x="182.0" y="244" class="n" text-anchor="middle">Q</text>
+<rect x="204" y="224" width="28" height="28" rx="3" class="tok"/>
+<text x="218.0" y="244" class="n" text-anchor="middle">Q</text>
+<rect x="240" y="224" width="28" height="28" rx="3" class="tok"/>
+<text x="254.0" y="244" class="n" text-anchor="middle">Q</text>
+<rect x="276" y="224" width="28" height="28" rx="3" class="tok"/>
+<text x="290.0" y="244" class="n" text-anchor="middle">Q</text>
+<rect x="24" y="280" width="136" height="28" rx="3" class="old"/>
+<text x="92.0" y="300" class="mi" text-anchor="middle">KV</text>
+<path d="M38 254L38 278" class="ln"/>
+<path d="M38 278L42.3 270.1" class="ln"/>
+<path d="M38 278L33.7 270.1" class="ln"/>
+<path d="M74 254L74 278" class="ln"/>
+<path d="M74 278L78.3 270.1" class="ln"/>
+<path d="M74 278L69.7 270.1" class="ln"/>
+<path d="M110 254L110 278" class="ln"/>
+<path d="M110 278L114.3 270.1" class="ln"/>
+<path d="M110 278L105.7 270.1" class="ln"/>
+<path d="M146 254L146 278" class="ln"/>
+<path d="M146 278L150.3 270.1" class="ln"/>
+<path d="M146 278L141.7 270.1" class="ln"/>
+<rect x="168" y="280" width="136" height="28" rx="3" class="old"/>
+<text x="236.0" y="300" class="mi" text-anchor="middle">KV</text>
+<path d="M182 254L182 278" class="ln"/>
+<path d="M182 278L186.3 270.1" class="ln"/>
+<path d="M182 278L177.7 270.1" class="ln"/>
+<path d="M218 254L218 278" class="ln"/>
+<path d="M218 278L222.3 270.1" class="ln"/>
+<path d="M218 278L213.7 270.1" class="ln"/>
+<path d="M254 254L254 278" class="ln"/>
+<path d="M254 278L258.3 270.1" class="ln"/>
+<path d="M254 278L249.7 270.1" class="ln"/>
+<path d="M290 254L290 278" class="ln"/>
+<path d="M290 278L294.3 270.1" class="ln"/>
+<path d="M290 278L285.7 270.1" class="ln"/>
+<text x="324" y="238" class="st" text-anchor="start">GQA : un jeu K/V par</text>
+<text x="324" y="260" class="st" text-anchor="start">groupe (ici 2 groupes)</text>
+<rect x="24" y="328" width="28" height="28" rx="3" class="tok"/>
+<text x="38.0" y="348" class="n" text-anchor="middle">Q</text>
+<rect x="60" y="328" width="28" height="28" rx="3" class="tok"/>
+<text x="74.0" y="348" class="n" text-anchor="middle">Q</text>
+<rect x="96" y="328" width="28" height="28" rx="3" class="tok"/>
+<text x="110.0" y="348" class="n" text-anchor="middle">Q</text>
+<rect x="132" y="328" width="28" height="28" rx="3" class="tok"/>
+<text x="146.0" y="348" class="n" text-anchor="middle">Q</text>
+<rect x="168" y="328" width="28" height="28" rx="3" class="tok"/>
+<text x="182.0" y="348" class="n" text-anchor="middle">Q</text>
+<rect x="204" y="328" width="28" height="28" rx="3" class="tok"/>
+<text x="218.0" y="348" class="n" text-anchor="middle">Q</text>
+<rect x="240" y="328" width="28" height="28" rx="3" class="tok"/>
+<text x="254.0" y="348" class="n" text-anchor="middle">Q</text>
+<rect x="276" y="328" width="28" height="28" rx="3" class="tok"/>
+<text x="290.0" y="348" class="n" text-anchor="middle">Q</text>
+<rect x="24" y="384" width="280" height="28" rx="3" class="old"/>
+<text x="164.0" y="404" class="mi" text-anchor="middle">KV</text>
+<path d="M38 358L38 382" class="ln"/>
+<path d="M38 382L42.3 374.1" class="ln"/>
+<path d="M38 382L33.7 374.1" class="ln"/>
+<path d="M74 358L74 382" class="ln"/>
+<path d="M74 382L78.3 374.1" class="ln"/>
+<path d="M74 382L69.7 374.1" class="ln"/>
+<path d="M110 358L110 382" class="ln"/>
+<path d="M110 382L114.3 374.1" class="ln"/>
+<path d="M110 382L105.7 374.1" class="ln"/>
+<path d="M146 358L146 382" class="ln"/>
+<path d="M146 382L150.3 374.1" class="ln"/>
+<path d="M146 382L141.7 374.1" class="ln"/>
+<path d="M182 358L182 382" class="ln"/>
+<path d="M182 382L186.3 374.1" class="ln"/>
+<path d="M182 382L177.7 374.1" class="ln"/>
+<path d="M218 358L218 382" class="ln"/>
+<path d="M218 382L222.3 374.1" class="ln"/>
+<path d="M218 382L213.7 374.1" class="ln"/>
+<path d="M254 358L254 382" class="ln"/>
+<path d="M254 382L258.3 374.1" class="ln"/>
+<path d="M254 382L249.7 374.1" class="ln"/>
+<path d="M290 358L290 382" class="ln"/>
+<path d="M290 382L294.3 374.1" class="ln"/>
+<path d="M290 382L285.7 374.1" class="ln"/>
+<text x="324" y="342" class="st" text-anchor="start">MQA : un seul jeu K/V</text>
+<text x="324" y="364" class="st" text-anchor="start">pour toutes les têtes</text>
+<text x="24" y="436" class="st" text-anchor="start">Exemple : 32 → 8 KV heads : 52,4 ÷ 4 = 13,1 Go (figure 4).</text>
+<text x="24" y="464" class="st" text-anchor="start">Réserve : demande en général un entraînement ou un ré-</text>
+<text x="24" y="488" class="st" text-anchor="start">entraînement.</text>
+<text x="24" y="512" class="s" text-anchor="start">Sources : Shazeer (MQA) ; Ainslie et al. (GQA).</text>
+<rect x="10" y="542" width="540" height="464" rx="6" class="panel"/>
+<text x="24" y="572" class="h" text-anchor="start">2  Ranger par blocs (PagedAttention)</text>
+<text x="24" y="600" class="sb" text-anchor="start">Réservation classique : une grande zone par séquence</text>
+<rect x="24" y="612" width="200" height="36" rx="3" class="old"/>
+<text x="124.0" y="637" class="mi" text-anchor="middle">A</text>
+<rect x="224" y="612" width="120" height="36" rx="3" class="bad"/>
+<text x="284.0" y="636" class="n" text-anchor="middle">perdu</text>
+<rect x="24" y="656" width="120" height="36" rx="3" class="tokn"/>
+<text x="84.0" y="681" class="m" text-anchor="middle">B</text>
+<rect x="144" y="656" width="200" height="36" rx="3" class="bad"/>
+<text x="244.0" y="680" class="n" text-anchor="middle">perdu</text>
+<text x="24" y="726" class="sb" text-anchor="start">Par blocs de taille fixe, non contigus</text>
+<rect x="24" y="738" width="78" height="36" rx="3" class="old"/>
+<text x="63.0" y="763" class="mi" text-anchor="middle">A</text>
+<rect x="110" y="738" width="78" height="36" rx="3" class="tokn"/>
+<text x="149.0" y="763" class="m" text-anchor="middle">B</text>
+<rect x="196" y="738" width="78" height="36" rx="3" class="old"/>
+<text x="235.0" y="763" class="mi" text-anchor="middle">A</text>
+<rect x="282" y="738" width="78" height="36" rx="3" class="old"/>
+<text x="321.0" y="763" class="mi" text-anchor="middle">A</text>
+<rect x="368" y="738" width="78" height="36" rx="3" class="tokn"/>
+<text x="407.0" y="763" class="m" text-anchor="middle">B</text>
+<rect x="454" y="738" width="78" height="36" rx="3" class="tokn"/>
+<text x="493.0" y="763" class="m" text-anchor="middle">B</text>
+<rect x="24" y="784" width="78" height="36" rx="3" class="old"/>
+<text x="63.0" y="809" class="mi" text-anchor="middle">A</text>
+<rect x="110" y="784" width="78" height="36" rx="3" class="tokn"/>
+<text x="149.0" y="809" class="m" text-anchor="middle">B</text>
+<rect x="196" y="784" width="78" height="36" rx="3" class="fut"/>
+<text x="235" y="809" class="n" text-anchor="middle">libre</text>
+<rect x="282" y="784" width="78" height="36" rx="3" class="fut"/>
+<text x="321" y="809" class="n" text-anchor="middle">libre</text>
+<rect x="368" y="784" width="78" height="36" rx="3" class="fut"/>
+<text x="407" y="809" class="n" text-anchor="middle">libre</text>
+<rect x="454" y="784" width="78" height="36" rx="3" class="fut"/>
+<text x="493" y="809" class="n" text-anchor="middle">libre</text>
+<text x="24" y="846" class="s" text-anchor="start">A (plein) et B (bord épais) : blocs répartis, peu de place</text>
+<text x="24" y="868" class="s" text-anchor="start">perdue. « perdu » = espace réservé mais inutilisé.</text>
+<text x="24" y="900" class="st" text-anchor="start">Throughput 2 à 4 fois supérieur à latency égale, selon les</text>
+<text x="24" y="924" class="st" text-anchor="start">auteurs, face à FasterTransformer et Orca, sur leur banc</text>
+<text x="24" y="948" class="st" text-anchor="start">d'essai.</text>
+<text x="24" y="972" class="s" text-anchor="start">Source : Kwon et al.</text>
+<rect x="10" y="1022" width="540" height="330" rx="6" class="panel"/>
+<text x="24" y="1052" class="h" text-anchor="start">3  Faire vérifier (speculative decoding)</text>
+<text x="24" y="1078" class="s" text-anchor="start">Schéma qualitatif, exemple illustratif.</text>
+<rect x="24" y="1092" width="150" height="40" rx="4" class="tok"/>
+<text x="99.0" y="1118" class="st" text-anchor="middle">petit modèle</text>
+<path d="M174 1112L208 1112" class="ln"/>
+<path d="M208 1112L200.1 1107.7" class="ln"/>
+<path d="M208 1112L200.1 1116.3" class="ln"/>
+<text x="216" y="1102" class="sb" text-anchor="start">tokens proposés</text>
+<rect x="216" y="1112" width="70" height="34" rx="3" class="tok"/>
+<text x="251.0" y="1136" class="m" text-anchor="middle">t1</text>
+<rect x="296" y="1112" width="70" height="34" rx="3" class="tok"/>
+<text x="331.0" y="1136" class="m" text-anchor="middle">t2</text>
+<rect x="376" y="1112" width="70" height="34" rx="3" class="tok"/>
+<text x="411.0" y="1136" class="m" text-anchor="middle">t3</text>
+<rect x="456" y="1112" width="70" height="34" rx="3" class="tok"/>
+<text x="491.0" y="1136" class="m" text-anchor="middle">t4</text>
+<path d="M290 1150L290 1180" class="ln"/>
+<path d="M290 1180L294.3 1172.1" class="ln"/>
+<path d="M290 1180L285.7 1172.1" class="ln"/>
+<rect x="24" y="1182" width="150" height="40" rx="4" class="tok"/>
+<text x="99.0" y="1208" class="st" text-anchor="middle">grand modèle</text>
+<text x="184" y="1198" class="s" text-anchor="start">vérifie les 4</text>
+<text x="184" y="1220" class="s" text-anchor="start">en parallèle</text>
+<path d="M290 1228L290 1254" class="ln"/>
+<path d="M290 1254L294.3 1246.1" class="ln"/>
+<path d="M290 1254L285.7 1246.1" class="ln"/>
+<text x="24" y="1272" class="sb" text-anchor="start">tokens vérifiés</text>
+<rect x="216" y="1254" width="70" height="34" rx="3" class="old"/>
+<text x="251.0" y="1278" class="mi" text-anchor="middle">✓ t1</text>
+<rect x="296" y="1254" width="70" height="34" rx="3" class="old"/>
+<text x="331.0" y="1278" class="mi" text-anchor="middle">✓ t2</text>
+<rect x="376" y="1254" width="70" height="34" rx="3" class="old"/>
+<text x="411.0" y="1278" class="mi" text-anchor="middle">✓ t3</text>
+<rect x="456" y="1254" width="70" height="34" rx="3" class="bad"/>
+<text x="491.0" y="1278" class="m" text-anchor="middle">✗ t4</text>
+<text x="24" y="1308" class="s" text-anchor="start">✓ gardé, ✗ rejeté (exemple).</text>
+<text x="24" y="1332" class="st" text-anchor="start">Même distribution de sortie. Source : Leviathan et al.</text>
+</svg>
