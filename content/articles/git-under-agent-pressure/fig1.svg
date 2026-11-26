@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 394" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Une personne et un agent face à Git</title>
+<desc id="fig1-d">Une personne clone une fois et pousse de temps en temps. Un agent clone à chaque tâche, fait un commit après presque chaque action, et chaque push lance la CI. Chiffres rapportés par GitHub et GitLab.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:12px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:700}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .kt{fill:var(--news,var(--f-news))}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .hd{fill:var(--accent,var(--f-accent))}
+.fig1 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig1 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:1.5}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .arr{fill:var(--accent,var(--f-accent))}
+.fig1 .c{text-anchor:middle}.fig1 .e{text-anchor:end}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="18">Le rythme change avec les agents</text>
+<rect class="box" x="10" y="30" width="185" height="196" rx="4"/><rect class="box" x="205" y="30" width="185" height="196" rx="4"/>
+<rect class="hd" x="10" y="30" width="185" height="24" rx="4"/><rect class="hd" x="205" y="30" width="185" height="24" rx="4"/>
+<text class="i c" x="102" y="47">Personne</text><text class="i c" x="297" y="47">Agent</text>
+<text class="t" x="18" y="76">Clone une fois</text><text class="t" x="18" y="92"></text><text class="t" x="18" y="108">Travaille des heures</text><text class="t" x="18" y="124"></text><text class="t" x="18" y="140">Push de temps en</text><text class="t" x="18" y="156">temps</text>
+<text class="t" x="213" y="76">Espace vide : clone à</text><text class="t" x="213" y="92">chaque tâche</text><text class="t" x="213" y="108">Commit après presque</text><text class="t" x="213" y="124">chaque action</text><text class="t" x="213" y="140">Des milliers d'agents</text><text class="t" x="213" y="156">poussent vers leurs</text><text class="t" x="213" y="172">branches</text><text class="t" x="213" y="188">Chaque push lance la CI</text><text class="t" x="213" y="204">et des scans</text>
+<rect class="dif" x="10" y="238" width="380" height="146" rx="4"/>
+<text class="k" x="18" y="258">Chiffres rapportés par les fournisseurs</text>
+<text class="kt" x="18" y="280">GitHub, pushes par mois : de 0,69 à 3,35</text><text class="kt" x="18" y="296">milliards en un an,</text><text class="kt" x="18" y="312">soit 4,9 fois plus.</text>
+<text class="kt" x="18" y="336">GitLab : 5 à 10 Go et plus de 30 s de</text><text class="kt" x="18" y="352">préparation par appel d'agent</text><text class="kt" x="18" y="368">(sans méthode publiée).</text>
+</g>
+</svg>

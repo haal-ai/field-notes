@@ -1,0 +1,1 @@
+Figure 4. 10 000 vecteurs de 768 nombres, chacun sur 4 octets (float32), font 7 680 000 nombres, soit 30 720 000 octets, environ 30,7 Mo. Ce volume tient dans la mémoire vive d'une machine ordinaire ; sa barre n'en occupe qu'une petite fraction non chiffrée, la taille de la mémoire n'étant pas donnée. Seuil indicatif, non mesuré ici.

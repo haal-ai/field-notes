@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 482" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Du paquet à l'agent en sept étapes</title>
+<desc id="fig4-d">Les mainteneurs publient skills/nom/SKILL.md dans le paquet. pnpm install la trouve et demande une approval ; rien n'est lié avant pnpm approve. pnpm crée ensuite un symlink vers node_modules dans le dossier de skills de l'agent, qui lit la description.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db;--f-bad:#9b2c2c;--f-badbg:#fbe9e7}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c;--f-bad:#f2a49a;--f-badbg:#3a1f1d}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted));font-size:12px}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .r{fill:var(--f-bad);font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;fill:var(--text,var(--f-text))}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .rb{fill:var(--raised,var(--f-raised));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .bad{fill:var(--f-badbg);stroke:var(--f-bad);stroke-width:2}
+.fig4 .sh{fill:var(--accent,var(--f-accent));stroke:none}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .c{text-anchor:middle}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="20" >Du paquet à l'agent (paquet fictif : exemple-lib)</text>
+<rect class="box" x="6" y="32" width="388" height="48" rx="5"/>
+<circle class="sh" cx="26" cy="49" r="11"/><text class="i c" x="26" y="54" >1</text>
+<text class="s" x="46" y="54" >Les mainteneurs écrivent</text>
+<text class="m" x="46" y="71" >skills/nom/SKILL.md</text>
+<path class="ln" d="M200 80 V90 M195 84 L200 90 L205 84"/>
+<rect class="box" x="6" y="90" width="388" height="34" rx="5"/>
+<circle class="sh" cx="26" cy="107" r="11"/><text class="i c" x="26" y="112" >2</text>
+<text class="s" x="46" y="112" >Le paquet est publié</text>
+<path class="ln" d="M200 124 V134 M195 128 L200 134 L205 128"/>
+<rect class="box" x="6" y="134" width="388" height="48" rx="5"/>
+<circle class="sh" cx="26" cy="151" r="11"/><text class="i c" x="26" y="156" >3</text>
+<text class="s" x="46" y="156" >pnpm install la trouve</text>
+<text class="m" x="46" y="173" >dans une dépendance directe</text>
+<path class="ln" d="M200 182 V192 M195 186 L200 192 L205 186"/>
+<rect class="bad" x="6" y="192" width="388" height="48" rx="5"/>
+<circle class="sh" cx="26" cy="209" r="11"/><text class="i c" x="26" y="214" >4</text>
+<text class="r" x="46" y="214" >Packages awaiting approval</text>
+<text class="r" x="46" y="231" >arrêt : en attente d'approval</text>
+<path class="ln" d="M200 240 V250 M195 244 L200 250 L205 244"/>
+<rect class="box" x="6" y="250" width="388" height="70" rx="5"/>
+<circle class="sh" cx="26" cy="267" r="11"/><text class="i c" x="26" y="272" >5</text>
+<text class="s" x="46" y="272" >pnpm approve</text>
+<text class="m" x="46" y="289" >écrit l'accord dans pnpm-workspace.yaml</text>
+<text class="mono" x="46" y="307" >permissions: { exemple-lib: { skills: true } }</text>
+<path class="ln" d="M200 320 V330 M195 324 L200 330 L205 324"/>
+<rect class="box" x="6" y="330" width="388" height="62" rx="5"/>
+<circle class="sh" cx="26" cy="347" r="11"/><text class="i c" x="26" y="352" >6</text>
+<text class="s" x="46" y="352" >pnpm crée un symlink</text>
+<text class="m" x="46" y="369" >vers node_modules, dans le dossier de skills</text>
+<text class="mono" x="46" y="385" >.claude/skills ou .agents/skills</text>
+<path class="ln" d="M200 392 V402 M195 396 L200 402 L205 396"/>
+<rect class="box" x="6" y="402" width="388" height="34" rx="5"/>
+<circle class="sh" cx="26" cy="419" r="11"/><text class="i c" x="26" y="424" >7</text>
+<text class="s" x="46" y="424" >L'agent lit la description</text>
+<text class="m" x="10" y="454" >pnpm ≥ 12.11.0 ; jusqu'à 3 niveaux sous skills/.</text>
+<text class="m" x="10" y="471" >Source : pnpm, Agent skills.</text>
+</g>
+</svg>

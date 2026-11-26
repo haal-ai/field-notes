@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 358" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Deux juges de familles différentes et une règle de départage</title>
+<desc id="fig4-d">Deux juges notent le même diff. Notes proches : moyenne. Écart d'au moins 25 % : un méta-juge tranche et écrit la raison. Seuil donné à titre d'exemple.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .big{fill:var(--accent,var(--f-accent));font-weight:700;font-size:18px}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .hi{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig4 .sh{fill:var(--accent,var(--f-accent))}
+.fig4 .nw{fill:var(--news,var(--f-news))}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .lk{stroke:var(--news,var(--f-news));stroke-width:1.5;fill:none;stroke-dasharray:5 3}
+.fig4 .ax{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none}
+.fig4 .c{text-anchor:middle}.fig4 .e{text-anchor:end}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="20">Deux juges et un départage</text>
+<rect class="box" x="10" y="34" width="180" height="56" rx="6"/>
+<text class="s c" x="100" y="56">Juge A</text>
+<text class="m c" x="100" y="76">famille de modèles 1</text>
+<rect class="box" x="210" y="34" width="180" height="56" rx="6"/>
+<text class="s c" x="300" y="56">Juge B</text>
+<text class="m c" x="300" y="76">famille de modèles 2</text>
+<path class="ln" d="M100 90V109"/><polygon class="sh" points="95,107 105,107 100,114"/>
+<path class="ln" d="M300 90V109"/><polygon class="sh" points="295,107 305,107 300,114"/>
+<rect class="box" x="10" y="114" width="380" height="40" rx="6"/>
+<text class="s c" x="200" y="139">Même diff : on compare les deux notes</text>
+<path class="ln" d="M100 154V179"/><polygon class="sh" points="95,177 105,177 100,184"/>
+<path class="ln" d="M300 154V179"/><polygon class="sh" points="295,177 305,177 300,184"/>
+<rect class="box" x="10" y="184" width="180" height="92" rx="6"/>
+<text class="a c" x="100" y="206">Écart < 25 %</text>
+<text class="t c" x="100" y="230">On fait la</text>
+<text class="t c" x="100" y="247">moyenne.</text>
+<rect class="hi" x="210" y="184" width="180" height="92" rx="6"/>
+<text class="k c" x="300" y="206">Écart ≥ 25 %</text>
+<text class="t c" x="300" y="230">Un méta-juge lit</text>
+<text class="t c" x="300" y="247">les preuves, choisit,</text>
+<text class="t c" x="300" y="264">écrit la raison.</text>
+<text class="s" x="10" y="304">Jamais la moyenne de 82 et de 40</text>
+<text class="t" x="10" y="322">(écart de 42 points).</text>
+<text class="m" x="10" y="346">Seuil de 25 % : exemple, pas une norme.</text>
+
+</g>
+</svg>

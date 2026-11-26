@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 288" role="img" aria-labelledby="fig5-t fig5-d">
+<title id="fig5-t">Qualité et coût ensemble, avec l'effet d'un plantage</title>
+<desc id="fig5-d">Plan coût-qualité avec trois points d'exemple et une flèche de plantage vers plus de coût à qualité égale. Aucune donnée.</desc>
+<style>
+.fig5{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig5{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig5 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig5 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig5 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig5 .t{fill:var(--text,var(--f-text))}
+.fig5 .m{fill:var(--muted,var(--f-muted))}
+.fig5 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig5 .big{fill:var(--accent,var(--f-accent));font-weight:700;font-size:18px}
+.fig5 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig5 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig5 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig5 .hi{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig5 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig5 .sh{fill:var(--accent,var(--f-accent))}
+.fig5 .nw{fill:var(--news,var(--f-news))}
+.fig5 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig5 .lk{stroke:var(--news,var(--f-news));stroke-width:1.5;fill:none;stroke-dasharray:5 3}
+.fig5 .ax{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none}
+.fig5 .c{text-anchor:middle}.fig5 .e{text-anchor:end}
+</style>
+<g class="fig5">
+<text class="h" x="10" y="20">La qualité à côté du coût</text>
+<path class="ax" d="M40 40V230H385"/><polygon style="fill:var(--muted,var(--f-muted))" points="35,46 45,46 40,36"/><polygon style="fill:var(--muted,var(--f-muted))" points="379,225 379,235 389,230"/><text class="m" x="48" y="42">Qualité</text>
+<text class="m e" x="385" y="252">Coût</text>
+<circle class="sh" cx="90" cy="80" r="9"/><text class="s" x="48" y="64">Bon marché et bon</text>
+<circle class="sh" cx="330" cy="80" r="9"/><text class="s e" x="385" y="64">Cher et bon</text>
+<circle class="sh" cx="90" cy="190" r="9"/><text class="s" x="48" y="174">Bon marché</text>
+<text class="t" x="110" y="196">mais à sauver :</text>
+<text class="t" x="110" y="213">temps humain en plus</text>
+<path class="lk" d="M102 80H300"/><polygon class="nw" points="298,74 298,86 308,80"/><text class="k c" x="200" y="106">Un plantage ajoute du coût,</text>
+<text class="k c" x="200" y="123">sans changer la qualité</text>
+<text class="m" x="10" y="276">Valeurs illustratives, aucune donnée.</text>
+
+</g>
+</svg>

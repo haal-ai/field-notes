@@ -204,6 +204,284 @@
           "note": "Réécriture en français ; cinq figures ; source de benchmark inchangée."
         }
       ]
+    },
+    {
+      "slug": "moe-routing",
+      "lang": "fr",
+      "title": "MoE : comment un token choisit ses experts",
+      "section": "Inférence",
+      "type": "guide",
+      "summary": "Dans un modèle MoE, un router choisit quelques experts pour chaque token. Le guide montre le mélange, la différence entre paramètres totaux et actifs, et ce que change un hit rate quand les experts vivent sur SSD.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Une couche MoE : router, top-k, mélange",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "Le router note 8 experts, les 2 meilleurs calculent et leurs sorties sont mélangées. Valeurs illustratives."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "skills-in-libraries",
+      "lang": "fr",
+      "title": "Des skills livrées dans les bibliothèques",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "Des bibliothèques livrent maintenant une skill dans leur paquet, qui suit la version installée. pnpm la trouve dans vos dépendances directes mais ne la lie qu'après votre approval, car une skill guide l'agent à chaque session.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Du paquet à l'agent avec pnpm",
+        "svg": "fig4.svg",
+        "alt": "fig4.alt.md",
+        "caption": "Une skill publiée dans un paquet est trouvée par pnpm, mise en attente, puis liée à l'agent seulement après pnpm approve. Illustratif : le paquet « exemple-lib » est fictif."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "git-under-agent-pressure",
+      "title": "Git sous la pression des agents",
+      "lang": "fr",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "Un push se compose d'objets immuables et d'une branche partagée. Ce guide montre pourquoi les agents saturent l'ordre des écritures, comment cinq fournisseurs répondent, dont la nouvelle architecture de GitHub (état de novembre 2026) et pourquoi la CI devient la limite suivante.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "retrieval-approaches",
+      "lang": "fr",
+      "title": "Retrieval : choisir la recherche selon la question",
+      "section": "Recherche d'information",
+      "type": "guide",
+      "summary": "Keyword search, vector search ou graph : la question décide. Un guide court, quatre figures, et un contrepoids sur le coût du hybrid search (« The Fusion Tax »). Aucune expérience menée ici.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "evaluating-ai-coding-tools",
+      "title": "Comment évaluer un outil de code IA",
+      "lang": "fr",
+      "section": "Évaluation",
+      "type": "guide",
+      "summary": "Un score public ne suffit pas : ses tests peuvent être faux et nos impressions de vitesse peuvent tromper. Voici une méthode de test local : même code, grille cachée, diff jugé en aveugle par deux juges, coût noté à côté de la qualité.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Cinq figures : limites des scores publics, test équitable, diff, deux juges, coût et qualité",
+        "figures": [
+          "fig1.svg",
+          "fig2.svg",
+          "fig3.svg",
+          "fig4.svg",
+          "fig5.svg"
+        ],
+        "alt": "alt.md",
+        "caption": "Guide de méthode, pas une expérience : aucune donnée nouvelle. Les audits cités viennent d'OpenAI, qui utilise ces benchmarks. Les valeurs des figures 3 à 5 sont des exemples."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "open-source-ai-chain",
+      "title": "La chaîne d'une IA open source, de la plateforme au modèle",
+      "lang": "fr",
+      "section": "Inférence",
+      "type": "guide",
+      "summary": "Cinq couches (modèle, inference server, API gateway, harness, plateforme de bots) reliées par des interfaces publiques : ce que chacune fait, ce qu'on peut remplacer, et ce qui change à grande échelle : la mémoire.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "ai-security-testing",
+      "lang": "fr",
+      "title": "Tester la sécurité d'un agent : des vérifications bornées",
+      "section": "Sécurité",
+      "type": "guide",
+      "summary": "Pour tester un agent, on part de ses capacités réelles, on apparie un essai autorisé et un essai refusé, et on juge avec un observer extérieur au modèle. Cinq figures, une méthode de travail proposée, quatre cadres publics.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "ai-security-frameworks",
+      "lang": "fr",
+      "title": "Sécurité de l'IA : quel framework ouvrir pour quelle question ?",
+      "section": "Sécurité",
+      "type": "guide",
+      "summary": "AISVS, AICM avec STAR for AI et AIUC-1 répondent à trois questions différentes. Ce guide montre ce que chacun produit comme preuve et pourquoi un même nom de contrôle ne prouve pas la même couverture.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Trois questions, trois vues de la sécurité de l'IA",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "AISVS pose la question des exigences à tester, AICM et STAR for AI celle des contrôles d'un service, AIUC-1 celle des preuves externes pour un agent. Ce n'est pas un classement. Chiffres au 2026-11-26."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "delivery-speed-quality-cost",
+      "lang": "fr",
+      "title": "Livrer avec des agents de code : vitesse, qualité, coût",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "Résumé de recherches publiques, suivi d'une étude proposée : des agents en parallèle peuvent réussir leurs tests puis échouer une fois combinés, et le gain de temps dépend du découpage. Aucune expérience menée ; coût local contre cloud et coût de la CI non mesurés publiquement.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Une fusion propre qui casse",
+        "svg": "fig2.svg",
+        "alt": "fig2.alt.md",
+        "caption": "Deux branches réussissent leurs tests et fusionnent sans conflit, mais les vérifications sur le résultat combiné échouent. Exemple illustratif inventé pour la page."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "agent-commander-architecture",
+      "lang": "fr",
+      "title": "Surface, harness, AI service et ACP : où s'arrête l'interchangeabilité",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "Un outil d'agent regroupe trois choix : la surface, le harness et l'AI service. ACP sépare les deux premiers, mais pas le fournisseur de modèle, la connexion ni le sandbox. Lecture de la documentation publique, sans test.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Trois choix : surface, harness, AI service",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "La surface, le harness et l'AI service sont trois choix séparables. ACP relie les deux premiers ; le fournisseur de modèle reste hors ACP. Surface et harness sont des termes de travail de l'auteur."
+      },
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [

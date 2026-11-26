@@ -1,0 +1,1 @@
+Figure 3. Deux cartes côte à côte. Cas A, refusé : la décision est « refuser » et le compteur attendu est 0. Cas B, autorisé : la décision est « autoriser » et le compteur attendu est 1 ; c'est le contrôle positif. En dessous : si B échoue, le montage est suspect et le 0 de A ne prouve rien. Exemple illustratif, avec un compteur fictif.

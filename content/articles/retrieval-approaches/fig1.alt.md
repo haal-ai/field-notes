@@ -1,0 +1,1 @@
+Figure 1. Un arbre de décision part de la question « Quelle question ? ». Il a quatre branches. Mots ou codes exacts : keyword search (BM25). Même sens avec d'autres mots : vector search. Liens entre éléments : graph. Mélange ou doute : commencer simple et ajouter une méthode à la fois. Règle pratique, pas un résultat mesuré. Aucun chiffre.

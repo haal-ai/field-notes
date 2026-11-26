@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 460" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Une couche MoE : le router choisit 2 experts sur 8</title>
+<desc id="fig1-d">Le token entre dans le router. Le router note 8 experts. Les 2 meilleurs (top-k, k = 2) calculent, les 6 autres sont ignorés. Leurs sorties sont mélangées avec des poids illustratifs de 0,6 et 0,4.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db;--f-ok:#1a6b2f;--f-warn:#9a4a00}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c;--f-ok:#6fdc8c;--f-warn:#ffa85c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig1 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig1 .gr{fill:var(--raised,var(--f-raised));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .ln{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none}
+.fig1 .c{text-anchor:middle}.fig1 .e{text-anchor:end}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="18">Une couche MoE</text>
+<rect class="box" x="10" y="32" width="60" height="40" rx="6"/><text class="s c" x="40" y="50">token</text><text class="m c" x="40" y="65">(vecteur)</text>
+<path class="ln" d="M70 52H92"/><rect class="dif" x="92" y="32" width="64" height="40" rx="6"/><text class="s c" x="124" y="57">router</text>
+<text class="m" x="10" y="100">Scores des 8 experts (illustratifs)</text>
+<rect class="gr" x="14" y="169" width="34" height="21"/><text class="m c" x="31" y="208">1</text>
+<rect class="sh" x="60" y="127" width="34" height="63"/><text class="t c" x="77" y="208">2</text>
+<rect class="gr" x="106" y="176" width="34" height="14"/><text class="m c" x="123" y="208">3</text>
+<rect class="gr" x="152" y="155" width="34" height="35"/><text class="m c" x="169" y="208">4</text>
+<rect class="gr" x="198" y="183" width="34" height="7"/><text class="m c" x="215" y="208">5</text>
+<rect class="sh" x="244" y="134" width="34" height="56"/><text class="t c" x="261" y="208">6</text>
+<rect class="gr" x="290" y="162" width="34" height="28"/><text class="m c" x="307" y="208">7</text>
+<rect class="gr" x="336" y="176" width="34" height="14"/><text class="m c" x="353" y="208">8</text>
+<text class="m c" x="200" y="226">numéro de l'expert</text>
+<text class="s" x="10" y="248">top-k (k = 2) : les 2 meilleurs calculent</text>
+<rect class="sh" x="10" y="258" width="16" height="12"/><text class="t" x="32" y="269">choisi</text><rect class="gr" x="100" y="258" width="16" height="12"/><text class="t" x="122" y="269">ignoré (6 experts)</text>
+<path class="ln" d="M105 276V292M295 276V292"/>
+<rect class="box" x="30" y="292" width="150" height="36" rx="6"/><text class="s c" x="105" y="315">expert A (n° 2)</text>
+<rect class="box" x="220" y="292" width="150" height="36" rx="6"/><text class="s c" x="295" y="315">expert B (n° 6)</text>
+<path class="ln" d="M105 328V344M295 328V344"/><text class="m c" x="105" y="360">poids 0,6</text><text class="m c" x="295" y="360">poids 0,4</text>
+<path class="ln" d="M105 364V372H295V364"/><path class="ln" d="M200 372V384"/>
+<rect class="dif" x="90" y="384" width="220" height="32" rx="6"/><text class="s c" x="200" y="405">somme pondérée (0,6 + 0,4 = 1)</text>
+<path class="ln" d="M200 416V430"/><text class="s c" x="200" y="448">sortie de la couche</text>
+</g>
+</svg>

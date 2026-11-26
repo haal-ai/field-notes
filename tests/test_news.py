@@ -225,11 +225,17 @@ class NewsPageBuild(unittest.TestCase):
         self.gloss_path = build.ROOT / 'content/glossaire.md'
         self.had_gloss = self.gloss_path.is_file()
         self.gloss_backup = self.gloss_path.read_text() if self.had_gloss else None
+        self.cat_path = build.ROOT / 'content/catalogue.json'
+        self.cat_backup = self.cat_path.read_text()
+        catalogue = json.loads(self.cat_backup)
+        catalogue['articles'] = [a for a in catalogue['articles'] if not build.is_draft(a)]  # staged drafts are not public
+        self.cat_path.write_text(json.dumps(catalogue, ensure_ascii=False))
         self.tmp_out = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, self.tmp_out)
         self.addCleanup(self._restore)
 
     def _restore(self):
+        self.cat_path.write_text(self.cat_backup)
         if self.had_real:
             self.real_path.write_text(self.backup)
         elif self.real_path.is_file():

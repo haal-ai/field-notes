@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 304" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Où vivent les experts : GPU, RAM, SSD</title>
+<desc id="fig4-d">Les experts fréquents restent sur GPU, les intermédiaires en RAM, les rares sur SSD. Un hit est servi depuis la mémoire rapide. Un miss lit le SSD, plus lent.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db;--f-ok:#1a6b2f;--f-warn:#9a4a00}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c;--f-ok:#6fdc8c;--f-warn:#ffa85c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig4 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig4 .gr{fill:var(--raised,var(--f-raised));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .ln{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none}
+.fig4 .c{text-anchor:middle}.fig4 .e{text-anchor:end}
+.fig4 .okl{stroke:var(--f-ok);stroke-width:3;fill:none}.fig4 .wl{stroke:var(--f-warn);stroke-width:3;fill:none}.fig4 .hit{fill:var(--f-ok);font-weight:700}.fig4 .miss{fill:var(--f-warn);font-weight:700}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="18">Où vivent les experts</text>
+<text class="m" x="10" y="38">Du plus rapide au plus lent</text>
+<rect class="box" x="10" y="54" width="230" height="60" rx="8"/><text class="s" x="24" y="81">GPU (VRAM)</text><text class="t" x="24" y="101">experts fréquents</text>
+<rect class="box" x="10" y="130" width="230" height="60" rx="8"/><text class="s" x="24" y="157">RAM</text><text class="t" x="24" y="177">experts intermédiaires</text>
+<rect class="dif" x="10" y="206" width="230" height="60" rx="8"/><text class="s" x="24" y="233">SSD (NVMe)</text><text class="t" x="24" y="253">experts rares</text>
+<path class="ln" d="M375 56V282"/><path class="ln" d="M369 274L375 284L381 274"/>
+<text class="hit" x="262" y="78">hit :</text><text class="m" x="262" y="96">déjà en mémoire,</text><text class="m" x="262" y="112">rapide</text>
+<path class="okl" d="M256 74H244M244 70L240 74L244 78"/>
+<text class="miss" x="262" y="226">miss :</text><text class="m" x="262" y="244">lecture sur SSD,</text><text class="m" x="262" y="260">plus lent</text>
+<path class="wl" d="M256 222H244M244 218L240 222L244 226"/>
+<text class="m" x="10" y="296">Seul l'ordre de vitesse est représenté.</text>
+</g>
+</svg>

@@ -1,0 +1,1 @@
+Figure 2. Deux piles de cinq couches, avant et après : plateforme de bots, harness, API gateway, inference server, modèle. Dans la pile « après », seul l'inference server change : le serveur A devient le serveur B. Les quatre autres couches restent inchangées. Ce qui change dans la configuration : l'adresse, et le nom du modèle si le serveur le demande. Aucun chiffre.

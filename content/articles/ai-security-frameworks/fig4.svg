@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 314" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Réutiliser une preuve : seulement à conditions égales</title>
+<desc id="fig4-d">Un enregistrement de test est relié à une exigence AISVS, un contrôle AICM et une exigence AIUC-1. Si les conditions de test, le périmètre et la version sont les mêmes, on réutilise la preuve. Sinon, on refait le test.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .sh{fill:var(--accent,var(--f-accent))}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .c{text-anchor:middle}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="18">Une preuve, plusieurs exigences ?</text>
+<rect class="box" x="6" y="30" width="388" height="66" rx="5"/>
+<text class="a" x="18" y="52">Enregistrement de test</text>
+<text class="t" x="18" y="70">configuration, résultat attendu,</text>
+<text class="t" x="18" y="88">résultat obtenu, journaux</text>
+<path class="ln" d="M68 96 V112 M63 106 L68 112 L73 106"/>
+<path class="ln" d="M200 96 V112 M195 106 L200 112 L205 106"/>
+<path class="ln" d="M332 96 V112 M327 106 L332 112 L337 106"/>
+<rect class="box" x="6" y="112" width="124" height="48" rx="5"/>
+<text class="s" x="18" y="134">Exigence</text>
+<text class="a" x="18" y="152">AISVS</text>
+<rect class="box" x="138" y="112" width="124" height="48" rx="5"/>
+<text class="s" x="150" y="134">Contrôle</text>
+<text class="a" x="150" y="152">AICM</text>
+<rect class="box" x="270" y="112" width="124" height="48" rx="5"/>
+<text class="s" x="282" y="134">Exigence</text>
+<text class="a" x="282" y="152">AIUC-1</text>
+<path class="ln" d="M200 160 V174 M195 168 L200 174 L205 168"/>
+<rect class="dif" x="6" y="174" width="388" height="48" rx="5"/>
+<text class="k" x="18" y="196">Mêmes conditions de test,</text>
+<text class="k" x="18" y="214">même périmètre, même version ?</text>
+<path class="ln" d="M100 222 V238 M95 232 L100 238 L105 232"/>
+<path class="ln" d="M300 222 V238 M295 232 L300 238 L305 232"/>
+<rect class="box" x="6" y="238" width="190" height="48" rx="5"/>
+<text class="a" x="18" y="260">Oui</text>
+<text class="t" x="18" y="278">réutiliser la preuve</text>
+<rect class="box" x="204" y="238" width="190" height="48" rx="5"/>
+<text class="a" x="216" y="260">Non</text>
+<text class="t" x="216" y="278">refaire le test</text>
+<text class="m" x="10" y="300">Exemple générique, sans chiffres.</text>
+
+</g>
+</svg>

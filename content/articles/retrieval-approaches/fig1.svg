@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Choisir la méthode de recherche depuis la question</title>
+<desc id="fig1-d">Un arbre part de la question. Mots ou codes exacts : keyword search (BM25). Même sens avec d'autres mots : vector search. Liens entre éléments : graph. Mélange ou doute : commencer simple et ajouter une méthode à la fois. Règle pratique, pas un résultat mesuré.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .big{fill:var(--text,var(--f-text));font-size:17px;font-weight:700}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .raised{fill:var(--raised,var(--f-raised));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .c{text-anchor:middle}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="18">La question décide de la méthode</text>
+<rect class="sh" x="110" y="28" width="180" height="34" rx="5"/>
+<text class="i c" x="200" y="50">Quelle question ?</text>
+<path class="ln" d="M200 62 V74 M20 74 H380 M20 74 V336"/>
+<path class="ln" d="M20 116 H30"/>
+<rect class="box" x="30" y="84" width="190" height="64" rx="5"/>
+<text class="s" x="40" y="121">Mots ou codes exacts</text>
+<path class="ln" d="M220 116 H236 M231 111 L236 116 L231 121"/>
+<rect class="raised" x="238" y="84" width="156" height="64" rx="5"/>
+<text class="a" x="248" y="111">keyword search</text>
+<text class="t" x="248" y="129">(BM25)</text>
+<path class="ln" d="M20 190 H30"/>
+<rect class="box" x="30" y="158" width="190" height="64" rx="5"/>
+<text class="s" x="40" y="183">Même sens,</text>
+<text class="s" x="40" y="201">autres mots</text>
+<path class="ln" d="M220 190 H236 M231 185 L236 190 L231 195"/>
+<rect class="raised" x="238" y="158" width="156" height="64" rx="5"/>
+<text class="a" x="248" y="194">vector search</text>
+<path class="ln" d="M20 264 H30"/>
+<rect class="box" x="30" y="232" width="190" height="64" rx="5"/>
+<text class="s" x="40" y="257">Liens entre éléments</text>
+<text class="s" x="40" y="275">(qui est touché si X tombe ?)</text>
+<path class="ln" d="M220 264 H236 M231 259 L236 264 L231 269"/>
+<rect class="raised" x="238" y="232" width="156" height="64" rx="5"/>
+<text class="a" x="248" y="268">graph</text>
+<path class="ln" d="M20 338 H30"/>
+<rect class="box" x="30" y="306" width="190" height="64" rx="5"/>
+<text class="s" x="40" y="331">Mélange, ou on ne</text>
+<text class="s" x="40" y="349">sait pas</text>
+<path class="ln" d="M220 338 H236 M231 333 L236 338 L231 343"/>
+<rect class="dif" x="238" y="306" width="156" height="64" rx="5"/>
+<text class="t" x="248" y="324">Commencer simple,</text>
+<text class="t" x="248" y="342">ajouter une méthode</text>
+<text class="t" x="248" y="360">à la fois</text>
+<text class="m" x="10" y="388">Règle pratique, pas un résultat mesuré.</text>
+</g>
+</svg>

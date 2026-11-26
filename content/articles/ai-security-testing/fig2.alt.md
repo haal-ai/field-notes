@@ -1,0 +1,1 @@
+Figure 2. Quatre rôles et une personne qui juge forment cinq boîtes qui se suivent, reliées par des flèches : le testing agent prépare les cas ; le driver envoie les requêtes ; le produit testé agit ; l'observer enregistre l'effet réel ; le relecteur humain juge. L'observer est mis en valeur : il ne croit pas la réponse du modèle.

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 398" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Les cinq couches d'une chaîne IA open source et l'interface entre chacune</title>
+<desc id="fig1-d">Cinq couches empilées : plateforme de bots, harness, API gateway, inference server, modèle open-weight. ACP relie un client (ici la plateforme) et l'agent. Une API HTTP compatible OpenAI relie harness, API gateway et inference server. Le serveur charge le modèle sur le GPU.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .bar{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .sep{stroke:var(--line,var(--f-line));stroke-width:1;stroke-dasharray:4 3}
+.fig1 .c{text-anchor:middle}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="18">Cinq couches, quatre liaisons</text>
+<rect class="box" x="6" y="30" width="388" height="46" rx="5"/>
+<text class="s" x="16" y="50">Plateforme de bots (client)</text>
+<text class="m" x="16" y="68">mémoire, tâches planifiées, canaux</text>
+<path class="ln" d="M36 76 V108 M31 102 L36 108 L41 102"/>
+<text class="a" x="52" y="97">ACP (JSON-RPC sur stdio)</text>
+<rect class="box" x="6" y="108" width="388" height="46" rx="5"/>
+<text class="s" x="16" y="128">Harness</text>
+<text class="m" x="16" y="146">boucle de l'agent, outils, MCP</text>
+<path class="ln" d="M36 154 V186 M31 180 L36 186 L41 180"/>
+<text class="a" x="52" y="175">API HTTP compatible OpenAI</text>
+<rect class="box" x="6" y="186" width="388" height="46" rx="5"/>
+<text class="s" x="16" y="206">API gateway</text>
+<text class="m" x="16" y="224">adresse unique, clés, routage</text>
+<path class="ln" d="M36 232 V264 M31 258 L36 264 L41 258"/>
+<text class="a" x="52" y="253">même API HTTP</text>
+<rect class="box" x="6" y="264" width="388" height="46" rx="5"/>
+<text class="s" x="16" y="284">Inference server</text>
+<text class="m" x="16" y="302">vLLM… ; gère le KV cache</text>
+<path class="ln" d="M36 310 V342 M31 336 L36 342 L41 336"/>
+<text class="a" x="52" y="331">mémoire GPU</text>
+<rect class="box" x="6" y="342" width="388" height="46" rx="5"/>
+<text class="s" x="16" y="362">Modèle open-weight</text>
+<text class="m" x="16" y="380">weights, chargés sur le GPU</text>
+</g>
+</svg>

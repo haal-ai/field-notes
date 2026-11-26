@@ -1,0 +1,1 @@
+Figure 4. Trois niveaux de mémoire, du plus rapide au plus lent. Sur GPU (VRAM) : les experts fréquents. En RAM : les experts intermédiaires. Sur SSD (NVMe) : les experts rares. Un hit (flèche verte) est servi depuis la mémoire déjà chargée, rapide. Un miss (flèche orange) lit le SSD, plus lent. Seul l'ordre de vitesse est représenté, aucune valeur chiffrée.

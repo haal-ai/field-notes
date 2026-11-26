@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" role="img" aria-labelledby="fig5-t fig5-d">
+<title id="fig5-t">Quatre compteurs séparés pour comparer des organisations d'agents</title>
+<desc id="fig5-d">Étude proposée, non menée. Quatre compteurs restent séparés et ne s'additionnent pas : temps écoulé, argent, ressources, effort humain. On compte aussi les essais ratés et les réparations. Non mesuré à ce jour : coût local contre cloud, coût de la CI par changement d'agent, référence humaine.</desc>
+<style>
+.fig5{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig5{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig5 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig5 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig5 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig5 .t{fill:var(--text,var(--f-text))}
+.fig5 .m{fill:var(--muted,var(--f-muted))}
+.fig5 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig5 .j{fill:var(--accent-ink,var(--f-ink))}
+.fig5 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig5 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig5 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig5 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig5 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig5 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig5 .dsh{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2;stroke-dasharray:5 3}
+.fig5 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig5 .lk{stroke:var(--news,var(--f-news));stroke-width:1.5;fill:none;stroke-dasharray:5 3}
+.fig5 .rg{stroke:var(--accent,var(--f-accent));stroke-width:6;stroke-linecap:round;fill:none}
+.fig5 .grid{stroke:var(--line,var(--f-line));stroke-width:1}
+.fig5 .tick{stroke:var(--text,var(--f-text));stroke-width:1.5}
+.fig5 .dot{fill:var(--news,var(--f-news));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig5 .ah{fill:var(--accent,var(--f-accent))}
+.fig5 .ahk{fill:var(--news,var(--f-news))}
+.fig5 .c{text-anchor:middle}.fig5 .e{text-anchor:end}
+</style>
+<defs><marker id="fig5-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0 0L10 5L0 10z"/></marker><marker id="fig5-ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ahk" d="M0 0L10 5L0 10z"/></marker></defs>
+<g class="fig5">
+<text class="h" x="10" y="18">Quatre compteurs, jamais additionnés</text>
+<rect class="dif" x="10" y="28" width="380" height="30" rx="5"/>
+<text class="k c" x="200" y="48">Étude proposée, non menée</text>
+<rect class="box" x="10" y="70" width="185" height="108" rx="5"/>
+<text class="s" x="22" y="96">Temps écoulé</text>
+<text class="t" x="22" y="120">de la demande</text>
+<text class="t" x="22" y="138">à l'acceptation</text>
+<rect class="box" x="205" y="70" width="185" height="108" rx="5"/>
+<text class="s" x="217" y="96">Argent</text>
+<text class="t" x="217" y="120">modèles, CI,</text>
+<text class="t" x="217" y="138">environnements,</text>
+<text class="t" x="217" y="156">personnes</text>
+<rect class="box" x="10" y="188" width="185" height="108" rx="5"/>
+<text class="s" x="22" y="214">Ressources</text>
+<text class="t" x="22" y="238">minutes de runner,</text>
+<text class="t" x="22" y="256">CPU, mémoire</text>
+<rect class="box" x="205" y="188" width="185" height="108" rx="5"/>
+<text class="s" x="217" y="214">Effort humain</text>
+<text class="t" x="217" y="238">mise en place,</text>
+<text class="t" x="217" y="256">relecture, réparation</text>
+<text class="m c" x="200" y="314">≠  ne pas additionner</text>
+<rect class="bar" x="10" y="326" width="380" height="46" rx="5"/>
+<text class="t" x="20" y="346">Compter aussi les essais ratés</text>
+<text class="t" x="20" y="364">et les réparations.</text>
+<rect class="dsh" x="10" y="384" width="380" height="86" rx="5"/>
+<text class="k" x="20" y="404">Non mesuré à ce jour</text>
+<text class="t" x="20" y="424">coût local contre cloud ; coût de la CI</text>
+<text class="t" x="20" y="442">par changement d'agent ;</text>
+<text class="t" x="20" y="458">référence humaine</text>
+</g>
+</svg>

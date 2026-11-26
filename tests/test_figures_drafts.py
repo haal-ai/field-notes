@@ -49,6 +49,8 @@ class TempSite(unittest.TestCase):
             patch.start()
             self.addCleanup(patch.stop)
         self.real = json.loads((Path(__file__).resolve().parents[1] / 'content/catalogue.json').read_text())
+        # Fixtures use the first five published entries; later notes would change the fixed counts below.
+        self.real['articles'] = [a for a in self.real['articles'] if a.get('published') and a['published'] <= '2026-11-25']
 
     def add(self, article, body=BODY, svg=SVG, alt='Box A leads to box B.\n', folder=None):
         folder = Path(folder) if folder else self.tmp / 'content/articles' / article['slug']
@@ -164,6 +166,20 @@ class DraftWorkflowTests(TempSite):
         self.write_catalogue(self.draft())
         with self.assertRaisesRegex(ValueError, 'refused in a public build'):
             build.build(date(2026, 11, 25))
+        self.assertFalse((self.tmp / '_site/draft-page').exists())
+
+    def test_preview_shows_catalogue_drafts_marked_and_lists_their_new_section(self):
+        draft = self.draft()
+        draft['section'] = 'Agents'
+        self.add(draft)
+        self.write_catalogue(draft)
+        with self.assertRaisesRegex(ValueError, 'refused in a public build'):
+            build.build(date(2026, 11, 25))
+        build.build(date(2026, 11, 25), preview=True)
+        home = (self.tmp / '_preview/index.html').read_text()
+        self.assertIn('href="sections/agents/index.html"', home)
+        self.assertIn('Brouillon (non publié)', self.page('draft-page', preview=True))
+        self.assertTrue((self.tmp / '_preview/sections/agents/index.html').is_file())
         self.assertFalse((self.tmp / '_site/draft-page').exists())
 
     def test_public_build_refuses_unapproved_or_undated_entries(self):

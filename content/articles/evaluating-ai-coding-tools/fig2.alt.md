@@ -1,0 +1,1 @@
+Figure 2. Sept étapes dans l'ordre. 1 : même code réel et même consigne pour tous. 2 : grille de notation cachée aux outils. 3 : une exécution par outil. 4 : collecte du diff, des journaux de tests, du coût et du journal de plantages. 5 : notation en aveugle (blind judging). 6 : réconciliation des notes. 7 : rapport. Méthode générique, sans mesure.

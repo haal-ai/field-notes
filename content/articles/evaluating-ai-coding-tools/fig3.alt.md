@@ -1,0 +1,1 @@
+Figure 3. Une barre représente 100 % du code de l'application. Environ 5 % de la barre, en exemple illustratif, sont le diff de l'agent. Un juge qui lit tout dilue le signal de l'agent dans le code déjà présent. Un juge du diff isole le travail de l'agent, mais voit moins bien comment le changement s'insère dans l'ensemble. Le chiffre de 5 % est un exemple, pas une mesure.

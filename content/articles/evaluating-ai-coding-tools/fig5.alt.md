@@ -1,0 +1,1 @@
+Figure 5. Plan à deux axes : le coût en abscisse, la qualité en ordonnée. Trois points d'exemple : bon marché et bon ; cher et bon ; bon marché mais à sauver, c'est-à-dire avec du temps humain en plus. Une flèche horizontale montre qu'un plantage ajoute du coût sans changer la qualité. Valeurs illustratives, aucune donnée.

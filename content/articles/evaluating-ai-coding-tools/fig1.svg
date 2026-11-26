@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 380" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Trois raisons de se méfier d'un score public</title>
+<desc id="fig1-d">Tests qui rejettent du code correct, contamination et écart entre vitesse mesurée et ressentie. Les deux premiers audits viennent d'OpenAI, qui utilise ces benchmarks.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .big{fill:var(--accent,var(--f-accent));font-weight:700;font-size:18px}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .hi{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig1 .sh{fill:var(--accent,var(--f-accent))}
+.fig1 .nw{fill:var(--news,var(--f-news))}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .lk{stroke:var(--news,var(--f-news));stroke-width:1.5;fill:none;stroke-dasharray:5 3}
+.fig1 .ax{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none}
+.fig1 .c{text-anchor:middle}.fig1 .e{text-anchor:end}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="20">Pourquoi un score public ne suffit pas</text>
+<rect class="box" x="10" y="32" width="380" height="92" rx="6"/>
+<text class="s" x="20" y="52">Tests</text>
+<text class="k e" x="380" y="52">audit d'OpenAI</text>
+<text class="big" x="20" y="78">≥ 59,4 %</text>
+<text class="t" x="116" y="78">des problèmes audités</text>
+<text class="m" x="20" y="98">sous-ensemble de 27,6 % de Verified, choisi parmi</text>
+<text class="m" x="20" y="114">les problèmes que les modèles ratent souvent</text>
+<rect class="box" x="10" y="134" width="380" height="92" rx="6"/>
+<text class="s" x="20" y="154">Contamination</text>
+<text class="k e" x="380" y="154">audit d'OpenAI</text>
+<text class="t" x="20" y="178">Les modèles de pointe testés semblent avoir</text>
+<text class="t" x="20" y="196">vu des problèmes à l'entraînement</text>
+<rect class="box" x="10" y="236" width="380" height="92" rx="6"/>
+<text class="s" x="20" y="256">Perception</text>
+<text class="big" x="20" y="282">tâches 19 % plus longues</text>
+<text class="t" x="148" y="282"></text>
+<text class="t" x="20" y="302">ressenti : 20 % plus rapide</text>
+<text class="m" x="20" y="318">METR, début 2025 · chiffre daté</text>
+<text class="m" x="10" y="352">Cartes 1 et 2 : audits menés par OpenAI, qui utilise</text>
+<text class="m" x="10" y="369">ces benchmarks. Pas une source indépendante.</text>
+
+</g>
+</svg>

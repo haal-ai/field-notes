@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 456" role="img" aria-labelledby="fig5-t fig5-d">
+<title id="fig5-t">La limite suivante : la CI et la fusion</title>
+<desc id="fig5-d">Sans file, deux changements valides seuls peuvent casser ensemble. Une merge queue teste chaque changement avec les précédents. Anthropic fusionne d'abord, teste avant le déploiement et corrige les conflits après.</desc>
+<style>
+.fig5{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig5{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig5 text{font-family:system-ui,sans-serif;font-size:12px}
+.fig5 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig5 .s{fill:var(--text,var(--f-text));font-weight:700}
+.fig5 .t{fill:var(--text,var(--f-text))}
+.fig5 .m{fill:var(--muted,var(--f-muted))}
+.fig5 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig5 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig5 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig5 .kt{fill:var(--news,var(--f-news))}
+.fig5 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig5 .hd{fill:var(--accent,var(--f-accent))}
+.fig5 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig5 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig5 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:1.5}
+.fig5 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig5 .arr{fill:var(--accent,var(--f-accent))}
+.fig5 .c{text-anchor:middle}.fig5 .e{text-anchor:end}
+</style>
+<g class="fig5">
+<text class="h" x="10" y="18">Trois façons d'entrer dans une branche</text>
+<text class="s" x="10" y="44">1. Sans file</text>
+<rect class="box" x="10" y="54" width="100" height="26" rx="3"/><text class="t c" x="60.0" y="71.0">Changement 1</text><rect class="box" x="10" y="86" width="100" height="26" rx="3"/><text class="t c" x="60.0" y="103.0">Changement 2</text>
+<rect class="box" x="120" y="54" width="110" height="26" rx="3"/><text class="t c" x="175.0" y="71.0">valide seul</text><rect class="box" x="120" y="86" width="110" height="26" rx="3"/><text class="t c" x="175.0" y="103.0">valide seul</text>
+<line class="ln" x1="232" y1="83" x2="248" y2="83"/><path class="arr" d="M254 83 l-8 -5 v10 z"/><rect class="dif" x="256" y="70" width="134" height="26" rx="3"/><text class="kt c" x="323.0" y="87.0">cassent ensemble</text>
+<text class="s" x="10" y="138">2. Merge queue / merge train</text>
+<rect class="box" x="10" y="148" width="100" height="26" rx="3"/><text class="t c" x="60.0" y="165.0">Changement 1</text><line class="ln" x1="112" y1="161" x2="126" y2="161"/><path class="arr" d="M132 161 l-8 -5 v10 z"/><rect class="box" x="134" y="148" width="120" height="26" rx="3"/><text class="t c" x="194.0" y="165.0">testé seul</text><line class="ln" x1="256" y1="161" x2="270" y2="161"/><path class="arr" d="M276 161 l-8 -5 v10 z"/><rect class="sh" x="278" y="148" width="112" height="26" rx="3"/><text class="i c" x="334.0" y="165.0">fusionné</text>
+<rect class="box" x="10" y="180" width="100" height="26" rx="3"/><text class="t c" x="60.0" y="197.0">Changement 2</text><line class="ln" x1="112" y1="193" x2="126" y2="193"/><path class="arr" d="M132 193 l-8 -5 v10 z"/><rect class="box" x="134" y="180" width="120" height="26" rx="3"/><text class="t c" x="194.0" y="197.0">testé avec 1</text><line class="ln" x1="256" y1="193" x2="270" y2="193"/><path class="arr" d="M276 193 l-8 -5 v10 z"/><rect class="sh" x="278" y="180" width="112" height="26" rx="3"/><text class="i c" x="334.0" y="197.0">fusionné</text>
+<text class="m" x="10" y="226">Un échec relance les tests des suivants.</text>
+<text class="s" x="10" y="262">3. Anthropic</text>
+<rect class="sh" x="10" y="272" width="100" height="26" rx="3"/><text class="i c" x="60.0" y="289.0">Fusion</text><line class="ln" x1="112" y1="285" x2="126" y2="285"/><path class="arr" d="M132 285 l-8 -5 v10 z"/><rect class="box" x="134" y="272" width="150" height="26" rx="3"/><text class="t c" x="209.0" y="289.0">tests avant déploiement</text><line class="ln" x1="286" y1="285" x2="300" y2="285"/><path class="arr" d="M306 285 l-8 -5 v10 z"/><rect class="dif" x="308" y="272" width="82" height="26" rx="3"/><text class="kt c" x="349.0" y="289.0">conflits</text>
+<text class="m" x="10" y="318">Les conflits sont corrigés après la fusion.</text>
+<rect class="dif" x="10" y="338" width="380" height="104" rx="4"/>
+<text class="k" x="18" y="358">Repères rapportés par les fournisseurs</text>
+<text class="kt" x="18" y="378">Anthropic : environ 2 500 fusions par jour en</text><text class="kt" x="18" y="393">mai 2026, plus de 30 000 en septembre.</text><text class="kt" x="18" y="408">GitLab.com : +40 % de pipelines CI/CD et</text><text class="kt" x="18" y="423">+50 % de pushes sur un an.</text>
+</g>
+</svg>
