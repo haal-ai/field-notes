@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 671" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Cinq réponses : GitHub, GitLab, Scion, Origin, Entire</title>
+<desc id="fig4-d">Pour chaque fournisseur : où vont les objets, où la branche est déplacée, ce qui est sacrifié et l'état en novembre 2026.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:12px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:700}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .kt{fill:var(--news,var(--f-news))}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .hd{fill:var(--accent,var(--f-accent))}
+.fig4 .bar{fill:var(--raised,var(--f-raised));stroke:var(--text,var(--f-text));stroke-width:1}
+.fig4 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:1.5}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .arr{fill:var(--accent,var(--f-accent))}
+.fig4 .c{text-anchor:middle}.fig4 .e{text-anchor:end}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="18">Cinq réponses (état en novembre 2026)</text>
+<rect class="box" x="10" y="32" width="380" height="124" rx="4"/><rect class="hd" x="10" y="32" width="380" height="22" rx="4"/>
+<text class="i" x="18" y="48">GitHub</text>
+<text class="a" x="18" y="72">Objets</text>
+<text class="t" x="76" y="72">replicas à disques locaux +</text>
+<text class="t" x="76" y="87">Azure Blob Storage ; cible : objets</text>
+<text class="t" x="76" y="102">dans Blob Storage, disque = cache</text>
+<text class="a" x="18" y="117">Branche</text>
+<text class="t" x="76" y="117">lock par ref ; cible : compare-and-</text><text class="t" x="76" y="132">swap par ref (Ref-CAS, quorum)</text>
+<text class="a" x="18" y="147">État</text>
+<text class="t" x="76" y="147">aperçu privé limité (nov. 2026)</text>
+<rect class="box" x="10" y="164" width="380" height="109" rx="4"/><rect class="hd" x="10" y="164" width="380" height="22" rx="4"/>
+<text class="i" x="18" y="180">GitLab</text>
+<text class="a" x="18" y="204">Objets</text>
+<text class="t" x="76" y="204">Git compatible ; calcul sans état sur</text>
+<text class="t" x="76" y="219">stockage d'objets partagé ; l'agent</text>
+<text class="t" x="76" y="234">ne lit que le nécessaire</text>
+<text class="a" x="18" y="249">Branche</text>
+<text class="t" x="76" y="249">non détaillé dans la source</text>
+<text class="a" x="18" y="264">État</text>
+<text class="t" x="76" y="264">bêta privée</text>
+<rect class="box" x="10" y="281" width="380" height="124" rx="4"/><rect class="hd" x="10" y="281" width="380" height="22" rx="4"/>
+<text class="i" x="18" y="297">Anthropic Scion</text>
+<text class="a" x="18" y="321">Objets</text>
+<text class="t" x="76" y="321">changesets (ensembles de</text><text class="t" x="76" y="336">changements) dans un write-ahead log</text>
+<text class="a" x="18" y="351">Branche</text>
+<text class="t" x="76" y="351">compare-and-swap sur une ligne de</text>
+<text class="t" x="76" y="366">base de données ; tests après fusion</text>
+<text class="a" x="18" y="381">État</text>
+<text class="t" x="76" y="381">interne ; non proposé à d'autres ; « pas un</text>
+<text class="t" x="76" y="396">remplacement général de Git »</text>
+<rect class="box" x="10" y="413" width="380" height="109" rx="4"/><rect class="hd" x="10" y="413" width="380" height="22" rx="4"/>
+<text class="i" x="18" y="429">Cursor (Continuity, dans Origin)</text>
+<text class="a" x="18" y="453">Objets</text>
+<text class="t" x="76" y="453">write-ahead log dans un object</text>
+<text class="t" x="76" y="468">storage compatible S3 ; dépôts sur</text>
+<text class="t" x="76" y="483">disque = caches</text>
+<text class="a" x="18" y="498">Branche</text>
+<text class="t" x="76" y="498">compare-and-swap sur l'index du log</text>
+<text class="a" x="18" y="513">État</text>
+<text class="t" x="76" y="513">statut non précisé dans le billet</text>
+<rect class="box" x="10" y="530" width="380" height="109" rx="4"/><rect class="hd" x="10" y="530" width="380" height="22" rx="4"/>
+<text class="i" x="18" y="546">Entire</text>
+<text class="a" x="18" y="570">Objets</text>
+<text class="t" x="76" y="570">cellules régionales ; objets copiés</text>
+<text class="t" x="76" y="585">dans au moins deux zones</text>
+<text class="a" x="18" y="600">Branche</text>
+<text class="t" x="76" y="600">compare-and-swap dans une base</text>
+<text class="t" x="76" y="615">PostgreSQL</text>
+<text class="a" x="18" y="630">État</text>
+<text class="t" x="76" y="630">produit récent (billet du 27 oct. 2026)</text>
+<text class="m" x="10" y="657">Aucun classement de performance.</text>
+</g>
+</svg>

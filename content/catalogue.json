@@ -264,6 +264,29 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "git-under-agent-pressure",
+      "title": "Git sous la pression des agents",
+      "lang": "fr",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "Un push se compose d'objets immuables et d'une branche partagée. Ce guide montre pourquoi les agents saturent l'ordre des écritures, comment cinq fournisseurs répondent, dont la nouvelle architecture de GitHub (état de novembre 2026) et pourquoi la CI devient la limite suivante.",
+      "published": "2026-11-26",
+      "edited": "2026-11-26",
+      "reviewed": "2026-11-26",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "history": [
+        {
+          "date": "2026-11-26",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [
