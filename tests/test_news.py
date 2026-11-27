@@ -267,8 +267,17 @@ class NewsPageBuild(unittest.TestCase):
         self.build(date(2026, 11, 26))
         page = (self.tmp_out / 'nouvelles/index.html').read_text()
         self.assertLess(page.index('Plus récente'), page.index('Plus ancienne'))
-        self.assertIn('data-learning-visual', page)  # the weekly chart figure
+        self.assertNotIn('<svg', page)
+        self.assertNotIn('Nombre de nouvelles par semaine', page)
+        self.assertNotIn('data-learning-visual', page)
         self.assertIn('news-notice', page)
+
+    def test_news_page_has_no_chart_figure(self):
+        self.write_news([rec(id_='1111222233334444', date_='2026-11-25', title='Récente')])
+        self.build(date(2026, 11, 26))
+        page = (self.tmp_out / 'nouvelles/index.html').read_text()
+        self.assertNotIn('<figure', page)
+        self.assertNotIn('<svg', page)
 
     def test_record_with_no_public_url_breaks_the_public_build(self):
         bad = rec()
