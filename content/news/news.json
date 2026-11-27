@@ -16,8 +16,8 @@
     "date": "2026-11-27",
     "vendor": "NVIDIA / Alibaba (AAIF)",
     "theme": "Sécurité",
-    "title_fr": "Pour info : deux sandboxes ouverts pour exécuter des agents IA en sécurité (NVIDIA OpenShell, Alibaba OpenSandbox)",
-    "text_fr": "Pour info : deux sandboxes ouverts pour exécuter des agents IA en sécurité. NVIDIA OpenShell : un runtime qui confine les agents (p. ex. Claude Code) dans des sandboxes au niveau du noyau, sous une politique ; les clés restent à l'extérieur. Red Hat s'appuie désormais dessus. Alibaba OpenSandbox (désormais un projet AAIF) : des sandboxes isolés (Docker, gVisor, Firecracker) pour le code écrit par les agents, avec des identifiants par requête. À ne pas confondre avec OpenEnv, qui sert à entraîner et tester des agents.",
+    "title_fr": "Pour info : OpenShell et OpenSandbox, deux sandboxes pour exécuter des agents IA en sécurité",
+    "text_fr": "OpenShell et OpenSandbox sont deux sandboxes pour exécuter des agents IA en sécurité. NVIDIA OpenShell : un runtime qui confine les agents (p. ex. Claude Code) dans des sandboxes au niveau du noyau, sous une politique ; les clés restent à l'extérieur. Red Hat s'appuie désormais dessus. Alibaba OpenSandbox (désormais un projet AAIF) : des sandboxes isolés (Docker, gVisor, Firecracker) pour le code écrit par les agents, avec des identifiants par requête. À ne pas confondre avec OpenEnv, qui sert à entraîner et tester des agents.",
     "urls": [
       "https://perspectives.nvidia.com/nvidia-openshell/",
       "https://developers.redhat.com/articles/2026/11/17/omnigent-case-study-securing-third-party-ai-agents-on-red-hat-ai-with-openshell",
