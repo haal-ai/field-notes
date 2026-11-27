@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 336" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Un agent sans et avec runtime de policy</title>
+<desc id="fig1-d">Deux panneaux. Sans runtime, l'agent atteint directement les fichiers, les secrets et le réseau. Avec OpenShell, chacun de ces trois flux passe par une policy.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .zone{fill:var(--raised,var(--f-raised));stroke:var(--muted,var(--f-muted));stroke-width:1;stroke-dasharray:5 3}
+.fig1 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig1 .pol{fill:var(--accent,var(--f-accent))}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .bad{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig1 .c{text-anchor:middle}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="18">Un agent, trois accès</text>
+<rect class="box" x="6" y="28" width="388" height="136" rx="5"/>
+<text class="s" x="16" y="48">Sans runtime : accès direct</text>
+<rect class="sh" x="14" y="78" width="70" height="40" rx="5"/><text class="i c" x="49" y="103">Agent</text>
+<text class="t" x="318" y="72">Fichiers</text>
+<path class="ln" d="M90 68 H304 M298 63 L304 68 L298 73"/>
+<text class="t" x="318" y="102">Secrets</text>
+<path class="ln" d="M90 98 H304 M298 93 L304 98 L298 103"/>
+<text class="t" x="318" y="132">Réseau</text>
+<path class="ln" d="M90 128 H304 M298 123 L304 128 L298 133"/>
+<rect class="box" x="6" y="172" width="388" height="136" rx="5"/>
+<text class="s" x="16" y="192">Avec OpenShell : chaque accès passe par une policy</text>
+<rect class="sh" x="14" y="222" width="70" height="40" rx="5"/><text class="i c" x="49" y="247">Agent</text>
+<text class="t" x="318" y="216">Fichiers</text>
+<path class="ln" d="M90 212 H304 M298 207 L304 212 L298 217"/>
+<rect class="box" x="170" y="202" width="60" height="20" rx="4"/><text class="a c" x="200" y="216">policy</text>
+<text class="t" x="318" y="246">Secrets</text>
+<path class="ln" d="M90 242 H304 M298 237 L304 242 L298 247"/>
+<rect class="box" x="170" y="232" width="60" height="20" rx="4"/><text class="a c" x="200" y="246">policy</text>
+<text class="t" x="318" y="276">Réseau</text>
+<path class="ln" d="M90 272 H304 M298 267 L304 272 L298 277"/>
+<rect class="box" x="170" y="262" width="60" height="20" rx="4"/><text class="a c" x="200" y="276">policy</text>
+<text class="m" x="10" y="326">Trois flux en exemple, pas une liste complète.</text>
+</g>
+</svg>

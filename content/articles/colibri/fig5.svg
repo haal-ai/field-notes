@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 298" role="img" aria-labelledby="fig5-t fig5-d">
+<title id="fig5-t">Colibri : du démarrage au serveur local en cinq étapes</title>
+<desc id="fig5-d">Détecter la machine, estimer la vitesse, recommander un modèle, le télécharger, le servir sur une adresse locale compatible OpenAI.</desc>
+<style>
+.fig5{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig5{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig5 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig5 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig5 .t{fill:var(--text,var(--f-text))}
+.fig5 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig5 .m{fill:var(--muted,var(--f-muted))}
+.fig5 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig5 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig5 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig5 .hi{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:2}
+.fig5 .bar{fill:var(--accent,var(--f-accent))}
+.fig5 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig5 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig5 .dl{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig5 .ah{fill:var(--accent,var(--f-accent))}
+.fig5 .ahm{fill:var(--muted,var(--f-muted))}
+.fig5 .c{text-anchor:middle}.fig5 .e{text-anchor:end}
+</style>
+<g class="fig5">
+<text class="h" x="10" y="20">Du démarrage au serveur local</text>
+<rect class="box" x="10" y="34" width="380" height="34" rx="17"/><text class="s" x="28" y="56">1. Détecter RAM, disque et GPU</text>
+<path class="ln" d="M200 78L200 70"/><path class="ah" d="M195 62L205 62L200 70Z"/>
+<rect class="box" x="10" y="78" width="380" height="34" rx="17"/><text class="s" x="28" y="100">2. Estimer la vitesse de decoding</text>
+<path class="ln" d="M200 122L200 114"/><path class="ah" d="M195 106L205 106L200 114Z"/>
+<rect class="box" x="10" y="122" width="380" height="34" rx="17"/><text class="s" x="28" y="144">3. Recommander un modèle</text>
+<path class="ln" d="M200 166L200 158"/><path class="ah" d="M195 150L205 150L200 158Z"/>
+<rect class="box" x="10" y="166" width="380" height="34" rx="17"/><text class="s" x="28" y="188">4. Télécharger le modèle</text>
+<path class="ln" d="M200 210L200 202"/><path class="ah" d="M195 194L205 194L200 202Z"/>
+<rect class="hi" x="10" y="210" width="380" height="34" rx="17"/><text class="i" x="28" y="232">5. Servir en local (API compatible OpenAI)</text>
+<text class="m" x="10" y="266">Repère du projet : 20 tok/s comptent comme fluide ;</text><text class="m" x="10" y="284">la lecture sur disque est comptée pour moitié.</text>
+</g>
+</svg>

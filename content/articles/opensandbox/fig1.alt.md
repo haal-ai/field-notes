@@ -1,0 +1,1 @@
+Figure 1. Où s'exécute le code d'un agent. Sans sandbox : l'agent envoie du code non fiable, qui s'exécute sur l'hôte ; il touche vos fichiers et vos secrets. Avec une sandbox : le même code s'exécute dans une sandbox jetable, détruite à la fin ; l'hôte reste hors d'atteinte.

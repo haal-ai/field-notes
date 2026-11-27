@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 406" role="img" aria-labelledby="fig3-t fig3-d">
+<title id="fig3-t">Cycle de vie d'une sandbox : create, run, pause et resume, delete</title>
+<desc id="fig3-d">Une sandbox est créée depuis une image, sert à exécuter commandes, fichiers et code, peut être mise en pause puis reprise, puis supprimée. Sans renouvellement, une durée de vie (TTL) la supprime. Un snapshot garde son état sous forme d'image, selon le backend.</desc>
+<style>
+.fig3{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig3{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig3 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig3 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig3 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig3 .t{fill:var(--text,var(--f-text))}
+.fig3 .m{fill:var(--muted,var(--f-muted))}
+.fig3 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig3 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig3 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig3 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig3 .hi{fill:var(--surface,var(--f-surface));stroke:var(--accent,var(--f-accent));stroke-width:2}
+.fig3 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig3 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig3 .dash{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig3 .c{text-anchor:middle}
+</style>
+<g class="fig3">
+<text class="h" x="10" y="18">Cycle de vie d'une sandbox</text>
+<rect class="box" x="6" y="30" width="388" height="50" rx="5"/>
+<circle class="sh" cx="26" cy="55" r="11"/>
+<text class="i c" x="26" y="60">1</text>
+<text class="s" x="46" y="52">create</text>
+<text class="m" x="46" y="70">depuis une image</text>
+<path class="ln" d="M200 80 V94 M195 88 L200 94 L205 88"/>
+<rect class="box" x="6" y="94" width="388" height="50" rx="5"/>
+<circle class="sh" cx="26" cy="119" r="11"/>
+<text class="i c" x="26" y="124">2</text>
+<text class="s" x="46" y="116">run</text>
+<text class="m" x="46" y="134">commandes, fichiers, code</text>
+<path class="ln" d="M200 144 V158 M195 152 L200 158 L205 152"/>
+<rect class="box" x="6" y="158" width="388" height="50" rx="5"/>
+<circle class="sh" cx="26" cy="183" r="11"/>
+<text class="i c" x="26" y="188">3</text>
+<text class="s" x="46" y="180">pause, puis resume</text>
+<text class="m" x="46" y="198">l'état est gardé, selon le backend</text>
+<path class="ln" d="M200 208 V222 M195 216 L200 222 L205 216"/>
+<rect class="box" x="6" y="222" width="388" height="50" rx="5"/>
+<circle class="sh" cx="26" cy="247" r="11"/>
+<text class="i c" x="26" y="252">4</text>
+<text class="s" x="46" y="244">delete</text>
+<text class="m" x="46" y="262">la sandbox est supprimée</text>
+<rect class="dif" x="6" y="294" width="388" height="44" rx="5"/>
+<text class="k" x="16" y="312">TTL</text>
+<text class="t" x="50" y="312">sans renouvellement, la sandbox</text>
+<text class="t" x="16" y="330">est supprimée à l'échéance.</text>
+<rect class="box" x="6" y="348" width="388" height="44" rx="5"/>
+<text class="s" x="16" y="366">snapshot</text>
+<text class="t" x="92" y="366">état gardé sous forme d'image,</text>
+<text class="t" x="16" y="384">selon le backend.</text>
+</g>
+</svg>

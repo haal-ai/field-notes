@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Où tourne Colibri et ce qu'il offre</title>
+<desc id="fig1-d">Un programme appelle un modèle. Sur votre machine, Colibri, un inference engine, charge les weights du modèle et offre une API compatible OpenAI et un serveur MCP.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .hi{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:2}
+.fig1 .bar{fill:var(--accent,var(--f-accent))}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .dl{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig1 .ah{fill:var(--accent,var(--f-accent))}
+.fig1 .ahm{fill:var(--muted,var(--f-muted))}
+.fig1 .c{text-anchor:middle}.fig1 .e{text-anchor:end}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="20">Où tourne Colibri</text>
+<rect class="box" x="10" y="32" width="380" height="40" rx="6"/><text class="s" x="22" y="57">Un programme qui appelle un modèle</text>
+<path class="ah" d="M195 92L205 92L200 84Z"/>
+<rect class="dif" x="10" y="96" width="380" height="214" rx="8"/><text class="a" x="22" y="118">Votre machine</text>
+<rect class="box" x="22" y="128" width="170" height="44" rx="6"/><text class="s" x="32" y="148">API compatible</text><text class="s" x="32" y="164">OpenAI</text>
+<rect class="box" x="208" y="128" width="170" height="44" rx="6"/><text class="s" x="218" y="148">Serveur MCP</text><text class="m" x="218" y="164" style="font-weight:400">offerts par Colibri</text>
+<path class="ah" d="M107 190L117 190L112 182Z"/><path class="ah" d="M293 190L303 190L298 182Z"/>
+<rect class="hi" x="22" y="194" width="356" height="46" rx="6"/><text class="i" x="34" y="214">Inference engine : Colibri</text><text class="i" x="34" y="231" style="font-weight:400">écrit en C, couche modèle</text>
+<path class="ah" d="M195 256L205 256L200 248Z"/>
+<rect class="box" x="22" y="256" width="356" height="46" rx="6"/><text class="s" x="34" y="276">Modèle (weights)</text><text class="m" x="34" y="293" style="font-weight:400">les nombres appris, sur disque</text>
+</g>
+</svg>

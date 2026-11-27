@@ -512,6 +512,156 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "colibri",
+      "title": "Colibri : un moteur d'inférence qui lit les experts sur disque",
+      "lang": "fr",
+      "section": "Inférence",
+      "type": "guide",
+      "summary": "Colibri est un inference engine open source qui fait tourner de gros modèles MoE en gardant les experts rares sur NVMe. Le guide montre ses niveaux de mémoire, ce qu'il vise et ses limites ; les vitesses citées sont celles du projet.",
+      "published": "2026-11-27",
+      "edited": "2026-11-27",
+      "reviewed": "2026-11-27",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Trois niveaux de mémoire pour les experts",
+        "svg": "fig3.svg",
+        "alt": "fig3.alt.md",
+        "caption": "Experts chauds sur GPU (avec la partie dense s'il y en a un), tièdes en RAM, froids sur NVMe. Un miss lit le disque. Aucune vitesse représentée."
+      },
+      "history": [
+        {
+          "date": "2026-11-27",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "nvidia-openshell",
+      "title": "NVIDIA OpenShell : un runtime qui gouverne ce qu'un agent peut toucher",
+      "lang": "fr",
+      "section": "Sécurité",
+      "type": "guide",
+      "summary": "OpenShell enferme un agent dans une sandbox et applique une policy déclarée à l'avance. Voici le problème visé, sa place autour de l'agent et ses limites (version 0.1.x, novembre 2026).",
+      "published": "2026-11-27",
+      "edited": "2026-11-27",
+      "reviewed": "2026-11-27",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Une policy entre l'agent et ses ressources",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "Sans runtime, l'agent atteint directement fichiers, secrets et réseau. Avec OpenShell, chaque flux passe par une policy."
+      },
+      "history": [
+        {
+          "date": "2026-11-27",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "opensandbox",
+      "title": "OpenSandbox : une API pour lancer les sandboxes d'un agent",
+      "lang": "fr",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "OpenSandbox est un projet open source qui donne aux agents une API unique pour obtenir une sandbox jetable, avec Docker ou Kubernetes. Où il se place, comment il est organisé, ce qu'il ne dit pas.",
+      "published": "2026-11-27",
+      "edited": "2026-11-27",
+      "reviewed": "2026-11-27",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Une sandbox jetable pour du code non fiable",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "Sans sandbox, le code de l'agent s'exécute sur l'hôte. Avec une sandbox, il s'exécute dans un environnement jetable, détruit à la fin."
+      },
+      "history": [
+        {
+          "date": "2026-11-27",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "openenv",
+      "title": "OpenEnv : un standard pour décrire l'environnement d'un agent",
+      "lang": "fr",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "OpenEnv décrit, avec une interface unique reset et step, l'environnement où un agent s'entraîne ou se fait évaluer. Il fixe le contrat avec le modèle ; l'isolation relève d'autres outils.",
+      "published": "2026-11-27",
+      "edited": "2026-11-27",
+      "reviewed": "2026-11-27",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Une interface commune entre outils d'entraînement et environnements",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "Sans standard, N × M adaptateurs ; avec une interface commune, N + M. Comptes symboliques, sans mesure."
+      },
+      "history": [
+        {
+          "date": "2026-11-27",
+          "note": "Première publication."
+        }
+      ]
+    },
+    {
+      "slug": "agent-sandboxes-compared",
+      "title": "Agent sandboxes : trois outils, trois questions",
+      "lang": "fr",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "OpenShell, OpenSandbox et OpenEnv disent tous « sandbox » mais répondent à trois questions : qui fixe les règles, où le code tourne, quel environnement entraîner ou évaluer. Un axe, un tableau, un guide de choix (novembre 2026).",
+      "published": "2026-11-27",
+      "edited": "2026-11-27",
+      "reviewed": "2026-11-27",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Trois outils autour d'un agent",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "OpenShell encadre l'agent par des règles ; OpenSandbox fournit l'endroit où le code s'exécute ; OpenEnv définit la tâche, les observations et la note."
+      },
+      "history": [
+        {
+          "date": "2026-11-27",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [

@@ -1,0 +1,1 @@
+Figure 5. Cinq étapes, du démarrage au serveur local : 1. détecter la RAM, le disque et le GPU ; 2. estimer la vitesse de decoding ; 3. recommander un modèle ; 4. télécharger le modèle ; 5. servir en local, sur une adresse compatible OpenAI. Repère du projet : 20 tok/s comptent comme fluide, et la lecture sur disque est comptée pour moitié. Source : README du projet.

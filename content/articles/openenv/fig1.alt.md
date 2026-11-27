@@ -1,0 +1,1 @@
+Figure 1. Deux schémas. Sans standard, trois outils d'entraînement et trois environnements sont reliés par 9 traits croisés : 3 × 3 = 9 adaptateurs, un par paire. Avec l'interface OpenEnv au milieu, chaque outil et chaque environnement se relie à elle par un trait : 3 + 3 = 6 adaptateurs. Les comptes sont symboliques, ce ne sont pas des mesures.

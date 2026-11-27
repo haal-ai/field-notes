@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 338" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Pourquoi un standard : 9 adaptateurs sans interface commune, 6 avec</title>
+<desc id="fig1-d">Sans standard, trois outils d'entraînement et trois environnements demandent 9 adaptateurs. Avec l'interface OpenEnv au milieu, il en faut 6. Les comptes sont symboliques.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .key{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .thin{stroke:var(--muted,var(--f-muted));stroke-width:1;fill:none}
+.fig1 .sep{stroke:var(--line,var(--f-line));stroke-width:1.5;stroke-dasharray:4 3;fill:none}
+.fig1 .c{text-anchor:middle}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="20">Sans standard</text>
+<path class="thin" d="M120 43 L280 43"/>
+<path class="thin" d="M120 43 L280 77"/>
+<path class="thin" d="M120 43 L280 111"/>
+<path class="thin" d="M120 77 L280 43"/>
+<path class="thin" d="M120 77 L280 77"/>
+<path class="thin" d="M120 77 L280 111"/>
+<path class="thin" d="M120 111 L280 43"/>
+<path class="thin" d="M120 111 L280 77"/>
+<path class="thin" d="M120 111 L280 111"/>
+<rect class="box" x="10" y="30" width="110" height="26" rx="5"/><text class="t c" x="65" y="48">Entraînement 1</text>
+<rect class="box" x="280" y="30" width="110" height="26" rx="5"/><text class="t c" x="335" y="48">Environnement 1</text>
+<rect class="box" x="10" y="64" width="110" height="26" rx="5"/><text class="t c" x="65" y="82">Entraînement 2</text>
+<rect class="box" x="280" y="64" width="110" height="26" rx="5"/><text class="t c" x="335" y="82">Environnement 2</text>
+<rect class="box" x="10" y="98" width="110" height="26" rx="5"/><text class="t c" x="65" y="116">Entraînement 3</text>
+<rect class="box" x="280" y="98" width="110" height="26" rx="5"/><text class="t c" x="335" y="116">Environnement 3</text>
+<text class="k c" x="200" y="148">3 × 3 = 9 adaptateurs</text>
+<path class="sep" d="M6 162 H394"/>
+<text class="h" x="10" y="186">Avec OpenEnv</text>
+<path class="thin" d="M120 209 L150 241"/><path class="thin" d="M250 241 L280 209"/>
+<path class="thin" d="M120 243 L150 241"/><path class="thin" d="M250 241 L280 243"/>
+<path class="thin" d="M120 277 L150 241"/><path class="thin" d="M250 241 L280 277"/>
+<rect class="box" x="10" y="196" width="110" height="26" rx="5"/><text class="t c" x="65" y="214">Entraînement 1</text>
+<rect class="box" x="280" y="196" width="110" height="26" rx="5"/><text class="t c" x="335" y="214">Environnement 1</text>
+<rect class="box" x="10" y="230" width="110" height="26" rx="5"/><text class="t c" x="65" y="248">Entraînement 2</text>
+<rect class="box" x="280" y="230" width="110" height="26" rx="5"/><text class="t c" x="335" y="248">Environnement 2</text>
+<rect class="box" x="10" y="264" width="110" height="26" rx="5"/><text class="t c" x="65" y="282">Entraînement 3</text>
+<rect class="box" x="280" y="264" width="110" height="26" rx="5"/><text class="t c" x="335" y="282">Environnement 3</text>
+<rect class="key" x="150" y="213" width="100" height="56" rx="5"/><text class="s c" x="200" y="237">Interface</text><text class="s c" x="200" y="255">OpenEnv</text>
+<text class="a c" x="200" y="306">3 + 3 = 6 adaptateurs</text>
+<text class="m c" x="200" y="326">Comptes symboliques, pas des mesures.</text>
+</g>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 338" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Place d'OpenEnv entre les outils d'entraînement et le calcul isolé</title>
+<desc id="fig4-d">Trois couches. En haut, les outils d'entraînement. Au milieu, l'interface OpenEnv : reset, step, state. En bas, le calcul et l'isolation, où se placent les sandboxes comme OpenShell et OpenSandbox.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .key{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .thin{stroke:var(--muted,var(--f-muted));stroke-width:1;fill:none}
+.fig4 .sep{stroke:var(--line,var(--f-line));stroke-width:1.5;stroke-dasharray:4 3;fill:none}
+.fig4 .c{text-anchor:middle}
+</style>
+<g class="fig4">
+<rect class="box" x="6" y="10" width="388" height="56" rx="5"/><text class="s c" x="200" y="32">Outils d'entraînement</text><text class="m c" x="200" y="52">TRL, Unsloth, SkyRL (cités par le projet)</text>
+<path class="ln" d="M200 66 V88 M195 82 L200 88 L205 82"/>
+<rect class="key" x="6" y="88" width="388" height="96" rx="5"/><text class="k c" x="200" y="110">Interface OpenEnv</text><text class="s c" x="200" y="130">reset, step, state</text><text class="t c" x="200" y="152">ce que fait l'agent, ce qu'il voit,</text><text class="t c" x="200" y="170">comment il est noté</text>
+<path class="ln" d="M200 184 V206 M195 200 L200 206 L205 200"/>
+<rect class="box" x="6" y="206" width="388" height="96" rx="5"/><text class="s c" x="200" y="228">Calcul et isolation</text><text class="t c" x="200" y="248">conteneur, sandbox</text><text class="t c" x="200" y="266">(OpenShell, OpenSandbox)</text><text class="m c" x="200" y="288">où et sous quelles règles le code s'exécute</text>
+<text class="m c" x="200" y="326">Placement de la couche basse : lecture de cette page.</text>
+</g>
+</svg>

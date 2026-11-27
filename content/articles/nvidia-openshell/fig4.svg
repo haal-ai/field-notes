@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 310" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Cycle d'approbation d'un nouvel accès</title>
+<desc id="fig4-d">Une destination inconnue est bloquée. OpenShell vérifie ce que le changement de policy accorderait. Un humain approuve ou refuse. Affirmation de NVIDIA.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .zone{fill:var(--raised,var(--f-raised));stroke:var(--muted,var(--f-muted));stroke-width:1;stroke-dasharray:5 3}
+.fig4 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig4 .pol{fill:var(--accent,var(--f-accent))}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .bad{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig4 .c{text-anchor:middle}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="18">Un nouvel accès, pas à pas</text>
+<rect class="box" x="60" y="30" width="280" height="36" rx="5"/><text class="s c" x="200" y="53">1  Nouvelle destination demandée</text>
+<path class="ln" d="M200 66 V86 M195 80 L200 86 L205 80"/>
+<rect class="box" x="60" y="86" width="280" height="36" rx="5"/><text class="s c" x="200" y="109">2  Connexion bloquée</text>
+<path class="ln" d="M200 122 V142 M195 136 L200 142 L205 136"/>
+<rect class="dif" x="60" y="142" width="280" height="60" rx="5"/><text class="s c" x="200" y="164">3  Vérification de la policy</text><text class="k c" x="200" y="186">formal verification (selon NVIDIA)</text>
+<path class="ln" d="M200 202 V218 M110 218 H290 M110 218 V232 M290 218 V232 M105 226 L110 232 L115 226 M285 226 L290 232 L295 226"/>
+<rect class="sh" x="30" y="232" width="160" height="40" rx="5"/><text class="i c" x="110" y="257">Humain approuve</text>
+<rect class="box" x="210" y="232" width="160" height="40" rx="5"/><text class="s c" x="290" y="257">Humain refuse</text>
+<text class="m" x="10" y="298">Les accès risqués attendent une décision humaine.</text>
+</g>
+</svg>

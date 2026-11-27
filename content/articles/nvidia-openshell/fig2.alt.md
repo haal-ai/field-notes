@@ -1,0 +1,1 @@
+Figure 2. Le CLI ou un SDK parle au gateway, qui crée et surveille les sandboxes. Dans la sandbox, un superviseur fait respecter la policy autour de l'agent ; des contrôles du noyau limitent ses fichiers et ses appels système. Toute connexion sortante de l'agent passe par une vérification de la policy avant d'atteindre le réseau. Aucun chiffre. Source : dépôt OpenShell.

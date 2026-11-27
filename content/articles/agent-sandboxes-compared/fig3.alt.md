@@ -1,0 +1,1 @@
+Figure 3. Quel outil regarder. Je veux borner ce que l'agent peut toucher : je regarde OpenShell. Je veux lancer le code d'un agent dans un environnement jetable, par API : je regarde OpenSandbox. Je veux entraîner ou évaluer des agents sur des tâches reproductibles : je regarde OpenEnv. Si le besoin touche deux cases, combiner.

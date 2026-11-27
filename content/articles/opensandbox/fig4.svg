@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 376" role="img" aria-labelledby="fig4-t fig4-d">
+<title id="fig4-t">Réseau et secrets : ingress, egress, credential vault</title>
+<desc id="fig4-d">Le trafic entrant passe par une passerelle ingress. Le trafic sortant traverse une politique egress propre à la sandbox. Un credential vault ajoute le secret à la requête sortante : l'agent ne le voit jamais. Fonctions déclarées par le projet, non testées ici.</desc>
+<style>
+.fig4{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig4{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig4 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig4 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig4 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig4 .t{fill:var(--text,var(--f-text))}
+.fig4 .m{fill:var(--muted,var(--f-muted))}
+.fig4 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig4 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig4 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig4 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig4 .hi{fill:var(--surface,var(--f-surface));stroke:var(--accent,var(--f-accent));stroke-width:2}
+.fig4 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig4 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig4 .dash{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig4 .c{text-anchor:middle}
+</style>
+<g class="fig4">
+<text class="h" x="10" y="18">Réseau et secrets</text>
+<rect class="box" x="6" y="30" width="388" height="40" rx="5"/>
+<text class="s" x="16" y="55">Entrant : passerelle ingress (Kubernetes)</text>
+
+<path class="ln" d="M200 70 V98 M195 92 L200 98 L205 92"/>
+<rect class="hi" x="6" y="98" width="388" height="50" rx="5"/>
+<text class="s" x="16" y="120">sandbox</text>
+<text class="t" x="16" y="140">l'agent n'y voit aucun secret réel</text>
+<path class="ln" d="M110 148 V198 M105 192 L110 198 L115 192"/>
+<text class="m" x="122" y="176">requête sortante</text>
+<rect class="box" x="6" y="198" width="230" height="56" rx="5"/>
+<text class="s" x="16" y="220">Politique egress</text>
+<text class="m" x="16" y="240">domaines autorisés ou refusés</text>
+<rect class="dif" x="256" y="190" width="138" height="72" rx="5"/>
+<text class="s" x="266" y="212">credential vault</text>
+<text class="t" x="266" y="232">ajoute le secret</text>
+<text class="t" x="266" y="250">à la requête</text>
+<path class="ln" d="M256 226 H242 M247 221 L242 226 L247 231"/>
+<path class="ln" d="M110 254 V284 M105 278 L110 284 L115 278"/>
+<rect class="box" x="6" y="284" width="230" height="34" rx="5"/>
+<text class="s" x="16" y="306">API externe</text>
+<text class="m" x="10" y="346">Fonctions déclarées par le projet,</text>
+<text class="m" x="10" y="363">non testées ici.</text>
+</g>
+</svg>

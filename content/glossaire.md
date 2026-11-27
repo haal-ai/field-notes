@@ -501,3 +501,98 @@ Le hardening réduit la surface d'attaque d'un système : on désactive, on rest
 ## FLASH
 match: FLASH
 Un FLASH est une alerte courte et rapide publiée par le FBI. Elle donne aux défenseurs des informations utiles sur une menace en cours.
+
+## inference engine
+match: inference engines?
+Un inference engine est le programme qui exécute un modèle déjà entraîné pour produire des réponses. Il charge les weights et gère la mémoire. Un inference server en est une variante, pensée pour répondre à beaucoup de requêtes.
+
+## GGUF
+match: GGUF
+Le GGUF est un format de fichier pour les modèles quantifiés, utilisé par llama.cpp et d'autres outils. Un seul fichier contient les weights et leurs métadonnées.
+
+## tok/s
+match: tok/s
+Le tok/s est le nombre de tokens produits par seconde pendant le decoding. C'est la mesure de vitesse qu'on ressent en lisant une réponse. Elle dépend du modèle, de la machine et du réglage.
+
+## CUDA, Vulkan
+match: CUDA|Vulkan
+CUDA (NVIDIA) et Vulkan sont deux interfaces qui permettent à un programme de faire ses calculs sur un GPU. Un moteur d'inférence choisit celle que la machine accepte. Sans elles, il calcule sur le CPU.
+
+## policy
+match: policies|policy
+Une policy est un ensemble de règles écrites à l'avance : ce qu'un agent peut lire, lancer ou joindre sur le réseau ; le runtime les applique et l'agent ne peut pas les changer seul. En reinforcement learning, le mot désigne autre chose : le modèle qui choisit l'action à partir de ce qu'il observe, et qu'on cherche à améliorer.
+
+## gateway
+match: (?<!API )gateways?
+Un gateway est le plan de contrôle d'un runtime : il crée les sandboxes, garde leur policy et gère les accès. Dans OpenShell, un gateway utilise un seul driver de calcul à la fois.
+
+## credential injection
+match: credentials?|credential injection
+Une credential est un secret d'accès : clé d'API, jeton, mot de passe. Avec la credential injection, le runtime ajoute le secret à la requête hors de la sandbox, au dernier moment. L'agent ne le voit jamais.
+
+## microVM
+match: microVMs?|Firecracker
+Une microVM est une mini machine virtuelle qui démarre très vite. Elle isole mieux qu'un container, car elle a son propre noyau. Firecracker est un moteur open source de microVM.
+
+## prompt injection
+match: prompt injections?
+Une prompt injection est une instruction malveillante cachée dans une donnée que l'agent lit : page web, fichier, e-mail. L'agent peut la prendre pour un ordre. Une sandbox limite les dégâts, elle ne l'empêche pas.
+
+## formal verification
+match: formal verification
+La formal verification est une preuve automatique qu'une règle respecte une propriété donnée. Ici, elle sert à repérer l'accès risqué qu'un changement de policy accorderait.
+
+## endpoint
+match: endpoints?
+Un endpoint est l'adresse précise d'un service qu'on appelle : une URL d'API, par exemple. Un endpoint approuvé est un endpoint que la policy autorise.
+
+## container
+match: containers?
+Un container est un processus isolé par le noyau du système, comme avec Docker. Il démarre vite et partage le noyau de la machine hôte. Son isolation est donc moins forte que celle d'une machine virtuelle.
+
+## Kubernetes
+match: Kubernetes
+Kubernetes est un orchestrateur de containers : il lance, répartit et surveille des containers sur un ensemble de machines (un cluster).
+
+## ingress, egress
+match: ingress|egress
+Ingress désigne le trafic réseau entrant vers une sandbox. Egress désigne le trafic sortant. Une politique egress choisit les domaines que la sandbox peut joindre.
+
+## credential vault
+match: credential vaults?
+Un credential vault est un coffre de secrets, placé hors de la sandbox. Il ajoute le secret aux requêtes sortantes. Le code de la sandbox ne voit jamais le vrai secret.
+
+## SDK
+match: SDKs?
+Un SDK est une bibliothèque cliente, dans un langage donné, qui appelle une API sans écrire les requêtes à la main.
+
+## P50, P99
+match: P50|P99
+P50 est la latency médiane : la moitié des mesures est plus rapide. P99 est la latency que 99 % des mesures ne dépassent pas. Elle montre les pires cas courants.
+
+## API
+match: APIs?
+Une API est la façon dont un programme en appelle un autre : des requêtes définies à l'avance, avec des réponses prévues.
+
+## RL (reinforcement learning)
+match: RL|reinforcement learning
+Le RL (reinforcement learning) est une méthode d'apprentissage par essais. Le modèle agit, reçoit une récompense, puis ajuste son comportement pour en gagner davantage.
+
+## reward
+match: rewards?
+Une reward est la note qu'un environnement donne après une action. Plus elle est haute, plus l'action est jugée bonne.
+
+## episode
+match: episodes?
+Un episode est une tentative complète de tâche, du reset jusqu'à la fin.
+
+## rollout
+match: rollouts?
+Un rollout est la suite d'observations, d'actions et de rewards jouée pendant un ou plusieurs episodes. On s'en sert pour entraîner la policy.
+
+## Gymnasium
+Gymnasium est une bibliothèque Python de référence pour décrire des environnements de RL, avec les opérations reset et step. OpenEnv en reprend le style.
+
+## runtime
+match: runtimes?
+Un runtime est le programme qui fait tourner un autre programme et fixe ses limites pendant l'exécution. Ici, il entoure l'agent et applique des règles.
