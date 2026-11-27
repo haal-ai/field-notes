@@ -1,5 +1,41 @@
 [
   {
+    "id": "84e59d605841a5ca",
+    "date": "2026-11-27",
+    "vendor": "Stanford / OpenJarvis",
+    "theme": "Recherche et benchmarks",
+    "title_fr": "OpenJarvis - une IA personnelle sur votre propre appareil (Stanford)",
+    "text_fr": "Stanford - OpenJarvis - une IA personnelle sur votre propre appareil : framework open source pour des agents personnels qui tournent en local et n'appellent le cloud que si nécessaire. Affirmation des auteurs : des configurations locales réglées atteignent en moyenne environ 3 points du cloud, pour un coût d'API environ 800 fois plus faible. Mon test : le modèle était la partie facile ; le travail, c'était l'intégration (connecteurs, authentification, réseau) - ce que les fournisseurs vendent comme de l'« IA ».",
+    "urls": [
+      "https://scalingintelligence.stanford.edu/blogs/openjarvis/",
+      "https://arxiv.org/abs/2605.17172"
+    ]
+  },
+  {
+    "id": "843ad93b070dfbbe",
+    "date": "2026-11-27",
+    "vendor": "NVIDIA / Alibaba (AAIF)",
+    "theme": "Sécurité",
+    "title_fr": "Pour info : deux sandboxes ouverts pour exécuter des agents IA en sécurité (NVIDIA OpenShell, Alibaba OpenSandbox)",
+    "text_fr": "Pour info : deux sandboxes ouverts pour exécuter des agents IA en sécurité. NVIDIA OpenShell : un runtime qui confine les agents (p. ex. Claude Code) dans des sandboxes au niveau du noyau, sous une politique ; les clés restent à l'extérieur. Red Hat s'appuie désormais dessus. Alibaba OpenSandbox (désormais un projet AAIF) : des sandboxes isolés (Docker, gVisor, Firecracker) pour le code écrit par les agents, avec des identifiants par requête. À ne pas confondre avec OpenEnv, qui sert à entraîner et tester des agents.",
+    "urls": [
+      "https://perspectives.nvidia.com/nvidia-openshell/",
+      "https://developers.redhat.com/articles/2026/11/17/omnigent-case-study-securing-third-party-ai-agents-on-red-hat-ai-with-openshell",
+      "https://github.com/opensandbox-group/OpenSandbox"
+    ]
+  },
+  {
+    "id": "9aa506de3c95840a",
+    "date": "2026-11-26",
+    "vendor": "AAIF / OpenEnv",
+    "theme": "Sécurité",
+    "title_fr": "OpenEnv v0.15.0",
+    "text_fr": "AAIF / Hugging Face - OpenEnv v0.15.0 : OpenEnv est une bibliothèque open source pour les « mondes d'entraînement » en sandbox dans lesquels les agents IA sont entraînés et testés (jeux, sandboxes de code, navigateurs, simulateurs), derrière une seule API simple ; elle est soutenue par Hugging Face et l'équipe PyTorch de Meta et est désormais un projet de l'Agentic AI Foundation (Linux Foundation). La version 0.15.0 vise surtout à verrouiller ces sandboxes : le code écrit par le modèle s'exécute désormais dans un processus séparé qui ne voit pas les secrets du serveur (clés, mots de passe) et ne peut pas ouvrir de connexions réseau, chaque session s'exécute sous son propre utilisateur isolé, et les serveurs d'environnement démarrent sans les identifiants de connexion de la personne qui les lance. Elle ajoute aussi un environnement d'analyse de données (l'agent répond à des questions sur de vrais fichiers de données) et une politique de sécurité publiée. Pourquoi c'est important : une référence concrète pour exécuter du code écrit par des agents en sécurité.",
+    "urls": [
+      "https://github.com/openenv/OpenEnv/releases/tag/v0.15.0"
+    ]
+  },
+  {
     "id": "414d150a897874b6",
     "date": "2026-11-26",
     "vendor": "goose (AAIF)",
@@ -259,6 +295,18 @@
     "text_fr": "Kiro Enterprise - Claude Fable 5.2 en preview : contexte de 1 M, 6 x crédits, inférence réservée aux États-Unis, trafic conservé 30 jours pour examen des abus.",
     "urls": [
       "https://kiro.dev/changelog/"
+    ]
+  },
+  {
+    "id": "3fdd6b44c9a4be6d",
+    "date": "2026-11-22",
+    "vendor": "Colibri (open source)",
+    "theme": "Infrastructure et inférence",
+    "title_fr": "Colibri 2.2 - de très grands modèles sur un PC ordinaire (open source)",
+    "text_fr": "Colibri 2.2 - de très grands modèles sur un PC ordinaire (open source) : nouvelle version (22 nov.) : beaucoup plus rapide sur GPU, et l'installation choisit désormais un modèle qui tourne à 20+ tokens/s sur votre machine. Les experts restent sur disque et se chargent à la demande : un modèle de 744B peut tourner sans GPU, lentement. Mon avis : une excellente façon d'apprendre comment fonctionnent un serveur d'inférence et le routage d'experts, pas encore un runtime local.",
+    "urls": [
+      "https://github.com/JustVugg/colibri/releases/tag/v2.2.0",
+      "https://haal-ai.github.io/field-notes/moe-routing/"
     ]
   },
   {
