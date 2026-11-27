@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 308" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Où chaque outil se place autour d'un agent</title>
+<desc id="fig1-d">OpenEnv définit la tâche, avec reset, step et reward, pour l'entraînement et l'évaluation. OpenShell entoure l'agent et son harness de règles sur les fichiers, les appels système et le réseau. OpenSandbox fournit l'endroit où le code s'exécute, par une API, avec Docker ou Kubernetes.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .hi{fill:var(--surface,var(--f-surface));stroke:var(--accent,var(--f-accent));stroke-width:2}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .ah{fill:var(--accent,var(--f-accent))}
+.fig1 .dash{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig1 .c{text-anchor:middle}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="18">Trois couches autour d'un agent</text>
+<rect class="box" x="6" y="30" width="388" height="58" rx="5"/>
+<text class="s" x="16" y="52">OpenEnv : la tâche</text>
+<text class="m" x="16" y="73">reset, step, reward (entraînement, évaluation)</text>
+<path class="ln" d="M200 88 V102"/><path class="ah" d="M195 101 L205 101 L200 108 Z"/>
+<rect class="dash" x="6" y="108" width="388" height="112" rx="6"/>
+<text class="a" x="16" y="128">OpenShell : règles (policy)</text>
+<rect class="hi" x="40" y="140" width="320" height="38" rx="5"/>
+<text class="s c" x="200" y="164">Agent + harness</text>
+<text class="m" x="16" y="204">limite fichiers, appels système, réseau</text>
+<path class="ln" d="M200 220 V234"/><path class="ah" d="M195 233 L205 233 L200 240 Z"/>
+<rect class="box" x="6" y="240" width="388" height="58" rx="5"/>
+<text class="s" x="16" y="262">OpenSandbox : l'endroit d'exécution</text>
+<text class="m" x="16" y="283">API ; Docker ou Kubernetes</text>
+</g>
+</svg>

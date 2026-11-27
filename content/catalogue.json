@@ -632,6 +632,36 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "agent-sandboxes-compared",
+      "title": "Agent sandboxes : trois outils, trois questions",
+      "lang": "fr",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "OpenShell, OpenSandbox et OpenEnv disent tous « sandbox » mais répondent à trois questions : qui fixe les règles, où le code tourne, quel environnement entraîner ou évaluer. Un axe, un tableau, un guide de choix (novembre 2026).",
+      "published": "2026-11-27",
+      "edited": "2026-11-27",
+      "reviewed": "2026-11-27",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Trois outils autour d'un agent",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "OpenShell encadre l'agent par des règles ; OpenSandbox fournit l'endroit où le code s'exécute ; OpenEnv définit la tâche, les observations et la note."
+      },
+      "history": [
+        {
+          "date": "2026-11-27",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [
