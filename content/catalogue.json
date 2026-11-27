@@ -572,6 +572,36 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "opensandbox",
+      "title": "OpenSandbox : une API pour lancer les sandboxes d'un agent",
+      "lang": "fr",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "OpenSandbox est un projet open source qui donne aux agents une API unique pour obtenir une sandbox jetable, avec Docker ou Kubernetes. Où il se place, comment il est organisé, ce qu'il ne dit pas.",
+      "published": "2026-11-27",
+      "edited": "2026-11-27",
+      "reviewed": "2026-11-27",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Une sandbox jetable pour du code non fiable",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "Sans sandbox, le code de l'agent s'exécute sur l'hôte. Avec une sandbox, il s'exécute dans un environnement jetable, détruit à la fin."
+      },
+      "history": [
+        {
+          "date": "2026-11-27",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [

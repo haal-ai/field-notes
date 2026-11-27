@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" role="img" aria-labelledby="fig1-t fig1-d">
+<title id="fig1-t">Où s'exécute le code d'un agent : sur l'hôte ou dans une sandbox</title>
+<desc id="fig1-d">Sans sandbox, le code non fiable d'un agent s'exécute sur l'hôte et peut toucher ses fichiers et ses secrets. Avec une sandbox, il s'exécute dans un environnement jetable, détruit à la fin.</desc>
+<style>
+.fig1{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig1{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig1 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig1 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig1 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig1 .t{fill:var(--text,var(--f-text))}
+.fig1 .m{fill:var(--muted,var(--f-muted))}
+.fig1 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig1 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig1 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig1 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig1 .hi{fill:var(--surface,var(--f-surface));stroke:var(--accent,var(--f-accent));stroke-width:2}
+.fig1 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig1 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig1 .dash{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig1 .c{text-anchor:middle}
+</style>
+<g class="fig1">
+<text class="h" x="10" y="18">Où s'exécute le code d'un agent ?</text>
+<text class="s" x="10" y="46">Sans sandbox</text>
+<rect class="box" x="6" y="56" width="80" height="40" rx="5"/>
+<text class="s c" x="46" y="81">Agent</text>
+<path class="ln" d="M86 76 H100 M95 71 L100 76 L95 81"/>
+<rect class="box" x="102" y="56" width="128" height="40" rx="5"/>
+
+<text class="s c" x="166" y="81">Code non fiable</text>
+<path class="ln" d="M230 76 H244 M239 71 L244 76 L239 81"/>
+<rect class="dif" x="246" y="56" width="148" height="40" rx="5"/>
+<text class="s c" x="320" y="81">Hôte</text>
+<text class="m" x="10" y="118">Le code touche vos fichiers et vos secrets.</text>
+<text class="s" x="10" y="156">Avec sandbox</text>
+<rect class="box" x="6" y="166" width="80" height="40" rx="5"/>
+<text class="s c" x="46" y="191">Agent</text>
+<path class="ln" d="M86 186 H100 M95 181 L100 186 L95 191"/>
+<rect class="box" x="102" y="166" width="128" height="40" rx="5"/>
+
+<text class="s c" x="166" y="191">Code non fiable</text>
+<path class="ln" d="M230 186 H244 M239 181 L244 186 L239 191"/>
+<rect class="hi" x="246" y="166" width="148" height="40" rx="5"/>
+<text class="s c" x="320" y="191">sandbox jetable</text>
+<text class="m" x="10" y="228">Détruite à la fin. L'hôte reste hors d'atteinte.</text>
+</g>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 356" role="img" aria-labelledby="fig5-t fig5-d">
+<title id="fig5-t">Où se place OpenSandbox par rapport à OpenShell et OpenEnv</title>
+<desc id="fig5-d">OpenSandbox répond à où lancer le code, par une API de sandbox. OpenShell répond à quelles règles encadrent l'agent, avec une politique d'abord. OpenEnv répond à quel environnement utiliser pour entraîner ou évaluer, avec une API d'environnement (reset, step, state). OpenSandbox et OpenShell se recoupent sur le réseau sortant et les secrets.</desc>
+<style>
+.fig5{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig5{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig5 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig5 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig5 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig5 .t{fill:var(--text,var(--f-text))}
+.fig5 .m{fill:var(--muted,var(--f-muted))}
+.fig5 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig5 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig5 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig5 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig5 .hi{fill:var(--surface,var(--f-surface));stroke:var(--accent,var(--f-accent));stroke-width:2}
+.fig5 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig5 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig5 .dash{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig5 .c{text-anchor:middle}
+</style>
+<g class="fig5">
+<text class="h" x="10" y="18">Trois projets, trois questions</text>
+<rect class="hi" x="6" y="30" width="388" height="72" rx="5"/>
+<text class="s" x="16" y="52">OpenSandbox</text>
+<text class="t" x="16" y="73">Où et comment lancer le code ?</text>
+<text class="m" x="16" y="92">entrée : API de sandbox (SDK, OpenAPI)</text>
+<rect class="box" x="6" y="112" width="388" height="72" rx="5"/>
+<text class="s" x="16" y="134">OpenShell</text>
+<text class="t" x="16" y="155">Quelles règles encadrent l'agent ?</text>
+<text class="m" x="16" y="174">entrée : politique déclarative d'abord</text>
+<rect class="box" x="6" y="194" width="388" height="72" rx="5"/>
+<text class="s" x="16" y="216">OpenEnv</text>
+<text class="t" x="16" y="237">Quel environnement pour entraîner ou évaluer ?</text>
+<text class="m" x="16" y="256">entrée : API d'environnement (reset, step, state)</text>
+<text class="m" x="10" y="290">Recoupements : OpenSandbox et OpenShell</text>
+<text class="m" x="10" y="308">(réseau sortant, secrets).</text>
+<text class="m" x="10" y="326">OpenEnv complémentaire : un environnement peut</text>
+<text class="m" x="10" y="343">tourner dans une sandbox.</text>
+</g>
+</svg>

@@ -1,0 +1,1 @@
+Figure 3. Cycle de vie d'une sandbox, en quatre étapes. (1) create, depuis une image. (2) run : commandes, fichiers, code. (3) pause, puis resume : l'état est gardé, selon le backend. (4) delete : la sandbox est supprimée. TTL : sans renouvellement, la sandbox est supprimée à l'échéance. Snapshot : l'état est gardé sous forme d'image, selon le backend.

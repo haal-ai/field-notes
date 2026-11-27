@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 414" role="img" aria-labelledby="fig2-t fig2-d">
+<title id="fig2-t">Architecture d'OpenSandbox : trois chemins</title>
+<desc id="fig2-d">Les SDK, la CLI osb et le serveur MCP appellent un serveur de cycle de vie, qui délègue à Docker ou Kubernetes. Dans chaque sandbox, un daemon execd exécute commandes, fichiers et code. Ces échanges vont directement à la sandbox. Le trafic sortant passe par un contrôle egress.</desc>
+<style>
+.fig2{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig2{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig2 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig2 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig2 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig2 .t{fill:var(--text,var(--f-text))}
+.fig2 .m{fill:var(--muted,var(--f-muted))}
+.fig2 .k{fill:var(--news,var(--f-news));font-weight:700}
+.fig2 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig2 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig2 .sh{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:1}
+.fig2 .hi{fill:var(--surface,var(--f-surface));stroke:var(--accent,var(--f-accent));stroke-width:2}
+.fig2 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig2 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig2 .dash{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig2 .c{text-anchor:middle}
+</style>
+<g class="fig2">
+<text class="h" x="10" y="18">Trois chemins dans OpenSandbox</text>
+<rect class="box" x="6" y="30" width="270" height="50" rx="5"/>
+<text class="s" x="16" y="50">Clients</text>
+<text class="m" x="16" y="69">SDK (5 langages), CLI osb, MCP</text>
+<path class="ln" d="M60 80 V110 M55 104 L60 110 L65 104"/>
+<text class="m" x="72" y="100">créer, pause, supprimer</text>
+<rect class="box" x="6" y="110" width="270" height="50" rx="5"/>
+<text class="s" x="16" y="130">Serveur de cycle de vie</text>
+<text class="m" x="16" y="149">contrats OpenAPI</text>
+<path class="ln" d="M60 160 V190 M55 184 L60 190 L65 184"/>
+<rect class="box" x="6" y="190" width="270" height="50" rx="5"/>
+<text class="s" x="16" y="210">Runtime</text>
+<text class="m" x="16" y="229">Docker ou Kubernetes</text>
+<path class="ln" d="M60 240 V270 M55 264 L60 270 L65 264"/>
+<text class="m" x="72" y="260">crée la sandbox</text>
+<rect class="dif" x="6" y="270" width="270" height="84" rx="5"/>
+<text class="s" x="16" y="292">sandbox</text>
+<text class="t" x="16" y="314">votre image</text>
+<text class="t" x="16" y="336">daemon execd : commandes, fichiers</text>
+<path class="ln" d="M276 55 H380 V312 H282 M288 307 L282 312 L288 317"/>
+<text class="k" x="286" y="100">CHEMIN DIRECT</text>
+<text class="t" x="286" y="122">commandes,</text>
+<text class="t" x="286" y="140">fichiers,</text>
+<text class="t" x="286" y="158">code, en</text>
+<text class="t" x="286" y="176">flux continu</text>
+<path class="ln" d="M60 354 V380 M55 374 L60 380 L65 374"/>
+<text class="m" x="72" y="374">trafic sortant</text>
+<text class="s" x="10" y="400">egress et credential vault</text>
+</g>
+</svg>
