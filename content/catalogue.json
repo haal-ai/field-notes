@@ -512,6 +512,36 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "colibri",
+      "title": "Colibri : un moteur d'inférence qui lit les experts sur disque",
+      "lang": "fr",
+      "section": "Inférence",
+      "type": "guide",
+      "summary": "Colibri est un inference engine open source qui fait tourner de gros modèles MoE en gardant les experts rares sur NVMe. Le guide montre ses niveaux de mémoire, ce qu'il vise et ses limites ; les vitesses citées sont celles du projet.",
+      "published": "2026-11-27",
+      "edited": "2026-11-27",
+      "reviewed": "2026-11-27",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Trois niveaux de mémoire pour les experts",
+        "svg": "fig3.svg",
+        "alt": "fig3.alt.md",
+        "caption": "Experts chauds sur GPU (avec la partie dense s'il y en a un), tièdes en RAM, froids sur NVMe. Un miss lit le disque. Aucune vitesse représentée."
+      },
+      "history": [
+        {
+          "date": "2026-11-27",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [

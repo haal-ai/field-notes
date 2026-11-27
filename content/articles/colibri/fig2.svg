@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 288" role="img" aria-labelledby="fig2-t fig2-d">
+<title id="fig2-t">Exemple GLM-5.2 : 744 milliards de paramètres, environ 40 milliards actifs</title>
+<desc id="fig2-d">Barre pleine pour 744 milliards de paramètres au total, barre de 5,4 % pour environ 40 milliards actifs par token, et environ 11 Go qui changent d'un token au suivant (autre unité).</desc>
+<style>
+.fig2{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig2{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig2 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig2 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig2 .t{fill:var(--text,var(--f-text))}
+.fig2 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig2 .m{fill:var(--muted,var(--f-muted))}
+.fig2 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig2 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig2 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig2 .hi{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:2}
+.fig2 .bar{fill:var(--accent,var(--f-accent))}
+.fig2 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig2 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig2 .dl{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig2 .ah{fill:var(--accent,var(--f-accent))}
+.fig2 .ahm{fill:var(--muted,var(--f-muted))}
+.fig2 .c{text-anchor:middle}.fig2 .e{text-anchor:end}
+</style>
+<g class="fig2">
+<text class="h" x="10" y="20">Un MoE : peu de paramètres actifs</text><text class="m" x="10" y="38">Exemple GLM-5.2, chiffres du README</text>
+<text class="s" x="10" y="68">744 milliards au total</text><rect class="bar" x="10" y="76" width="380" height="26"/><text class="i" x="18" y="94">tous les paramètres du modèle</text>
+<text class="s" x="10" y="130">≈ 40 milliards actifs par token</text><rect class="bar" x="10" y="138" width="20.4" height="26"/><text class="a" x="38.4" y="156">5,4 %</text>
+<path d="M10 182H390" stroke="var(--line,var(--f-line))" stroke-dasharray="4 3" fill="none"/><text class="m" x="10" y="200">Autre unité : en Go, pas à l'échelle des barres</text>
+<rect class="dif" x="10" y="210" width="380" height="40" rx="6"/><text class="t" x="22" y="235"><tspan style="font-weight:700">≈ 11 Go</tspan> changent d'un token au suivant</text>
+<text class="m" x="10" y="274">5,4 % = 40 / 744. Chiffres annoncés par le projet.</text>
+</g>
+</svg>

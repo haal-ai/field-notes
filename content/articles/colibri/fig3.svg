@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 332" role="img" aria-labelledby="fig3-t fig3-d">
+<title id="fig3-t">Colibri place les experts sur trois niveaux de mémoire</title>
+<desc id="fig3-d">Le router demande un expert. Les experts chauds sont sur le GPU (qui peut aussi tenir la partie dense), la partie dense et les experts tièdes en RAM, les experts froids sur NVMe. Un miss lit le disque.</desc>
+<style>
+.fig3{--f-text:#152a34;--f-muted:#506571;--f-accent:#146b5c;--f-ink:#e6f7f2;--f-surface:#edf2f4;--f-raised:#e4ecef;--f-line:#b9cbd2;--f-news:#785413;--f-newsbg:#faf0db}
+@media (prefers-color-scheme:dark){.fig3{--f-text:#e5ecee;--f-muted:#a0b0ba;--f-accent:#79d8c4;--f-ink:#0e2421;--f-surface:#131d25;--f-raised:#192630;--f-line:#30404c;--f-news:#edc77c;--f-newsbg:#30291c}}
+.fig3 text{font-family:system-ui,sans-serif;font-size:13px}
+.fig3 .h{fill:var(--text,var(--f-text));font-size:15px;font-weight:700}
+.fig3 .t{fill:var(--text,var(--f-text))}
+.fig3 .s{fill:var(--text,var(--f-text));font-weight:600}
+.fig3 .m{fill:var(--muted,var(--f-muted))}
+.fig3 .i{fill:var(--accent-ink,var(--f-ink));font-weight:700}
+.fig3 .a{fill:var(--accent,var(--f-accent));font-weight:700}
+.fig3 .box{fill:var(--surface,var(--f-surface));stroke:var(--line,var(--f-line));stroke-width:1}
+.fig3 .hi{fill:var(--accent,var(--f-accent));stroke:var(--accent,var(--f-accent));stroke-width:2}
+.fig3 .bar{fill:var(--accent,var(--f-accent))}
+.fig3 .dif{fill:var(--news-bg,var(--f-newsbg));stroke:var(--news,var(--f-news));stroke-width:2}
+.fig3 .ln{stroke:var(--accent,var(--f-accent));stroke-width:1.5;fill:none}
+.fig3 .dl{stroke:var(--muted,var(--f-muted));stroke-width:1.5;fill:none;stroke-dasharray:4 3}
+.fig3 .ah{fill:var(--accent,var(--f-accent))}
+.fig3 .ahm{fill:var(--muted,var(--f-muted))}
+.fig3 .c{text-anchor:middle}.fig3 .e{text-anchor:end}
+</style>
+<g class="fig3">
+<text class="h" x="10" y="20">Trois niveaux de mémoire</text>
+<rect class="dif" x="10" y="32" width="380" height="34" rx="6"/><text class="t" x="22" y="54">Le router demande l'expert E</text>
+<rect class="box" x="44" y="92" width="346" height="46" rx="6"/><text class="s" x="56" y="112">GPU</text><text class="m" x="56" y="129" style="font-weight:400">experts chauds, et partie dense (s'il y en a un)</text>
+<rect class="box" x="44" y="148" width="346" height="46" rx="6"/><text class="s" x="56" y="168">RAM</text><text class="m" x="56" y="185" style="font-weight:400">partie dense et experts tièdes</text>
+<rect class="hi" x="44" y="204" width="346" height="46" rx="6"/><text class="i" x="56" y="224">NVMe</text><text class="i" x="56" y="241" style="font-weight:400">experts froids, lus à la demande</text>
+<path class="ln" d="M24 66V138"/><path class="ah" d="M19 130L29 130L24 138Z"/><path class="dl" d="M24 138V204"/><path class="ahm" d="M19 196L29 196L24 204Z"/>
+<text class="m" x="10" y="278">Trait plein : hit, l'expert est déjà en mémoire.</text><text class="m" x="10" y="296">Pointillé : miss, lecture sur le disque.</text><text class="m" x="10" y="318">Aucune vitesse n'est représentée.</text>
+</g>
+</svg>

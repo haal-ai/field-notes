@@ -1,0 +1,1 @@
+Figure 1. Où tourne Colibri. En haut, un programme qui appelle un modèle. Il passe par les deux accès que Colibri offre : une API compatible OpenAI et un serveur MCP. Ils sont sur votre machine. En dessous, Colibri, un inference engine écrit en C, dans la couche modèle. En bas, le modèle et ses weights, sur disque. Aucun chiffre. Source : README et releases du projet.

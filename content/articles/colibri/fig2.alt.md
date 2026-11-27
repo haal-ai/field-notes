@@ -1,0 +1,1 @@
+Figure 2. Exemple GLM-5.2, chiffres du README du projet. Le modèle compte 744 milliards de paramètres au total. Environ 40 milliards sont actifs pour un token, soit 5,4 % (40 / 744 = 0,054). Dans une autre unité, environ 11 Go seulement changent d'un token au suivant ; cette valeur n'est pas à l'échelle des barres. Chiffres annoncés par le projet, non vérifiés ici.
