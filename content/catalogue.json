@@ -542,6 +542,36 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "nvidia-openshell",
+      "title": "NVIDIA OpenShell : un runtime qui gouverne ce qu'un agent peut toucher",
+      "lang": "fr",
+      "section": "Sécurité",
+      "type": "guide",
+      "summary": "OpenShell enferme un agent dans une sandbox et applique une policy déclarée à l'avance. Voici le problème visé, sa place autour de l'agent et ses limites (version 0.1.x, novembre 2026).",
+      "published": "2026-11-27",
+      "edited": "2026-11-27",
+      "reviewed": "2026-11-27",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Une policy entre l'agent et ses ressources",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "Sans runtime, l'agent atteint directement fichiers, secrets et réseau. Avec OpenShell, chaque flux passe par une policy."
+      },
+      "history": [
+        {
+          "date": "2026-11-27",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [

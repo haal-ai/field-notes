@@ -1,0 +1,1 @@
+Figure 4. Quatre jalons. (1) L'agent vise une destination nouvelle. (2) La connexion est bloquée. (3) OpenShell vérifie la policy par formal verification, ce qui est une affirmation de NVIDIA : elle signale l'accès risqué que le changement accorderait. (4) Un humain approuve ou refuse. Les accès risqués attendent une décision humaine. Aucun chiffre. Source : dépôt OpenShell.

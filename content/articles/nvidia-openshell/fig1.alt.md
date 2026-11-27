@@ -1,0 +1,1 @@
+Figure 1. Deux cas. Sans runtime, l'agent atteint directement les fichiers, les secrets et le réseau. Avec OpenShell, chacun de ces trois flux passe par une policy qui autorise ou bloque. Aucun chiffre. Source : dépôt OpenShell.

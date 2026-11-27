@@ -1,0 +1,1 @@
+Figure 5. Quatre couches, de haut en bas : le modèle ; le harness, qui est l'agent et ses outils ; le runtime de policy, où se place OpenShell ; le calcul, fourni par un seul driver par gateway : Docker, Podman, MicroVM ou Kubernetes. Liste non exhaustive : Windows MXC et des drivers d'extension existent aussi. Aucun chiffre. Sources : dépôt OpenShell, documentation NVIDIA.
