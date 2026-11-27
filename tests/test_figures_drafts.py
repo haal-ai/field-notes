@@ -271,7 +271,7 @@ class CatalogueNavigationTests(TempSite):
                 self.assertEqual(f'href="../../{art_slug}/index.html"' in entries_block, art_sec == key, art_slug)
         for retired in ('Inference servers', 'Model internals'):
             self.assertNotIn(retired, index)
-        self.assertEqual(index.count('<a class="side-section'), 1 + len(set(sections.values())))
+        self.assertEqual(index.count('<a class="side-section'), 2 + len(set(sections.values())))
         self.assertIn('Inférence<span class="side-count">03</span>', index)
 
     def test_no_working_index_box_or_release_marker_for_readers(self):

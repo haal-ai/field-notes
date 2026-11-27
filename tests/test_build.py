@@ -75,11 +75,56 @@ class PublicationChecks(unittest.TestCase):
         self.assertIn('class="featured',page)
         self.assertEqual(page.count('class="type-button'),3)
         self.assertNotIn('data-kind="news" aria-pressed',page)  # no news yet: the filter is hidden
-        self.assertEqual(page.count('<a class="side-section'),1+len({a['section'] for a in self.data['articles']}))
+        self.assertEqual(page.count('<a class="side-section'),2+len({a['section'] for a in self.data['articles']}))
         self.assertIn('id="archive"',page)
         self.assertIn('data-outdated="false"',page)
         for private in ['Agent Commander','Huawei']:
             self.assertNotIn(private,page)
+
+
+class NavNewChecks(unittest.TestCase):
+    TODAY=date(2026,11,27)
+
+    def art(self,slug,pub,edited=None,title=None,section='Agents'):
+        return {'slug':slug,'title':title or slug,'section':section,'type':'guide','approval':'approved-publication','published':pub,'edited':edited or pub}
+
+    def test_badge_window_13_vs_15_days(self):
+        self.assertTrue(build.is_new(self.art('a','2026-11-14'),self.TODAY))   # 13 days
+        self.assertTrue(build.is_new(self.art('a','2026-11-27'),self.TODAY))   # today
+        self.assertFalse(build.is_new(self.art('a','2026-11-12'),self.TODAY))  # 15 days
+        self.assertFalse(build.is_new(self.art('a','2026-11-30'),self.TODAY))  # future
+        old=self.art('a','2026-10-01','2026-11-26')
+        self.assertFalse(build.is_new(old,self.TODAY))                         # editing never makes a note new
+        self.assertIn('badge-new',build.new_badge(self.art('a','2026-11-14'),self.TODAY))
+        self.assertEqual(build.new_badge(self.art('a','2026-11-12'),self.TODAY),'')
+
+    def test_ordering_published_edited_title(self):
+        arts=[self.art('s1','2026-11-01','2026-11-02',title='Zeta'),self.art('s2','2026-11-01','2026-11-02',title='Alpha'),
+              self.art('s3','2026-11-01','2026-11-05',title='Mid'),self.art('s4','2026-11-10',title='Newest')]
+        self.assertEqual([a['slug'] for a in build.newest_first(arts)],['s4','s3','s2','s1'])
+
+    def test_latest_block_is_exactly_ten_newest(self):
+        arts=[self.art(f'n{i:02d}',f'2026-11-{i:02d}') for i in range(1,16)]
+        html=build.latest_list(arts,self.TODAY)
+        self.assertEqual(html.count('<li>'),10)
+        slugs=[x.split('/')[0] for x in html.split('href="{p}')[1:]]
+        self.assertEqual(slugs,[f'n{i:02d}' for i in range(15,5,-1)])
+        self.assertEqual(build.latest_list(arts[:3],self.TODAY).count('<li>'),3)
+        self.assertEqual(build.latest_list([],self.TODAY),'')
+
+    def test_built_site_latest_page_and_sidebar(self):
+        build.build(self.TODAY)
+        home=(build.OUT/'index.html').read_text()
+        page=(build.OUT/'derniers/index.html').read_text()
+        n=len(json.loads((build.ROOT/'content/catalogue.json').read_text())['articles'])
+        self.assertEqual(page.count('<li><span class="kind'),min(10,n))
+        self.assertEqual(home.split('id="derniers"')[1].split('</section>')[0].count('<li><span class="kind'),min(10,n))
+        self.assertLess(home.index('id="derniers"'),home.index('class="featured'))
+        self.assertLess(home.index('id="derniers"'),home.index('id="section-cards"'))
+        a_section=next((build.OUT/'sections').glob('*/index.html'))
+        a_article=next(p for p in build.OUT.glob('*/index.html') if p.parent.name not in ('sections','derniers','archive','maintenance','glossaire','nouvelles'))
+        for p in (build.OUT/'index.html',a_section,a_article,build.OUT/'derniers/index.html'):
+            self.assertIn('class="side-section side-latest"',p.read_text(),p)
 
 
 if __name__=='__main__':
