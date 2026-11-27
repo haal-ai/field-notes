@@ -1,0 +1,1 @@
+Figure 3. Une image Docker d'environnement, en haut, mène à trois lieux d'exécution : une machine locale, une sandbox cloud et un Hugging Face Space. Un bandeau en dessous rappelle que l'interface est la même dans les trois cas : reset, step, state.

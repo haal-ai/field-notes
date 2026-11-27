@@ -602,6 +602,36 @@
           "note": "Première publication."
         }
       ]
+    },
+    {
+      "slug": "openenv",
+      "title": "OpenEnv : un standard pour décrire l'environnement d'un agent",
+      "lang": "fr",
+      "section": "Agents",
+      "type": "guide",
+      "summary": "OpenEnv décrit, avec une interface unique reset et step, l'environnement où un agent s'entraîne ou se fait évaluer. Il fixe le contrat avec le modèle ; l'isolation relève d'autres outils.",
+      "published": "2026-11-27",
+      "edited": "2026-11-27",
+      "reviewed": "2026-11-27",
+      "review_months": 3,
+      "approval": "approved-publication",
+      "formats": [
+        "Article",
+        "Explication visuelle"
+      ],
+      "visual": {
+        "kind": "svg",
+        "title": "Une interface commune entre outils d'entraînement et environnements",
+        "svg": "fig1.svg",
+        "alt": "fig1.alt.md",
+        "caption": "Sans standard, N × M adaptateurs ; avec une interface commune, N + M. Comptes symboliques, sans mesure."
+      },
+      "history": [
+        {
+          "date": "2026-11-27",
+          "note": "Première publication."
+        }
+      ]
     }
   ],
   "retired": [
