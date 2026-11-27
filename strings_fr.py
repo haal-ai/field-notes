@@ -203,7 +203,6 @@ T = {
     'news_title': 'Les nouvelles du marché — les 4 dernières semaines',
     'news_title_short': 'Nouvelles du marché',
     'news_intro': 'Des nouvelles partagées par les éditeurs et les équipes, reprises telles que partagées, sans réécriture. Mises à jour tous les jours. Les plus récentes en haut.',
-    'news_chart_caption_prefix': 'Figure : ',
     'news_search_placeholder': 'Chercher une nouvelle, un éditeur, un thème…',
     'news_filter_aria': 'Filtrer les nouvelles par thème',
     'news_empty': 'Aucune nouvelle ne correspond. Essayez un autre thème ou effacez la recherche.',

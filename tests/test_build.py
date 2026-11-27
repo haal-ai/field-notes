@@ -58,7 +58,8 @@ class PublicationChecks(unittest.TestCase):
         for page in pages:
             parser=Links()
             parser.feed(page.read_text())
-            self.assertTrue(parser.visual,page)
+            if page.relative_to(build.OUT).as_posix()!='nouvelles/index.html':  # news page: chart removed at the user's request
+                self.assertTrue(parser.visual,page)
             for value in parser.links:
                 url=urlsplit(value)
                 if url.scheme or value.startswith('#'):

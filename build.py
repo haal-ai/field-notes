@@ -400,22 +400,12 @@ def news_page(records, today):
     """Write /nouvelles/: figure, theme chips + search, newest-first list grouped by day. Records older than
     WINDOW_DAYS go to the archive instead and are not written here."""
     current = [r for r in records if news.in_window(r, today)]
-    weeks_for_text = None
-
-    def _caption_and_text(weeks):
-        nonlocal weeks_for_text
-        weeks_for_text = weeks
-        return news.chart_caption(weeks)
-    svg, caption = news.chart_svg(current, today, _caption_and_text)
-    figure = (f'<figure data-learning-visual="svg">{svg}<figcaption>{esc(caption)}</figcaption>'
-              f'<details class="fig-text" style="margin-top:12px;padding:10px 14px"><summary>{T["figure_text"]}</summary>'
-              f'{news.chart_text_equivalent(weeks_for_text)}</details></figure>')
     chips = news.theme_chips(current, T['news_filter_aria'])
     by_day = news.by_day(current)
     days_html = ''.join(news.day_section(iso_date, fr_full_day(date.fromisoformat(iso_date)), recs)
                         for iso_date, recs in by_day.items())
     body = f'''<div class="eyebrow">{T['side_title']}</div><h1>{esc(T['news_title'])}</h1><p class="intro">{esc(T['news_intro'])}</p>
-{figure}{news_notice()}
+{news_notice()}
 <div class="search-row"><label class="search-box js-only"><span class="sr-only">{T['news_search_placeholder']}</span><input id="news-search" type="search" placeholder="{esc(T['news_search_placeholder'])}" autocomplete="off"></label></div>
 {chips}
 <div id="news-list" class="news-list">{days_html}</div><div id="empty" class="empty" hidden>{T['news_empty']}</div>
