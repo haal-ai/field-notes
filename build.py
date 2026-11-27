@@ -21,6 +21,8 @@ OUT = ROOT / '_site'                # public output: the only directory ever dep
 PREVIEW_OUT = ROOT / '_preview'     # private draft preview: never deployed, git-ignored
 APPROVED = ['approved-publication-test', 'approved-publication']
 PRIVATE_TOKENS = ['teams.microsoft.com', 'sharepoint.com', '/users/', 'file://']
+NEW_DAYS = 14   # a note is « Nouveau » for this many days after its first publication
+LATEST_N = 10   # notes listed in « Les 10 derniers articles »
 STATE = {'preview': False, 'out': OUT, 'glossary': False, 'news': False}
 
 
@@ -62,6 +64,62 @@ def article_dir(article):
 
 def body_file(article):
     return next((p for p in (article_dir(article) / n for n in ('article.md', 'draft.md')) if p.is_file()), None)
+
+
+def newest_first(articles):
+    """Newest first by published, then edited; remaining ties by title (stable two-pass sort)."""
+    by_title = sorted(articles, key=lambda a: a['title'].casefold())
+    return sorted(by_title, key=lambda a: (a['published'] if iso(a.get('published')) else '0000',
+                                           a['edited'] if iso(a.get('edited')) else '0000'), reverse=True)
+
+
+def is_new(article, today):
+    """True when first published within NEW_DAYS days before today (editing never counts)."""
+    if not iso(article.get('published')) or is_draft(article):
+        return False
+    return 0 <= (today - date.fromisoformat(article['published'])).days <= NEW_DAYS
+
+
+def new_badge(article, today):
+    return f'<span class="badge-new">{T["badge_new"]}</span>' if is_new(article, today) else ''
+
+
+def latest_list(articles, today):
+    """The LATEST_N most recent notes by first publication, newest first, as list rows."""
+    fresh = newest_first([a for a in articles if not is_draft(a)])[:LATEST_N]
+    rows = ''.join(
+        f'<li><span class="kind kind-{esc(a["type"])}">{KIND[a["type"]]}</span>'
+        f'<a href="{{p}}{esc(a["slug"])}/index.html">{esc(a["title"])}</a>{new_badge(a, today)}'
+        f'<span class="new-meta">{esc(section_name(a))} · {when(a["published"])}</span></li>' for a in fresh)
+    return f'<ul class="new-list">{rows}</ul>' if rows else ''
+
+
+def latest_block(articles, today):
+    """Home block « Les 10 derniers articles »; hidden when there is no published note."""
+    items = latest_list(articles, today)
+    if not items:
+        return ''
+    return (f'<section id="derniers" class="new-block" aria-labelledby="derniers-title"><div class="library-topline"><div>'
+            f'<h2 id="derniers-title">{T["latest_title"]}</h2></div><a class="mono" href="derniers/index.html">{T["latest_more"]}</a></div>'
+            + items.replace('{p}', '') + '</section>')
+
+
+def latest_page(articles, today):
+    body = (f'<p class="breadcrumb"><a href="../index.html">{T["crumb_catalogue"]}</a> › {T["latest_title"]}</p>'
+            f'<div class="eyebrow">{T["side_title"]}</div><h1>{T["latest_title"]}</h1><p class="intro">{T["latest_intro"].format(n=LATEST_N, days=NEW_DAYS)}</p>'
+            f'{flow(T["latest_visual_title"], T["latest_visual_nodes"], T["latest_visual_details"], T["latest_visual_caption"])}'
+            f'<div class="new-block">{latest_list(articles, today).replace("{p}", "../")}</div>')
+    write('derniers/index.html', shell(T['latest_title'], body, '../'))
+
+
+def sidebar_html(groups, prefix, total):
+    """Sidebar on every page: « Les 10 derniers » first, then sections only."""
+    items = ''.join(
+        f'<li><a class="side-section" href="{prefix}sections/{slugify(t)}/index.html">{esc(t)}<span class="side-count">{n:02d}</span></a></li>'
+        for t, v, n in groups if n)
+    return (f'<aside class="sidebar" aria-label="{T["side_aria"]}"><details class="side-sections" open><summary class="side-summary">{T["side_title"]}</summary>'
+            f'<ul class="side-list"><li><a class="side-section side-latest" href="{prefix}derniers/index.html">{T["latest_link"]}</a></li>'
+            f'<li><a class="side-section side-all" href="{prefix + "index.html" if prefix else ""}#browse">{T["side_all"]}<span class="side-count">{total:02d}</span></a></li>{items}</ul></details></aside>')
 
 
 def section_name(article):
@@ -278,8 +336,10 @@ def js_strings():
     return json.dumps({k: T[k] for k in JS_KEYS}, ensure_ascii=False).replace('</', '<\\/')
 
 
-def shell(title, content, prefix='', description=None, sidebar=''):
+def shell(title, content, prefix='', description=None, sidebar=None):
     description = description or T['description']
+    if sidebar is None and STATE.get('groups') is not None:
+        sidebar = sidebar_html(STATE['groups'], prefix, STATE['total'])
     main_open, main_close = (f'<div class="site-layout">{sidebar}', '</div>') if sidebar else ('', '')
     preview = STATE['preview']
     gloss_nav = f'<a href="{prefix}glossaire/index.html">{T["nav_glossary"]}</a>' if STATE['glossary'] else ''
@@ -306,7 +366,7 @@ def slugify(text):
 def entry(article, today, prefix=''):
     status = lifecycle(article, today)
     kind = article['type']
-    return f'''<article class="entry" data-slug="{esc(article['slug'])}" data-kind="{esc(kind)}" data-topic="{esc(slugify(section_name(article)))}" data-outdated="{'true' if status['class']=='archived' else 'false'}"><div class="entry-kind"><span class="kind kind-{esc(kind)}">{KIND[kind]}</span></div><div><a class="entry-title" href="{prefix}{article['slug']}/index.html">{esc(article['title'])}</a><p class="entry-description">{esc(article['summary'])}</p><div class="entry-formats">{T['article_with_figures']}</div></div><div class="entry-date">{T['published_label']}<strong>{when(article.get('published'))}</strong><span class="status status-{status['class']}">{status['status']}</span></div></article>'''
+    return f'''<article class="entry" data-slug="{esc(article['slug'])}" data-kind="{esc(kind)}" data-topic="{esc(slugify(section_name(article)))}" data-outdated="{'true' if status['class']=='archived' else 'false'}"><div class="entry-kind"><span class="kind kind-{esc(kind)}">{KIND[kind]}</span>{new_badge(article, today)}</div><div><a class="entry-title" href="{prefix}{article['slug']}/index.html">{esc(article['title'])}</a><p class="entry-description">{esc(article['summary'])}</p><div class="entry-formats">{T['article_with_figures']}</div></div><div class="entry-date">{T['published_label']}<strong>{when(article.get('published'))}</strong><span class="status status-{status['class']}">{status['status']}</span></div></article>'''
 
 
 def section_slug(article):
@@ -318,7 +378,12 @@ def sections_of(articles, today):
     groups = {}
     for a in articles:
         groups.setdefault(section_name(a), []).append(a)
-    order = sorted(groups, key=lambda name: (name == ABOUT, -len(groups[name]), name))
+    def latest(name):
+        live = [a for a in groups[name] if not is_outdated(a, today)] or groups[name]
+        return max(a['published'] if iso(a.get('published')) else '0000' for a in live)
+    by_name = sorted(groups)
+    order = sorted(by_name, key=latest, reverse=True)
+    order.sort(key=lambda name: name == ABOUT)  # stable: ABOUT last, others keep newest-first order
     return [(name, groups[name], sum(not is_outdated(a, today) for a in groups[name])) for name in order]
 
 
@@ -330,7 +395,7 @@ def section_card(name, items, today, slug):
     note = SECTION_NOTES.get(name) or SECTION_NOTE_DEFAULT.format(name=name)
     current = [a for a in items if not is_outdated(a, today)]
     recent = ''.join(
-        f'<li><span class="kind kind-{esc(a["type"])}">{KIND[a["type"]]}</span><a href="{esc(a["slug"])}/index.html">{esc(a["title"])}</a></li>'
+        f'<li><span class="kind kind-{esc(a["type"])}">{KIND[a["type"]]}</span><a href="{esc(a["slug"])}/index.html">{esc(a["title"])}</a>{new_badge(a, today)}</li>'
         for a in current[:3])
     return (f'<article class="section-card"><h3><a href="sections/{slug}/index.html">{esc(name)}</a>'
             f'<span class="section-count">{len(current):02d}</span></h3><p class="section-note">{esc(note)}</p>'
@@ -340,8 +405,7 @@ def section_card(name, items, today, slug):
 
 def section_page(name, slug, items, today, summary_visual):
     """Write /sections/<slug>/ and its static pagination pages: newest first, 20 per page, a type filter, a per-section search box."""
-    current = sorted((a for a in items if not is_outdated(a, today)),
-                      key=lambda a: a.get('published') if iso(a.get('published')) else '0000', reverse=True)
+    current = newest_first([a for a in items if not is_outdated(a, today)])
     pages = max(1, -(-len(current) // SECTION_PAGE_SIZE))
     note = SECTION_NOTES.get(name) or SECTION_NOTE_DEFAULT.format(name=name)
     news_button = (f'<button type="button" class="type-button" data-kind="news" aria-pressed="false">{T["filter_news"]}</button>'
@@ -490,7 +554,7 @@ def build(today=None, preview=False, drafts=()):
         raise ValueError('Draft folders need preview mode')
     today = today or date.today()
     out = PREVIEW_OUT if preview else OUT
-    STATE.update(preview=preview, out=out)
+    STATE.update(preview=preview, out=out, groups=None)
     catalogue = json.loads((ROOT / 'content/catalogue.json').read_text())
     staged = load_drafts(drafts)
     staged_slugs = {a['slug'] for a in staged}  # a staged entry replaces the catalogue entry with the same slug
@@ -518,17 +582,14 @@ def build(today=None, preview=False, drafts=()):
                 stale.rmdir()
     out.mkdir(exist_ok=True)
     shutil.copytree(ROOT / 'assets', out / 'assets', dirs_exist_ok=True)
-    pub_key = lambda a: (a.get('published') if iso(a.get('published')) else '0000', a['slug'])
-    articles = sorted(catalogue['articles'], key=pub_key, reverse=True)
+    articles = newest_first(catalogue['articles'])
     entries = [a for a in articles if not is_outdated(a, today)]
     summary_visual = flow(T['choose_visual_title'], T['choose_visual_nodes'], T['choose_visual_details'], T['choose_visual_caption'])
-    listing = sorted(articles, key=lambda a: a.get('published') if iso(a.get('published')) else '0000', reverse=True)
+    listing = articles
     groups = sections_of(listing, today)
     candidates = [a for a in articles if not is_draft(a)] or articles
     # Feature a content article, never the library's own "about" page; the catalogue may name one.
-    named = catalogue.get('featured')
-    featured = next((a for a in candidates if a['slug'] == named), None) or next(
-        (a for a in candidates if section_name(a) != ABOUT and a['type'] == 'guide'), candidates[0])
+    featured = next((a for a in candidates if section_name(a) != ABOUT), candidates[0])  # most recent publication
     fs = lifecycle(featured, today)
     fv = featured.get('visual') or {}
     # Only the built-in three-step flow fits the card; tall article figures stay on the article page.
@@ -536,11 +597,8 @@ def build(today=None, preview=False, drafts=()):
     published = [a for a in articles if not is_draft(a)]
     stats = (f'<div class="library-stats"><strong>{count_label(len(published))}</strong>'
              f'<span>{T["updated"].format(date=day(max(a["edited"] for a in published)))}</span></div>') if published else ''
-    side_items = ''.join(
-        f'<li><a class="side-section" href="sections/{slugify(t)}/index.html">{esc(t)}<span class="side-count">{n:02d}</span></a></li>'
-        for t, v, n in groups if n)
-    sidebar = (f'<aside class="sidebar" aria-label="{T["side_aria"]}"><details class="side-sections" open><summary class="side-summary">{T["side_title"]}</summary>'
-               f'<ul class="side-list"><li><a class="side-section side-all" href="#browse">{T["side_all"]}<span class="side-count">{len(entries):02d}</span></a></li>{side_items}</ul></details></aside>')
+    STATE.update(groups=groups, total=len(entries))
+    sidebar = None  # shell() builds the shared sidebar
     news_button = (f'<button type="button" class="type-button" data-kind="news" aria-pressed="false">{T["filter_news"]}</button>'
                    if any(a['type'] == 'news' for a in articles) else '')
     cards = ''.join(section_card(name, items, today, slugify(name)) for name, items, n in groups if n)
@@ -552,8 +610,9 @@ def build(today=None, preview=False, drafts=()):
 
     search_index = ''.join(search_entry(a) for a in listing)
     home = f'''<section id="library"><div class="eyebrow">{T['eyebrow']}</div><div class="intro-row"><div><h1>{T['hero']}</h1><p class="intro">{T['intro']}</p></div>{stats}</div>
+{latest_block(published, today)}
 <div class="library-topline"><div><span class="section-number">01 /</span> <h2>{T['start_title']}</h2></div><span class="mono muted">{T['start_hint']}</span></div>
-<a class="featured{"" if featured_visual else " featured-single"}" href="{featured['slug']}/index.html"><div class="featured-copy"><div class="entry-kicker"><span class="kind kind-{esc(featured['type'])}">{KIND[featured['type']]}</span><span>{esc(section_name(featured).upper())}</span></div><h3>{esc(featured['title'])}</h3><p>{esc(featured['summary'])}</p><div class="featured-footer"><span>{T['featured_read']}</span><span class="mono">{T['featured_tag']}</span></div><div class="featured-dates">{T['published_on']} {when(featured.get('published'))} · {T['edited_on']} {when(featured.get('edited'))} <span class="status status-{fs['class']}">{fs['status']}</span></div></div>{f'<div class="featured-visual">{featured_visual}</div>' if featured_visual else ''}</a>
+<a class="featured{"" if featured_visual else " featured-single"}" href="{featured['slug']}/index.html"><div class="featured-copy"><div class="entry-kicker"><span class="kind kind-{esc(featured['type'])}">{KIND[featured['type']]}</span><span>{esc(section_name(featured).upper())}</span>{new_badge(featured, today)}</div><h3>{esc(featured['title'])}</h3><p>{esc(featured['summary'])}</p><div class="featured-footer"><span>{T['featured_read']}</span><span class="mono">{T['featured_tag']}</span></div><div class="featured-dates">{T['published_on']} {when(featured.get('published'))} · {T['edited_on']} {when(featured.get('edited'))} <span class="status status-{fs['class']}">{fs['status']}</span></div></div>{f'<div class="featured-visual">{featured_visual}</div>' if featured_visual else ''}</a>
 <section id="browse" class="browse" aria-labelledby="browse-title"><div class="library-topline"><div><span class="section-number">02 /</span> <h2 id="browse-title">{T['browse_sections_title']}</h2></div><span id="result-count" class="mono muted" aria-live="polite" hidden></span></div>
 <div class="search-row"><label class="search-box js-only"><span class="sr-only">{T['search_label']}</span><input id="search" type="search" placeholder="{T['search_placeholder']}" autocomplete="off"></label><label class="archive-control js-only"><input id="archive" type="checkbox"> {T['show_old_news']}</label></div>
 <div class="filter-row js-only" role="group" aria-label="{T['filter_aria']}" hidden id="search-filters"><button type="button" class="type-button active" data-kind="all" aria-pressed="true">{T['filter_all']}</button><button type="button" class="type-button" data-kind="guide" aria-pressed="false">{T['filter_guide']}</button><button type="button" class="type-button" data-kind="experiment" aria-pressed="false">{T['filter_experiment']}</button>{news_button}</div>
@@ -564,7 +623,8 @@ def build(today=None, preview=False, drafts=()):
 <section id="principles" class="principles"><div class="library-topline"><div><span class="section-number">03 /</span> <h2>{T['principles_title']}</h2></div></div><div class="principle-grid"><div><span class="kind kind-news">{KIND['news']}</span><h3>{T['principle_news_title']}</h3><p>{T['principle_news']}</p></div><div><span class="kind kind-guide">{KIND['guide']}</span><h3>{T['principle_guide_title']}</h3><p>{T['principle_guide']}</p></div><div><span class="kind kind-experiment">{KIND['experiment']}</span><h3>{T['principle_experiment_title']}</h3><p>{T['principle_experiment']}</p></div></div>{summary_visual}</section>
 {news_home_block(news_records, today) if news_records else ''}
 <section id="about" class="about"><div><span class="side-label">{T['about_label']}</span><h2>{T['about_title']}</h2></div><div><p>{T['about_1']}</p><p class="muted">{T['about_2']}</p><p class="muted">{T['about_3']}</p></div></section></section>'''
-    write('index.html', shell(T['nav_catalogue'], home, sidebar=sidebar))
+    write('index.html', shell(T['nav_catalogue'], home))
+    latest_page(published, today)
     for name, items, n in groups:
         if n:
             section_page(name, slugify(name), items, today, summary_visual)
@@ -603,7 +663,7 @@ def build(today=None, preview=False, drafts=()):
     archive_body+=''.join(entry(a,today,'../') for a in archive) if archive else f'<h2>{T["archive_policy"]}</h2><p>'+T['archive_none'].format(date=day(plus_months('2026-11-25',3)))+'</p>'
     write('archive/index.html',shell(T['archive_title'],archive_body,'../'))
     write('catalogue.json',json.dumps({'as_of':today.isoformat(),'release_marker':catalogue['release_marker'],'articles':[{k:a.get(k) for k in ['slug','title','section','type','published','summary','formats']} for a in articles]},indent=2,ensure_ascii=False)+'\n')
-    write('404.html',shell(T['notfound_title'],f'<h1>{T["notfound_h1"]}</h1>'+summary_visual+f'<p><a href="./index.html">{T["open_catalogue"]}</a></p>'))
+    write('404.html',shell(T['notfound_title'],f'<h1>{T["notfound_h1"]}</h1>'+summary_visual+f'<p><a href="./index.html">{T["open_catalogue"]}</a></p>',sidebar=''))
     for gone in catalogue.get('retired', []):
         write(gone['slug']+'/index.html', shell(T['retired_title'], f'<h1>{T["retired_h1"]}</h1><p>{esc(gone["note"])}</p>'+summary_visual+f'<p><a href="../index.html">{T["open_catalogue"]}</a></p>', '../'))
     if gloss:
